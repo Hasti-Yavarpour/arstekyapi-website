@@ -1,0 +1,516 @@
+/* INDUSTRY-THEMES.CSS - Industry-Specific Themes and Colors */
+
+/* Industry Color Palette */
+:root {
+  /* Healthcare */
+  --healthcare-primary: #E74C3C;
+  --healthcare-light: #FADBD8;
+  --healthcare-dark: #C0392B;
+
+  /* Manufacturing */
+  --manufacturing-primary: #3498DB;
+  --manufacturing-light: #D6EAF8;
+  --manufacturing-dark: #2980B9;
+
+  /* Retail */
+  --retail-primary: #27AE60;
+  --retail-light: #D5F4E6;
+  --retail-dark: #229954;
+
+  /* Finance */
+  --finance-primary: #F39C12;
+  --finance-light: #FCF3CF;
+  --finance-dark: #E67E22;
+
+  /* Transportation */
+  --transportation-primary: #9B59B6;
+  --transportation-light: #EBDEF0;
+  --transportation-dark: #8E44AD;
+
+  /* Real Estate */
+  --realestate-primary: #5DADE2;
+  --realestate-light: #D6EAF8;
+  --realestate-dark: #3498DB;
+
+  /* Agriculture */
+  --agriculture-primary: #58D68D;
+  --agriculture-light: #D5F4E6;
+  --agriculture-dark: #28B463;
+
+  /* Education */
+  --education-primary: #5499C7;
+  --education-light: #D6EAF8;
+  --education-dark: #2980B9;
+
+  /* Hospitality */
+  --hospitality-primary: #EC7063;
+  --hospitality-light: #FADBD8;
+  --hospitality-dark: #E74C3C;
+
+  /* Energy */
+  --energy-primary: #F7941D;
+  --energy-light: #FDF2E9;
+  --energy-dark: #E67E22;
+}
+
+/* Healthcare Theme */
+.healthcare-theme {
+  --theme-primary: var(--healthcare-primary);
+  --theme-light: var(--healthcare-light);
+  --theme-dark: var(--healthcare-dark);
+}
+
+.healthcare-theme .industry-card {
+  border-left: 4px solid var(--healthcare-primary);
+}
+
+.healthcare-theme .industry-card:hover {
+  background-color: var(--healthcare-light);
+  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.15);
+}
+
+.healthcare-theme .service-card::before {
+  background: linear-gradient(90deg, var(--healthcare-primary), var(--healthcare-dark));
+}
+
+.healthcare-theme .btn-primary {
+  background-color: var(--healthcare-primary);
+  border-color: var(--healthcare-primary);
+}
+
+.healthcare-theme .btn-primary:hover {
+  background-color: var(--healthcare-dark);
+}
+
+/* Manufacturing Theme */
+.manufacturing-theme {
+  --theme-primary: var(--manufacturing-primary);
+  --theme-light: var(--manufacturing-light);
+  --theme-dark: var(--manufacturing-dark);
+}
+
+.manufacturing-theme .industry-card {
+  border-left: 4px solid var(--manufacturing-primary);
+}
+
+.manufacturing-theme .industry-card:hover {
+  background-color: var(--manufacturing-light);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+}
+
+.manufacturing-theme .service-card::before {
+  background: linear-gradient(90deg, var(--manufacturing-primary), var(--manufacturing-dark));
+}
+
+.manufacturing-theme .progress-bar {
+  background-color: var(--manufacturing-primary);
+}
+
+/* Retail Theme */
+.retail-theme {
+  --theme-primary: var(--retail-primary);
+  --theme-light: var(--retail-light);
+  --theme-dark: var(--retail-dark);
+}
+
+.retail-theme .industry-card {
+  border-left: 4px solid var(--retail-primary);
+}
+
+.retail-theme .industry-card:hover {
+  background-color: var(--retail-light);
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.15);
+}
+
+.retail-theme .badge-success {
+  background-color: var(--retail-light);
+  color: var(--retail-dark);
+}
+
+/* Finance Theme */
+.finance-theme {
+  --theme-primary: var(--finance-primary);
+  --theme-light: var(--finance-light);
+  --theme-dark: var(--finance-dark);
+}
+
+.finance-theme .industry-card {
+  border-left: 4px solid var(--finance-primary);
+}
+
+.finance-theme .industry-card:hover {
+  background-color: var(--finance-light);
+  box-shadow: 0 8px 25px rgba(243, 156, 18, 0.15);
+}
+
+.finance-theme .gradient-text {
+  background: linear-gradient(135deg, var(--finance-primary), var(--finance-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Transportation Theme */
+.transportation-theme {
+  --theme-primary: var(--transportation-primary);
+  --theme-light: var(--transportation-light);
+  --theme-dark: var(--transportation-dark);
+}
+
+.transportation-theme .industry-card {
+  border-left: 4px solid var(--transportation-primary);
+}
+
+.transportation-theme .industry-card:hover {
+  background-color: var(--transportation-light);
+  box-shadow: 0 8px 25px rgba(155, 89, 182, 0.15);
+}
+
+/* Real Estate Theme */
+.realestate-theme {
+  --theme-primary: var(--realestate-primary);
+  --theme-light: var(--realestate-light);
+  --theme-dark: var(--realestate-dark);
+}
+
+.realestate-theme .industry-card {
+  border-left: 4px solid var(--realestate-primary);
+}
+
+.realestate-theme .industry-card:hover {
+  background-color: var(--realestate-light);
+  box-shadow: 0 8px 25px rgba(93, 173, 226, 0.15);
+}
+
+/* Agriculture Theme */
+.agriculture-theme {
+  --theme-primary: var(--agriculture-primary);
+  --theme-light: var(--agriculture-light);
+  --theme-dark: var(--agriculture-dark);
+}
+
+.agriculture-theme .industry-card {
+  border-left: 4px solid var(--agriculture-primary);
+}
+
+.agriculture-theme .industry-card:hover {
+  background-color: var(--agriculture-light);
+  box-shadow: 0 8px 25px rgba(88, 214, 141, 0.15);
+}
+
+/* Education Theme */
+.education-theme {
+  --theme-primary: var(--education-primary);
+  --theme-light: var(--education-light);
+  --theme-dark: var(--education-dark);
+}
+
+.education-theme .industry-card {
+  border-left: 4px solid var(--education-primary);
+}
+
+.education-theme .industry-card:hover {
+  background-color: var(--education-light);
+  box-shadow: 0 8px 25px rgba(84, 153, 199, 0.15);
+}
+
+/* Hospitality Theme */
+.hospitality-theme {
+  --theme-primary: var(--hospitality-primary);
+  --theme-light: var(--hospitality-light);
+  --theme-dark: var(--hospitality-dark);
+}
+
+.hospitality-theme .industry-card {
+  border-left: 4px solid var(--hospitality-primary);
+}
+
+.hospitality-theme .industry-card:hover {
+  background-color: var(--hospitality-light);
+  box-shadow: 0 8px 25px rgba(236, 112, 99, 0.15);
+}
+
+/* Energy Theme */
+.energy-theme {
+  --theme-primary: var(--energy-primary);
+  --theme-light: var(--energy-light);
+  --theme-dark: var(--energy-dark);
+}
+
+.energy-theme .industry-card {
+  border-left: 4px solid var(--energy-primary);
+}
+
+.energy-theme .industry-card:hover {
+  background-color: var(--energy-light);
+  box-shadow: 0 8px 25px rgba(247, 148, 29, 0.15);
+}
+
+/* Industry-Specific Icons */
+.industry-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.industry-card:hover .industry-icon {
+  transform: scale(1.2) rotateY(360deg);
+  transition: transform 0.6s ease;
+}
+
+/* Sector-Specific Background Patterns */
+.healthcare-bg {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(231, 76, 60, 0.05) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 30%, rgba(231, 76, 60, 0.02) 30%, rgba(231, 76, 60, 0.02) 70%, transparent 70%);
+}
+
+.manufacturing-bg {
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(52, 152, 219, 0.03) 10px, rgba(52, 152, 219, 0.03) 20px);
+}
+
+.finance-bg {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(243, 156, 18, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(243, 156, 18, 0.05) 0%, transparent 50%);
+}
+
+/* Technology Stack Colors */
+.tech-python { color: #3776ab; }
+.tech-javascript { color: #f7df1e; }
+.tech-react { color: #61dafb; }
+.tech-nodejs { color: #339933; }
+.tech-django { color: #092e20; }
+.tech-flask { color: #000000; }
+.tech-esp32 { color: #e7352c; }
+.tech-raspberry { color: #c51a4a; }
+
+/* Project Status Indicators */
+.status-completed {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-in-progress {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.status-planning {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Industry-Specific Animations */
+@keyframes pulse-healthcare {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
+  }
+}
+
+@keyframes pulse-tech {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(52, 152, 219, 0);
+  }
+}
+
+@keyframes pulse-finance {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(243, 156, 18, 0);
+  }
+}
+
+/* Industry Page Specific Layouts */
+.industry-detail-header {
+  background: linear-gradient(135deg, var(--theme-primary, #1B4F72), var(--theme-dark, #143c5c));
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.industry-detail-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+  background-size: 100px 100px;
+  opacity: 0.3;
+}
+
+/* Responsive Industry Cards */
+@media (max-width: 768px) {
+  .industry-card {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .industry-icon {
+    font-size: 2.5rem;
+  }
+
+  .industry-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+@media (min-width: 1200px) {
+  .industry-card {
+    padding: 2rem;
+  }
+
+  .industry-icon {
+    font-size: 3.5rem;
+  }
+}
+
+/* Portfolio Filtering */
+.filter-tab {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.25rem;
+}
+
+.filter-tab.active,
+.filter-tab:hover {
+  background: var(--theme-primary, #1B4F72);
+  color: white;
+  border-color: var(--theme-primary, #1B4F72);
+}
+
+/* Service Feature Lists */
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  position: relative;
+  padding: 0.5rem 0;
+  padding-left: 2rem;
+}
+
+.feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--theme-primary, #1B4F72);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Industry Statistics */
+.industry-stat {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+}
+
+.industry-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.industry-stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--theme-primary, #1B4F72);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.industry-stat-label {
+  font-size: 0.875rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Case Study Cards */
+.case-study-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.case-study-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--theme-primary, #1B4F72), var(--theme-dark, #143c5c));
+}
+
+.case-study-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ROI Calculator Styling */
+.roi-calculator {
+  background: linear-gradient(135deg, var(--theme-primary, #1B4F72), var(--theme-dark, #143c5c));
+  color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.roi-result {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Print Styles for Industry Pages */
+@media print {
+  .industry-theme {
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .industry-card {
+    border: 2px solid var(--theme-primary, #1B4F72) !important;
+    margin-bottom: 1rem;
+    page-break-inside: avoid;
+  }
+}
