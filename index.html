@@ -38,10 +38,27 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Stylesheets -->
-  <link href="/css/tailwind.min.css" rel="stylesheet">
-  <link href="/css/tech-theme.css" rel="stylesheet">
-  <link href="/css/industry-themes.css" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              'primary': '#1B4F72',
+              'hover': '#143c5c',
+              'secondary': '#2C3E50',
+              'accent': '#34495E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link href="/css/custom-styles.css" rel="stylesheet">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +99,7 @@
 <body class="font-inter bg-white">
 
   <!-- Header & Navbar Partial -->
-  <header class="bg-white shadow-lg border-b-4 border-[#1B4F72] fixed w-full top-0 z-50">
+  <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
 
@@ -91,7 +108,7 @@
           <a href="/index.html" class="flex items-center space-x-3">
             <img class="h-10 w-auto" src="/images/logos/arstekyapi-logo.png" alt="ARS TEK YAPI Logo">
             <div class="hidden sm:block">
-              <span class="text-[#1B4F72] font-bold text-xl">ARS TEK YAPI</span>
+              <span class="text-brand-primary font-bold text-xl">ARS TEK YAPI</span>
               <p class="text-gray-600 text-xs font-medium">A.Ş.</p>
             </div>
           </a>
@@ -99,41 +116,41 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="/index.html" class="nav-link text-[#1B4F72] font-semibold border-b-2 border-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/index.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
             Ana Sayfa
           </a>
-          <a href="/about.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Hakkımızda
           </a>
-          <a href="/services.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Hizmetler
           </a>
-          <a href="/industries.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Sektörler
           </a>
-          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Portföy
           </a>
-          <a href="/blog.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Blog
           </a>
-          <a href="/contact.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             İletişim
           </a>
 
           <!-- Language Dropdown -->
           <div class="relative ml-4" id="language-dropdown">
-            <button class="bg-[#1B4F72] text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-[#143c5c] transition-colors duration-200" id="language-btn">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
               <span id="current-lang">🇹🇷 TR</span>
               <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200 z-10" id="language-menu">
-              <a href="/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
+            <div class="hidden" id="language-menu">
+              <a href="/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
                 🇹🇷 Türkçe
               </a>
-              <a href="/en/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
+              <a href="/en/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
                 🇬🇧 English
               </a>
             </div>
@@ -142,7 +159,7 @@
 
         <!-- Mobile menu button -->
         <div class="lg:hidden">
-          <button class="text-gray-600 hover:text-[#1B4F72] focus:outline-none focus:text-[#1B4F72] transition-colors duration-200" id="mobile-menu-btn">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -152,36 +169,36 @@
 
       <!-- Mobile Navigation Menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-50 border-t border-gray-200">
-          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-[#1B4F72] bg-white rounded-md">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
             Ana Sayfa
           </a>
-          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Hakkımızda
           </a>
-          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Hizmetler
           </a>
-          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Sektörler
           </a>
-          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Portföy
           </a>
-          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Blog
           </a>
-          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             İletişim
           </a>
 
           <!-- Mobile Language Options -->
           <div class="border-t border-gray-200 pt-3 mt-3">
             <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
-            <a href="/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+            <a href="/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
               🇹🇷 Türkçe
             </a>
-            <a href="/en/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+            <a href="/en/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
               🇬🇧 English
             </a>
           </div>
@@ -217,11 +234,11 @@
           </p>
 
           <div class="hero-cta flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="/services.html" class="bg-white text-[#1B4F72] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <a href="/services.html" class="btn btn-primary text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               <i class="fas fa-rocket mr-2"></i>
               Hizmetlerimizi Keşfedin
             </a>
-            <a href="/contact.html" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#1B4F72] transition-all duration-300 text-center transform hover:-translate-y-1">
+            <a href="/contact.html" class="btn btn-secondary text-center transform hover:-translate-y-1">
               <i class="fas fa-comments mr-2"></i>
               İletişime Geçin
             </a>
@@ -262,7 +279,7 @@
   </section>
 
   <!-- Footer Partial -->
-  <footer class="bg-[#1B4F72] text-white">
+  <footer class="bg-brand-primary text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
@@ -387,7 +404,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
 
   <!-- Scroll to Top Button HTML -->
-  <button id="scroll-top" class="fixed bottom-6 right-6 bg-[#1B4F72] text-white p-3 rounded-full shadow-lg opacity-0 translate-y-2 transition-all duration-300 hover:bg-[#143c5c] z-40">
+  <button id="scroll-top" class="fixed bottom-6 right-6 bg-brand-primary text-white p-3 rounded-full shadow-lg opacity-0 translate-y-2 transition-all duration-300 hover:bg-brand-hover z-40">
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
     </svg>
@@ -407,15 +424,15 @@
       </p>
       <div class="mt-8 flex justify-center space-x-8" data-aos="fade-up" data-aos-delay="400">
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B4F72] counter" data-target="50" data-suffix="+">0+</div>
+          <div class="text-3xl font-bold text-brand-primary counter" data-target="50" data-suffix="+">0+</div>
           <p class="text-gray-600 font-medium">Tamamlanan Proje</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B4F72] counter" data-target="10" data-suffix="+">0+</div>
+          <div class="text-3xl font-bold text-brand-primary counter" data-target="10" data-suffix="+">0+</div>
           <p class="text-gray-600 font-medium">Sektör Deneyimi</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-[#1B4F72] counter" data-target="100" data-suffix="%">0%</div>
+          <div class="text-3xl font-bold text-brand-primary counter" data-target="100" data-suffix="%">0%</div>
           <p class="text-gray-600 font-medium">Müşteri Memnuniyeti</p>
         </div>
       </div>
@@ -437,14 +454,14 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- AI & Machine Learning -->
         <div class="service-card bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-icon text-4xl mb-6 text-[#1B4F72]">
+          <div class="service-icon text-4xl mb-6 text-brand-primary">
             <i class="fas fa-brain"></i>
           </div>
           <h3 class="service-title text-xl font-bold text-gray-900 mb-4">AI & Makine Öğrenmesi</h3>
           <p class="text-gray-600 mb-6">
             NLP, tahmine dayalı analitik ve AI sohbet robotları ile iş süreçlerinizi otomatikleştirin ve veri odaklı kararlar alın.
           </p>
-          <a href="/services.html#ai-ml" class="text-[#1B4F72] font-semibold hover:text-[#143c5c] transition-colors">
+          <a href="/services.html#ai-ml" class="text-brand-primary font-semibold hover:text-brand-hover transition-colors">
             Detayları İncele <i class="fas fa-arrow-right ml-2"></i>
           </a>
         </div>
@@ -617,7 +634,7 @@
       </div>
 
       <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="600">
-        <a href="/industries.html" class="inline-flex items-center bg-[#1B4F72] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#143c5c] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <a href="/industries.html" class="inline-flex items-center bg-brand-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-hover transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
           Tüm Sektörleri İncele
           <i class="fas fa-arrow-right ml-3"></i>
         </a>
@@ -727,7 +744,7 @@
       </div>
 
       <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-        <a href="/portfolio.html" class="inline-flex items-center bg-[#1B4F72] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-[#143c5c] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        <a href="/portfolio.html" class="inline-flex items-center bg-brand-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-hover transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
           Tüm Projelerimizi İncele
           <i class="fas fa-arrow-right ml-3"></i>
         </a>
@@ -736,7 +753,7 @@
   </section>
 
   <!-- Contact CTA -->
-  <section class="py-20 bg-gradient-to-r from-[#1B4F72] to-[#2C3E50] text-white relative overflow-hidden">
+  <section class="py-20 gradient-bg text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-10"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-aos="fade-up">
@@ -747,11 +764,11 @@
       </p>
 
       <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="400">
-        <a href="/contact.html" class="bg-white text-[#1B4F72] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
+        <a href="/contact.html" class="btn btn-primary shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
           <i class="fas fa-comments mr-3"></i>
           Ücretsiz Danışmanlık Alın
         </a>
-        <a href="tel:+90XXXXXXXXX" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-[#1B4F72] transition-all duration-300 transform hover:-translate-y-1 flex items-center">
+        <a href="tel:+90XXXXXXXXX" class="btn btn-secondary transform hover:-translate-y-1 flex items-center">
           <i class="fas fa-phone mr-3"></i>
           Hemen Arayın
         </a>
