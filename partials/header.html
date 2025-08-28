@@ -1,10 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!-- Header & Navbar Partial -->
+<header class="bg-white shadow-lg border-b-4 border-[#1B4F72] fixed w-full top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
 
-</body>
-</html>
+      <!-- Logo & Company Name -->
+      <div class="flex items-center">
+        <a href="/index.html" class="flex items-center space-x-3">
+          <img class="h-10 w-auto" src="/images/logos/arstekyapi-logo.png" alt="ARS TEK YAPI Logo">
+          <div class="hidden sm:block">
+            <span class="text-[#1B4F72] font-bold text-xl">ARS TEK YAPI</span>
+            <p class="text-gray-600 text-xs font-medium">A.Ş.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="/index.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Ana Sayfa
+        </a>
+        <a href="/about.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Hakkımızda
+        </a>
+        <a href="/services.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Hizmetler
+        </a>
+        <a href="/industries.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Sektörler
+        </a>
+        <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Portföy
+        </a>
+        <a href="/blog.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          Blog
+        </a>
+        <a href="/contact.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+          İletişim
+        </a>
+
+        <!-- Language Dropdown -->
+        <div class="relative ml-4" id="language-dropdown">
+          <button class="bg-[#1B4F72] text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-[#143c5c] transition-colors duration-200" id="language-btn">
+            <span id="current-lang">🇹🇷 TR</span>
+            <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+          <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200 z-10" id="language-menu">
+            <a href="/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
+              🇹🇷 Türkçe
+            </a>
+            <a href="/en/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
+              🇬🇧 English
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button class="text-gray-600 hover:text-[#1B4F72] focus:outline-none focus:text-[#1B4F72] transition-colors duration-200" id="mobile-menu-btn">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="lg:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-50 border-t border-gray-200">
+        <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Ana Sayfa
+        </a>
+        <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Hakkımızda
+        </a>
+        <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Hizmetler
+        </a>
+        <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Sektörler
+        </a>
+        <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Portföy
+        </a>
+        <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          Blog
+        </a>
+        <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+          İletişim
+        </a>
+
+        <!-- Mobile Language Options -->
+        <div class="border-t border-gray-200 pt-3 mt-3">
+          <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
+          <a href="/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+            🇹🇷 Türkçe
+          </a>
+          <a href="/en/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+            🇬🇧 English
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer to prevent content from hiding behind fixed navbar -->
+<div class="h-16"></div>
