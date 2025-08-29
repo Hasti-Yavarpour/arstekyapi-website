@@ -1,0 +1,344 @@
+/* ARS TEK YAPI - Homepage Specific Styles */
+
+/* Header Scrolled State */
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+}
+
+header.scrolled .nav-brand {
+  transform: scale(0.9);
+  transition: transform var(--transition-normal);
+}
+
+/* Hero Section Enhancements */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--tech-blue) 100%);
+}
+
+.hero::before {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0,212,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+}
+
+/* Animated Tech Elements */
+.hero .animate-pulse:nth-child(1) {
+  animation-delay: 0s;
+  animation-duration: 3s;
+}
+
+.hero .animate-pulse:nth-child(2) {
+  animation-delay: 1s;
+  animation-duration: 2.5s;
+}
+
+.hero .animate-pulse:nth-child(3) {
+  animation-delay: 2s;
+  animation-duration: 4s;
+}
+
+/* Service Cards Hover Effects */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(27, 79, 114, 0.03), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.service-card:hover::before {
+  left: 100%;
+}
+
+.service-card .icon {
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index: 2;
+}
+
+.service-card:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Industry Cards Grid Animation */
+.industry-card {
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.industry-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary), var(--tech-blue));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+  border-radius: var(--radius-lg);
+}
+
+.industry-card:hover::after {
+  opacity: 0.05;
+}
+
+.industry-card:hover {
+  color: var(--primary-dark);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Portfolio Cards Enhanced */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--bg-tech-gradient);
+  transform: translateY(-3px);
+  transition: transform var(--transition-normal);
+}
+
+.card:hover::before {
+  transform: translateY(0);
+}
+
+.card .badge-outline {
+  transition: all var(--transition-fast);
+}
+
+.card:hover .badge-outline {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* Contact CTA Section */
+.section.bg-tech-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.section.bg-tech-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 30%),
+    radial-gradient(circle at 70% 70%, rgba(0,212,255,0.1) 0%, transparent 30%);
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: rotate(0deg) translate(-50%, -50%); }
+  100% { transform: rotate(360deg) translate(-50%, -50%); }
+}
+
+.section.bg-tech-gradient .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Button Hover Enhancements */
+.btn-tech:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(27, 79, 114, 0.3);
+}
+
+/* Footer Enhancements */
+footer {
+  background: linear-gradient(135deg, var(--dark-gray) 0%, var(--primary-dark) 100%);
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--bg-tech-gradient);
+}
+
+footer .w-10.h-10:hover {
+  transform: translateY(-2px) scale(1.1);
+  transition: transform var(--transition-normal);
+}
+
+/* Section Spacing Adjustments */
+.section-header {
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--bg-tech-gradient);
+  border-radius: 2px;
+}
+
+/* Loading States for Dynamic Content */
+.service-card.loading,
+.industry-card.loading,
+.card.loading {
+  background: var(--light-gray);
+  color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card.loading::after,
+.industry-card.loading::after,
+.card.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 90vh;
+    padding: var(--space-2xl) 0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 1.125rem;
+  }
+
+  .service-card {
+    padding: var(--space-lg);
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Stack buttons vertically on mobile */
+  .hero .flex.sm\\:flex-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-card {
+    padding: var(--space-md);
+  }
+
+  .card-header,
+  .card-body {
+    padding: var(--space-md);
+  }
+}
+
+/* Print Optimizations */
+@media print {
+  .hero,
+  .section.bg-tech-gradient {
+    background: white !important;
+    color: black !important;
+  }
+
+  .nav-toggle,
+  .animate-pulse {
+    display: none !important;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .service-card,
+  .industry-card,
+  .card {
+    border: 2px solid var(--dark-gray);
+  }
+
+  .btn-outline {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .float,
+  .hero .animate-pulse {
+    animation: none;
+  }
+
+  .service-card:hover .icon {
+    transform: scale(1.05);
+  }
+
+  .transition-all,
+  .service-card,
+  .industry-card,
+  .card {
+    transition: none;
+  }
+}
