@@ -324,24 +324,19 @@
   transform: scale(1.2) rotateY(360deg);
 }
 
-/* Stats Counter Section */
+/* Stats Counter Section with Tech Background Image */
 .stats-section {
-  background: #0f1419; /* Dark background base */
-  background-image:
-    /* Hexagonal pattern overlay */
-    linear-gradient(30deg, #1B4F72 12%, transparent 12.5%, transparent 87%, #1B4F72 87.5%, #1B4F72),
-    linear-gradient(150deg, #1B4F72 12%, transparent 12.5%, transparent 87%, #1B4F72 87.5%, #1B4F72),
-    linear-gradient(30deg, #1B4F72 12%, transparent 12.5%, transparent 87%, #1B4F72 87.5%, #1B4F72),
-    linear-gradient(150deg, #1B4F72 12%, transparent 12.5%, transparent 87%, #1B4F72 87.5%, #1B4F72),
-    linear-gradient(60deg, rgba(27, 79, 114, 0.1) 25%, transparent 25.5%, transparent 75%, rgba(27, 79, 114, 0.1) 75%, rgba(27, 79, 114, 0.1)),
-    linear-gradient(60deg, rgba(27, 79, 114, 0.1) 25%, transparent 25.5%, transparent 75%, rgba(27, 79, 114, 0.1) 75%, rgba(27, 79, 114, 0.1));
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-  color: var(--white);
+  background-image: url('/images/hero/hexagonal-tech-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Creates parallax effect */
+  color: #ffffff;
   position: relative;
   overflow: hidden;
 }
 
+/* Dark overlay for better text readability */
 .stats-section::before {
   content: '';
   position: absolute;
@@ -349,38 +344,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    /* Hexagonal shapes with glow effects */
-    radial-gradient(circle at 15% 25%, rgba(0, 162, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 15%, rgba(0, 162, 255, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 25% 75%, rgba(0, 162, 255, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 75% 85%, rgba(0, 162, 255, 0.12) 0%, transparent 35%),
-    /* Additional hexagonal elements */
-    polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
-  background-size:
-    300px 300px, 250px 250px, 200px 200px, 280px 280px, 120px 104px;
-  background-position:
-    -50px -50px, calc(100% + 50px) -50px, -50px calc(100% + 50px), calc(100% + 50px) calc(100% + 50px), 0 0;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.stats-section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    /* Hexagonal grid lines */
-    linear-gradient(rgba(0, 162, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 162, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(60deg, rgba(0, 162, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(-60deg, rgba(0, 162, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px;
-  opacity: 0.3;
+  background: rgba(15, 20, 25, 0.7); /* Dark overlay */
   pointer-events: none;
   z-index: 1;
 }
@@ -393,22 +357,21 @@
   z-index: 2;
 }
 
-
 .stat-item {
   text-align: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 162, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   transition: all 0.3s ease;
 }
 
 .stat-item:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 162, 255, 0.4);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 162, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 162, 255, 0.3);
 }
 
 .stat-number {
@@ -418,34 +381,22 @@
   display: block;
   margin-bottom: 0.5rem;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
 }
 
 .stat-label {
   color: #ffffff;
   font-size: 1.125rem;
   font-weight: 500;
-  opacity: 0.9;
-}
-
-* Animation for hexagonal elements */
-@keyframes hexFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translateY(-10px) rotate(2deg);
-    opacity: 0.6;
-  }
-}
-
-.stats-section::before {
-  animation: hexFloat 6s ease-in-out infinite;
+  opacity: 0.95;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .stats-section {
+    background-attachment: scroll; /* Better performance on mobile */
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -458,11 +409,6 @@
   .stat-number {
     font-size: 2.5rem;
   }
-
-  .stats-section {
-    background-size: 60px 105px;
-    background-position: 0 0, 0 0, 30px 52.5px, 30px 52.5px, 0 0, 30px 52.5px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -470,6 +416,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
