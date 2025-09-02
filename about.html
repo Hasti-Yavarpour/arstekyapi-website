@@ -207,93 +207,79 @@
   <!-- Spacer to prevent content from hiding behind fixed navbar -->
   <div class="h-16"></div>
 
-  <!-- Hero Section -->
-  <section class="hero-section bg-gradient-to-br from-[#1B4F72] via-[#2C3E50] to-[#34495E] text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-10"></div>
-    <div class="absolute inset-0">
-      <div class="floating-element absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-10"></div>
-      <div class="floating-element absolute top-40 right-20 w-16 h-16 bg-white rounded-full opacity-5"></div>
-      <div class="floating-element absolute bottom-20 left-1/4 w-12 h-12 bg-blue-300 rounded-full opacity-10"></div>
-    </div>
+  <!-- About Hero Section -->
+  <section class="about-hero text-white relative overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+      <div class="text-center">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+          Geleceğin Akıllı Sistemlerini
+          <span class="block text-blue-300 typing-text">İnşa Ediyoruz</span>
+        </h1>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <p class="text-xl lg:text-2xl mb-12 text-blue-100 leading-relaxed max-w-4xl mx-auto">
+          ARS TEK YAPI olarak, yapay zeka, IoT altyapısı ve akıllı otomasyon teknolojileri ile işletmelerin dijital dönüşümüne öncülük ediyoruz.
+        </p>
 
-        <!-- Hero Content -->
-        <div>
-          <h1 class="hero-title text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-            Geleceğin Akıllı Sistemlerini
-            <span class="block text-blue-300 typing-text">İnşa Ediyoruz</span>
-          </h1>
+        <!-- Key Highlights Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 bg-blue-400 rounded-lg flex items-center justify-center">
+              <i class="fas fa-lightbulb text-white text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">İnovasyon</h3>
+            <p class="text-blue-100 text-sm">Sürekli yenilik ve AR&GE</p>
+          </div>
 
-          <p class="hero-subtitle text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed">
-            ARS TEK YAPI olarak, yapay zeka, IoT altyapısı ve akıllı otomasyon teknolojileri ile işletmelerin dijital dönüşümüne öncülük ediyoruz.
-          </p>
+          <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 bg-green-400 rounded-lg flex items-center justify-center">
+              <i class="fas fa-users text-white text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Uzman Ekip</h3>
+            <p class="text-blue-100 text-sm">Deneyimli profesyoneller</p>
+          </div>
 
-          <div class="hero-cta flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="#story" class="btn btn-primary text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              <i class="fas fa-book-open mr-2"></i>
-              Hikayemizi Keşfedin
-            </a>
-            <a href="/contact.html" class="btn btn-secondary text-center transform hover:-translate-y-1">
-              <i class="fas fa-users mr-2"></i>
-              Ekibimizle Tanışın
-            </a>
+          <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300">
+            <div class="w-12 h-12 mx-auto mb-4 bg-purple-400 rounded-lg flex items-center justify-center">
+              <i class="fas fa-rocket text-white text-xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Hızlı Çözümler</h3>
+            <p class="text-blue-100 text-sm">Etkili proje yönetimi</p>
           </div>
         </div>
 
-        <!-- Hero Image/Animation -->
-        <div class="hero-image">
-          <div class="relative">
-            <div class="bg-gradient-to-r from-blue-400 to-purple-500 rounded-3xl p-8 shadow-2xl transform rotate-3 hover:rotate-1 transition-transform duration-500">
-              <div class="bg-white rounded-2xl p-6">
-                <div class="grid grid-cols-3 gap-4 mb-6">
-                  <div class="bg-blue-100 h-12 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-lightbulb text-[#1B4F72] text-xl"></i>
-                  </div>
-                  <div class="bg-green-100 h-12 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-users text-green-600 text-xl"></i>
-                  </div>
-                  <div class="bg-purple-100 h-12 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-rocket text-purple-600 text-xl"></i>
-                  </div>
-                </div>
-                <div class="text-gray-800 text-center">
-                  <h3 class="font-bold text-lg mb-2">İnovasyon Merkezi</h3>
-                  <p class="text-sm text-gray-600">Yenilik + Takım + Başarı</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#story" class="inline-flex items-center justify-center bg-white text-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <i class="fas fa-book-open mr-2"></i>
+            Hikayemizi Keşfedin
+          </a>
+          <a href="/contact.html" class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-brand-primary transition-colors transform hover:-translate-y-1">
+            <i class="fas fa-users mr-2"></i>
+            Ekibimizle Tanışın
+          </a>
         </div>
       </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <i class="fas fa-chevron-down text-white text-2xl opacity-70"></i>
     </div>
   </section>
 
   <!-- Company Stats -->
-  <section class="py-16 bg-gray-50">
+  <section class="stats-section py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8" data-aos="fade-up">
-        <div>
-          <div class="text-3xl lg:text-4xl font-bold text-brand-primary counter mb-2" data-target="50" data-suffix="+">0+</div>
-          <p class="text-gray-600 font-medium">Tamamlanan Proje</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-target="50" data-suffix="+">50+</div>
+          <div class="stat-label">Tamamlanan Proje</div>
         </div>
-        <div>
-          <div class="text-3xl lg:text-4xl font-bold text-brand-primary counter mb-2" data-target="10" data-suffix="+">0+</div>
-          <p class="text-gray-600 font-medium">Sektör Deneyimi</p>
+        <div class="stat-item">
+          <div class="stat-number" data-target="10" data-suffix="+">10+</div>
+          <div class="stat-label">Sektör Deneyimi</div>
         </div>
-        <div>
-          <div class="text-3xl lg:text-4xl font-bold text-brand-primary counter mb-2" data-target="95" data-suffix="%">0%</div>
-          <p class="text-gray-600 font-medium">Müşteri Memnuniyeti</p>
+        <div class="stat-item">
+          <div class="stat-number" data-target="95" data-suffix="%">95%</div>
+          <div class="stat-label">Müşteri Memnuniyeti</div>
         </div>
-        <div>
-          <div class="text-3xl lg:text-4xl font-bold text-brand-primary counter mb-2" data-target="24" data-suffix="/7">0/7</div>
-          <p class="text-gray-600 font-medium">Teknik Destek</p>
+        <div class="stat-item">
+          <div class="stat-number" data-target="24" data-suffix="/7">24/7</div>
+          <div class="stat-label">Teknik Destek</div>
         </div>
       </div>
     </div>
@@ -311,11 +297,11 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="values-grid">
         <!-- Mission -->
-        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300" data-aos="fade-right">
-          <div class="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-lg mb-6 flex items-center justify-center">
-            <i class="fas fa-target text-white text-2xl"></i>
+        <div class="value-card" data-aos="fade-right">
+          <div class="value-icon">
+            <i class="fas fa-target"></i>
           </div>
           <h2 class="text-3xl font-bold text-gray-900 mb-6">Misyonumuz</h2>
           <p class="text-gray-600 text-lg leading-relaxed mb-6">
@@ -323,7 +309,7 @@
             AI, IoT ve özel yazılım geliştirme alanlarında öncü olmak ve müşterilerimizin dijital dönüşüm
             yolculuğunda güvenilir teknoloji partneri olmak.
           </p>
-          <ul class="space-y-3">
+          <ul class="space-y-3 text-left">
             <li class="flex items-center text-gray-600">
               <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -346,9 +332,9 @@
         </div>
 
         <!-- Vision -->
-        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300" data-aos="fade-left">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-6 flex items-center justify-center">
-            <i class="fas fa-eye text-white text-2xl"></i>
+        <div class="value-card" data-aos="fade-left">
+          <div class="value-icon">
+            <i class="fas fa-eye"></i>
           </div>
           <h2 class="text-3xl font-bold text-gray-900 mb-6">Vizyonumuz</h2>
           <p class="text-gray-600 text-lg leading-relaxed mb-6">
@@ -356,7 +342,7 @@
             küresel standartlarda çözümler geliştiren, her sektörden işletmenin tercihi olan
             teknoloji partneri olmak.
           </p>
-          <ul class="space-y-3">
+          <ul class="space-y-3 text-left">
             <li class="flex items-center text-gray-600">
               <svg class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -382,7 +368,7 @@
   </section>
 
   <!-- Our Story Timeline -->
-  <section id="story" class="py-20 bg-gray-50">
+  <section id="story" class="py-20 story-section bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">
@@ -393,97 +379,52 @@
         </p>
       </div>
 
-      <div class="relative">
-        <!-- Timeline line -->
-        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand-primary to-brand-accent rounded-full hidden lg:block"></div>
-
-        <div class="space-y-12">
-          <!-- Timeline Item 1 -->
-          <div class="flex flex-col lg:flex-row items-center" data-aos="fade-right">
-            <div class="flex-1 lg:pr-8 lg:text-right">
-              <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="text-brand-primary font-bold text-lg mb-2">2020 - Kuruluş</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">İlk Adım</h3>
-                <p class="text-gray-600">
-                  IoT ve akıllı ev sistemleri üzerine odaklanarak teknoloji yolculuğumuza başladık.
-                  İlk projelerimizle yerel işletmelere hizmet vermeye başladık.
-                </p>
-              </div>
-            </div>
-            <div class="flex-shrink-0 w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center text-white font-bold z-10 my-4 lg:my-0">
-              1
-            </div>
-            <div class="flex-1 lg:pl-8">
-              <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
-                <i class="fas fa-home text-6xl text-brand-primary"></i>
-              </div>
-            </div>
+      <div class="story-timeline">
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="text-brand-primary font-bold text-lg mb-2">2020 - Kuruluş</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">İlk Adım</h3>
+            <p class="text-gray-600">
+              IoT ve akıllı ev sistemleri üzerine odaklanarak teknoloji yolculuğumuza başladık.
+              İlk projelerimizle yerel işletmelere hizmet vermeye başladık.
+            </p>
           </div>
+        </div>
 
-          <!-- Timeline Item 2 -->
-          <div class="flex flex-col lg:flex-row-reverse items-center" data-aos="fade-left">
-            <div class="flex-1 lg:pl-8 lg:text-left">
-              <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="text-green-600 font-bold text-lg mb-2">2021 - Büyüme</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">AI Entegrasyonu</h3>
-                <p class="text-gray-600">
-                  Yapay zeka ve makine öğrenmesi teknolojilerini portföyümüze ekledik.
-                  Bankacılık ve e-ticaret sektörlerinde önemli projeler gerçekleştirdik.
-                </p>
-              </div>
-            </div>
-            <div class="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold z-10 my-4 lg:my-0">
-              2
-            </div>
-            <div class="flex-1 lg:pr-8">
-              <div class="w-full h-48 bg-gradient-to-br from-green-100 to-teal-100 rounded-xl flex items-center justify-center">
-                <i class="fas fa-brain text-6xl text-green-600"></i>
-              </div>
-            </div>
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-content">
+            <div class="text-green-600 font-bold text-lg mb-2">2021 - Büyüme</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">AI Entegrasyonu</h3>
+            <p class="text-gray-600">
+              Yapay zeka ve makine öğrenmesi teknolojilerini portföyümüze ekledik.
+              Bankacılık ve e-ticaret sektörlerinde önemli projeler gerçekleştirdik.
+            </p>
           </div>
+        </div>
 
-          <!-- Timeline Item 3 -->
-          <div class="flex flex-col lg:flex-row items-center" data-aos="fade-right">
-            <div class="flex-1 lg:pr-8 lg:text-right">
-              <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="text-purple-600 font-bold text-lg mb-2">2022-2023 - Çeşitlenme</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Sektörel Genişleme</h3>
-                <p class="text-gray-600">
-                  Sağlık, eğitim, lojistik ve enerji sektörlerine yayıldık.
-                  Fintech çözümlerimiz ve akıllı şehir projeleri ile tanındık.
-                </p>
-              </div>
-            </div>
-            <div class="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold z-10 my-4 lg:my-0">
-              3
-            </div>
-            <div class="flex-1 lg:pl-8">
-              <div class="w-full h-48 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center">
-                <i class="fas fa-city text-6xl text-purple-600"></i>
-              </div>
-            </div>
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="text-purple-600 font-bold text-lg mb-2">2022-2023 - Çeşitlenme</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Sektörel Genişleme</h3>
+            <p class="text-gray-600">
+              Sağlık, eğitim, lojistik ve enerji sektörlerine yayıldık.
+              Fintech çözümlerimiz ve akıllı şehir projeleri ile tanındık.
+            </p>
           </div>
+        </div>
 
-          <!-- Timeline Item 4 -->
-          <div class="flex flex-col lg:flex-row-reverse items-center" data-aos="fade-left">
-            <div class="flex-1 lg:pl-8 lg:text-left">
-              <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div class="text-orange-600 font-bold text-lg mb-2">2024-2025 - Liderlik</div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Teknoloji Öncülüğü</h3>
-                <p class="text-gray-600">
-                  10+ sektörde 50+ başarılı proje ile teknoloji liderliğimizi pekiştirdik.
-                  Şimdi uluslararası pazarlara açılmaya hazırlanıyoruz.
-                </p>
-              </div>
-            </div>
-            <div class="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold z-10 my-4 lg:my-0">
-              4
-            </div>
-            <div class="flex-1 lg:pr-8">
-              <div class="w-full h-48 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-xl flex items-center justify-center">
-                <i class="fas fa-trophy text-6xl text-orange-600"></i>
-              </div>
-            </div>
+        <!-- Timeline Item 4 -->
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-content">
+            <div class="text-orange-600 font-bold text-lg mb-2">2024-2025 - Liderlik</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Teknoloji Öncülüğü</h3>
+            <p class="text-gray-600">
+              10+ sektörde 50+ başarılı proje ile teknoloji liderliğimizi pekiştirdik.
+              Şimdi uluslararası pazarlara açılmaya hazırlanıyoruz.
+            </p>
           </div>
         </div>
       </div>
@@ -502,38 +443,38 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="values-grid">
         <!-- Innovation -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-brand-primary to-brand-hover rounded-full flex items-center justify-center">
-            <i class="fas fa-lightbulb text-white text-2xl"></i>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">İnovasyon</h3>
           <p class="text-gray-600">Sürekli araştırma ve geliştirme ile yenilikçi çözümler üretiyoruz.</p>
         </div>
 
         <!-- Quality -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
-            <i class="fas fa-medal text-white text-2xl"></i>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="value-icon">
+            <i class="fas fa-medal"></i>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">Kalite</h3>
           <p class="text-gray-600">Her projede mükemmellik standartlarını yakalama odaklı çalışıyoruz.</p>
         </div>
 
         <!-- Collaboration -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="zoom-in" data-aos-delay="300">
-          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-            <i class="fas fa-handshake text-white text-2xl"></i>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="value-icon">
+            <i class="fas fa-handshake"></i>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">İşbirliği</h3>
           <p class="text-gray-600">Müşterilerimizle güçlü partnerlikler kurarak ortak başarı elde ediyoruz.</p>
         </div>
 
         <!-- Security -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="zoom-in" data-aos-delay="400">
-          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-            <i class="fas fa-shield-alt text-white text-2xl"></i>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-3">Güvenlik</h3>
           <p class="text-gray-600">Tüm çözümlerimizde en yüksek güvenlik standartlarını uyguluyoruz.</p>
@@ -554,49 +495,70 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="team-grid">
         <!-- Team Member 1 -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-brand-primary to-brand-hover rounded-full flex items-center justify-center">
-            <i class="fas fa-user text-white text-3xl"></i>
+        <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="team-avatar">
+            <i class="fas fa-user"></i>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Ahmet Arslan</h3>
-          <p class="text-brand-primary font-semibold mb-3">Kurucu & CTO</p>
-          <p class="text-gray-600 mb-4">10+ yıl AI ve IoT deneyimi. MIT mezunu sistem mimarı ve teknoloji vizyoneri.</p>
-          <div class="flex flex-wrap justify-center gap-2">
-            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">AI/ML</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">IoT</span>
-            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Blockchain</span>
+          <div class="team-info">
+            <h3 class="team-name">Ahmet Arslan</h3>
+            <p class="team-role">Kurucu & CTO</p>
+            <p class="team-bio">10+ yıl AI ve IoT deneyimi. MIT mezunu sistem mimarı ve teknoloji vizyoneri.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">AI/ML</span>
+              <span class="tech-badge">IoT</span>
+              <span class="tech-badge">Blockchain</span>
+            </div>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
           </div>
         </div>
 
         <!-- Team Member 2 -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
-            <i class="fas fa-user text-white text-3xl"></i>
+        <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="team-avatar">
+            <i class="fas fa-user"></i>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Zeynep Tekneci</h3>
-          <p class="text-green-600 font-semibold mb-3">Yazılım Geliştirme Lideri</p>
-          <p class="text-gray-600 mb-4">Full-stack geliştirme uzmanı. React, Node.js ve cloud mimarisi konularında lider.</p>
-          <div class="flex flex-wrap justify-center gap-2">
-            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">React</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Node.js</span>
-            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">AWS</span>
+          <div class="team-info">
+            <h3 class="team-name">Zeynep Tekneci</h3>
+            <p class="team-role">Yazılım Geliştirme Lideri</p>
+            <p class="team-bio">Full-stack geliştirme uzmanı. React, Node.js ve cloud mimarisi konularında lider.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">AWS</span>
+            </div>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
           </div>
         </div>
 
         <!-- Team Member 3 -->
-        <div class="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-            <i class="fas fa-user text-white text-3xl"></i>
+        <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="team-avatar">
+            <i class="fas fa-user"></i>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Murat Yılmaz</h3>
-          <p class="text-orange-600 font-semibold mb-3">IoT Sistem Mimarı</p>
-          <p class="text-gray-600 mb-4">Donanım ve gömülü sistem uzmanı. ESP32, Raspberry Pi ve endüstriyel IoT çözümleri.</p>
-          <div class="flex flex-wrap justify-center gap-2">
-            <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">ESP32</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Raspberry Pi</span>
-            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">MQTT</span>
+          <div class="team-info">
+            <h3 class="team-name">Murat Yılmaz</h3>
+            <p class="team-role">IoT Sistem Mimarı</p>
+            <p class="team-bio">Donanım ve gömülü sistem uzmanı. ESP32, Raspberry Pi ve endüstriyel IoT çözümleri.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">ESP32</span>
+              <span class="tech-badge">Raspberry Pi</span>
+              <span class="tech-badge">MQTT</span>
+            </div>
+            <div class="team-social">
+              <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -612,44 +574,39 @@
   </section>
 
   <!-- Why Choose Us -->
-  <section class="py-20 gradient-bg text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-10"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-aos="fade-up">
-        Neden ARS TEK YAPI?
-      </h2>
-      <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-        Teknoloji projelerinizde güvenilir partner arıyorsanız, doğru yerdesiniz.
-      </p>
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">
+          Neden ARS TEK YAPI?
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          Teknoloji projelerinizde güvenilir partner arıyorsanız, doğru yerdesiniz.
+        </p>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-            <i class="fas fa-rocket text-white text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">Hızlı Teslimat</h3>
-          <p class="text-blue-100">Agile metodoloji ile projelerinizi zamanında ve kaliteli teslim ediyoruz.</p>
+      <div class="advantages-grid">
+        <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="advantage-icon fas fa-rocket text-brand-primary"></i>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Hızlı Teslimat</h3>
+          <p class="text-gray-600">Agile metodoloji ile projelerinizi zamanında ve kaliteli teslim ediyoruz.</p>
         </div>
 
-        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-            <i class="fas fa-headset text-white text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">7/24 Destek</h3>
-          <p class="text-blue-100">Kesintisiz teknik destek ile sistemlerinizin sorunsuz çalışmasını sağlıyoruz.</p>
+        <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="advantage-icon fas fa-headset text-brand-primary"></i>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">7/24 Destek</h3>
+          <p class="text-gray-600">Kesintisiz teknik destek ile sistemlerinizin sorunsuz çalışmasını sağlıyoruz.</p>
         </div>
 
-        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-16 h-16 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-            <i class="fas fa-dollar-sign text-white text-2xl"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-3">Uygun Fiyat</h3>
-          <p class="text-blue-100">Kaliteli çözümleri rekabetçi fiyatlarla sunarak yatırım değeri yaratıyoruz.</p>
+        <div class="advantage-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="advantage-icon fas fa-dollar-sign text-brand-primary"></i>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Uygun Fiyat</h3>
+          <p class="text-gray-600">Kaliteli çözümleri rekabetçi fiyatlarla sunarak yatırım değeri yaratıyoruz.</p>
         </div>
       </div>
 
-      <div class="mt-12">
-        <a href="/contact.html" class="inline-flex items-center bg-white text-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+      <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+        <a href="/contact.html" class="inline-flex items-center bg-brand-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-hover transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
           <i class="fas fa-rocket mr-3"></i>
           Projenizi Başlatalım
         </a>
