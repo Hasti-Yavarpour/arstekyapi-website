@@ -510,3 +510,80 @@
     transition: none;
   }
 }
+
+/* Simple Color Fixes - Add this to your existing CSS */
+
+/* 1. Mission & Vision Icons - Make them colorful */
+.tech-card:nth-child(1) .w-16 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.tech-card:nth-child(2) .w-16 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+/* 2. Timeline Steps - Different colors for each step */
+.timeline-item:nth-child(1) .bg-indigo-600 {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+.timeline-item:nth-child(2) .bg-green-600 {
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+}
+
+.timeline-item:nth-child(3) .bg-purple-600 {
+    background: linear-gradient(135deg, #8B5CF6, #7C3AED) !important;
+}
+
+.timeline-item:nth-child(4) .bg-orange-600 {
+    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
+}
+
+/* 3. Values Section - Different colored icons */
+/* Innovation */
+.grid .tech-card:nth-child(1) .w-16 {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+/* Quality */
+.grid .tech-card:nth-child(2) .w-16 {
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+}
+
+/* Collaboration */
+.grid .tech-card:nth-child(3) .w-16 {
+    background: linear-gradient(135deg, #8B5CF6, #7C3AED) !important;
+}
+
+/* Security */
+.grid .tech-card:nth-child(4) .w-16 {
+    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
+}
+
+/* 4. Team Section - Different colored avatars */
+/* Team Member 1 - Ahmet */
+.team-card:nth-child(1) .w-24 {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+.team-card:nth-child(1) .text-indigo-600 {
+    color: #667eea !important;
+}
+
+/* Team Member 2 - Zeynep */
+.team-card:nth-child(2) .w-24 {
+    background: linear-gradient(135deg, #10B981, #059669) !important;
+}
+
+.team-card:nth-child(2) .text-green-600 {
+    color: #10B981 !important;
+}
+
+/* Team Member 3 - Murat */
+.team-card:nth-child(3) .w-24 {
+    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
+}
+
+.team-card:nth-child(3) .text-orange-600 {
+    color: #F59E0B !important;
+}
