@@ -99,12 +99,15 @@
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Force 4 equal columns */
-  gap: 1.5rem; /* Slightly smaller gap */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   margin-top: 3rem;
-  max-width: 1200px; /* Limit max width */
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #f8fafc;
+  padding: 3rem;
+  border-radius: 1rem;
 }
 
 .value-card {
