@@ -212,22 +212,20 @@
 
 .tech-badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: rgba(27, 79, 114, 0.1);
-  color: var(--primary);
-  border-radius: 9999px;
+  padding: 0.5rem 1rem; /* Bigger padding */
+  font-size: 0.875rem; /* Bigger text */
+  font-weight: 600; /* Bolder */
+  border-radius: 6px; /* Square-ish instead of pill shape */
   margin: 0.25rem 0.25rem 0 0;
-  border: 1px solid rgba(27, 79, 114, 0.2);
   transition: all var(--transition-fast);
+  border: none;
 }
 
 .tech-badge:hover {
-  background: var(--primary);
-  color: var(--white);
   transform: scale(1.05);
+  opacity: 0.9;
 }
+
 
 /* Team Section */
 .team-grid {
@@ -273,11 +271,27 @@
 }
 
 .team-card:nth-child(1) .team-name {
-  color: #667eea;
+  color: #1a202c !important; /* Black */
 }
 
 .team-card:nth-child(1) .team-role {
-  color: #667eea;
+  color: #667eea !important; /* Blue-purple role */
+}
+
+/* Team 1 - Ahmet's badges */
+.team-card:nth-child(1) .tech-badge:nth-child(1) {
+  background: #667eea;
+  color: white;
+}
+
+.team-card:nth-child(1) .tech-badge:nth-child(2) {
+  background: #10B981;
+  color: white;
+}
+
+.team-card:nth-child(1) .tech-badge:nth-child(3) {
+  background: #8B5CF6;
+  color: white;
 }
 
 /* Team Member 2 - Zeynep - Green */
@@ -286,11 +300,27 @@
 }
 
 .team-card:nth-child(2) .team-name {
-  color: #10B981;
+  color: #1a202c !important; /* Black */
 }
 
 .team-card:nth-child(2) .team-role {
-  color: #10B981;
+  color: #10B981 !important; /* Green role */
+}
+
+/* Team 2 - Zeynep's badges */
+.team-card:nth-child(2) .tech-badge:nth-child(1) {
+  background: #3B82F6;
+  color: white;
+}
+
+.team-card:nth-child(2) .tech-badge:nth-child(2) {
+  background: #10B981;
+  color: white;
+}
+
+.team-card:nth-child(2) .tech-badge:nth-child(3) {
+  background: #F59E0B;
+  color: white;
 }
 
 /* Team Member 3 - Murat - Orange */
@@ -299,11 +329,27 @@
 }
 
 .team-card:nth-child(3) .team-name {
-  color: #F59E0B;
+  color: #1a202c !important; /* Black */
 }
 
 .team-card:nth-child(3) .team-role {
-  color: #F59E0B;
+  color: #F59E0B !important; /* Orange role */
+}
+
+/* Team 3 - Murat's badges */
+.team-card:nth-child(3) .tech-badge:nth-child(1) {
+  background: #EF4444;
+  color: white;
+}
+
+.team-card:nth-child(3) .tech-badge:nth-child(2) {
+  background: #10B981;
+  color: white;
+}
+
+.team-card:nth-child(3) .tech-badge:nth-child(3) {
+  background: #3B82F6;
+  color: white;
 }
 
 .team-card:hover .team-avatar {
@@ -330,23 +376,24 @@
 }
 
 .team-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary);
+  font-size: 1.5rem; /* Bigger text */
+  font-weight: 700; /* Darker/bolder */
+  color: #1a202c !important; /* Black color for names */
   margin-bottom: 0.5rem;
 }
 
 .team-role {
-  color: var(--secondary);
-  font-weight: 500;
+  font-size: 1.1rem; /* Bigger text */
+  font-weight: 600; /* Darker/bolder */
   margin-bottom: 1rem;
 }
 
 .team-bio {
-  font-size: 0.875rem;
-  color: var(--medium-gray);
+  font-size: 1rem; /* Bigger */
+  color: #374151; /* Darker gray */
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  font-weight: 500; /* Slightly bolder */
 }
 
 .team-social {
