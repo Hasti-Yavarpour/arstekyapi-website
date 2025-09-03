@@ -135,7 +135,7 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 1.5rem;
-  border-radius: 50%;
+  border-radius: 12px; /* Square with rounded corners */
   display: flex;
   align-items: center;
   justify-content: center;
