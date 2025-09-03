@@ -93,7 +93,7 @@
 
 /* Mission, Vision, Values Cards */
 
-section:has(.values-grid) {
+.values-section-bg {
   background-color: #f8fafc !important;
 }
 
