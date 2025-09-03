@@ -92,22 +92,31 @@
 }
 
 /* Mission, Vision, Values Cards */
+
+.py-20.bg-white {
+  background-color: #f8fafc !important; /* Light grayish background */
+}
+
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr); /* Force 4 equal columns */
+  gap: 1.5rem; /* Slightly smaller gap */
   margin-top: 3rem;
+  max-width: 1200px; /* Limit max width */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .value-card {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  padding: 1.5rem; /* Smaller padding */
   text-align: center;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  min-width: 0; /* Allow shrinking */
 }
 
 .value-card::before {
@@ -132,17 +141,18 @@
 }
 
 .value-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
+  width: 64px; /* Smaller icon */
+  height: 64px; /* Smaller icon */
+  margin: 0 auto 1rem; /* Smaller margin */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Smaller icon size */
   color: var(--white);
   transition: all var(--transition-normal);
 }
+
 
 /* Mission Icon - Blue-Purple Gradient */
 .values-grid .value-card:nth-child(1) .value-icon {
@@ -174,6 +184,22 @@
 .value-card:hover .value-icon {
   transform: scale(1.1) rotate(10deg);
 }
+
+/* Value titles - smaller */
+.value-card h3 {
+  font-size: 1.125rem; /* Smaller title */
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+}
+
+/* Value descriptions - smaller */
+.value-card p {
+  font-size: 0.875rem; /* Smaller text */
+  color: #4a5568;
+  line-height: 1.5;
+}
+
 
 /* Expertise Section */
 .expertise-card {
@@ -548,6 +574,13 @@
   }
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 1.5rem;
+  }
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -569,12 +602,12 @@
   }
 
   .values-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1rem;
   }
 
   .value-card {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .team-grid {
