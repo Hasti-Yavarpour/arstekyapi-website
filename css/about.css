@@ -42,7 +42,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(to bottom, var(--primary), var(--tech-blue));
+  background: linear-gradient(to bottom, #667eea, #10B981, #8B5CF6, #F59E0B);
   border-radius: 2px;
 }
 
@@ -65,8 +65,28 @@
   box-shadow: 0 0 0 3px rgba(27, 79, 114, 0.1);
 }
 
+/* Different colors for each timeline item */
+.timeline-item:nth-child(1)::before {
+  background: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.timeline-item:nth-child(2)::before {
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.timeline-item:nth-child(3)::before {
+  background: #8B5CF6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.timeline-item:nth-child(4)::before {
+  background: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
 .timeline-item:hover::before {
-  background: var(--tech-blue);
   transform: scale(1.2);
   transition: all var(--transition-normal);
 }
@@ -115,7 +135,6 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--primary), var(--tech-blue));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -123,6 +142,33 @@
   font-size: 2rem;
   color: var(--white);
   transition: all var(--transition-normal);
+}
+
+/* Mission Icon - Blue-Purple Gradient */
+.values-grid .value-card:nth-child(1) .value-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Vision Icon - Pink-Red Gradient */
+.values-grid .value-card:nth-child(2) .value-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+/* Values Section - Different colored icons for each value */
+.values-grid .value-card:nth-child(1) .value-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.values-grid .value-card:nth-child(2) .value-icon {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+.values-grid .value-card:nth-child(3) .value-icon {
+  background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+}
+
+.values-grid .value-card:nth-child(4) .value-icon {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
 }
 
 .value-card:hover .value-icon {
@@ -210,7 +256,6 @@
   width: 120px;
   height: 120px;
   margin: 2rem auto 1rem;
-  background: linear-gradient(135deg, var(--primary), var(--tech-blue));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -220,6 +265,45 @@
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+}
+
+/* Team Member 1 - Ahmet - Blue-Purple */
+.team-card:nth-child(1) .team-avatar {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.team-card:nth-child(1) .team-name {
+  color: #667eea;
+}
+
+.team-card:nth-child(1) .team-role {
+  color: #667eea;
+}
+
+/* Team Member 2 - Zeynep - Green */
+.team-card:nth-child(2) .team-avatar {
+  background: linear-gradient(135deg, #10B981, #059669);
+}
+
+.team-card:nth-child(2) .team-name {
+  color: #10B981;
+}
+
+.team-card:nth-child(2) .team-role {
+  color: #10B981;
+}
+
+/* Team Member 3 - Murat - Orange */
+.team-card:nth-child(3) .team-avatar {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+}
+
+.team-card:nth-child(3) .team-name {
+  color: #F59E0B;
+}
+
+.team-card:nth-child(3) .team-role {
+  color: #F59E0B;
 }
 
 .team-card:hover .team-avatar {
@@ -509,81 +593,4 @@
     animation: none;
     transition: none;
   }
-}
-
-/* Simple Color Fixes - Add this to your existing CSS */
-
-/* 1. Mission & Vision Icons - Make them colorful */
-.tech-card:nth-child(1) .w-16 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-}
-
-.tech-card:nth-child(2) .w-16 {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
-}
-
-/* 2. Timeline Steps - Different colors for each step */
-.timeline-item:nth-child(1) .bg-indigo-600 {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-}
-
-.timeline-item:nth-child(2) .bg-green-600 {
-    background: linear-gradient(135deg, #10B981, #059669) !important;
-}
-
-.timeline-item:nth-child(3) .bg-purple-600 {
-    background: linear-gradient(135deg, #8B5CF6, #7C3AED) !important;
-}
-
-.timeline-item:nth-child(4) .bg-orange-600 {
-    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
-}
-
-/* 3. Values Section - Different colored icons */
-/* Innovation */
-.grid .tech-card:nth-child(1) .w-16 {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-}
-
-/* Quality */
-.grid .tech-card:nth-child(2) .w-16 {
-    background: linear-gradient(135deg, #10B981, #059669) !important;
-}
-
-/* Collaboration */
-.grid .tech-card:nth-child(3) .w-16 {
-    background: linear-gradient(135deg, #8B5CF6, #7C3AED) !important;
-}
-
-/* Security */
-.grid .tech-card:nth-child(4) .w-16 {
-    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
-}
-
-/* 4. Team Section - Different colored avatars */
-/* Team Member 1 - Ahmet */
-.team-card:nth-child(1) .w-24 {
-    background: linear-gradient(135deg, #667eea, #764ba2) !important;
-}
-
-.team-card:nth-child(1) .text-indigo-600 {
-    color: #667eea !important;
-}
-
-/* Team Member 2 - Zeynep */
-.team-card:nth-child(2) .w-24 {
-    background: linear-gradient(135deg, #10B981, #059669) !important;
-}
-
-.team-card:nth-child(2) .text-green-600 {
-    color: #10B981 !important;
-}
-
-/* Team Member 3 - Murat */
-.team-card:nth-child(3) .w-24 {
-    background: linear-gradient(135deg, #F59E0B, #D97706) !important;
-}
-
-.team-card:nth-child(3) .text-orange-600 {
-    color: #F59E0B !important;
 }
