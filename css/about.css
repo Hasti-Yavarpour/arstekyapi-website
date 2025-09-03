@@ -91,9 +91,75 @@
   transition: all var(--transition-normal);
 }
 
-/* Mission, Vision, Values Cards */
+/* MISSION & VISION SECTION - Keep white background */
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
 
-.values-section-bg {
+.mission-vision-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--tech-blue));
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.mission-vision-card:hover::before {
+  transform: scaleX(1);
+}
+
+.mission-vision-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.mission-vision-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--white);
+  transition: all var(--transition-normal);
+}
+
+/* Mission Icon - Blue-Purple Gradient */
+.mission-vision-grid .mission-vision-card:nth-child(1) .mission-vision-icon {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Vision Icon - Pink-Red Gradient */
+.mission-vision-grid .mission-vision-card:nth-child(2) .mission-vision-icon {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.mission-vision-card:hover .mission-vision-icon {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* VALUES SECTION - Gray background, 4 in a row */
+.values-section {
   background-color: #f8fafc !important;
 }
 
@@ -105,27 +171,18 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f8fafc;
-  padding: 3rem;
-  border-radius: 1rem;
-}
-
-h2:contains("Değerlerimiz") + p + .values-grid {
-  background-color: #f8fafc !important;
-  padding: 3rem !important;
-  border-radius: 1rem !important;
 }
 
 .value-card {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 1.5rem; /* Smaller padding */
+  padding: 1.5rem;
   text-align: center;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
-  min-width: 0; /* Allow shrinking */
+  min-width: 0;
 }
 
 .value-card::before {
@@ -150,27 +207,16 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 }
 
 .value-icon {
-  width: 64px; /* Smaller icon */
-  height: 64px; /* Smaller icon */
-  margin: 0 auto 1rem; /* Smaller margin */
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem; /* Smaller icon size */
+  font-size: 1.5rem;
   color: var(--white);
   transition: all var(--transition-normal);
-}
-
-
-/* Mission Icon - Blue-Purple Gradient */
-.values-grid .value-card:nth-child(1) .value-icon {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-/* Vision Icon - Pink-Red Gradient */
-.values-grid .value-card:nth-child(2) .value-icon {
-  background: linear-gradient(135deg, #f093fb, #f5576c);
 }
 
 /* Values Section - Different colored icons for each value */
@@ -196,7 +242,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
 /* Value titles - smaller */
 .value-card h3 {
-  font-size: 1.125rem; /* Smaller title */
+  font-size: 1.125rem;
   font-weight: 600;
   color: #1a202c;
   margin-bottom: 0.75rem;
@@ -204,11 +250,10 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
 /* Value descriptions - smaller */
 .value-card p {
-  font-size: 0.875rem; /* Smaller text */
+  font-size: 0.875rem;
   color: #4a5568;
   line-height: 1.5;
 }
-
 
 /* Expertise Section */
 .expertise-card {
@@ -247,10 +292,10 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
 .tech-badge {
   display: inline-block;
-  padding: 0.5rem 1rem; /* Bigger padding */
-  font-size: 0.875rem; /* Bigger text */
-  font-weight: 600; /* Bolder */
-  border-radius: 6px; /* Square-ish instead of pill shape */
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
   margin: 0.25rem 0.25rem 0 0;
   transition: all var(--transition-fast);
   border: none;
@@ -260,7 +305,6 @@ h2:contains("Değerlerimiz") + p + .values-grid {
   transform: scale(1.05);
   opacity: 0.9;
 }
-
 
 /* Team Section */
 .team-grid {
@@ -306,11 +350,11 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 }
 
 .team-card:nth-child(1) .team-name {
-  color: #1a202c !important; /* Black */
+  color: #1a202c !important;
 }
 
 .team-card:nth-child(1) .team-role {
-  color: #667eea !important; /* Blue-purple role */
+  color: #667eea !important;
 }
 
 /* Team 1 - Ahmet's badges */
@@ -335,11 +379,11 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 }
 
 .team-card:nth-child(2) .team-name {
-  color: #1a202c !important; /* Black */
+  color: #1a202c !important;
 }
 
 .team-card:nth-child(2) .team-role {
-  color: #10B981 !important; /* Green role */
+  color: #10B981 !important;
 }
 
 /* Team 2 - Zeynep's badges */
@@ -364,11 +408,11 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 }
 
 .team-card:nth-child(3) .team-name {
-  color: #1a202c !important; /* Black */
+  color: #1a202c !important;
 }
 
 .team-card:nth-child(3) .team-role {
-  color: #F59E0B !important; /* Orange role */
+  color: #F59E0B !important;
 }
 
 /* Team 3 - Murat's badges */
@@ -411,24 +455,24 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 }
 
 .team-name {
-  font-size: 1.5rem; /* Bigger text */
-  font-weight: 700; /* Darker/bolder */
-  color: #1a202c !important; /* Black color for names */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c !important;
   margin-bottom: 0.5rem;
 }
 
 .team-role {
-  font-size: 1.1rem; /* Bigger text */
-  font-weight: 600; /* Darker/bolder */
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .team-bio {
-  font-size: 1rem; /* Bigger */
-  color: #374151; /* Darker gray */
+  font-size: 1rem;
+  color: #374151;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  font-weight: 500; /* Slightly bolder */
+  font-weight: 500;
 }
 
 .team-social {
@@ -496,7 +540,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Creates parallax effect */
+  background-attachment: fixed;
   color: #ffffff;
   position: relative;
   overflow: hidden;
@@ -510,7 +554,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 20, 25, 0.7); /* Dark overlay */
+  background: rgba(15, 20, 25, 0.7);
   pointer-events: none;
   z-index: 1;
 }
@@ -557,41 +601,18 @@ h2:contains("Değerlerimiz") + p + .values-grid {
   opacity: 0.95;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .stats-section {
-    background-attachment: scroll; /* Better performance on mobile */
-  }
-
-  .stats-grid {
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .values-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .stat-item {
-    padding: 1.5rem;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-grid {
+  .mission-vision-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-    gap: 1.5rem;
-  }
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .about-hero {
     min-height: 60vh;
@@ -611,12 +632,16 @@ h2:contains("Değerlerimiz") + p + .values-grid {
   }
 
   .values-grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
   .value-card {
     padding: 1.5rem;
+  }
+
+  .mission-vision-card {
+    padding: 2rem;
   }
 
   .team-grid {
@@ -625,6 +650,10 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
   .advantages-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-section {
+    background-attachment: scroll;
   }
 
   .stats-grid {
@@ -661,6 +690,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
   .team-avatar,
   .value-icon,
+  .mission-vision-icon,
   .expertise-icon {
     background: #f0f0f0 !important;
     color: black !important;
@@ -670,6 +700,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 /* Accessibility Improvements */
 @media (prefers-reduced-motion: reduce) {
   .value-card:hover,
+  .mission-vision-card:hover,
   .team-card:hover,
   .advantage-card:hover,
   .expertise-card:hover {
@@ -678,6 +709,7 @@ h2:contains("Değerlerimiz") + p + .values-grid {
 
   .team-avatar::before,
   .value-card::before,
+  .mission-vision-card::before,
   .expertise-card .expertise-icon {
     animation: none;
     transition: none;
