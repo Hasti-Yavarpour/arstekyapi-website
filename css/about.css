@@ -93,8 +93,8 @@
 
 /* Mission, Vision, Values Cards */
 
-.py-20.bg-white {
-  background-color: #f8fafc !important; /* Light grayish background */
+section:has(.values-grid) {
+  background-color: #f8fafc !important;
 }
 
 .values-grid {
