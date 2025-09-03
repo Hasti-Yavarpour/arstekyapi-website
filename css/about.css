@@ -110,6 +110,12 @@
   border-radius: 1rem;
 }
 
+h2:contains("Değerlerimiz") + p + .values-grid {
+  background-color: #f8fafc !important;
+  padding: 3rem !important;
+  border-radius: 1rem !important;
+}
+
 .value-card {
   background: var(--white);
   border-radius: var(--radius-lg);
