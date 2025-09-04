@@ -1,0 +1,555 @@
+/* ===================================
+   SERVICES PAGE SPECIFIC STYLES
+   services.css for ARS TEK YAPI A.Ş.
+   Main Brand Color: #1B4F72
+   =================================== */
+
+/* Services Hero Section */
+.services-hero {
+  background: linear-gradient(135deg, #1B4F72 0%, #2C3E50 50%, #34495E 100%);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Floating background elements for hero */
+.services-hero .floating-element {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+}
+
+.services-hero .floating-element:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.services-hero .floating-element:nth-child(3) {
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Services Navigation/Filter */
+.services-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(27, 79, 114, 0.1);
+  padding: 1rem 0;
+  position: sticky;
+  top: 80px; /* Account for main navbar height */
+  z-index: 40;
+}
+
+.services-nav-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.services-nav-links a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  color: #2C3E50;
+  background: rgba(27, 79, 114, 0.05);
+  border: 2px solid transparent;
+}
+
+.services-nav-links a:hover,
+.services-nav-links a.active {
+  background: #1B4F72;
+  color: white;
+  border-color: #1B4F72;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
+}
+
+.services-nav-links a i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Service Section Styling */
+.service-section {
+  padding: 4rem 0;
+  border-bottom: 1px solid #E5E7EB;
+  scroll-margin-top: 140px; /* Account for sticky navs */
+}
+
+.service-section:last-child {
+  border-bottom: none;
+}
+
+.service-section:nth-child(even) {
+  background: #F8FAFC;
+}
+
+/* Service Header */
+.service-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.service-icon-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #1B4F72, #2C3E50);
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  box-shadow: 0 10px 30px rgba(27, 79, 114, 0.3);
+}
+
+.service-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1B4F72;
+  margin-bottom: 1rem;
+}
+
+.service-subtitle {
+  font-size: 1.25rem;
+  color: #6B7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Service Content Grid */
+.service-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: 7xl;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .service-content {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* Service Details */
+.service-details h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1B4F72;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.service-details h3 i {
+  margin-right: 0.75rem;
+  color: #34495E;
+}
+
+.service-details p {
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.service-details ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.service-details ul li {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  color: #374151;
+}
+
+.service-details ul li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #10B981;
+  margin-right: 0.75rem;
+  margin-top: 0.125rem;
+}
+
+/* Technology Stack Cards */
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.tech-item {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-item:hover {
+  border-color: #1B4F72;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(27, 79, 114, 0.15);
+}
+
+.tech-item i {
+  font-size: 2rem;
+  color: #1B4F72;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.tech-item span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Industries Benefiting Section */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.industry-tag {
+  background: linear-gradient(135deg, rgba(27, 79, 114, 0.1), rgba(44, 62, 80, 0.1));
+  border: 1px solid rgba(27, 79, 114, 0.2);
+  border-radius: 25px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-weight: 500;
+  color: #1B4F72;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.industry-tag:hover {
+  background: #1B4F72;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
+}
+
+/* Service Visual/Demo Area */
+.service-visual {
+  position: relative;
+  background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+  border-radius: 20px;
+  padding: 2rem;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.service-visual::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(27, 79, 114, 0.05) 10px,
+    rgba(27, 79, 114, 0.05) 20px
+  );
+  animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+.service-demo {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 300px;
+}
+
+.service-demo h4 {
+  color: #1B4F72;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.service-demo p {
+  color: #6B7280;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Service CTA Button */
+.service-cta {
+  display: inline-flex;
+  align-items: center;
+  background: #1B4F72;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27, 79, 114, 0.3);
+}
+
+.service-cta:hover {
+  background: #143c5c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 79, 114, 0.4);
+  color: white;
+}
+
+.service-cta i {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.service-cta:hover i {
+  transform: translateX(5px);
+}
+
+/* Process Steps */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.process-step {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid #E5E7EB;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.process-step:hover {
+  border-color: #1B4F72;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(27, 79, 114, 0.15);
+}
+
+.process-step-number {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1B4F72;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.process-step h4 {
+  color: #1B4F72;
+  font-weight: 600;
+  margin: 1rem 0 0.75rem 0;
+}
+
+.process-step p {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* FAQ Section for Services */
+.service-faq {
+  background: #F8FAFC;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid #E5E7EB;
+  padding: 1.5rem 0;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  cursor: pointer;
+  color: #1B4F72;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.faq-question::after {
+  content: '\f067';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+  content: '\f068';
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding-top: 1rem;
+}
+
+/* Back to Top for Services */
+.services-back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #1B4F72;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 50;
+}
+
+.services-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.services-back-to-top:hover {
+  background: #143c5c;
+  transform: translateY(-5px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .service-title {
+    font-size: 2rem;
+  }
+
+  .services-nav-links {
+    padding: 0 1rem;
+  }
+
+  .services-nav-links a {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    min-height: 50vh;
+    text-align: center;
+  }
+
+  .service-title {
+    font-size: 1.75rem;
+  }
+
+  .service-icon-large {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  .services-nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tech-stack {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-section {
+    padding: 2rem 0;
+  }
+
+  .service-content {
+    gap: 2rem;
+  }
+
+  .service-visual {
+    min-height: 300px;
+    padding: 1rem;
+  }
+
+  .industries-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
