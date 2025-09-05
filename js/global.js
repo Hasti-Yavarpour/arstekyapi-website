@@ -221,14 +221,11 @@ window.ArsTekYapi = {
     const handleScroll = this.utils.throttle(() => {
       const scrollY = window.scrollY;
 
-      // Header hide/show on scroll
-      if (header) {
-        if (scrollY > lastScrollY && scrollY > 100) {
-          header.style.transform = 'translateY(-100%)';
-        } else {
+      // Header hide/show on scroll - DISABLED FOR ALWAYS VISIBLE NAVBAR
+        if (header) {
+          // Keep navbar always visible
           header.style.transform = 'translateY(0)';
         }
-      }
 
       // Add background to header when scrolled
       if (scrollY > 50) {

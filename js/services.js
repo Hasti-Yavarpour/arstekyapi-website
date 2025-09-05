@@ -321,12 +321,12 @@ document.addEventListener('DOMContentLoaded', function() {
         progressBar.className = 'scroll-progress';
         progressBar.style.cssText = `
             position: fixed;
-            top: 80px;
+            top: 0;
             left: 0;
             width: 0%;
             height: 3px;
             background: linear-gradient(90deg, #1B4F72, #2C3E50);
-            z-index: 51;
+            z-index: 9999;
             transition: width 0.25s ease;
         `;
         document.body.appendChild(progressBar);

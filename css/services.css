@@ -1,104 +1,37 @@
 /* ===================================
-   SERVICES PAGE SPECIFIC STYLES
+   SERVICES PAGE COMPLETE CSS
    services.css for ARS TEK YAPI A.Ş.
    Main Brand Color: #1B4F72
+   Service Colors: AI=#F39C12, IoT=#27AE60, Web=#2980B9, Fintech=#8E44AD, Smart Home=#E74C3C
    =================================== */
 
-/* Services Hero Section */
-.services-hero {
-  background: linear-gradient(135deg, #1B4F72 0%, #2C3E50 50%, #34495E 100%);
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+/* NAVIGATION AND PROGRESS BAR FIXES */
+.scroll-progress {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0% !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #1B4F72, #2C3E50) !important;
+  z-index: 9999 !important;
+  transition: width 0.25s ease !important;
 }
 
-.services-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.1);
+.navbar, header.navbar {
+  position: fixed !important;
+  top: 3px !important;
+  width: 100% !important;
+  z-index: 50 !important;
+  transform: translateY(0) !important;
+  transition: none !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-/* Floating background elements for hero */
-.services-hero .floating-element {
-  position: absolute;
-  animation: float 6s ease-in-out infinite;
-}
-
-.services-hero .floating-element:nth-child(2) {
-  animation-delay: -2s;
-}
-
-.services-hero .floating-element:nth-child(3) {
-  animation-delay: -4s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Services Navigation/Filter */
-.services-nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(27, 79, 114, 0.1);
-  padding: 1rem 0;
-  position: sticky;
-  top: 80px; /* Account for main navbar height */
-  z-index: 40;
-}
-
-.services-nav-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.services-nav-links a {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  color: #2C3E50;
-  background: rgba(27, 79, 114, 0.05);
-  border: 2px solid transparent;
-}
-
-.services-nav-links a:hover,
-.services-nav-links a.active {
-  background: #1B4F72;
-  color: white;
-  border-color: #1B4F72;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
-}
-
-.services-nav-links a i {
-  margin-right: 0.5rem;
-  font-size: 1.1rem;
-}
-
-/* ===================================
-   SERVICES PAGE SPECIFIC STYLES - COMPACT VERSION
-   services.css for ARS TEK YAPI A.Ş.
-   Main Brand Color: #1B4F72
-
-   NOTE: This CSS only affects service sections, NOT the hero section
-   =================================== */
-
-/* Service Section Styling - COMPACT VERSION */
+/* SERVICE SECTIONS - COMPACT DESIGN */
 .service-section {
-  padding: 3rem 0; /* Reduced from 4rem */
+  padding: 3rem 0;
   border-bottom: 1px solid #E5E7EB;
   scroll-margin-top: 140px;
 }
@@ -111,26 +44,26 @@
   background: #F8FAFC;
 }
 
-/* Service Header - More Compact */
+/* SERVICE HEADERS - COMPACT */
 .service-header {
   text-align: center;
-  margin-bottom: 2rem; /* Reduced from 3rem */
+  margin-bottom: 2rem;
 }
 
 .service-icon-large {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 70px; /* Reduced from 100px */
+  width: 70px;
   height: 70px;
   border-radius: 50%;
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  margin-bottom: 1rem;
   color: white;
-  font-size: 1.8rem; /* Reduced from 2.5rem */
+  font-size: 1.8rem;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Service-specific colors for icons */
+/* Service-specific icon colors */
 #ai-ml .service-icon-large {
   background: linear-gradient(135deg, #F39C12, #E67E22);
 }
@@ -152,25 +85,25 @@
 }
 
 .service-title {
-  font-size: 2rem; /* Reduced from 2.5rem */
+  font-size: 2rem;
   font-weight: 700;
   color: #1B4F72;
-  margin-bottom: 0.75rem; /* Reduced from 1rem */
+  margin-bottom: 0.75rem;
 }
 
 .service-subtitle {
-  font-size: 1.1rem; /* Reduced from 1.25rem */
+  font-size: 1.1rem;
   color: #6B7280;
-  max-width: 500px; /* Reduced from 600px */
+  max-width: 500px;
   margin: 0 auto;
   line-height: 1.5;
 }
 
-/* Service Content Grid - More Compact */
+/* SERVICE CONTENT GRID */
 .service-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem; /* Reduced from 3rem */
+  gap: 2rem;
   max-width: 7xl;
   margin: 0 auto;
 }
@@ -178,80 +111,124 @@
 @media (min-width: 1024px) {
   .service-content {
     grid-template-columns: 1fr 1fr;
-    align-items: start; /* Changed from center to start */
+    align-items: start;
   }
 }
 
-/* Service Details - Compact */
+/* SERVICE DETAILS WITH PROPER COLORS */
 .service-details h3 {
-  font-size: 1.3rem; /* Reduced from 1.5rem */
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #1B4F72;
-  margin-bottom: 0.75rem; /* Reduced from 1rem */
+  margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
 }
 
 .service-details h3 i {
-  margin-right: 0.5rem; /* Reduced from 0.75rem */
-  color: #34495E;
+  margin-right: 0.5rem;
+}
+
+/* Service-specific section title colors */
+#ai-ml .service-details h3,
+#ai-ml .service-details h3 i {
+  color: #F39C12 !important;
+}
+
+#iot .service-details h3,
+#iot .service-details h3 i {
+  color: #27AE60 !important;
+}
+
+#web-development .service-details h3,
+#web-development .service-details h3 i {
+  color: #2980B9 !important;
+}
+
+#fintech .service-details h3,
+#fintech .service-details h3 i {
+  color: #8E44AD !important;
+}
+
+#smart-home .service-details h3,
+#smart-home .service-details h3 i {
+  color: #E74C3C !important;
 }
 
 .service-details p {
   color: #4B5563;
   line-height: 1.6;
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 
 .service-details ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 1.5rem; /* Reduced from 2rem */
+  margin-bottom: 1.5rem;
 }
 
 .service-details ul li {
   display: flex;
   align-items: flex-start;
-  padding: 0.375rem 0; /* Reduced from 0.5rem */
+  padding: 0.375rem 0;
   color: #374151;
   font-size: 0.9rem;
 }
 
+/* Service-specific bullet points (circles) */
 .service-details ul li::before {
-  content: '\f00c';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  color: #10B981;
-  margin-right: 0.5rem; /* Reduced from 0.75rem */
+  content: '•' !important;
+  font-family: inherit !important;
+  font-weight: bold !important;
+  margin-right: 0.5rem;
   margin-top: 0.125rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
-/* Technology Stack Cards - Compact */
+#ai-ml .service-details ul li::before {
+  color: #F39C12 !important;
+}
+
+#iot .service-details ul li::before {
+  color: #27AE60 !important;
+}
+
+#web-development .service-details ul li::before {
+  color: #2980B9 !important;
+}
+
+#fintech .service-details ul li::before {
+  color: #8E44AD !important;
+}
+
+#smart-home .service-details ul li::before {
+  color: #E74C3C !important;
+}
+
+/* TECHNOLOGY STACK CARDS */
 .tech-stack {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 0.75rem; /* Reduced from 1rem */
-  margin: 1.5rem 0; /* Reduced from 2rem */
+  gap: 0.75rem;
+  margin: 1.5rem 0;
 }
 
 .tech-item {
   background: white;
   border: 2px solid #E5E7EB;
-  border-radius: 10px; /* Reduced from 12px */
-  padding: 0.75rem; /* Reduced from 1rem */
+  border-radius: 10px;
+  padding: 0.75rem;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .tech-item:hover {
-  transform: translateY(-3px); /* Reduced from -5px */
+  transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(27, 79, 114, 0.15);
 }
 
-/* Service-specific hover colors for tech items */
+/* Service-specific tech item hover colors */
 #ai-ml .tech-item:hover {
   border-color: #F39C12;
   box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
@@ -278,31 +255,31 @@
 }
 
 .tech-item i {
-  font-size: 1.5rem; /* Reduced from 2rem */
+  font-size: 1.5rem;
   color: #1B4F72;
-  margin-bottom: 0.375rem; /* Reduced from 0.5rem */
+  margin-bottom: 0.375rem;
   display: block;
 }
 
 .tech-item span {
-  font-size: 0.8rem; /* Reduced from 0.875rem */
+  font-size: 0.8rem;
   font-weight: 500;
   color: #374151;
 }
 
-/* Industries Grid - Compact */
+/* INDUSTRIES GRID */
 .industries-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.75rem; /* Reduced from 1rem */
-  margin: 1.5rem 0; /* Reduced from 2rem */
+  gap: 0.75rem;
+  margin: 1.5rem 0;
 }
 
 .industry-tag {
   background: linear-gradient(135deg, rgba(27, 79, 114, 0.1), rgba(44, 62, 80, 0.1));
   border: 1px solid rgba(27, 79, 114, 0.2);
-  border-radius: 20px; /* Reduced from 25px */
-  padding: 0.5rem 0.75rem; /* Reduced from 0.75rem 1rem */
+  border-radius: 20px;
+  padding: 0.5rem 0.75rem;
   text-align: center;
   font-weight: 500;
   color: #1B4F72;
@@ -316,7 +293,7 @@
   box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
 }
 
-/* Service-specific hover colors for industry tags */
+/* Service-specific industry tag hover colors */
 #ai-ml .industry-tag:hover {
   background: #F39C12;
   color: white;
@@ -342,35 +319,33 @@
   color: white;
 }
 
-/* Service Visual/Demo Area - Compact (NO diagonal lines, proper shadows) */
+/* SERVICE DEMO CARDS - NO DIAGONAL LINES, PROPER SHADOWS */
 .service-visual {
   position: relative;
   background: linear-gradient(135deg, #F8FAFC, #E5E7EB);
-  border-radius: 15px; /* Reduced from 20px */
-  padding: 1.5rem; /* Reduced from 2rem */
-  min-height: 300px; /* Reduced from 400px */
+  border-radius: 15px;
+  padding: 1.5rem;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Removed diagonal lines background */
 }
 
 .service-demo {
   background: white;
-  border-radius: 12px; /* Reduced from 15px */
-  padding: 1.5rem; /* Reduced from 2rem */
-  /* Enhanced shadow instead of diagonal lines */
+  border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
   position: relative;
   z-index: 2;
-  max-width: 280px; /* Reduced from 300px */
+  max-width: 280px;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Service-specific demo card icon colors (toned-down versions) */
+/* Service-specific demo card icon colors (toned-down) */
 #ai-ml .service-demo .bg-gradient-to-r {
   background: linear-gradient(135deg, #F8C471, #F4D03F) !important;
 }
@@ -394,29 +369,31 @@
 .service-demo h4 {
   color: #1B4F72;
   font-weight: 600;
-  margin-bottom: 0.75rem; /* Reduced from 1rem */
+  margin-bottom: 0.75rem;
   font-size: 1rem;
 }
 
 .service-demo p {
   color: #6B7280;
-  font-size: 0.8rem; /* Reduced from 0.875rem */
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
   line-height: 1.5;
 }
 
-/* Service CTA Button - Compact */
+/* SERVICE CTA BUTTONS WITH SPECIFIC COLORS */
 .service-cta {
   display: inline-flex;
   align-items: center;
   color: white;
-  padding: 0.75rem 1.5rem; /* Reduced from 1rem 2rem */
-  border-radius: 40px; /* Reduced from 50px */
+  padding: 0.75rem 1.5rem;
+  border-radius: 40px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
   font-size: 0.9rem;
   margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Service-specific CTA colors */
@@ -484,18 +461,40 @@
   transform: translateX(3px);
 }
 
-/* Process Steps - Compact */
+/* RIPPLE EFFECT FOR CTA BUTTONS */
+.service-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* PROCESS STEPS - COMPACT */
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem; /* Reduced from 2rem */
-  margin: 2rem 0; /* Reduced from 3rem */
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
 .process-step {
   background: white;
-  border-radius: 12px; /* Reduced from 15px */
-  padding: 1.5rem; /* Reduced from 2rem */
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
   border: 2px solid #E5E7EB;
   position: relative;
@@ -504,51 +503,51 @@
 
 .process-step:hover {
   border-color: #1B4F72;
-  transform: translateY(-3px); /* Reduced from -5px */
+  transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(27, 79, 114, 0.15);
 }
 
 .process-step-number {
   position: absolute;
-  top: -12px; /* Reduced from -15px */
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   background: #1B4F72;
   color: white;
-  width: 24px; /* Reduced from 30px */
+  width: 24px;
   height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 0.8rem; /* Reduced from 0.875rem */
+  font-size: 0.8rem;
 }
 
 .process-step h4 {
   color: #1B4F72;
   font-weight: 600;
-  margin: 0.75rem 0 0.5rem 0; /* Reduced margins */
+  margin: 0.75rem 0 0.5rem 0;
   font-size: 1rem;
 }
 
 .process-step p {
   color: #6B7280;
-  font-size: 0.8rem; /* Reduced from 0.875rem */
+  font-size: 0.8rem;
   line-height: 1.5;
 }
 
-/* FAQ Section - Compact */
+/* FAQ SECTION */
 .service-faq {
   background: #F8FAFC;
-  border-radius: 12px; /* Reduced from 15px */
-  padding: 1.5rem; /* Reduced from 2rem */
-  margin-top: 2rem; /* Reduced from 3rem */
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
 }
 
 .faq-item {
   border-bottom: 1px solid #E5E7EB;
-  padding: 1rem 0; /* Reduced from 1.5rem */
+  padding: 1rem 0;
 }
 
 .faq-item:last-child {
@@ -562,7 +561,7 @@
   cursor: pointer;
   color: #1B4F72;
   font-weight: 600;
-  font-size: 1rem; /* Reduced from 1.125rem */
+  font-size: 1rem;
 }
 
 .faq-question::after {
@@ -589,17 +588,17 @@
 
 .faq-item.active .faq-answer {
   max-height: 200px;
-  padding-top: 0.75rem; /* Reduced from 1rem */
+  padding-top: 0.75rem;
 }
 
-/* Back to Top - Compact */
+/* BACK TO TOP BUTTON */
 .services-back-to-top {
   position: fixed;
-  bottom: 1.5rem; /* Reduced from 2rem */
+  bottom: 1.5rem;
   right: 1.5rem;
   background: #1B4F72;
   color: white;
-  width: 45px; /* Reduced from 50px */
+  width: 45px;
   height: 45px;
   border-radius: 50%;
   border: none;
@@ -607,7 +606,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem; /* Reduced from 1.25rem */
+  font-size: 1.1rem;
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -623,38 +622,25 @@
 
 .services-back-to-top:hover {
   background: #143c5c;
-  transform: translateY(-3px); /* Reduced from -5px */
+  transform: translateY(-3px);
 }
 
-/* Responsive Adjustments */
+/* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   .service-title {
     font-size: 1.75rem;
   }
-
-  .services-nav-links {
-    padding: 0 1rem;
-  }
-
-  .services-nav-links a {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
 }
 
 @media (max-width: 768px) {
-  .services-hero {
-    min-height: 45vh; /* Reduced from 50vh */
-  }
-
   .service-title {
     font-size: 1.5rem;
   }
 
   .service-icon-large {
-    width: 60px; /* Reduced from 80px */
+    width: 60px;
     height: 60px;
-    font-size: 1.5rem; /* Reduced from 2rem */
+    font-size: 1.5rem;
   }
 
   .tech-stack {
@@ -669,15 +655,15 @@
 
 @media (max-width: 640px) {
   .service-section {
-    padding: 1.5rem 0; /* Reduced from 2rem */
+    padding: 1.5rem 0;
   }
 
   .service-content {
-    gap: 1.5rem; /* Reduced from 2rem */
+    gap: 1.5rem;
   }
 
   .service-visual {
-    min-height: 250px; /* Reduced from 300px */
+    min-height: 250px;
     padding: 1rem;
   }
 
@@ -690,4 +676,3 @@
     max-width: 100%;
   }
 }
-
