@@ -88,7 +88,15 @@
   font-size: 1.1rem;
 }
 
-/* Service Section Styling */
+/* ===================================
+   SERVICES PAGE SPECIFIC STYLES - COMPACT VERSION
+   services.css for ARS TEK YAPI A.Ş.
+   Main Brand Color: #1B4F72
+
+   NOTE: This CSS only affects service sections, NOT the hero section
+   =================================== */
+
+/* Service Section Styling - COMPACT VERSION */
 .service-section {
   padding: 3rem 0; /* Reduced from 4rem */
   border-bottom: 1px solid #E5E7EB;
@@ -103,10 +111,10 @@
   background: #F8FAFC;
 }
 
-/* Service Header */
+/* Service Header - More Compact */
 .service-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2rem; /* Reduced from 3rem */
 }
 
 .service-icon-large {
@@ -144,25 +152,25 @@
 }
 
 .service-title {
-  font-size: 2rem;
+  font-size: 2rem; /* Reduced from 2.5rem */
   font-weight: 700;
   color: #1B4F72;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
 }
 
 .service-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.1rem; /* Reduced from 1.25rem */
   color: #6B7280;
-  max-width: 500px;
+  max-width: 500px; /* Reduced from 600px */
   margin: 0 auto;
   line-height: 1.5;
 }
 
-/* Service Content Grid */
+/* Service Content Grid - More Compact */
 .service-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2rem; /* Reduced from 3rem */
   max-width: 7xl;
   margin: 0 auto;
 }
@@ -170,42 +178,42 @@
 @media (min-width: 1024px) {
   .service-content {
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    align-items: start; /* Changed from center to start */
   }
 }
 
-/* Service Details */
+/* Service Details - Compact */
 .service-details h3 {
-  font-size: 1.3rem;
+  font-size: 1.3rem; /* Reduced from 1.5rem */
   font-weight: 600;
   color: #1B4F72;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
   display: flex;
   align-items: center;
 }
 
 .service-details h3 i {
-  margin-right: 0.5rem;
+  margin-right: 0.5rem; /* Reduced from 0.75rem */
   color: #34495E;
 }
 
 .service-details p {
   color: #4B5563;
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
   font-size: 0.95rem;
 }
 
 .service-details ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; /* Reduced from 2rem */
 }
 
 .service-details ul li {
   display: flex;
   align-items: flex-start;
-  padding: 0.375rem 0;
+  padding: 0.375rem 0; /* Reduced from 0.5rem */
   color: #374151;
   font-size: 0.9rem;
 }
@@ -215,33 +223,32 @@
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
   color: #10B981;
-  margin-right: 0.5rem;
+  margin-right: 0.5rem; /* Reduced from 0.75rem */
   margin-top: 0.125rem;
   font-size: 0.8rem;
 }
 
-/* Technology Stack Cards */
+/* Technology Stack Cards - Compact */
 .tech-stack {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 0.75rem;
-  margin: 1.5rem 0;
+  gap: 0.75rem; /* Reduced from 1rem */
+  margin: 1.5rem 0; /* Reduced from 2rem */
 }
 
 .tech-item {
   background: white;
   border: 2px solid #E5E7EB;
-  border-radius: 10px;
-  padding: 0.75rem;
+  border-radius: 10px; /* Reduced from 12px */
+  padding: 0.75rem; /* Reduced from 1rem */
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .tech-item:hover {
-  /*border-color: #1B4F72;*/
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(27, 79, 114, 0.15);
+  transform: translateY(-3px); /* Reduced from -5px */
+  box-shadow: 0 6px 20px rgba(27, 79, 114, 0.15);
 }
 
 /* Service-specific hover colors for tech items */
@@ -271,24 +278,24 @@
 }
 
 .tech-item i {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Reduced from 2rem */
   color: #1B4F72;
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.375rem; /* Reduced from 0.5rem */
   display: block;
 }
 
 .tech-item span {
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Reduced from 0.875rem */
   font-weight: 500;
   color: #374151;
 }
 
-/* Industries Benefiting Section */
+/* Industries Grid - Compact */
 .industries-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0.75rem;
-  margin: 1.5rem 0;
+  gap: 0.75rem; /* Reduced from 1rem */
+  margin: 1.5rem 0; /* Reduced from 2rem */
 }
 
 .industry-tag {
@@ -305,8 +312,6 @@
 }
 
 .industry-tag:hover {
-  /*background: #1B4F72;
-  color: white;*/
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
 }
@@ -337,78 +342,79 @@
   color: white;
 }
 
-/* Service Visual/Demo Area */
+/* Service Visual/Demo Area - Compact (NO diagonal lines, proper shadows) */
 .service-visual {
   position: relative;
   background: linear-gradient(135deg, #F8FAFC, #E5E7EB);
-  border-radius: 15px;
-  padding: 1.5rem;
-  min-height: 300px;
+  border-radius: 15px; /* Reduced from 20px */
+  padding: 1.5rem; /* Reduced from 2rem */
+  min-height: 300px; /* Reduced from 400px */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-.service-visual::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 8px,
-    rgba(27, 79, 114, 0.03) 8px,
-    rgba(27, 79, 114, 0.03) 16px
-  );
-  animation: slide 20s linear infinite;
-}
-
-@keyframes slide {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(16px, 16px); }
+  /* Removed diagonal lines background */
 }
 
 .service-demo {
   background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Reduced from 15px */
+  padding: 1.5rem; /* Reduced from 2rem */
+  /* Enhanced shadow instead of diagonal lines */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
   position: relative;
   z-index: 2;
-  max-width: 280px;
+  max-width: 280px; /* Reduced from 300px */
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Service-specific demo card icon colors (toned-down versions) */
+#ai-ml .service-demo .bg-gradient-to-r {
+  background: linear-gradient(135deg, #F8C471, #F4D03F) !important;
+}
+
+#iot .service-demo .bg-gradient-to-r {
+  background: linear-gradient(135deg, #82E0AA, #A9DFBF) !important;
+}
+
+#web-development .service-demo .bg-gradient-to-r {
+  background: linear-gradient(135deg, #85C1E9, #AED6F1) !important;
+}
+
+#fintech .service-demo .bg-gradient-to-r {
+  background: linear-gradient(135deg, #C39BD3, #D7BDE2) !important;
+}
+
+#smart-home .service-demo .bg-gradient-to-r {
+  background: linear-gradient(135deg, #F1948A, #F5B7B1) !important;
 }
 
 .service-demo h4 {
   color: #1B4F72;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; /* Reduced from 1rem */
   font-size: 1rem;
 }
 
 .service-demo p {
   color: #6B7280;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem; /* Reduced from 0.875rem */
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
   line-height: 1.5;
 }
 
-/* Service CTA Button */
+/* Service CTA Button - Compact */
 .service-cta {
   display: inline-flex;
   align-items: center;
-  /*background: #1B4F72;*/
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 40px;
+  padding: 0.75rem 1.5rem; /* Reduced from 1rem 2rem */
+  border-radius: 40px; /* Reduced from 50px */
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  /*box-shadow: 0 4px 15px rgba(27, 79, 114, 0.3);*/
   font-size: 0.9rem;
   margin-top: 1rem;
 }
@@ -478,18 +484,18 @@
   transform: translateX(3px);
 }
 
-/* Process Steps */
+/* Process Steps - Compact */
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  gap: 1.5rem; /* Reduced from 2rem */
+  margin: 2rem 0; /* Reduced from 3rem */
 }
 
 .process-step {
   background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 12px; /* Reduced from 15px */
+  padding: 1.5rem; /* Reduced from 2rem */
   text-align: center;
   border: 2px solid #E5E7EB;
   position: relative;
@@ -498,51 +504,51 @@
 
 .process-step:hover {
   border-color: #1B4F72;
-  transform: translateY(-3px);
+  transform: translateY(-3px); /* Reduced from -5px */
   box-shadow: 0 8px 25px rgba(27, 79, 114, 0.15);
 }
 
 .process-step-number {
   position: absolute;
-  top: -12px;
+  top: -12px; /* Reduced from -15px */
   left: 50%;
   transform: translateX(-50%);
   background: #1B4F72;
   color: white;
-  width: 24px;
+  width: 24px; /* Reduced from 30px */
   height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Reduced from 0.875rem */
 }
 
 .process-step h4 {
   color: #1B4F72;
   font-weight: 600;
-  margin: 0.75rem 0 0.5rem 0;
+  margin: 0.75rem 0 0.5rem 0; /* Reduced margins */
   font-size: 1rem;
 }
 
 .process-step p {
   color: #6B7280;
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Reduced from 0.875rem */
   line-height: 1.5;
 }
 
-/* FAQ Section for Services */
+/* FAQ Section - Compact */
 .service-faq {
   background: #F8FAFC;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-top: 2rem;
+  border-radius: 12px; /* Reduced from 15px */
+  padding: 1.5rem; /* Reduced from 2rem */
+  margin-top: 2rem; /* Reduced from 3rem */
 }
 
 .faq-item {
   border-bottom: 1px solid #E5E7EB;
-  padding: 1rem 0;
+  padding: 1rem 0; /* Reduced from 1.5rem */
 }
 
 .faq-item:last-child {
@@ -556,14 +562,13 @@
   cursor: pointer;
   color: #1B4F72;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1rem; /* Reduced from 1.125rem */
 }
 
 .faq-question::after {
   content: '\f067';
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
-  /*margin-left: auto;*/
   transition: transform 0.3s ease;
   font-size: 0.875rem;
 }
@@ -584,17 +589,17 @@
 
 .faq-item.active .faq-answer {
   max-height: 200px;
-  padding-top: 0.75rem;
+  padding-top: 0.75rem; /* Reduced from 1rem */
 }
 
-/* Back to Top for Services */
+/* Back to Top - Compact */
 .services-back-to-top {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 1.5rem; /* Reduced from 2rem */
   right: 1.5rem;
   background: #1B4F72;
   color: white;
-  width: 45px;
+  width: 45px; /* Reduced from 50px */
   height: 45px;
   border-radius: 50%;
   border: none;
@@ -602,7 +607,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.1rem; /* Reduced from 1.25rem */
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
@@ -618,7 +623,7 @@
 
 .services-back-to-top:hover {
   background: #143c5c;
-  transform: translateY(-3px);
+  transform: translateY(-3px); /* Reduced from -5px */
 }
 
 /* Responsive Adjustments */
@@ -639,8 +644,7 @@
 
 @media (max-width: 768px) {
   .services-hero {
-    min-height: 45vh;
-    /*text-align: center;*/
+    min-height: 45vh; /* Reduced from 50vh */
   }
 
   .service-title {
@@ -648,15 +652,10 @@
   }
 
   .service-icon-large {
-    width: 60px;
+    width: 60px; /* Reduced from 80px */
     height: 60px;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Reduced from 2rem */
   }
-
-  /*.services-nav-links {
-    flex-direction: column;
-    align-items: center;
-  }*/
 
   .tech-stack {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
