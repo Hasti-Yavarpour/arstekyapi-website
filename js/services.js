@@ -508,3 +508,27 @@ window.ServicesPage = {
     getServiceDetails,
     showServiceModal
 };
+
+
+// Force section title colors with JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceColors = {
+        'ai-ml': '#F39C12',
+        'iot': '#27AE60',
+        'web-development': '#2980B9',
+        'fintech': '#8E44AD',
+        'smart-home': '#E74C3C'
+    };
+
+    setTimeout(() => {
+        Object.keys(serviceColors).forEach(serviceId => {
+            const section = document.getElementById(serviceId);
+            if (section) {
+                const titles = section.querySelectorAll('h3, h3 i');
+                titles.forEach(title => {
+                    title.style.color = serviceColors[serviceId];
+                });
+            }
+        });
+    }, 100);
+});
