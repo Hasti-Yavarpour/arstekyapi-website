@@ -316,30 +316,30 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Add scroll progress indicator for services page
      */
-    function initScrollProgress() {
-        const progressBar = document.createElement('div');
-        progressBar.className = 'scroll-progress';
-        progressBar.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #1B4F72, #2C3E50);
-            z-index: 9999;
-            transition: width 0.25s ease;
-        `;
-        document.body.appendChild(progressBar);
-
-        function updateScrollProgress() {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            progressBar.style.width = Math.min(scrolled, 100) + '%';
-        }
-
-        window.addEventListener('scroll', updateScrollProgress);
-        updateScrollProgress(); // Initial call
-    }
+//    function initScrollProgress() {
+//        const progressBar = document.createElement('div');
+//        progressBar.className = 'scroll-progress';
+//        progressBar.style.cssText = `
+//            position: fixed;
+//            top: 0;
+//            left: 0;
+//            width: 0%;
+//            height: 3px;
+//            background: linear-gradient(90deg, #1B4F72, #2C3E50);
+//            z-index: 9999;
+//            transition: width 0.25s ease;
+//        `;
+//        document.body.appendChild(progressBar);
+//
+//        function updateScrollProgress() {
+//            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+//            const scrolled = (window.scrollY / windowHeight) * 100;
+//            progressBar.style.width = Math.min(scrolled, 100) + '%';
+//        }
+//
+//        window.addEventListener('scroll', updateScrollProgress);
+//        updateScrollProgress(); // Initial call
+//    }
 
     // ===================================
     // FORM VALIDATIONS (if contact forms exist)

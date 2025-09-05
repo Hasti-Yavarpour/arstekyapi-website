@@ -5,21 +5,11 @@
    Service Colors: AI=#F39C12, IoT=#27AE60, Web=#2980B9, Fintech=#8E44AD, Smart Home=#E74C3C
    =================================== */
 
-/* NAVIGATION AND PROGRESS BAR FIXES */
-.scroll-progress {
+.navbar, header.navbar, header {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
-  width: 0% !important;
-  height: 3px !important;
-  background: linear-gradient(90deg, #1B4F72, #2C3E50) !important;
-  z-index: 9999 !important;
-  transition: width 0.25s ease !important;
-}
-
-.navbar, header.navbar {
-  position: fixed !important;
-  top: 3px !important;
+  right: 0 !important;
   width: 100% !important;
   z-index: 50 !important;
   transform: translateY(0) !important;
@@ -27,6 +17,8 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Services Hero Section */
