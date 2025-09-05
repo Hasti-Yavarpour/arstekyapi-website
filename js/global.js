@@ -164,40 +164,63 @@ window.ArsTekYapi = {
   },
 
   // Navigation functionality
-  initNavigation: function() {
-    const toggle = this.utils.$('.nav-toggle');
-    const menu = this.utils.$('.nav-menu');
+    initNavigation: function() {
+        // Try both ID and class selectors to work with all pages
+        const toggle = this.utils.$('#mobile-menu-btn') || this.utils.$('.nav-toggle');
+        const menu = this.utils.$('#mobile-menu') || this.utils.$('.nav-menu');
 
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        this.state.mobileMenuOpen = !this.state.mobileMenuOpen;
-        menu.classList.toggle('active', this.state.mobileMenuOpen);
-        toggle.setAttribute('aria-expanded', this.state.mobileMenuOpen);
-      });
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            this.state.mobileMenuOpen = !this.state.mobileMenuOpen;
 
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (this.state.mobileMenuOpen && !toggle.contains(e.target) && !menu.contains(e.target)) {
-          this.state.mobileMenuOpen = false;
-          menu.classList.remove('active');
-          toggle.setAttribute('aria-expanded', false);
+            // Handle both hidden/active class systems
+            if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
+              // For pages using hidden class (like services)
+              menu.classList.toggle('hidden', !this.state.mobileMenuOpen);
+            } else {
+              // For pages using active class (like index)
+              menu.classList.toggle('active', this.state.mobileMenuOpen);
+            }
+
+            toggle.setAttribute('aria-expanded', this.state.mobileMenuOpen);
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener('click', (e) => {
+            if (this.state.mobileMenuOpen && !toggle.contains(e.target) && !menu.contains(e.target)) {
+              this.state.mobileMenuOpen = false;
+
+              // Handle both class systems
+              if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
+                menu.classList.add('hidden');
+              } else {
+                menu.classList.remove('active');
+              }
+
+              toggle.setAttribute('aria-expanded', false);
+            }
+          });
+
+          // Close menu on escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.state.mobileMenuOpen) {
+              this.state.mobileMenuOpen = false;
+
+              // Handle both class systems
+              if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
+                menu.classList.add('hidden');
+              } else {
+                menu.classList.remove('active');
+              }
+
+              toggle.setAttribute('aria-expanded', false);
+            }
+          });
         }
-      });
 
-      // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.state.mobileMenuOpen) {
-          this.state.mobileMenuOpen = false;
-          menu.classList.remove('active');
-          toggle.setAttribute('aria-expanded', false);
-        }
-      });
-    }
-
-    // Active nav link highlighting
-    this.highlightActiveNavLink();
-  },
-
+        // Active nav link highlighting
+        this.highlightActiveNavLink();
+      },
   // Highlight active navigation link
   highlightActiveNavLink: function() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
