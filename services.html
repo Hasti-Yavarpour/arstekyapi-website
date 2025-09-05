@@ -1092,12 +1092,15 @@
   [id="fintech"] h3, [id="fintech"] h3 i { color: #8E44AD !important; }
   [id="smart-home"] h3, [id="smart-home"] h3 i { color: #E74C3C !important; }
 
-  /* Force arrows instead of checkmarks */
-  [id="ai-ml"] .service-details ul li::before { content: '\f061' !important; color: #F39C12 !important; }
-  [id="iot"] .service-details ul li::before { content: '\f061' !important; color: #27AE60 !important; }
-  [id="web-development"] .service-details ul li::before { content: '\f061' !important; color: #2980B9 !important; }
-  [id="fintech"] .service-details ul li::before { content: '\f061' !important; color: #8E44AD !important; }
-  [id="smart-home"] .service-details ul li::before { content: '\f061' !important; color: #E74C3C !important; }
+  /* Force circles for service lists */
+  [id="ai-ml"] .service-details ul li::before { content: '•' !important; color: #F39C12 !important; font-family: inherit !important; }
+  [id="iot"] .service-details ul li::before { content: '•' !important; color: #27AE60 !important; font-family: inherit !important; }
+  [id="web-development"] .service-details ul li::before { content: '•' !important; color: #2980B9 !important; font-family: inherit !important; }
+  [id="fintech"] .service-details ul li::before { content: '•' !important; color: #8E44AD !important; font-family: inherit !important; }
+  [id="smart-home"] .service-details ul li::before { content: '•' !important; color: #E74C3C !important; font-family: inherit !important; }
+
+  /* Fix FAQ section bullets */
+  .service-faq ul li::before, .faq-item ul li::before { content: '•' !important; color: #1B4F72 !important; font-family: inherit !important; }
   </style>
   </body>
   </html>
