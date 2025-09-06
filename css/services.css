@@ -5,6 +5,121 @@
    Service Colors: AI=#F39C12, IoT=#27AE60, Web=#2980B9, Fintech=#8E44AD, Smart Home=#E74C3C
    =================================== */
 
+/* ===================================
+   MOBILE NAVIGATION & SCROLL FIXES
+   =================================== */
+
+/* Prevent Horizontal Scrolling */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Ensure all elements respect viewport width */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent any container from exceeding viewport width */
+.max-w-7xl {
+  max-width: min(80rem, 100vw) !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Mobile Navbar Overflow Fix */
+@media (max-width: 1023px) {
+  /* Ensure the header itself doesn't overflow */
+  header.navbar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Fix the nav container */
+  header.navbar nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Ensure the flex container behaves properly */
+  header.navbar nav > div.flex.justify-between.items-center {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent the logo area from taking too much space */
+  header.navbar .flex.items-center:first-child {
+    flex: 1 1 auto !important;
+    min-width: 0 !important; /* Allow shrinking */
+  }
+
+  /* Ensure menu button doesn't get pushed off */
+  header.navbar .lg\\:hidden {
+    flex: 0 0 auto !important; /* Don't grow or shrink */
+    margin-left: 1rem !important;
+  }
+}
+
+/* Mobile specific container fixes */
+@media (max-width: 768px) {
+  /* Ensure main containers don't overflow */
+  .max-w-7xl {
+    max-width: 100vw !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Fix any potential section overflow */
+  .services-hero,
+  .service-section,
+  section {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure service content grids don't overflow */
+  .service-content,
+  .tech-stack,
+  .industries-grid,
+  .process-steps {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Reduce padding on very small screens */
+  header.navbar nav {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Hide company name text on very small screens to save space */
+  header.navbar .hidden.sm\\:block {
+    display: none !important;
+  }
+}
+
+/* Additional fix for very small screens */
+@media (max-width: 480px) {
+  /* Hide company name completely on very small screens */
+  header.navbar .hidden.sm\\:block {
+    display: none !important;
+  }
+
+  /* Ensure adequate spacing */
+  header.navbar .flex.justify-between.items-center {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
 .navbar, header.navbar, header {
   position: fixed !important;
   top: 0 !important;
