@@ -4,8 +4,65 @@
 @import url('/css/global.css');
 @import url('/css/components.css');
 
-/* Add this to the top of your about.css file - CORRECTED VERSION */
-/* Mobile Navbar Overflow Fix */
+/* Add this to the very top of your about.css file */
+/* Prevent Horizontal Scrolling Fix */
+
+/* Prevent horizontal overflow on body and html */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Ensure all elements respect viewport width */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent any container from exceeding viewport width */
+.max-w-7xl {
+  max-width: min(80rem, 100vw) !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Mobile specific container fixes */
+@media (max-width: 768px) {
+  /* Ensure main containers don't overflow */
+  .max-w-7xl {
+    max-width: 100vw !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Fix any potential text overflow */
+  .about-hero,
+  .story-section,
+  .values-section,
+  section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Ensure grid containers don't overflow */
+  .mission-vision-grid,
+  .values-grid,
+  .team-grid,
+  .advantages-grid,
+  .stats-grid {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Fix timeline if it causes overflow */
+  .story-timeline {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
 @media (max-width: 1023px) {
   /* Ensure the header itself doesn't overflow */
   header.navbar {
