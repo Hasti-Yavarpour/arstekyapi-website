@@ -326,25 +326,20 @@
 
 /* Call to Action Section */
 .portfolio-cta {
-  background: linear-gradient(135deg, #1B4F72 0%, #2C3E50 50%, #34495E 100%);
-  border-radius: 24px;
+  background: #1B4F72; /* Solid color matching main brand color */
+  /* Remove border-radius to eliminate box effect */
+  /* border-radius: 24px; - REMOVED */
   padding: 64px 32px;
   text-align: center;
   color: white;
   position: relative;
   overflow: hidden;
-  margin: 64px 0;
+  /* Remove bottom margin to connect to footer */
+  margin: 64px 0 0 0; /* Only top margin, no bottom */
 }
 
 .portfolio-cta::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
-  animation: float 20s linear infinite;
+  display: none; /* Remove the floating dots animation */
 }
 
 @keyframes float {
@@ -357,48 +352,44 @@
   z-index: 2;
 }
 
-/* Responsive Design */
+.portfolio-cta .bg-white {
+  background: #4A90A4; /* Blue-gray color from second image */
+  color: white;
+  border: 2px solid transparent;
+}
+.portfolio-cta .bg-white:hover {
+  background: #3A7A8A;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.portfolio-cta .bg-orange-500 {
+  background: #E67E22; /* Orange color matching second image */
+  color: white;
+  border: 2px solid transparent;
+}
+
+.portfolio-cta .bg-orange-500:hover {
+  background: #D35400;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Ensure smooth transition between CTA and footer */
+.portfolio-cta + footer {
+  margin-top: 0; /* Remove any top margin from footer */
+}
+
+/* Make sure the section background matches footer background */
+footer.bg-brand-primary {
+  background: #1B4F72; /* Same as CTA section */
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .filter-container {
-    padding: 20px;
-  }
-
-  .filter-buttons {
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .filter-btn {
-    padding: 10px 16px;
-    font-size: 0.875rem;
-  }
-
-  .project-content {
-    padding: 24px;
-  }
-
-  .project-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
-
   .portfolio-cta {
     padding: 48px 24px;
+    margin: 48px 0 0 0;
   }
 }
 
