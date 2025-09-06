@@ -324,7 +324,7 @@
   transform: none;
 }
 
-/* Call to Action Section */
+/* Updated Call to Action Section - Connects to Footer */
 .portfolio-cta {
   background: #1B4F72; /* Solid color matching main brand color */
   /* Remove border-radius to eliminate box effect */
@@ -338,13 +338,9 @@
   margin: 64px 0 0 0; /* Only top margin, no bottom */
 }
 
+/* Remove the animated background overlay for cleaner look */
 .portfolio-cta::before {
   display: none; /* Remove the floating dots animation */
-}
-
-@keyframes float {
-  0% { transform: translateX(-50px) translateY(-50px); }
-  100% { transform: translateX(50px) translateY(50px); }
 }
 
 .portfolio-cta .content {
@@ -352,11 +348,13 @@
   z-index: 2;
 }
 
+/* Update button styles to match the second image */
 .portfolio-cta .bg-white {
   background: #4A90A4; /* Blue-gray color from second image */
   color: white;
   border: 2px solid transparent;
 }
+
 .portfolio-cta .bg-white:hover {
   background: #3A7A8A;
   color: white;
