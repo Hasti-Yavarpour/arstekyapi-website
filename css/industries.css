@@ -67,6 +67,16 @@
   margin-top: 50px;
 }
 
+/* Desktop/Laptop: Force 2 columns for better balance */
+@media (min-width: 1024px) {
+  .industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .industry-card {
   background: white;
   border-radius: 20px;
