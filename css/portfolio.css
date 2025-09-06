@@ -324,23 +324,21 @@
   transform: none;
 }
 
-/* Updated Call to Action Section - Connects to Footer */
+/* Call to Action Section - Complete Styling */
 .portfolio-cta {
-  background: #1B4F72; /* Solid color matching main brand color */
-  /* Remove border-radius to eliminate box effect */
-  /* border-radius: 24px; - REMOVED */
+  background: white; /* White background */
   padding: 64px 32px;
   text-align: center;
-  color: white;
   position: relative;
   overflow: hidden;
-  /* Remove bottom margin to connect to footer */
-  margin: 64px 0 0 0; /* Only top margin, no bottom */
+  margin: 64px 0; /* Normal margins */
+  border-radius: 0; /* No rounded corners */
+  color: #1a1a1a; /* Default text color */
 }
 
-/* Remove the animated background overlay for cleaner look */
+/* Remove any background overlay */
 .portfolio-cta::before {
-  display: none; /* Remove the floating dots animation */
+  display: none;
 }
 
 .portfolio-cta .content {
@@ -348,69 +346,190 @@
   z-index: 2;
 }
 
-/* Update button styles to match the second image */
+/* Title styling - Black color */
+.portfolio-cta h2 {
+  color: #1a1a1a !important; /* Black title */
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+/* Description text - Dark grayish */
+.portfolio-cta p {
+  color: #4a5568 !important; /* Dark grayish text */
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button container */
+.portfolio-cta .flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 640px) {
+  .portfolio-cta .flex {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+/* Left button - Footer color */
 .portfolio-cta .bg-white {
-  background: #4A90A4; /* Blue-gray color from second image */
-  color: white;
+  background: #1B4F72 !important; /* Footer color */
+  color: white !important;
   border: 2px solid transparent;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 25px rgba(27, 79, 114, 0.3);
 }
 
 .portfolio-cta .bg-white:hover {
-  background: #3A7A8A;
-  color: white;
+  background: #143c5c !important;
+  color: white !important;
   transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(27, 79, 114, 0.4);
 }
 
+/* Right button - Dark gray-blue */
 .portfolio-cta .bg-orange-500 {
-  background: #E67E22; /* Orange color matching second image */
-  color: white;
+  background: #4a5568 !important; /* Dark gray-blue color */
+  color: white !important;
   border: 2px solid transparent;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 25px rgba(74, 85, 104, 0.3);
 }
 
 .portfolio-cta .bg-orange-500:hover {
-  background: #D35400;
-  color: white;
+  background: #3a434f !important;
+  color: white !important;
   transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(74, 85, 104, 0.4);
 }
 
-/* Ensure smooth transition between CTA and footer */
+/* Features grid section */
+.portfolio-cta .mt-12 {
+  margin-top: 48px;
+}
+
+.portfolio-cta .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .portfolio-cta .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Individual feature items */
+.portfolio-cta .grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Icons styling - Footer color */
+.portfolio-cta .text-3xl {
+  color: #1B4F72 !important; /* Icons in footer color */
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Feature titles styling - Footer color */
+.portfolio-cta h3 {
+  color: #1B4F72 !important; /* Titles in footer color */
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Text below icons - Lighter color */
+.portfolio-cta .text-blue-200 {
+  color: #6b7280 !important; /* Lighter gray for descriptions */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Ensure proper spacing from footer */
 .portfolio-cta + footer {
-  margin-top: 0; /* Remove any top margin from footer */
-}
-
-/* Make sure the section background matches footer background */
-footer.bg-brand-primary {
-  background: #1B4F72; /* Same as CTA section */
+  margin-top: 0;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .portfolio-cta {
     padding: 48px 24px;
-    margin: 48px 0 0 0;
+    margin: 48px 0;
+  }
+
+  .portfolio-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .portfolio-cta p {
+    font-size: 1.125rem;
+    margin-bottom: 28px;
+  }
+
+  .portfolio-cta .bg-white,
+  .portfolio-cta .bg-orange-500 {
+    padding: 14px 28px;
+    font-size: 1rem;
+  }
+
+  .portfolio-cta .grid {
+    gap: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .portfolio-cta {
+    padding: 40px 20px;
+    margin: 40px 0;
   }
 
-  .project-image {
-    height: 200px;
+  .portfolio-cta h2 {
+    font-size: 2rem;
   }
 
-  .project-image .icon {
-    font-size: 3rem;
+  .portfolio-cta p {
+    font-size: 1rem;
   }
 
-  .filter-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-btn {
-    text-align: center;
+  .portfolio-cta .text-3xl {
+    font-size: 2.5rem;
   }
 }
 
