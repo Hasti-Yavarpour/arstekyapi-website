@@ -4,6 +4,74 @@
 @import url('/css/global.css');
 @import url('/css/components.css');
 
+/* Mobile Navigation Fix */
+@media (max-width: 1023px) {
+  /* Ensure navbar container doesn't overflow */
+  .navbar {
+    overflow-x: visible;
+  }
+
+  /* Fix navbar inner container */
+  .navbar nav {
+    max-width: 100vw;
+    overflow-x: visible;
+  }
+
+  /* Ensure flex container behaves properly on mobile */
+  .navbar nav > div {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: visible;
+  }
+
+  /* Ensure mobile menu button stays visible */
+  .lg\\:hidden {
+    flex-shrink: 0;
+    min-width: 44px; /* Ensure minimum touch target */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fix logo area to prevent it from pushing menu button off screen */
+  .navbar .flex.items-center:first-child {
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: calc(100vw - 60px); /* Reserve space for menu button */
+  }
+
+  /* Prevent company name from causing overflow on very small screens */
+  .navbar .hidden.sm\\:block {
+    display: none !important;
+  }
+
+  /* Show only on screens 640px and above */
+  @media (min-width: 640px) {
+    .navbar .hidden.sm\\:block {
+      display: block !important;
+    }
+  }
+}
+
+/* Additional mobile-specific fixes */
+@media (max-width: 640px) {
+  /* Hide company text completely on very small screens */
+  .navbar .hidden.sm\\:block {
+    display: none !important;
+  }
+
+  /* Reduce logo size slightly on very small screens */
+  .navbar img {
+    height: 3rem; /* h-12 instead of h-14 */
+  }
+
+  /* Ensure adequate spacing */
+  .navbar .flex.justify-between.items-center {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 /* Hero Section for About Page */
 .about-hero {
   min-height: 70vh;
