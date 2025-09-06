@@ -492,6 +492,41 @@
   margin-top: 0;
 }
 
+/* More specific selectors to override Tailwind */
+section.portfolio-cta {
+  background: white !important;
+}
+
+section.portfolio-cta h2.text-3xl {
+  color: #000000 !important;
+}
+
+section.portfolio-cta p.text-xl {
+  color: #4a5568 !important;
+}
+
+section.portfolio-cta a[href="/contact.html"] {
+  background: #1B4F72 !important;
+  color: white !important;
+}
+
+section.portfolio-cta a[href="/blog.html"] {
+  background: #4a5568 !important;
+  color: white !important;
+}
+
+section.portfolio-cta .text-3xl i {
+  color: #1B4F72 !important;
+}
+
+section.portfolio-cta h3.font-semibold {
+  color: #1B4F72 !important;
+}
+
+section.portfolio-cta p.text-blue-200 {
+  color: #6b7280 !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .portfolio-cta {
