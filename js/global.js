@@ -461,6 +461,32 @@ window.ArsTekYapi = {
   }
 };
 
+// Scroll to top button functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollTopBtn = document.getElementById('scroll-top');
+
+  if (scrollTopBtn) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+        scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
+      } else {
+        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+        scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
+      }
+    });
+
+    // Scroll to top when clicked
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+
 // Initialize when DOM is ready
 ArsTekYapi.utils.ready(() => {
   ArsTekYapi.init();

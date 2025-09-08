@@ -523,6 +523,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Add this to portfolio.js - Scroll to top functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollTopBtn = document.getElementById('scroll-top');
+
+  if (scrollTopBtn) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+        scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
+      } else {
+        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+        scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
+      }
+    });
+
+    // Scroll to top when clicked
+    scrollTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PortfolioManager };

@@ -368,12 +368,19 @@
 
 /* Button container */
 .portfolio-cta .flex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 48px;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 15px !important;
+  padding: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(27, 79, 114, 0.1) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin: 0 auto 48px auto !important;
+  max-width: 500px !important;
+  width: fit-content !important;
 }
 
 @media (min-width: 640px) {
@@ -385,56 +392,59 @@
 
 /* Left button - Footer color */
 .portfolio-cta .bg-white {
-  background: #1B4F72 !important; /* Footer color */
-  color: white !important;
-  border: 2px solid transparent;
-  padding: 16px 32px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 8px 25px rgba(27, 79, 114, 0.3);
-  height: 56px; /* Fixed height for alignment */
-  min-width: 200px; /* Minimum width */
-  justify-content: center;
+  background: transparent !important;
+  color: #1B4F72 !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-width: auto !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
 }
 
 .portfolio-cta .bg-white:hover {
-  background: #143c5c !important;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(27, 79, 114, 0.4);
+  color: #143c5c !important;
+  background: rgba(27, 79, 114, 0.05) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Right button - Dark gray-blue */
+
 .portfolio-cta .bg-orange-500 {
-  background: #4a5568 !important; /* Dark gray-blue color */
-  color: white !important;
-  border: 2px solid transparent;
-  padding: 16px 32px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 8px 25px rgba(74, 85, 104, 0.3);
-  height: 56px; /* Fixed height for alignment */
-  min-width: 200px; /* Minimum width */
-  justify-content: center;
+  background: transparent !important;
+  color: #4a5568 !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-width: auto !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
 }
 
 .portfolio-cta .bg-orange-500:hover {
-  background: #3a434f !important;
-  color: white !important;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(74, 85, 104, 0.4);
+  color: #3a434f !important;
+  background: rgba(74, 85, 104, 0.05) !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Features grid section */
@@ -639,29 +649,25 @@ section.portfolio-cta p.text-blue-200 {
 }
 
 @media (max-width: 768px) {
-  .portfolio-cta {
-    padding: 48px 24px;
-    margin: 48px 0;
+  .portfolio-cta .flex {
+    padding: 8px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    flex-wrap: nowrap !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
-  .portfolio-cta h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-
-  .portfolio-cta p {
-    font-size: 1.125rem;
-    margin-bottom: 28px;
+  .portfolio-cta .flex::-webkit-scrollbar {
+    display: none !important;
   }
 
   .portfolio-cta .bg-white,
   .portfolio-cta .bg-orange-500 {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-
-  .portfolio-cta .grid {
-    gap: 24px;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    flex-shrink: 0 !important;
   }
 }
 
