@@ -1036,22 +1036,9 @@ section.portfolio-cta div.flex a {
   }
 }
 
-/* Filter Button Layout Fix - Add to portfolio.css */
-
 /* Filter Button Layout Fix - Centered Distribution */
 
 /* Container for filter buttons */
-.filter-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
 /* Clean Filter Button Design - White backgrounds with colored text */
 
 /* Default filter button styling - White background */
