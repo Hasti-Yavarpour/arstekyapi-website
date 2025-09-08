@@ -390,10 +390,10 @@
   }
 }
 
-/* Left button - Footer color */
-.portfolio-cta .bg-white {
+/* Button styling remains the same */
+.portfolio-cta .bg-white,
+.portfolio-cta .bg-orange-500 {
   background: transparent !important;
-  color: #1B4F72 !important;
   border: none !important;
   padding: 12px 24px !important;
   border-radius: 10px !important;
@@ -409,6 +409,11 @@
   min-width: auto !important;
   justify-content: center !important;
   white-space: nowrap !important;
+}
+
+/* Left button - Footer color */
+.portfolio-cta .bg-white {
+  color: #1B4F72 !important;
 }
 
 .portfolio-cta .bg-white:hover {
@@ -421,23 +426,7 @@
 /* Right button - Dark gray-blue */
 
 .portfolio-cta .bg-orange-500 {
-  background: transparent !important;
   color: #4a5568 !important;
-  border: none !important;
-  padding: 12px 24px !important;
-  border-radius: 10px !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  box-shadow: none !important;
-  height: auto !important;
-  min-width: auto !important;
-  justify-content: center !important;
-  white-space: nowrap !important;
 }
 
 .portfolio-cta .bg-orange-500:hover {
@@ -539,77 +528,45 @@ section.portfolio-cta p.text-blue-200 {
 
 /* Responsive adjustments */
 
-/* Mobile-specific improvements for CTA buttons */
+/* Mobile: Stack buttons vertically like industries page */
 @media (max-width: 640px) {
-  /* Force buttons to stack vertically on mobile */
-  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
-    display: flex !important;
+  .portfolio-cta .flex {
     flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 16px !important;
-    margin-bottom: 48px !important;
+    gap: 12px !important;
+    padding: 16px !important;
     width: 100% !important;
+    max-width: 320px !important;
+    /* Remove horizontal scroll properties */
+    overflow-x: visible !important;
+    flex-wrap: wrap !important;
   }
 
-  /* Improve button sizing for mobile */
-  section.portfolio-cta a.bg-white.text-brand-primary,
-  section.portfolio-cta a[href="/contact.html"],
-  section.portfolio-cta a.bg-orange-500.text-white,
-  section.portfolio-cta a[href="/blog.html"] {
+  .portfolio-cta .bg-white,
+  .portfolio-cta .bg-orange-500 {
     width: 100% !important;
-    max-width: 280px !important;
-    height: 48px !important;
     padding: 12px 20px !important;
-    font-size: 0.95rem !important;
-    min-width: auto !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    border-radius: 10px !important;
-  }
-
-  /* Mobile CTA section padding */
-  .portfolio-cta {
-    padding: 40px 20px !important;
-    margin: 40px 0 !important;
-  }
-
-  /* Mobile title and description adjustments */
-  .portfolio-cta h2 {
-    font-size: 2rem !important;
-    margin-bottom: 20px !important;
-    line-height: 1.3 !important;
-  }
-
-  .portfolio-cta p {
-    font-size: 1rem !important;
-    margin-bottom: 28px !important;
-    padding: 0 10px !important;
-  }
-
-  /* Mobile features grid */
-  .portfolio-cta .grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    margin-top: 40px !important;
-  }
-
-  .portfolio-cta .text-3xl {
-    font-size: 2.5rem !important;
-  }
-
-  .portfolio-cta h3 {
-    font-size: 1rem !important;
-  }
-
-  .portfolio-cta .text-blue-200 {
-    font-size: 0.875rem !important;
+    font-size: 14px !important;
+    /* Remove flex-shrink */
+    flex-shrink: 1 !important;
+    text-align: center !important;
   }
 }
 
+/* Tablet - keep horizontal but ensure no overflow */
+@media (min-width: 641px) and (max-width: 768px) {
+  .portfolio-cta .flex {
+    flex-direction: row !important;
+    gap: 16px !important;
+    max-width: 400px !important;
+    overflow-x: visible !important;
+  }
+
+  .portfolio-cta .bg-white,
+  .portfolio-cta .bg-orange-500 {
+    padding: 10px 18px !important;
+    font-size: 13px !important;
+  }
+}
 /* Extra small mobile devices */
 @media (max-width: 375px) {
   .portfolio-cta {
