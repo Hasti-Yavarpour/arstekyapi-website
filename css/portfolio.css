@@ -1038,15 +1038,18 @@ section.portfolio-cta div.flex a {
 
 /* Filter Button Layout Fix - Add to portfolio.css */
 
+/* Filter Button Layout Fix - Centered Distribution */
+
 /* Container for filter buttons */
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 12px; /* Reduced gap */
-  max-width: 1200px;
+  gap: 12px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Adjust button sizing for better fit */
@@ -1054,71 +1057,84 @@ section.portfolio-cta div.flex a {
   background: #f8f9fa;
   color: #6c757d;
   border: 2px solid transparent;
-  padding: 10px 18px; /* Slightly reduced padding */
+  padding: 10px 20px; /* Slightly adjusted padding */
   border-radius: 50px;
   font-weight: 500;
   transition: all 0.3s ease;
   cursor: pointer;
   white-space: nowrap;
-  font-size: 0.9rem; /* Slightly smaller font */
-  min-width: auto;
-  flex-shrink: 0;
+  font-size: 0.9rem;
+  min-width: 110px; /* Minimum width for consistency */
+  text-align: center;
+  flex: 0 0 auto; /* Don't grow or shrink */
 }
 
-/* Responsive layout for better distribution */
-@media (min-width: 1024px) {
+/* Force better wrapping by setting max-width that encourages 5-4 split */
+@media (min-width: 1200px) {
   .filter-buttons {
-    gap: 16px; /* More space on larger screens */
+    max-width: 1200px;
+    gap: 16px;
   }
 
   .filter-btn {
-    padding: 12px 22px; /* Normal padding on larger screens */
+    padding: 12px 24px;
     font-size: 1rem;
+    min-width: 120px;
   }
 }
 
-@media (max-width: 1023px) and (min-width: 768px) {
+@media (min-width: 900px) and (max-width: 1199px) {
   .filter-buttons {
-    gap: 10px;
-    max-width: 100%;
+    max-width: 900px; /* Force wrapping at 5 buttons */
+    gap: 14px;
   }
 
   .filter-btn {
-    padding: 10px 16px;
-    font-size: 0.875rem;
+    min-width: 115px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .filter-buttons {
+    max-width: 750px; /* Force wrapping at 4 buttons */
+    gap: 12px;
+  }
+
+  .filter-btn {
+    min-width: 100px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 767px) {
   .filter-buttons {
     gap: 8px;
-    justify-content: center;
+    max-width: 100%;
+    padding: 0 16px;
   }
 
   .filter-btn {
-    padding: 8px 14px;
-    font-size: 0.8rem;
-    min-width: 80px;
-    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    min-width: 90px;
+    flex: 1 1 auto;
+    max-width: 140px;
   }
 }
 
-/* Alternative: Force specific layout patterns */
-@media (min-width: 768px) and (max-width: 1200px) {
-  .filter-buttons {
-    /* Try to fit 5 buttons per row on medium screens */
-    max-width: 900px;
-  }
-}
-
-/* Force better wrapping - Option 1: Even distribution */
-.filter-container .filter-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  max-width: 1100px;
+/* Alternative: Force specific number of buttons per row */
+.filter-container {
+  max-width: 1000px;
   margin: 0 auto;
-  justify-items: center;
+}
+
+/* For screens that can fit 5 buttons, force the 5-4 layout */
+@media (min-width: 850px) {
+  .filter-buttons {
+    max-width: 850px; /* This should force 5 buttons on first row, 4 on second */
+  }
 }
 
 /* Alternative Grid Layout - Option 2: Fixed rows */
