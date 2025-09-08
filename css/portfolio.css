@@ -528,6 +528,116 @@ section.portfolio-cta p.text-blue-200 {
 }
 
 /* Responsive adjustments */
+
+/* Mobile-specific improvements for CTA buttons */
+@media (max-width: 640px) {
+  /* Force buttons to stack vertically on mobile */
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-bottom: 48px !important;
+    width: 100% !important;
+  }
+
+  /* Improve button sizing for mobile */
+  section.portfolio-cta a.bg-white.text-brand-primary,
+  section.portfolio-cta a[href="/contact.html"],
+  section.portfolio-cta a.bg-orange-500.text-white,
+  section.portfolio-cta a[href="/blog.html"] {
+    width: 100% !important;
+    max-width: 280px !important;
+    height: 48px !important;
+    padding: 12px 20px !important;
+    font-size: 0.95rem !important;
+    min-width: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Mobile CTA section padding */
+  .portfolio-cta {
+    padding: 40px 20px !important;
+    margin: 40px 0 !important;
+  }
+
+  /* Mobile title and description adjustments */
+  .portfolio-cta h2 {
+    font-size: 2rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.3 !important;
+  }
+
+  .portfolio-cta p {
+    font-size: 1rem !important;
+    margin-bottom: 28px !important;
+    padding: 0 10px !important;
+  }
+
+  /* Mobile features grid */
+  .portfolio-cta .grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    margin-top: 40px !important;
+  }
+
+  .portfolio-cta .text-3xl {
+    font-size: 2.5rem !important;
+  }
+
+  .portfolio-cta h3 {
+    font-size: 1rem !important;
+  }
+
+  .portfolio-cta .text-blue-200 {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 375px) {
+  .portfolio-cta {
+    padding: 32px 16px !important;
+  }
+
+  .portfolio-cta h2 {
+    font-size: 1.75rem !important;
+  }
+
+  section.portfolio-cta a.bg-white.text-brand-primary,
+  section.portfolio-cta a[href="/contact.html"],
+  section.portfolio-cta a.bg-orange-500.text-white,
+  section.portfolio-cta a[href="/blog.html"] {
+    max-width: 100% !important;
+    height: 44px !important;
+    font-size: 0.9rem !important;
+    padding: 10px 16px !important;
+  }
+}
+
+/* Tablet landscape adjustments */
+@media (min-width: 641px) and (max-width: 768px) {
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+    flex-direction: row !important;
+    gap: 20px !important;
+  }
+
+  section.portfolio-cta a.bg-white.text-brand-primary,
+  section.portfolio-cta a[href="/contact.html"],
+  section.portfolio-cta a.bg-orange-500.text-white,
+  section.portfolio-cta a[href="/blog.html"] {
+    max-width: 220px !important;
+    height: 50px !important;
+    font-size: 1rem !important;
+  }
+}
+
 @media (max-width: 768px) {
   .portfolio-cta {
     padding: 48px 24px;
