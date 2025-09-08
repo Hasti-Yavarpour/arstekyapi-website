@@ -1035,3 +1035,106 @@ section.portfolio-cta div.flex a {
     transform: none; /* Disable hover transform on mobile */
   }
 }
+
+/* Filter Button Layout Fix - Add to portfolio.css */
+
+/* Container for filter buttons */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Reduced gap */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Adjust button sizing for better fit */
+.filter-btn {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid transparent;
+  padding: 10px 18px; /* Slightly reduced padding */
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem; /* Slightly smaller font */
+  min-width: auto;
+  flex-shrink: 0;
+}
+
+/* Responsive layout for better distribution */
+@media (min-width: 1024px) {
+  .filter-buttons {
+    gap: 16px; /* More space on larger screens */
+  }
+
+  .filter-btn {
+    padding: 12px 22px; /* Normal padding on larger screens */
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .filter-buttons {
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .filter-btn {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-buttons {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    min-width: 80px;
+    text-align: center;
+  }
+}
+
+/* Alternative: Force specific layout patterns */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .filter-buttons {
+    /* Try to fit 5 buttons per row on medium screens */
+    max-width: 900px;
+  }
+}
+
+/* Force better wrapping - Option 1: Even distribution */
+.filter-container .filter-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Alternative Grid Layout - Option 2: Fixed rows */
+/*
+.filter-container .filter-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .filter-container .filter-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+*/
