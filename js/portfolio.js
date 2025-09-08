@@ -291,11 +291,6 @@ class PortfolioManager {
               <span>${project.duration}</span>
             </div>
           </div>
-
-          <a href="#" class="project-cta">
-            Detayları İncele
-            <i class="fas fa-arrow-right"></i>
-          </a>
         </div>
       </div>
     `;

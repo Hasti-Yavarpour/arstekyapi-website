@@ -708,6 +708,82 @@ section.portfolio-cta a[href="/blog.html"]:hover {
   box-shadow: 0 12px 35px rgba(74, 85, 104, 0.4) !important;
 }
 
+/* High Specificity CSS to Override Tailwind - Add this to the END of portfolio.css */
+
+/* Force buttons to align properly */
+section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 24px !important;
+  margin-bottom: 48px !important;
+}
+
+/* Left button - Override Tailwind classes */
+section.portfolio-cta a.bg-white.text-brand-primary,
+section.portfolio-cta a[href="/contact.html"] {
+  background: #1B4F72 !important;
+  background-color: #1B4F72 !important;
+  color: white !important;
+  height: 56px !important;
+  min-width: 200px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 1.125rem !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  gap: 12px !important;
+  box-shadow: 0 8px 25px rgba(27, 79, 114, 0.3) !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+section.portfolio-cta a.bg-white.text-brand-primary:hover,
+section.portfolio-cta a[href="/contact.html"]:hover {
+  background: #143c5c !important;
+  background-color: #143c5c !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(27, 79, 114, 0.4) !important;
+}
+
+/* Right button - Override Tailwind classes */
+section.portfolio-cta a.bg-orange-500.text-white,
+section.portfolio-cta a[href="/blog.html"] {
+  background: #4a5568 !important;
+  background-color: #4a5568 !important;
+  color: white !important;
+  height: 56px !important;
+  min-width: 200px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 1.125rem !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  gap: 12px !important;
+  box-shadow: 0 8px 25px rgba(74, 85, 104, 0.3) !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+section.portfolio-cta a.bg-orange-500.text-white:hover,
+section.portfolio-cta a[href="/blog.html"]:hover {
+  background: #3a434f !important;
+  background-color: #3a434f !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(74, 85, 104, 0.4) !important;
+}
+
 /* Additional alignment fixes */
 section.portfolio-cta div.flex.flex-col.sm\:flex-row.justify-center.items-center.space-y-4.sm\:space-y-0.sm\:space-x-6 {
   display: flex !important;
