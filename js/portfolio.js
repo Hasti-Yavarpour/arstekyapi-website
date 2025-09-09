@@ -550,6 +550,75 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Function to handle mobile button layout
+function handleMobileButtonLayout() {
+  const buttonContainer = document.querySelector('.portfolio-cta .flex.flex-col.sm\\:flex-row');
+
+  if (!buttonContainer) return;
+
+  function updateLayout() {
+    if (window.innerWidth <= 640) {
+      // Mobile: Force vertical layout
+      buttonContainer.classList.remove('sm:flex-row', 'sm:space-x-6', 'sm:space-y-0');
+      buttonContainer.classList.add('flex-col', 'space-y-4');
+      buttonContainer.style.flexDirection = 'column';
+      buttonContainer.style.gap = '20px';
+      buttonContainer.style.maxWidth = '350px';
+      buttonContainer.style.margin = '0 auto';
+
+      // Make buttons full width
+      const buttons = buttonContainer.querySelectorAll('a');
+      buttons.forEach(button => {
+        button.style.width = '100%';
+        button.style.maxWidth = '350px';
+        button.style.height = '54px';
+        button.style.fontSize = '1rem';
+        button.style.display = 'flex';
+        button.style.alignItems = 'center';
+        button.style.justifyContent = 'center';
+        button.style.gap = '8px';
+      });
+    } else {
+      // Desktop: Reset to original classes
+      buttonContainer.classList.add('sm:flex-row', 'sm:space-x-6', 'sm:space-y-0');
+      buttonContainer.classList.remove('space-y-4');
+      buttonContainer.style.flexDirection = '';
+      buttonContainer.style.gap = '';
+      buttonContainer.style.maxWidth = '';
+      buttonContainer.style.margin = '';
+
+      // Reset button styles for desktop
+      const buttons = buttonContainer.querySelectorAll('a');
+      buttons.forEach(button => {
+        button.style.width = '';
+        button.style.maxWidth = '';
+        button.style.height = '';
+        button.style.fontSize = '';
+        button.style.display = '';
+        button.style.alignItems = '';
+        button.style.justifyContent = '';
+        button.style.gap = '';
+      });
+    }
+  }
+
+  // Run on load
+  updateLayout();
+
+  // Run on resize
+  window.addEventListener('resize', updateLayout);
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', handleMobileButtonLayout);
+
+// Also run it immediately if DOM is already loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', handleMobileButtonLayout);
+} else {
+  handleMobileButtonLayout();
+}
+
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { PortfolioManager };
