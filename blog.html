@@ -1,542 +1,475 @@
-<!-- blog.html -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - ARS TEK YAPI A.Ş. | Teknoloji İçgörüleri ve Sektör Analizleri</title>
-    <meta name="description" content="ARS TEK YAPI'nin teknoloji blogunda AI, IoT, fintech ve sektörel çözümler hakkında uzman görüşlerini keşfedin.">
-    <meta name="keywords" content="AI blog, IoT teknolojileri, fintech çözümleri, akıllı sistemler, teknoloji makaleleri">
+  <!-- SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Blog - ARS TEK YAPI A.Ş.">
-    <meta property="og:description" content="Teknoloji dünyasındaki son gelişmeler ve sektörel içgörüler">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.arstekyapi.com/blog.html">
+  <!-- Primary Meta Tags -->
+  <title>ARS TEK YAPI - Blog | AI, IoT ve Teknoloji İçerikleri</title>
+  <meta name="title" content="ARS TEK YAPI Blog - AI, IoT ve Teknoloji İçerikleri">
+  <meta name="description" content="ARS TEK YAPI blog sayfasında AI, IoT, akıllı otomasyon, fintech ve teknoloji trendleri hakkında uzman görüşlerini okuyun. Sektörel çözümler ve case study'ler.">
+  <meta name="keywords" content="AI blog, IoT makaleleri, teknoloji blog, akıllı otomasyon, fintech yazıları, case study, teknoloji trendleri">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Turkish">
+  <meta name="author" content="ARS TEK YAPI A.Ş.">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'tech-blue': '#0066cc',
-                        'tech-dark': '#1a1a2e',
-                        'tech-gray': '#16213e',
-                        'tech-accent': '#00d4ff',
-                    }
-                }
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arstekyapi.com/blog.html">
+  <meta property="og:title" content="ARS TEK YAPI Blog - AI, IoT ve Teknoloji İçerikleri">
+  <meta property="og:description" content="AI, IoT ve akıllı teknolojiler hakkında uzman görüşleri ve sektörel çözümler.">
+  <meta property="og:image" content="https://arstekyapi.com/images/og/arstekyapi-blog.jpg">
+  <meta property="og:site_name" content="ARS TEK YAPI">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arstekyapi.com/blog.html">
+  <meta property="twitter:title" content="ARS TEK YAPI Blog - AI, IoT ve Teknoloji İçerikleri">
+  <meta property="twitter:description" content="AI, IoT ve akıllı teknolojiler hakkında uzman görüşleri ve sektörel çözümler.">
+  <meta property="twitter:image" content="https://arstekyapi.com/images/og/arstekyapi-blog.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              'primary': '#1B4F72',
+              'hover': '#143c5c',
+              'secondary': '#2C3E50',
+              'accent': '#34495E'
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="/css/global.css" rel="stylesheet">
+  <link href="/css/components.css" rel="stylesheet">
+  <link href="/css/blog.css" rel="stylesheet">
 
-    <!-- Custom Styles -->
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-        }
-        .tech-border {
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-        .reading-time {
-            color: #00d4ff;
-        }
-    </style>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "ARS TEK YAPI Blog",
+    "description": "AI, IoT ve akıllı teknolojiler hakkında uzman makaleleri",
+    "url": "https://arstekyapi.com/blog.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ARS TEK YAPI A.Ş.",
+      "url": "https://arstekyapi.com",
+      "logo": "https://arstekyapi.com/images/logos/arstekyapi-logo.png"
+    },
+    "inLanguage": "tr-TR"
+  }
+  </script>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Header -->
-    <header class="gradient-bg shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-tech-accent rounded-lg flex items-center justify-center">
-                        <span class="text-black font-bold text-xl">AT</span>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold">ARS TEK YAPI</h1>
-                        <p class="text-xs text-gray-300">A.Ş.</p>
-                    </div>
-                </div>
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="hover:text-tech-accent transition-colors">Ana Sayfa</a>
-                    <a href="about.html" class="hover:text-tech-accent transition-colors">Hakkımızda</a>
-                    <a href="services.html" class="hover:text-tech-accent transition-colors">Hizmetler</a>
-                    <a href="industries.html" class="hover:text-tech-accent transition-colors">Sektörler</a>
-                    <a href="portfolio.html" class="hover:text-tech-accent transition-colors">Portföy</a>
-                    <a href="blog.html" class="text-tech-accent border-b-2 border-tech-accent">Blog</a>
-                    <a href="contact.html" class="hover:text-tech-accent transition-colors">İletişim</a>
-                </div>
+<body class="font-inter bg-white">
 
-                <div class="flex items-center space-x-4">
-                    <a href="en/blog.html" class="text-sm bg-tech-accent text-black px-3 py-1 rounded-full hover:bg-white transition-colors">EN</a>
-                    <button class="md:hidden" id="mobile-menu-btn">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
+  <!-- Header & Navbar -->
+  <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo & Company Name -->
+        <div class="flex items-center">
+          <a href="/index.html" class="flex items-center space-x-3">
+            <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
+            <div class="hidden sm:block">
+              <span class="text-brand-primary font-bold text-xl">ARS TEK YAPI</span>
+              <p class="text-gray-600 text-xs font-medium">A.Ş.</p>
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="gradient-bg py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6" data-aos="fade-up">
-                Teknoloji <span class="text-tech-accent">Blogu</span>
-            </h1>
-            <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                AI, IoT ve dijital dönüşüm dünyasındaki son gelişmeleri, sektörel içgörüleri ve uzman analizlerini keşfedin
-            </p>
-            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
-                <span class="bg-tech-gray px-4 py-2 rounded-full text-sm">Yapay Zeka</span>
-                <span class="bg-tech-gray px-4 py-2 rounded-full text-sm">IoT Sistemleri</span>
-                <span class="bg-tech-gray px-4 py-2 rounded-full text-sm">Fintech</span>
-                <span class="bg-tech-gray px-4 py-2 rounded-full text-sm">Akıllı Otomasyon</span>
-            </div>
+          </a>
         </div>
-    </section>
 
-    <!-- Featured Article -->
-    <section class="py-16 bg-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-tech-gray rounded-lg overflow-hidden tech-border card-hover" data-aos="fade-up">
-                    <div class="md:flex">
-                        <div class="md:w-1/2">
-                            <div class="h-64 md:h-full bg-gradient-to-br from-tech-blue to-tech-accent relative">
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="text-center text-white">
-                                        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                            </svg>
-                                        </div>
-                                        <h4 class="text-xl font-bold">ÖNE ÇIKAN</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:w-1/2 p-8">
-                            <div class="flex items-center space-x-4 mb-4">
-                                <span class="bg-tech-accent text-black px-3 py-1 rounded-full text-xs font-semibold">IoT STRATEJİSİ</span>
-                                <span class="reading-time text-sm">8 dk okuma</span>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-4">Her İşletmenin Neden Bir IoT Stratejisine İhtiyacı Var?</h3>
-                            <p class="text-gray-300 mb-6">Nesnelerin İnterneti (IoT) artık lüks değil, rekabet avantajı sağlamak isteyen işletmeler için zorunluluk haline geldi. Bu makalede IoT'nin işletmenize nasıl değer katacağını keşfedin.</p>
-                            <a href="#iot-strategy" class="inline-flex items-center text-tech-accent hover:text-white transition-colors">
-                                Makaleyi Oku
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Ana Sayfa
+          </a>
+          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Hakkımızda
+          </a>
+          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Hizmetler
+          </a>
+          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Sektörler
+          </a>
+          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Portföy
+          </a>
+          <a href="/blog.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            İletişim
+          </a>
+
+          <!-- Language Dropdown -->
+          <div class="relative ml-4" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
+              <span id="current-lang">🇹🇷 TR</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+              <a href="/blog.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                🇹🇷 Türkçe
+              </a>
+              <a href="/en/blog.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                🇬🇧 English
+              </a>
             </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Blog Articles Grid -->
-    <section class="py-16">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4" data-aos="fade-up">Son Makaleler</h2>
-                <p class="text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Teknoloji dünyasındaki son gelişmeler ve sektörel analizler
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <article class="bg-tech-gray rounded-lg overflow-hidden tech-border card-hover" data-aos="fade-up">
-                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm font-medium">AI & ML</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-4 mb-4">
-                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">YAPAY ZEKA</span>
-                            <span class="reading-time text-sm">12 dk okuma</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">2025'te Sektörlere Göre En İyi AI Kullanım Alanları</h3>
-                        <p class="text-gray-300 mb-4">Sağlık, finans, perakende ve imalat sektörlerinde yapay zekanın nasıl devrim yarattığını ve hangi uygulamaların en büyük ROI sağladığını inceleyin.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-400">15 Ağustos 2025</span>
-                            <a href="#ai-use-cases" class="text-tech-accent hover:text-white transition-colors">
-                                Devamını Oku →
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article class="bg-tech-gray rounded-lg overflow-hidden tech-border card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-gradient-to-br from-green-600 to-teal-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm font-medium">FİNTECH</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-4 mb-4">
-                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">VAKA ÇÖZÜMLEMESİ</span>
-                            <span class="reading-time text-sm">6 dk okuma</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">ARS TEK Bir Fintech Platformunu 60 Günde Nasıl Geliştirdi?</h3>
-                        <p class="text-gray-300 mb-4">Müşterimizin dijital ödeme ihtiyacından, canlıya geçen platformuna kadar tüm süreci, karşılaştığımız zorlukları ve çözümlerimizi adım adım keşfedin.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-400">10 Ağustos 2025</span>
-                            <a href="#fintech-case" class="text-tech-accent hover:text-white transition-colors">
-                                Devamını Oku →
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="bg-tech-gray rounded-lg overflow-hidden tech-border card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center text-white">
-                                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm font-medium">AKILLI SİSTEMLER</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-4 mb-4">
-                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">AKILLI EV</span>
-                            <span class="reading-time text-sm">9 dk okuma</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Akıllı Ev Sistemleri: 2025 Trendleri ve Yatırım Önerileri</h3>
-                        <p class="text-gray-300 mb-4">Akıllı kilit sistemlerinden enerji yönetimine, 2025'te öne çıkan akıllı ev teknolojilerini ve hangi çözümlerin en iyi ROI sağladığını öğrenin.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-400">5 Ağustos 2025</span>
-                            <a href="#smart-home" class="text-tech-accent hover:text-white transition-colors">
-                                Devamını Oku →
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
-    </section>
+      </div>
 
-    <!-- Categories Section -->
-    <section class="py-16 bg-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4" data-aos="fade-up">Kategoriler</h2>
-                <p class="text-gray-300" data-aos="fade-up" data-aos-delay="100">İlgilendiğiniz konulara göre makaleleri keşfedin</p>
-            </div>
+      <!-- Mobile Navigation Menu -->
+      <div class="lg:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Ana Sayfa
+          </a>
+          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Hakkımızda
+          </a>
+          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Hizmetler
+          </a>
+          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Sektörler
+          </a>
+          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Portföy
+          </a>
+          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
+            Blog
+          </a>
+          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            İletişim
+          </a>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-tech-gray p-6 rounded-lg tech-border text-center card-hover" data-aos="fade-up">
-                    <div class="w-12 h-12 bg-tech-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Yapay Zeka</h3>
-                    <p class="text-gray-300 text-sm mb-4">Machine Learning, NLP ve AI çözümleri</p>
-                    <span class="text-tech-accent text-sm">12 Makale</span>
-                </div>
-
-                <div class="bg-tech-gray p-6 rounded-lg tech-border text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">IoT Sistemleri</h3>
-                    <p class="text-gray-300 text-sm mb-4">Akıllı cihazlar ve bağlantılı çözümler</p>
-                    <span class="text-tech-accent text-sm">8 Makale</span>
-                </div>
-
-                <div class="bg-tech-gray p-6 rounded-lg tech-border text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Fintech</h3>
-                    <p class="text-gray-300 text-sm mb-4">Dijital ödeme ve finansal teknolojiler</p>
-                    <span class="text-tech-accent text-sm">6 Makale</span>
-                </div>
-
-                <div class="bg-tech-gray p-6 rounded-lg tech-border text-center card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Otomasyon</h3>
-                    <p class="text-gray-300 text-sm mb-4">İş süreçleri ve akıllı otomasyon</p>
-                    <span class="text-tech-accent text-sm">9 Makale</span>
-                </div>
-            </div>
+          <!-- Mobile Language Options -->
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
+            <a href="/blog.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              🇹🇷 Türkçe
+            </a>
+            <a href="/en/blog.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              🇬🇧 English
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Newsletter Section -->
-    <section class="py-16">
-        <div class="container mx-auto px-6">
-            <div class="bg-gradient-to-r from-tech-blue to-tech-accent rounded-lg p-8 text-center" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-white mb-4">Teknoloji Trendlerinden Haberdar Olun</h2>
-                <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
-                    Haftalık teknoloji bültenimize abone olun ve sektördeki son gelişmeleri ilk öğrenin
-                </p>
-                <div class="flex flex-col md:flex-row max-w-md mx-auto gap-4">
-                    <input type="email" placeholder="E-posta adresiniz"
-                           class="flex-1 px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white">
-                    <button class="bg-tech-dark text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors">
-                        Abone Ol
-                    </button>
-                </div>
-                <p class="text-blue-100 text-sm mt-4">Spam yapmıyoruz. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz.</p>
+  <!-- Spacer to prevent content from hiding behind fixed navbar -->
+  <div class="h-16"></div>
+
+  <!-- Blog Hero Section -->
+  <section class="blog-hero bg-gradient-to-br from-[#1B4F72] via-[#2C3E50] to-[#34495E] text-white relative overflow-hidden py-20">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight" data-aos="fade-up">
+          ARS TEK YAPI
+          <span class="block text-blue-300">Blog & İçerikler</span>
+        </h1>
+
+        <p class="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          AI, IoT, akıllı otomasyon ve teknoloji trendleri hakkında uzman görüşlerimizi ve sektörel çözümlerimizi keşfedin.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex items-center space-x-4 text-blue-200">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Düzenli Güncellemeler</span>
             </div>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-lightbulb"></i>
+              <span>Uzman İçerikler</span>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="gradient-bg py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-10 h-10 bg-tech-accent rounded-lg flex items-center justify-center">
-                            <span class="text-black font-bold text-xl">AT</span>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">ARS TEK YAPI</h3>
-                            <p class="text-xs text-gray-300">A.Ş.</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        Akıllı sistemler ve dijital çözümlerle geleceği inşa ediyoruz.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-tech-accent transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-tech-accent transition-colors">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+  <!-- Blog Stats -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="blog-stats"></div>
+    </div>
+  </section>
 
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Hızlı Bağlantılar</h4>
-                    <ul class="space-y-2">
-                        <li><a href="about.html" class="text-gray-300 hover:text-tech-accent transition-colors">Hakkımızda</a></li>
-                        <li><a href="services.html" class="text-gray-300 hover:text-tech-accent transition-colors">Hizmetlerimiz</a></li>
-                        <li><a href="industries.html" class="text-gray-300 hover:text-tech-accent transition-colors">Sektörler</a></li>
-                        <li><a href="portfolio.html" class="text-gray-300 hover:text-tech-accent transition-colors">Projelerimiz</a></li>
-                    </ul>
-                </div>
+  <!-- Blog Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Hizmetler</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-tech-accent transition-colors">AI & Machine Learning</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-tech-accent transition-colors">IoT Sistemleri</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-tech-accent transition-colors">Web Geliştirme</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-tech-accent transition-colors">Fintech Çözümleri</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-lg font-bold mb-4">İletişim</h4>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-tech-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                            <span class="text-gray-300">info@arstekyapi.com</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-tech-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
-                            <span class="text-gray-300">+90 (XXX) XXX XX XX</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-12 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-300 text-sm">© 2025 ARS TEK YAPI A.Ş. Tüm hakları saklıdır.</p>
-                    <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="text-gray-300 hover:text-tech-accent text-sm transition-colors">Gizlilik Politikası</a>
-                        <a href="#" class="text-gray-300 hover:text-tech-accent text-sm transition-colors">Kullanım Şartları</a>
-                        <a href="#" class="text-gray-300 hover:text-tech-accent text-sm transition-colors">KVKK</a>
-                    </div>
-                </div>
-            </div>
+      <!-- Search Bar -->
+      <div class="blog-search" data-aos="fade-up">
+        <div class="relative">
+          <i class="fas fa-search blog-search-icon"></i>
+          <input
+            type="text"
+            class="blog-search-input"
+            placeholder="Blog yazılarında ara... (örn: AI, IoT, fintech)"
+            aria-label="Blog yazılarında arama yapın"
+          >
         </div>
-    </footer>
+      </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
+      <!-- Category Filters -->
+      <div class="blog-filters" data-aos="fade-up" data-aos-delay="200">
+        <!-- Categories will be rendered by JavaScript -->
+      </div>
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.createElement('div');
-        mobileMenu.className = 'md:hidden bg-tech-gray mt-4 rounded-lg overflow-hidden';
-        mobileMenu.innerHTML = `
-            <a href="index.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">Ana Sayfa</a>
-            <a href="about.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">Hakkımızda</a>
-            <a href="services.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">Hizmetler</a>
-            <a href="industries.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">Sektörler</a>
-            <a href="portfolio.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">Portföy</a>
-            <a href="blog.html" class="block px-4 py-3 bg-tech-accent text-black">Blog</a>
-            <a href="contact.html" class="block px-4 py-3 hover:bg-tech-accent hover:text-black transition-colors">İletişim</a>
-        `;
-        mobileMenu.style.display = 'none';
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+        <!-- Blog posts will be rendered by JavaScript -->
+        <div class="blog-loading col-span-full">
+          <span>Blog yazıları yükleniyor...</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            if (mobileMenu.style.display === 'none') {
-                mobileMenuBtn.parentNode.parentNode.parentNode.appendChild(mobileMenu);
-                mobileMenu.style.display = 'block';
-            } else {
-                mobileMenu.style.display = 'none';
-            }
-        });
+  <!-- Newsletter Signup -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="newsletter-section" data-aos="fade-up">
+        <h2 class="text-3xl font-bold mb-4">
+          Teknoloji Güncellemelerini Kaçırmayın!
+        </h2>
+        <p class="text-xl text-blue-100 mb-6">
+          AI, IoT ve teknoloji trendleri hakkındaki en son yazılarımızı email ile alın.
+        </p>
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        <form class="newsletter-form">
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="E-posta adresinizi girin"
+            required
+            aria-label="E-posta adresiniz"
+          >
+          <button type="submit" class="newsletter-btn">
+            <i class="fas fa-paper-plane mr-2"></i>
+            Abone Ol
+          </button>
+        </form>
 
-        // Newsletter form
-        const newsletterForm = document.querySelector('section:nth-last-child(2) form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input[type="email"]').value;
-                if (email) {
-                    alert('Teşekkürler! Bültenimize başarıyla abone oldunuz.');
-                    this.querySelector('input[type="email"]').value = '';
-                }
-            });
-        }
+        <p class="text-sm text-blue-200 mt-4">
+          <i class="fas fa-shield-alt mr-2"></i>
+          E-posta adresiniz güvende. Spam göndermiyoruz.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        function getSubcategoriesForCategory(categoryName) {
-            const subcategoryMap = {
-                'Boyalar': [
-                    'Ahşap Bakım Ürünleri', 'Astar', 'Boya Ekipmanları', 'Dış Cephe', 'Endüstriyel Boya',
-                    'İç Cephe', 'Kapı Boyası', 'Macun', 'Metal Boyası', 'Renk Karıştırıcılar',
-                    'Selülozik', 'Sprey Boyalar', 'Su Bazlı Boyalar', 'Tavan Boyası', 'Tiner',
-                    'Tutkal', 'Yağlı Boyalar', 'Zemin Boyaları'
-                ],
-                'Banyo': [
-                    'Armatür', 'Aynalar', 'Banyo & WC Temizlik Malzemeleri', 'Banyo Aksesuarları',
-                    'Banyo Dolapları', 'Bedensel Engelli Banyo Ürünleri', 'Duş Sistemleri', 'Duşakabin',
-                    'Havalandırma', 'Havlupanlar', 'Hela Taşları', 'Klozet Kapakları', 'Klozetler',
-                    'Küvetler', 'Lavabolar', 'Pisuarlar', 'Rezervuar İç Takım'
-                ],
-                'Hırdavat': [
-                    'Ambalaj ve Paketleme', 'Aşındırıcılar', 'Branda', 'Çivi, Somunlar, Tel ve Vida, Dübeller',
-                    'El Aletleri', 'El Arabası ve Kürek', 'Elektrikli El Aletleri', 'Endüstriyel Ekipmanlar',
-                    'İş Güvenliği Malzemeleri', 'Kapı Aksesuarları', 'Kilit', 'Kilitler ve menteşeler',
-                    'Korniş ve Ekipmanları', 'Lehim ve Kaynak', 'Maket Bıçakları', 'Matkap Uçları',
-                    'Merdiven', 'Ölçü Aletleri', 'Oto Aksesuar', 'Raf Altları', 'Takım Çantaları',
-                    'Tekerler', 'Yük Taşıma', 'Zımparalar'
-                ],
-                'Elektrik': [
-                    'Abajur ve Lambader', 'Armatürler', 'Avize ve Sarkıtlar', 'Çevre Aydınlatma',
-                    'Elektrik Sayaçları', 'Grup Priz ve Aksesuar', 'Işıldak ve Fenerler', 'Kablo Makaraları',
-                    'Kablo ve Kablo Kanalları', 'Led ve Tasarruflu Ampuller', 'Panolar', 'Piller',
-                    'Prizler ve Anahtarlar', 'Projektör Lambalar', 'Şarj Üniteleri', 'Şerit ve Modül Ledler',
-                    'Sigorta Kutuları', 'Sigortalar', 'Spotlar', 'Trafo', 'Voltaj Düzenleyiciler', 'Zil'
-                ],
-                'Tesisat': [
-                    'Bağlantı Elemanları', 'Basınç Düşürücüler', 'Boru Gizleyici', 'Çekvalfler', 'Flatörler',
-                    'Kombi Bağlantı Ekipmanları', 'Metal Borular (Bakır, Galvanizli)', 'Pimaş Borular',
-                    'Plastik Borular (PPRC, PVC)', 'Radyatörler', 'Rezervuar İç Takım', 'Sifonlar',
-                    'Su Filtreleri', 'Su Sayacı', 'Su Tankları', 'Tahliye', 'Vanalar ve Musluklar',
-                    'Yer Sifonları ve Drenaj Kanalları'
-                ],
-                'Yapı Kimyasalları': [
-                    'Alçı Ürünleri', 'Beton Katkıları ve Astarlar', 'Derz ve Rötuş Kalemi', 'Epoksi Reçineler',
-                    'Grout ve Tamir Harçları', 'Isı Yalıtım ve Dış Cephe', 'Köpükler', 'Silikon Mastikler',
-                    'Spreyler', 'Su Yalıtım', 'Tarihi Eser Ürünleri', 'Yapısal Güçlendirme Ürünleri',
-                    'Yapıştırıcı ve Tutkallar', 'Yapıştırma ve Derz Dolgu', 'Zemin Sistemleri', 'Temizlik ve Bakım Ürünleri'
-                ],
-                'İnşaat': [
-                    'Alçı ve Alçıpanlar', 'Betonarme Demir', 'Briket ve Tuğlalar', 'Çakıl', 'Çatı ve İzolasyon',
-                    'Çimento', 'Dekorasyon', 'Demir ve Çelik Profiller', 'İnşaat Malzemeleri', 'İskele Malzemeleri',
-                    'Kireç', 'Kum', 'Mobilizasyon', 'Seramik', 'Su Deposu', 'Yalıtım'
-                ],
-                'Kırtasiye': [
-                    'Defterler (A4, Spiralli)', 'Dosya ve Klasörler', 'Evrak İmha Makinesi', 'Hesap Makinesi',
-                    'Kağıt', 'Kalemler (Tükenmez, Dolma, Kurşun)', 'Makas ve Yapıştırıcılar', 'Ofis Malzemeleri',
-                    'Yapışkanlı Folyo', 'Yapıştırıcılar', 'Zımba ve Zımba Teli'
-                ],
-                'Bahçe': [
-                    'Bahçe Aydınlatma', 'Bahçe Çitleri', 'Bahçe Dekorasyonları (Heykeller, Fenerler)',
-                    'Bahçe Hortumları', 'Bahçe Mobilyaları', 'Bahçe Sulama', 'Bahçe Temizleme',
-                    'Bitki Tohumları', 'Çim Biçme Makineleri', 'Kesme Budama', 'Kürek ve Çapa',
-                    'Paspas', 'Pet Shop Ürünleri', 'Piknik ve Kamp Ürünleri', 'Saksı ve Toprak',
-                    'Şezlong ve Şemsiye', 'Toprak ve Gübreler'
-                ],
-                'Havuz Malzemeleri': [] // No subcategories
-            };
+  <!-- Contact CTA -->
+  <section class="py-16 gradient-bg text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-aos="fade-up">
+        Projelerinizde Uzman Desteği İstiyorsanız
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        Blog yazılarımızda bahsettiğimiz teknolojileri projenizde uygulamak için bizimle iletişime geçin.
+      </p>
 
-            return subcategoryMap[categoryName] || [];
-        }
-    </script>
+      <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="400">
+        <a href="/contact.html" class="btn btn-primary shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
+          <i class="fas fa-comments mr-3"></i>
+          İletişime Geçin
+        </a>
+        <a href="/services.html" class="btn btn-secondary transform hover:-translate-y-1 flex items-center">
+          <i class="fas fa-cogs mr-3"></i>
+          Hizmetlerimizi İnceleyin
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-primary text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Company Info -->
+        <div class="col-span-1">
+          <div class="flex items-center space-x-3 mb-4">
+            <img class="h-16 w-auto" src="/images/logos/logo-footer.png" alt="ARS TEK YAPI Logo">
+            <div>
+              <span class="text-white font-bold text-lg">ARS TEK YAPI</span>
+              <p class="text-blue-200 text-xs">A.Ş.</p>
+            </div>
+          </div>
+          <p class="text-blue-100 text-sm leading-relaxed mb-4">
+            Geleceğin akıllı sistemlerini inşa eden teknoloji şirketi. AI, IoT ve özel yazılım çözümleriyle sektörlere değer katıyoruz.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.957 1.404-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624.003 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">Hızlı Erişim</h3>
+          <ul class="space-y-2">
+            <li><a href="/about.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Hakkımızda</a></li>
+            <li><a href="/services.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Hizmetlerimiz</a></li>
+            <li><a href="/industries.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Sektörler</a></li>
+            <li><a href="/portfolio.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Portföyümüz</a></li>
+            <li><a href="/blog.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Blog</a></li>
+            <li><a href="/contact.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">İletişim</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">Hizmetlerimiz</h3>
+          <ul class="space-y-2">
+            <li><a href="/services.html#ai-ml" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">AI & Makine Öğrenmesi</a></li>
+            <li><a href="/services.html#iot" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">IoT Sistemleri</a></li>
+            <li><a href="/services.html#web-development" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Web & Uygulama Geliştirme</a></li>
+            <li><a href="/services.html#fintech" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Fintech Çözümleri</a></li>
+            <li><a href="/services.html#smart-home" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Akıllı Ev Otomasyonu</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">İletişim</h3>
+          <div class="space-y-3">
+            <div class="flex items-start space-x-3">
+              <svg class="h-5 w-5 text-blue-200 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <p class="text-blue-200 text-sm">
+                İstanbul, Türkiye<br>
+                (Detaylı adres bilgisi eklenecek)
+              </p>
+            </div>
+            <div class="flex items-center space-x-3">
+              <svg class="h-5 w-5 text-blue-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <a href="mailto:info@arstekyapi.com" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">
+                info@arstekyapi.com
+              </a>
+            </div>
+            <div class="flex items-center space-x-3">
+              <svg class="h-5 w-5 text-blue-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <a href="tel:+90XXXXXXXXX" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">
+                +90 XXX XXX XX XX
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-blue-800 mt-8 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p class="text-blue-200 text-sm">
+            © 2025 ARS TEK YAPI A.Ş. Tüm hakları saklıdır.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Gizlilik Politikası</a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Kullanım Şartları</a>
+            <a href="/contact.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">KVKK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+
+  <!-- Core JavaScript Files -->
+  <script src="/js/global.js" defer></script>
+  <script src="/js/blog.js" defer></script>
+
+  <!-- External Libraries -->
+  <!-- AOS (Animate On Scroll) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+  <!-- Font Awesome for Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+
+  <!-- Scroll to Top Button HTML -->
+  <button id="scroll-top" class="fixed bottom-6 right-6 bg-brand-primary text-white p-3 rounded-full shadow-lg opacity-0 translate-y-2 transition-all duration-300 hover:bg-brand-hover z-40">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+
+  <!-- Initialize AOS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    });
+  </script>
+
 </body>
 </html>
