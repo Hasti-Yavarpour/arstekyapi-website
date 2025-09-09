@@ -1,407 +1,494 @@
-/**
- * ARS TEK YAPI - Blog Page Styles
- * Blog-specific CSS styles and animations
- */
+/* ===============================================
+   INDUSTRIES PAGE SPECIFIC STYLES
+   =============================================== */
 
-/* Blog Hero Section */
-.blog-hero {
+/* Hero Section */
+.industries-hero {
   background: linear-gradient(135deg, #1B4F72 0%, #2C3E50 50%, #34495E 100%);
   position: relative;
   overflow: hidden;
 }
 
-.blog-hero::before {
+.industries-hero::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
   opacity: 0.3;
 }
 
-/* Blog Cards */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+.industries-hero-content {
+  position: relative;
+  z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .blog-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.blog-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Filter Tabs */
+.filter-tabs {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(27, 79, 114, 0.1);
 }
 
-.blog-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: rgba(27, 79, 114, 0.2);
+.filter-tab {
+  background: transparent;
+  color: #666;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.blog-card-image {
-  height: 240px;
-  background: linear-gradient(135deg, #1B4F72, #2C3E50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+.filter-tab:hover {
+  color: #1B4F72;
+  background: rgba(27, 79, 114, 0.05);
+}
+
+/* Filter Button Colors */
+.filter-tab[data-filter="healthcare"].active {
+  background: #ec7063;
+  color: white;
+  box-shadow: 0 4px 15px rgba(236, 112, 99, 0.3);
+}
+
+.filter-tab[data-filter="manufacturing"].active {
+  background: #5dade2;
+  color: white;
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+}
+
+.filter-tab[data-filter="retail"].active {
+  background: #58d68d;
+  color: white;
+  box-shadow: 0 4px 15px rgba(88, 214, 141, 0.3);
+}
+
+.filter-tab[data-filter="finance"].active {
+  background: #f8c471;
+  color: white;
+  box-shadow: 0 4px 15px rgba(248, 196, 113, 0.3);
+}
+
+.filter-tab[data-filter="transportation"].active {
+  background: #bb8fce;
+  color: white;
+  box-shadow: 0 4px 15px rgba(187, 143, 206, 0.3);
+}
+
+.filter-tab[data-filter="realestate"].active {
+  background: #5d6d7e;
+  color: white;
+  box-shadow: 0 4px 15px rgba(93, 109, 126, 0.3);
+}
+
+.filter-tab[data-filter="agriculture"].active {
+  background: #58d68d;
+  color: white;
+  box-shadow: 0 4px 15px rgba(88, 214, 141, 0.3);
+}
+
+.filter-tab[data-filter="education"].active {
+  background: #5dade2;
+  color: white;
+  box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+}
+
+.filter-tab[data-filter="hospitality"].active {
+  background: #f48fb1;
+  color: white;
+  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.3);
+}
+
+.filter-tab[data-filter="energy"].active {
+  background: #ffb74d;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 183, 77, 0.3);
+}
+
+/* Industry Cards Grid */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* Desktop/Laptop: Force 2 columns for better balance */
+@media (min-width: 1024px) {
+  .industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.industry-card {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f0;
+  transition: all 0.4s ease;
+  position: relative;
 }
 
-.blog-card-image::before {
+.industry-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%);
-  background-size: 20px 20px;
-  opacity: 0.3;
+  height: 4px;
+  background: linear-gradient(90deg, var(--industry-color, #1B4F72), var(--industry-color-light, #2C3E50));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.blog-card-icon {
-  font-size: 4rem;
+.industry-card:hover::before {
+  opacity: 1;
+}
+
+.industry-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.industry-card[data-category="healthcare"] {
+  --industry-color: #e74c3c;
+  --industry-color-light: #f39c12;
+}
+
+.industry-card[data-category="manufacturing"] {
+  --industry-color: #3498db;
+  --industry-color-light: #2980b9;
+}
+
+.industry-card[data-category="retail"] {
+  --industry-color: #27ae60;
+  --industry-color-light: #16a085;
+}
+
+.industry-card[data-category="finance"] {
+  --industry-color: #f39c12;
+  --industry-color-light: #e67e22;
+}
+
+.industry-card[data-category="transportation"] {
+  --industry-color: #9b59b6;
+  --industry-color-light: #8e44ad;
+}
+
+.industry-card[data-category="realestate"] {
+  --industry-color: #34495e;
+  --industry-color-light: #2c3e50;
+}
+
+.industry-card[data-category="agriculture"] {
+  --industry-color: #2ecc71;
+  --industry-color-light: #27ae60;
+}
+
+.industry-card[data-category="education"] {
+  --industry-color: #3498db;
+  --industry-color-light: #2980b9;
+}
+
+.industry-card[data-category="hospitality"] {
+  --industry-color: #e91e63;
+  --industry-color-light: #c2185b;
+}
+
+.industry-card[data-category="energy"] {
+  --industry-color: #ff9800;
+  --industry-color-light: #f57c00;
+}
+
+/* Industry Card Header */
+.industry-header {
+  background: linear-gradient(135deg, var(--industry-color, #1B4F72), var(--industry-color-light, #2C3E50));
+  padding: 30px;
   color: white;
-  z-index: 1;
   position: relative;
+  overflow: hidden;
 }
 
-.blog-card-content {
-  padding: 2rem;
+.industry-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(30px, -30px);
 }
 
-.blog-tag {
-  display: inline-block;
-  background: rgba(27, 79, 114, 0.1);
-  color: #1B4F72;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.industry-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  display: block;
+  opacity: 0.9;
 }
 
-.blog-card-title {
-  font-size: 1.5rem;
+.industry-title {
+  font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
-  line-height: 1.25;
-  transition: color 0.2s ease;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-.blog-card:hover .blog-card-title {
-  color: #1B4F72;
+.industry-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: 400;
 }
 
-.blog-card-excerpt {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
+/* Industry Card Content */
+.industry-content {
+  padding: 30px;
+}
+
+.industry-section {
+  margin-bottom: 25px;
+}
+
+.industry-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.section-title i {
+  margin-right: 8px;
+  color: var(--industry-color, #1B4F72);
+  width: 20px;
+}
+
+.section-content {
+  color: #666;
+  font-size: 14px;
   line-height: 1.6;
 }
 
-.blog-card-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  color: #9ca3af;
-  border-top: 1px solid #f3f4f6;
-  padding-top: 1rem;
+/* Use Cases List */
+.use-cases-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.blog-card-date {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.use-cases-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  padding-left: 20px;
 }
 
-.blog-card-read-time {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
+.use-cases-list li:last-child {
+  border-bottom: none;
 }
 
-.blog-read-more {
-  color: #1B4F72;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
+.use-cases-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: var(--industry-color, #1B4F72);
+  font-weight: bold;
 }
 
-.blog-read-more:hover {
-  color: #143c5c;
-  transform: translateX(4px);
-}
-
-.blog-read-more i {
-  transition: transform 0.2s ease;
-}
-
-.blog-read-more:hover i {
-  transform: translateX(4px);
-}
-
-/* Blog Categories Filter */
-.blog-filters {
+/* Tech Stack Tags */
+.tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
-.blog-filter-btn {
-  background: white;
-  border: 2px solid #e5e7eb;
-  color: #6b7280;
+.tech-tag {
+  background: rgba(27, 79, 114, 0.1);
+  color: #1B4F72;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   font-weight: 500;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-decoration: none;
+  border: 1px solid rgba(27, 79, 114, 0.2);
 }
 
-.blog-filter-btn:hover,
-.blog-filter-btn.active {
-  background: #1B4F72;
-  border-color: #1B4F72;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
-}
-
-/* Blog Stats */
-.blog-stats {
+/* Benefits List */
+.benefits-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
 }
 
-.blog-stat-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
+.benefit-item {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
   text-align: center;
-  border: 1px solid #e5e7eb;
+  font-size: 13px;
+  font-weight: 500;
+  color: #495057;
+  border-left: 3px solid var(--industry-color, #1B4F72);
+}
+
+/* Testimonial Section */
+.testimonial {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid var(--industry-color, #1B4F72);
+  font-style: italic;
+  color: #555;
+  margin-top: 8px;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--industry-color, #1B4F72);
+}
+
+/* CTA Button */
+.industry-cta {
+  background: linear-gradient(135deg, var(--industry-color, #1B4F72), var(--industry-color-light, #2C3E50));
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.industry-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: white;
+}
+
+.industry-cta i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.industry-cta:hover i {
+  transform: translateX(3px);
+}
+
+/* Filter Animation */
+.industry-card.filtering {
+  opacity: 0;
+  transform: scale(0.9);
   transition: all 0.3s ease;
 }
 
-.blog-stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  border-color: #1B4F72;
+.industry-card.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.blog-stat-number {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1B4F72;
-  margin-bottom: 0.5rem;
-}
-
-.blog-stat-label {
-  color: #6b7280;
-  font-weight: 500;
-}
-
-/* Newsletter Signup */
-.newsletter-section {
-  background: linear-gradient(135deg, #1B4F72, #2C3E50);
-  border-radius: 16px;
-  padding: 3rem;
-  text-align: center;
-  color: white;
-  margin-top: 4rem;
-}
-
-.newsletter-form {
-  display: flex;
-  max-width: 400px;
-  margin: 0 auto;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-@media (max-width: 640px) {
-  .newsletter-form {
-    flex-direction: column;
-  }
-}
-
-.newsletter-input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  placeholder-color: rgba(255, 255, 255, 0.7);
-}
-
-.newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.newsletter-input:focus {
-  outline: none;
-  border-color: white;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.newsletter-btn {
-  background: white;
-  color: #1B4F72;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.newsletter-btn:hover {
-  background: #f8f9fa;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+.industry-card.hide {
+  display: none;
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
-  .blog-hero {
-    padding: 4rem 0;
+  .industries-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
   }
-  
-  .blog-card-content {
-    padding: 1.5rem;
-  }
-  
-  .newsletter-section {
-    padding: 2rem;
-  }
-  
-  .blog-filters {
-    justify-content: flex-start;
+
+  .filter-tabs {
+    padding: 4px;
     overflow-x: auto;
-    padding-bottom: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  
-  .blog-filter-btn {
-    flex-shrink: 0;
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
   }
-}
 
-/* Loading Animation */
-.blog-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  font-size: 1.125rem;
-  color: #6b7280;
-}
-
-.blog-loading::after {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border: 2px solid #1B4F72;
-  border-top: 2px solid transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-left: 10px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Search Box Styles */
-.blog-search {
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  position: relative;
-}
-
-.blog-search-input {
-  width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  font-size: 1rem;
-  background: white;
-  transition: all 0.2s ease;
-}
-
-.blog-search-input:focus {
-  outline: none;
-  border-color: #1B4F72;
-  box-shadow: 0 0 0 3px rgba(27, 79, 114, 0.1);
-}
-
-.blog-search-icon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  font-size: 1.25rem;
-}
-
-/* Animation Classes */
-.fade-in {
-  animation: fadeIn 0.6s ease-out;
-}
-
-.slide-up {
-  animation: slideUp 0.6s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  .filter-tabs .flex {
+    flex-wrap: nowrap;
+    min-width: max-content;
   }
-  to {
-    opacity: 1;
+
+  .filter-tab {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .industry-header {
+    padding: 25px 20px;
+  }
+
+  .industry-content {
+    padding: 20px;
+  }
+
+  .industry-icon {
+    font-size: 40px;
+  }
+
+  .industry-title {
+    font-size: 20px;
+  }
+
+  .benefits-list {
+    grid-template-columns: 1fr;
   }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+@media (max-width: 480px) {
+  .industries-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .industry-card {
+    border-radius: 15px;
+  }
+
+  .industry-header {
+    padding: 20px 15px;
+  }
+
+  .industry-content {
+    padding: 15px;
+  }
+
+  .industry-section {
+    margin-bottom: 20px;
   }
 }
