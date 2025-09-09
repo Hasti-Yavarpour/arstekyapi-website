@@ -206,9 +206,12 @@ window.BlogApp = {
       `<span class="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full mr-1 mb-1">${tag}</span>`
     ).join('');
 
+    // Debug: log the category being set
+    console.log(`Post "${post.title}" category: "${post.category}"`);
+
     return `
-      <article class="blog-card" data-aos="fade-up" data-aos-delay="${index * 100}">
-        <div class="blog-card-image" style="background: linear-gradient(135deg, #1B4F72, #2C3E50);">
+      <article class="blog-card" data-category="${post.category}" data-aos="fade-up" data-aos-delay="${index * 100}">
+        <div class="blog-card-image">
           <i class="${post.icon} blog-card-icon"></i>
         </div>
 
