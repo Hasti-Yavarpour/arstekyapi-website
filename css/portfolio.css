@@ -592,18 +592,29 @@ section.portfolio-cta a.bg-orange-500.text-white:hover {
   box-shadow: 0 6px 20px rgba(74, 85, 104, 0.35) !important;
 }
 
-/* MOBILE OVERRIDES */
+/* MOBILE OVERRIDES - 2 ROWS LAYOUT */
 @media (max-width: 640px) {
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    max-width: 300px !important;
+    margin: 0 auto 48px auto !important;
+    flex-direction: unset !important;
+  }
+
   section.portfolio-cta a[href="/contact.html"],
   section.portfolio-cta a.bg-white.text-brand-primary,
   section.portfolio-cta a[href="/blog.html"],
   section.portfolio-cta a.bg-orange-500.text-white {
     width: 100% !important;
-    max-width: 320px !important;
+    max-width: none !important;
     min-width: auto !important;
-    font-size: 1.125rem !important;
-    padding: 18px 24px !important;
-    height: 60px !important;
+    font-size: 1rem !important;
+    padding: 16px 24px !important;
+    height: 52px !important;
+    margin: 0 !important;
   }
 }
 
