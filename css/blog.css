@@ -1,6 +1,6 @@
 /**
- * ARS TEK YAPI - Blog Page Styles
- * Blog-specific CSS styles and animations
+ * ARS TEK YAPI - Blog Page Styles (FINAL VERSION)
+ * Blog-specific CSS styles and animations with colored cards and buttons
  */
 
 /* Blog Hero Section */
@@ -47,12 +47,10 @@
 .blog-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: rgba(27, 79, 114, 0.2);
 }
 
 .blog-card-image {
   height: 240px;
-  background: linear-gradient(135deg, #1B4F72, #2C3E50);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,6 +75,77 @@
   color: white;
   z-index: 1;
   position: relative;
+}
+
+/* Category-specific card colors - Soft Pastels */
+/* AI Category */
+.blog-card[data-category="AI"] .blog-card-image,
+.blog-card[data-category="Yapay Zeka"] .blog-card-image {
+  background: linear-gradient(135deg, #A78BFA, #9333EA) !important;
+}
+
+.blog-card[data-category="AI"]:hover,
+.blog-card[data-category="Yapay Zeka"]:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(167, 139, 250, 0.15), 0 10px 10px -5px rgba(167, 139, 250, 0.08);
+}
+
+/* IoT Category */
+.blog-card[data-category="IoT"] .blog-card-image,
+.blog-card[data-category="IoT Sistemleri"] .blog-card-image {
+  background: linear-gradient(135deg, #34D399, #10B981) !important;
+}
+
+.blog-card[data-category="IoT"]:hover,
+.blog-card[data-category="IoT Sistemleri"]:hover {
+  border-color: rgba(52, 211, 153, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(52, 211, 153, 0.15), 0 10px 10px -5px rgba(52, 211, 153, 0.08);
+}
+
+/* Fintech Category */
+.blog-card[data-category="Fintech"] .blog-card-image {
+  background: linear-gradient(135deg, #FBBF24, #F59E0B) !important;
+}
+
+.blog-card[data-category="Fintech"]:hover {
+  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(251, 191, 36, 0.15), 0 10px 10px -5px rgba(251, 191, 36, 0.08);
+}
+
+/* Smart Home Category */
+.blog-card[data-category="Akıllı Ev"] .blog-card-image {
+  background: linear-gradient(135deg, #38BDF8, #0EA5E9) !important;
+}
+
+.blog-card[data-category="Akıllı Ev"]:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.15), 0 10px 10px -5px rgba(56, 189, 248, 0.08);
+}
+
+/* Industry 4.0 Category */
+.blog-card[data-category="Endüstri 4.0"] .blog-card-image {
+  background: linear-gradient(135deg, #60A5FA, #3B82F6) !important;
+}
+
+.blog-card[data-category="Endüstri 4.0"]:hover {
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(96, 165, 250, 0.15), 0 10px 10px -5px rgba(96, 165, 250, 0.08);
+}
+
+/* Security Category */
+.blog-card[data-category="Güvenlik"] .blog-card-image {
+  background: linear-gradient(135deg, #F87171, #EF4444) !important;
+}
+
+.blog-card[data-category="Güvenlik"]:hover {
+  border-color: rgba(248, 113, 113, 0.3);
+  box-shadow: 0 20px 25px -5px rgba(248, 113, 113, 0.15), 0 10px 10px -5px rgba(248, 113, 113, 0.08);
+}
+
+/* Default for posts that don't match specific categories */
+.blog-card:not([data-category]) .blog-card-image,
+.blog-card[data-category=""] .blog-card-image {
+  background: linear-gradient(135deg, #1B4F72, #2C3E50) !important;
 }
 
 .blog-card-content {
@@ -182,14 +251,14 @@
   text-decoration: none;
 }
 
-/* Category-specific button colors - Option 1: Soft Pastels */
+/* Category-specific button colors - Tümü uses brand color, others use soft pastels */
 .blog-filter-btn[data-filter="all"]:hover,
 .blog-filter-btn[data-filter="all"].active {
-  background: #4A90E2;
-  border-color: #4A90E2;
+  background: #1B4F72;
+  border-color: #1B4F72;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.3);
 }
 
 .blog-filter-btn[data-filter="AI"]:hover,
