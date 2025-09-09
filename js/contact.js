@@ -7,7 +7,7 @@
 window.ContactApp = {
   // Configuration
   config: {
-    formspreeEndpoint: 'YOUR_FORMSPREE_ENDPOINT_HERE', // Replace with actual Formspree URL
+    formspreeEndpoint: 'https://formspree.io/f/mgvldorz', // Replace with actual Formspree URL
     maxFileSize: 10 * 1024 * 1024, // 10MB in bytes
     allowedFileTypes: ['pdf', 'doc', 'docx', 'txt', 'jpg', 'jpeg', 'png'],
     maxFiles: 3
