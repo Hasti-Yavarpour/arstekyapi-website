@@ -325,345 +325,182 @@
 }
 
 /* Call to Action Section - Complete Styling */
+/* PORTFOLIO CTA SECTION - CLEAN BUTTON STYLING */
+/* Replace the existing portfolio CTA styles with this clean version */
+
+/* Main CTA Section */
 .portfolio-cta {
-  background: white; /* White background */
+  background: white;
   padding: 64px 32px;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  margin: 64px 0; /* Normal margins */
-  border-radius: 0; /* No rounded corners */
-  color: #1a1a1a; /* Default text color */
+  margin: 64px 0;
 }
 
-/* Remove any background overlay */
-.portfolio-cta::before {
-  display: none;
-}
-
-.portfolio-cta .content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Title styling - Black color */
+/* Title and Description */
 .portfolio-cta h2 {
-  color: #1a1a1a !important; /* Black title */
+  color: #1a1a1a;
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 24px;
   line-height: 1.2;
 }
 
-/* Description text - Dark grayish */
 .portfolio-cta p {
-  color: #4a5568 !important; /* Dark grayish text */
+  color: #4a5568;
   font-size: 1.25rem;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Button container */
-.portfolio-cta .flex {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px) !important;
-  border-radius: 15px !important;
-  padding: 12px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid rgba(27, 79, 114, 0.1) !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin: 0 auto 48px auto !important;
-  max-width: 500px !important;
-  width: fit-content !important;
+/* CLEAN BUTTON CONTAINER - Like Industries Page */
+.portfolio-cta .cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
 }
 
 @media (min-width: 640px) {
-  .portfolio-cta .flex {
+  .portfolio-cta .cta-buttons {
     flex-direction: row;
+    justify-content: center;
     gap: 24px;
   }
 }
 
-/* Button styling remains the same */
-.portfolio-cta .bg-white,
-.portfolio-cta .bg-orange-500 {
-  background: transparent !important;
-  border: none !important;
-  padding: 12px 24px !important;
-  border-radius: 10px !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  box-shadow: none !important;
-  height: auto !important;
-  min-width: auto !important;
-  justify-content: center !important;
-  white-space: nowrap !important;
+/* BUTTON STYLING - Match Industries Page */
+.portfolio-cta .cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 200px;
+  height: 56px;
 }
 
-/* Left button - Footer color */
-.portfolio-cta .bg-white {
-  color: #1B4F72 !important;
+/* Primary Button (Contact) */
+.portfolio-cta .cta-button.primary {
+  background: #1B4F72;
+  color: white;
+  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.25);
 }
 
-.portfolio-cta .bg-white:hover {
-  color: #143c5c !important;
-  background: rgba(27, 79, 114, 0.05) !important;
-  transform: none !important;
-  box-shadow: none !important;
+.portfolio-cta .cta-button.primary:hover {
+  background: #143c5c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 79, 114, 0.35);
 }
 
-/* Right button - Dark gray-blue */
-
-.portfolio-cta .bg-orange-500 {
-  color: #4a5568 !important;
+/* Secondary Button (Blog) */
+.portfolio-cta .cta-button.secondary {
+  background: #4a5568;
+  color: white;
+  box-shadow: 0 4px 12px rgba(74, 85, 104, 0.25);
 }
 
-.portfolio-cta .bg-orange-500:hover {
-  color: #3a434f !important;
-  background: rgba(74, 85, 104, 0.05) !important;
-  transform: none !important;
-  box-shadow: none !important;
+.portfolio-cta .cta-button.secondary:hover {
+  background: #3a434f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 85, 104, 0.35);
 }
 
-/* Features grid section */
-.portfolio-cta .mt-12 {
-  margin-top: 48px;
-}
-
-.portfolio-cta .grid {
+/* Features Grid Section */
+.portfolio-cta .features-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
+  margin-top: 48px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .portfolio-cta .grid {
+  .portfolio-cta .features-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Individual feature items */
-.portfolio-cta .grid > div {
+/* Feature Items */
+.portfolio-cta .feature-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Icons styling - Footer color */
-.portfolio-cta .text-3xl {
-  color: #1B4F72 !important; /* Icons in footer color */
+.portfolio-cta .feature-icon {
+  color: #1B4F72;
   font-size: 3rem;
-  margin-bottom: 12px;
-  display: block;
+  margin-bottom: 16px;
 }
 
-/* Feature titles styling - Footer color */
-.portfolio-cta h3 {
-  color: #1B4F72 !important; /* Titles in footer color */
+.portfolio-cta .feature-title {
+  color: #1B4F72;
   font-weight: 600;
   font-size: 1.125rem;
   margin-bottom: 8px;
   line-height: 1.4;
 }
 
-/* Text below icons - Lighter color */
-.portfolio-cta .text-blue-200 {
-  color: #6b7280 !important; /* Lighter gray for descriptions */
+.portfolio-cta .feature-description {
+  color: #6b7280;
   font-size: 0.875rem;
   line-height: 1.5;
-  margin: 0;
 }
 
-/* Ensure proper spacing from footer */
-.portfolio-cta + footer {
-  margin-top: 0;
-}
-
-/* More specific selectors to override Tailwind */
-section.portfolio-cta {
-  background: white !important;
-}
-
-section.portfolio-cta h2.text-3xl {
-  color: #000000 !important;
-}
-
-section.portfolio-cta p.text-xl {
-  color: #4a5568 !important;
-}
-
-section.portfolio-cta a[href="/contact.html"] {
-  background: #1B4F72 !important;
-  color: white !important;
-}
-
-section.portfolio-cta a[href="/blog.html"] {
-  background: #4a5568 !important;
-  color: white !important;
-}
-
-section.portfolio-cta .text-3xl i {
-  color: #1B4F72 !important;
-}
-
-section.portfolio-cta h3.font-semibold {
-  color: #1B4F72 !important;
-}
-
-section.portfolio-cta p.text-blue-200 {
-  color: #6b7280 !important;
-}
-
-/* Responsive adjustments */
-
-/* Mobile-specific improvements for CTA buttons */
+/* MOBILE RESPONSIVE DESIGN */
 @media (max-width: 640px) {
-  /* Force buttons to stack vertically on mobile */
-  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 16px !important;
-    margin-bottom: 48px !important;
-    width: 100% !important;
-  }
-
-  /* Improve button sizing for mobile */
-  section.portfolio-cta a.bg-white.text-brand-primary,
-  section.portfolio-cta a[href="/contact.html"],
-  section.portfolio-cta a.bg-orange-500.text-white,
-  section.portfolio-cta a[href="/blog.html"] {
-    width: 100% !important;
-    max-width: 280px !important;
-    height: 48px !important;
-    padding: 12px 20px !important;
-    font-size: 0.95rem !important;
-    min-width: auto !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    border-radius: 10px !important;
-  }
-
-  /* Mobile CTA section padding */
   .portfolio-cta {
-    padding: 40px 20px !important;
-    margin: 40px 0 !important;
+    padding: 48px 24px;
+    margin: 48px 0;
   }
 
-  /* Mobile title and description adjustments */
   .portfolio-cta h2 {
-    font-size: 2rem !important;
-    margin-bottom: 20px !important;
-    line-height: 1.3 !important;
+    font-size: 2.25rem;
+    margin-bottom: 20px;
   }
 
   .portfolio-cta p {
-    font-size: 1rem !important;
-    margin-bottom: 28px !important;
-    padding: 0 10px !important;
+    font-size: 1.125rem;
+    margin-bottom: 36px;
+    padding: 0 16px;
   }
 
-  /* Mobile features grid */
-  .portfolio-cta .grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    margin-top: 40px !important;
+  .portfolio-cta .cta-button {
+    width: 100%;
+    max-width: 320px;
+    min-width: auto;
+    font-size: 1.125rem;
+    padding: 18px 24px;
+    height: 60px;
   }
 
-  .portfolio-cta .text-3xl {
-    font-size: 2.5rem !important;
+  .portfolio-cta .features-grid {
+    margin-top: 36px;
+    gap: 24px;
   }
 
-  .portfolio-cta h3 {
-    font-size: 1rem !important;
-  }
-
-  .portfolio-cta .text-blue-200 {
-    font-size: 0.875rem !important;
-  }
-}
-
-/* Extra small mobile devices */
-@media (max-width: 375px) {
-  .portfolio-cta {
-    padding: 32px 16px !important;
-  }
-
-  .portfolio-cta h2 {
-    font-size: 1.75rem !important;
-  }
-
-  section.portfolio-cta a.bg-white.text-brand-primary,
-  section.portfolio-cta a[href="/contact.html"],
-  section.portfolio-cta a.bg-orange-500.text-white,
-  section.portfolio-cta a[href="/blog.html"] {
-    max-width: 100% !important;
-    height: 44px !important;
-    font-size: 0.9rem !important;
-    padding: 10px 16px !important;
-  }
-}
-
-/* Tablet landscape adjustments */
-@media (min-width: 641px) and (max-width: 768px) {
-  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
-    flex-direction: row !important;
-    gap: 20px !important;
-  }
-
-  section.portfolio-cta a.bg-white.text-brand-primary,
-  section.portfolio-cta a[href="/contact.html"],
-  section.portfolio-cta a.bg-orange-500.text-white,
-  section.portfolio-cta a[href="/blog.html"] {
-    max-width: 220px !important;
-    height: 50px !important;
-    font-size: 1rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .portfolio-cta .flex {
-    padding: 8px !important;
-    overflow-x: auto !important;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-    flex-wrap: nowrap !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  .portfolio-cta .flex::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  .portfolio-cta .bg-white,
-  .portfolio-cta .bg-orange-500 {
-    padding: 10px 20px !important;
-    font-size: 13px !important;
-    flex-shrink: 0 !important;
+  .portfolio-cta .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .portfolio-cta {
     padding: 40px 20px;
-    margin: 40px 0;
   }
 
   .portfolio-cta h2 {
@@ -673,9 +510,100 @@ section.portfolio-cta p.text-blue-200 {
   .portfolio-cta p {
     font-size: 1rem;
   }
+}
 
-  .portfolio-cta .text-3xl {
-    font-size: 2.5rem;
+/* HIGH SPECIFICITY OVERRIDES FOR TAILWIND */
+/* Use these selectors to override any existing Tailwind classes */
+
+section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  margin-bottom: 48px !important;
+}
+
+@media (min-width: 640px) {
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row {
+    flex-direction: row !important;
+    gap: 24px !important;
+  }
+}
+
+/* Override specific button links */
+section.portfolio-cta a[href="/contact.html"],
+section.portfolio-cta a.bg-white.text-brand-primary {
+  background: #1B4F72 !important;
+  color: white !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 16px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  min-width: 200px !important;
+  height: 56px !important;
+  box-shadow: 0 4px 12px rgba(27, 79, 114, 0.25) !important;
+  margin: 0 !important;
+}
+
+section.portfolio-cta a[href="/contact.html"]:hover,
+section.portfolio-cta a.bg-white.text-brand-primary:hover {
+  background: #143c5c !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(27, 79, 114, 0.35) !important;
+}
+
+section.portfolio-cta a[href="/blog.html"],
+section.portfolio-cta a.bg-orange-500.text-white {
+  background: #4a5568 !important;
+  color: white !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 16px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  min-width: 200px !important;
+  height: 56px !important;
+  box-shadow: 0 4px 12px rgba(74, 85, 104, 0.25) !important;
+  margin: 0 !important;
+}
+
+section.portfolio-cta a[href="/blog.html"]:hover,
+section.portfolio-cta a.bg-orange-500.text-white:hover {
+  background: #3a434f !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(74, 85, 104, 0.35) !important;
+}
+
+/* MOBILE OVERRIDES */
+@media (max-width: 640px) {
+  section.portfolio-cta a[href="/contact.html"],
+  section.portfolio-cta a.bg-white.text-brand-primary,
+  section.portfolio-cta a[href="/blog.html"],
+  section.portfolio-cta a.bg-orange-500.text-white {
+    width: 100% !important;
+    max-width: 320px !important;
+    min-width: auto !important;
+    font-size: 1.125rem !important;
+    padding: 18px 24px !important;
+    height: 60px !important;
   }
 }
 
