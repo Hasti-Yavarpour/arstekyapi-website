@@ -325,8 +325,7 @@
 }
 
 /* Call to Action Section - Complete Styling */
-/* PORTFOLIO CTA SECTION - MOBILE 2-ROW BUTTON LAYOUT */
-/* This CSS targets your exact HTML structure */
+/* PORTFOLIO CTA SECTION - SIMPLE VERTICAL MOBILE LAYOUT */
 
 /* Main CTA Section */
 .portfolio-cta {
@@ -356,18 +355,7 @@
   margin-right: auto;
 }
 
-/* DESKTOP - Keep buttons side by side */
-@media (min-width: 641px) {
-  .portfolio-cta .flex.flex-col.sm\:flex-row {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 24px !important;
-  }
-}
-
-/* MOBILE - 2 ROW LAYOUT (640px and below) */
+/* FORCE VERTICAL LAYOUT ON MOBILE - Override Tailwind completely */
 @media (max-width: 640px) {
   .portfolio-cta {
     padding: 48px 24px;
@@ -385,56 +373,61 @@
     padding: 0 16px;
   }
 
-  /* Override Tailwind flexbox with grid for 2 rows */
-  .portfolio-cta .flex.flex-col.sm\:flex-row {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    grid-template-rows: repeat(2, 1fr) !important;
+  /* FORCE the container to be flexbox column - highest specificity */
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row.justify-center.items-center.space-y-4.sm\:space-y-0.sm\:space-x-6 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 20px !important;
-    max-width: 320px !important;
+    width: 100% !important;
+    max-width: 350px !important;
     margin: 0 auto !important;
-    flex-direction: unset !important;
-    justify-content: unset !important;
-    align-items: unset !important;
+    /* Remove Tailwind spacing */
+    --tw-space-x-reverse: 0 !important;
+    --tw-space-y-reverse: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 
-  /* Remove Tailwind spacing classes on mobile */
-  .portfolio-cta .flex.flex-col.sm\:flex-row.space-y-4.sm\:space-y-0.sm\:space-x-6 {
-    margin: 0 auto !important;
+  /* Make buttons full width within the container */
+  .portfolio-cta a {
+    width: 100% !important;
+    max-width: 350px !important;
+    height: 54px !important;
+    padding: 16px 24px !important;
+    font-size: 1rem !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
   }
 }
 
-/* BUTTON STYLING FOR ALL SCREEN SIZES */
+/* DESKTOP LAYOUT - Keep side by side */
+@media (min-width: 641px) {
+  .portfolio-cta a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px 32px !important;
+    font-size: 1.125rem !important;
+    min-width: 200px !important;
+    height: 56px !important;
+    gap: 12px !important;
+  }
+}
+
+/* ALL SCREEN SIZES - Button styling */
 .portfolio-cta a {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
   text-decoration: none !important;
   transition: all 0.3s ease !important;
   border-radius: 12px !important;
   font-weight: 600 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Desktop button sizing */
-@media (min-width: 641px) {
-  .portfolio-cta a {
-    padding: 16px 32px !important;
-    font-size: 1.125rem !important;
-    min-width: 200px !important;
-    height: 56px !important;
-  }
-}
-
-/* Mobile button sizing - full width in each row */
-@media (max-width: 640px) {
-  .portfolio-cta a {
-    width: 100% !important;
-    padding: 16px 24px !important;
-    font-size: 1rem !important;
-    height: 52px !important;
-    margin: 0 !important;
-  }
 }
 
 /* Left Button (Contact) - Blue */
@@ -537,14 +530,15 @@
     font-size: 1rem !important;
   }
 
-  .portfolio-cta .flex.flex-col.sm\:flex-row {
-    max-width: 280px !important;
+  section.portfolio-cta div.flex.flex-col.sm\:flex-row.justify-center.items-center.space-y-4.sm\:space-y-0.sm\:space-x-6 {
+    max-width: 320px !important;
     gap: 16px !important;
   }
 
   .portfolio-cta a {
+    max-width: 320px !important;
     font-size: 0.95rem !important;
-    height: 48px !important;
+    height: 50px !important;
     padding: 14px 20px !important;
   }
 }
