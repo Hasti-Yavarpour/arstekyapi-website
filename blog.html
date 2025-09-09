@@ -306,28 +306,344 @@
   </section>
 
   <!-- Contact CTA -->
-  <section class="py-16 gradient-bg text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-10"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-aos="fade-up">
+  <section class="py-16 bg-white">
+    <!--div class="absolute inset-0 bg-black opacity-10"></div-->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-gray-800" data-aos="fade-up">
         Projelerinizde Uzman Desteği İstiyorsanız
       </h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         Blog yazılarımızda bahsettiğimiz teknolojileri projenizde uygulamak için bizimle iletişime geçin.
       </p>
 
-      <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="400">
+      <div class="flex justify-center"data-aos="fade-up" data-aos-delay="400">
         <a href="/contact.html" class="btn btn-primary shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
           <i class="fas fa-comments mr-3"></i>
           İletişime Geçin
         </a>
-        <a href="/services.html" class="btn btn-secondary transform hover:-translate-y-1 flex items-center">
-          <i class="fas fa-cogs mr-3"></i>
-          Hizmetlerimizi İnceleyin
-        </a>
       </div>
     </div>
   </section>
+
+  <!--
+========================================
+COMMENT SECTION - FOR FUTURE IMPLEMENTATION
+========================================
+
+This comment section can be added to individual blog post pages when ready.
+
+IMPLEMENTATION OPTIONS TO CONSIDER LATER:
+1. Disqus - Easy third-party integration
+2. Facebook Comments - Social integration
+3. Custom backend - Full control but requires server
+4. Formspree - Simple form-based comments
+5. Static comments via GitHub/GitLab
+
+FEATURES INCLUDED:
+- Comment form with validation
+- Comment display area
+- Reply functionality structure
+- Spam protection placeholders
+- Mobile responsive design
+- Brand color integration
+-->
+
+<!--
+<section class="comments-section py-16 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    // Comments Header
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold text-gray-900 mb-2">
+        Yorumlar <span class="text-gray-500 text-lg">(<span id="comment-count">0</span>)</span>
+      </h3>
+      <p class="text-gray-600">
+        Bu yazı hakkında düşüncelerinizi bizimle paylaşın. Yapıcı geri bildirimlerinizi bekliyoruz.
+      </p>
+    </div>
+
+    // Comment Form
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+      <h4 class="text-xl font-semibold text-gray-900 mb-6">Yorum Yapın</h4>
+
+      <form class="comment-form" data-form="comment" action="/comments/submit" method="POST">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="comment-name" class="block text-sm font-medium text-gray-700 mb-2">
+              Ad Soyad <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="comment-name"
+              name="name"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors"
+              placeholder="Adınızı ve soyadınızı girin"
+            >
+          </div>
+
+          <div>
+            <label for="comment-email" class="block text-sm font-medium text-gray-700 mb-2">
+              E-posta <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="comment-email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors"
+              placeholder="E-posta adresinizi girin"
+            >
+            <p class="text-xs text-gray-500 mt-1">E-posta adresiniz yayınlanmayacaktır.</p>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label for="comment-message" class="block text-sm font-medium text-gray-700 mb-2">
+            Yorumunuz <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            id="comment-message"
+            name="message"
+            rows="4"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition-colors resize-vertical"
+            placeholder="Yorumunuzu buraya yazın..."
+          ></textarea>
+          <div class="flex justify-between items-center mt-2">
+            <p class="text-xs text-gray-500">En az 10 karakter gereklidir.</p>
+            <span class="text-xs text-gray-400" id="char-count">0/1000</span>
+          </div>
+        </div>
+
+        // Anti-spam and Privacy
+        <div class="mb-6">
+          <label class="flex items-start space-x-3">
+            <input
+              type="checkbox"
+              name="privacy_agreed"
+              required
+              class="mt-1 w-4 h-4 text-brand-primary bg-gray-100 border-gray-300 rounded focus:ring-brand-primary focus:ring-2"
+            >
+            <span class="text-sm text-gray-700">
+              <a href="/privacy-policy.html" class="text-brand-primary hover:underline">Gizlilik Politikası</a>'nı
+              okudum ve kabul ediyorum. Yorumum incelendikten sonra yayınlanmasını onaylıyorum.
+            </span>
+          </label>
+        </div>
+
+        // Hidden anti-spam field
+        <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="bg-brand-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-brand-hover transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            <i class="fas fa-paper-plane mr-2"></i>
+            Yorumu Gönder
+          </button>
+        </div>
+      </form>
+    </div>
+
+    // Comments Display Area
+    <div class="comments-list">
+
+      // Sample Comment Structure (remove when implementing)
+      <div class="comment bg-white rounded-lg shadow-md p-6 mb-6">
+        <div class="comment-header flex items-start justify-between mb-4">
+          <div class="comment-author-info flex items-center space-x-3">
+            <div class="comment-avatar w-10 h-10 bg-brand-primary rounded-full flex items-center justify-center text-white font-semibold">
+              AH
+            </div>
+            <div>
+              <h5 class="comment-author font-semibold text-gray-900">Ahmet Yılmaz</h5>
+              <p class="comment-date text-sm text-gray-500">15 Ocak 2025, 14:30</p>
+            </div>
+          </div>
+
+          <div class="comment-actions">
+            <button class="text-gray-400 hover:text-brand-primary transition-colors" title="Yanıtla">
+              <i class="fas fa-reply"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="comment-content text-gray-700 leading-relaxed mb-4">
+          Bu yazı çok faydalı oldu! IoT teknolojilerini işletmemizde nasıl uygulayabileceğimiz konusunda
+          net bir yol haritası çizdi. Teşekkür ederim.
+        </div>
+
+        <div class="comment-footer flex items-center space-x-4 text-sm">
+          <button class="comment-like text-gray-500 hover:text-brand-primary transition-colors">
+            <i class="fas fa-thumbs-up mr-1"></i>
+            Beğen (3)
+          </button>
+          <button class="comment-reply text-gray-500 hover:text-brand-primary transition-colors">
+            <i class="fas fa-reply mr-1"></i>
+            Yanıtla
+          </button>
+        </div>
+
+        // Reply Form (initially hidden)
+        <div class="reply-form hidden mt-6 pl-8 border-l-2 border-gray-200">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <textarea
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary resize-none"
+              rows="3"
+              placeholder="Yanıtınızı yazın..."
+            ></textarea>
+            <div class="flex justify-end space-x-2 mt-3">
+              <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors">
+                İptal
+              </button>
+              <button class="px-4 py-2 text-sm bg-brand-primary text-white rounded-md hover:bg-brand-hover transition-colors">
+                Yanıtla
+              </button>
+            </div>
+          </div>
+        </div>
+
+        // Nested Reply Example
+        <div class="reply ml-12 mt-6 pl-4 border-l-2 border-brand-primary border-opacity-20">
+          <div class="reply-header flex items-center space-x-3 mb-3">
+            <div class="reply-avatar w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              AT
+            </div>
+            <div>
+              <h6 class="reply-author font-medium text-gray-900">ARS TEK YAPI</h6>
+              <p class="reply-date text-xs text-gray-500">15 Ocak 2025, 15:45</p>
+            </div>
+            <span class="bg-brand-primary text-white text-xs px-2 py-1 rounded-full">Yazar</span>
+          </div>
+
+          <div class="reply-content text-gray-700 text-sm leading-relaxed">
+            Teşekkür ederiz Ahmet Bey! IoT konusunda daha detaylı bilgi için bizimle iletişime geçebilirsiniz.
+            Size özel bir danışmanlık sunmaktan memnuniyet duyarız.
+          </div>
+        </div>
+      </div>
+
+      // Load More Comments Button
+      <div class="text-center mt-8">
+        <button class="load-more-comments bg-gray-100 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors">
+          <i class="fas fa-plus mr-2"></i>
+          Daha Fazla Yorum Yükle (15)
+        </button>
+      </div>
+
+      // No Comments State
+      <div class="no-comments text-center py-12 hidden">
+        <i class="fas fa-comments text-6xl text-gray-300 mb-4"></i>
+        <h4 class="text-xl font-semibold text-gray-600 mb-2">Henüz yorum yapılmamış</h4>
+        <p class="text-gray-500">Bu yazı hakkındaki düşüncelerinizi paylaşan ilk kişi siz olun!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+// Related CSS to add to blog.css
+.comment-form textarea {
+  min-height: 120px;
+}
+
+.comment {
+  transition: all 0.2s ease;
+}
+
+.comment:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reply {
+  background: rgba(27, 79, 114, 0.02);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.comment-like.liked {
+  color: #1B4F72;
+}
+
+// JavaScript functionality placeholders
+/*
+JAVASCRIPT FUNCTIONS TO IMPLEMENT:
+
+1. Comment Form Submission
+function submitComment(formData) {
+  // Send to backend or Formspree
+  // Update comments list
+  // Show success message
+}
+
+2. Reply Functionality
+function toggleReplyForm(commentId) {
+  // Show/hide reply form
+}
+
+3. Like/Unlike Comments
+function toggleCommentLike(commentId) {
+  // Update like count
+  // Send to backend
+}
+
+4. Load More Comments
+function loadMoreComments() {
+  // Fetch additional comments
+  // Append to list
+}
+
+5. Comment Validation
+function validateComment(data) {
+  // Check required fields
+  // Validate email format
+  // Check message length
+}
+
+6. Spam Prevention
+function checkSpamProtection() {
+  // Honeypot field check
+  // Rate limiting
+  // Basic content filtering
+}
+*/
+-->
+
+<!--
+IMPLEMENTATION NOTES:
+
+1. BACKEND REQUIREMENTS:
+   - Comment storage (database)
+   - Moderation system
+   - Spam filtering
+   - Email notifications
+   - Reply threading
+
+2. FORMSPREE SIMPLE VERSION:
+   - Each comment sends email to you
+   - Manual moderation via email
+   - No real-time display
+   - Good for low-traffic blogs
+
+3. THIRD-PARTY OPTIONS:
+   - Disqus: Full-featured, free tier available
+   - Facebook Comments: Good social integration
+   - Commento: Privacy-focused alternative
+
+4. SECURITY CONSIDERATIONS:
+   - Input sanitization
+   - XSS protection
+   - CSRF tokens
+   - Rate limiting
+   - Content moderation
+
+5. SEO BENEFITS:
+   - User-generated content
+   - Increased page engagement
+   - Social proof
+   - Fresh content signals
+-->
 
   <!-- Footer -->
   <footer class="bg-brand-primary text-white">
@@ -473,3 +789,4 @@
 
 </body>
 </html>
+
