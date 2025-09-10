@@ -530,34 +530,35 @@ window.ContactApp = {
   },
 
   // Render FAQs
-  renderFAQs: function() {
-    const container = document.querySelector('.faq-container');
-    if (!container) return;
+    renderFAQs: function() {
+      const container = document.querySelector('.faq-container');
+      if (!container) return;
 
-    const lang = this.state.currentLanguage;
-    const faqList = this.faqs[lang] || this.faqs.tr;
+      const lang = this.state.currentLanguage;
+      const faqList = this.faqs[lang] || this.faqs.tr;
 
-    const faqsHtml = faqList.map((faq, index) => `
-      <div class="faq-item border-b border-gray-200">
-        <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors" data-faq="${index}">
-          <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
-          <svg class="faq-arrow w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="faq-answer pb-6" style="display: none;" data-faq="${index}">
-          <p class="text-gray-600 leading-relaxed">
-            ${faq.answer}
-          </p>
+      const faqsHtml = faqList.map((faq, index) => `
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors" data-faq="${index}">
+            <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
+            <svg class="faq-icon w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer" data-faq="${index}">
+            <p class="text-gray-600 leading-relaxed">
+              ${faq.answer}
+            </p>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `).join('');
 
-    container.innerHTML = faqsHtml;
+      container.innerHTML = faqsHtml;
 
-    // Add FAQ event listeners after rendering
-    this.initFAQEventListeners();
-  },
+      // Add FAQ event listeners after rendering
+      this.initFAQEventListeners();
+    },
+
 
   // Initialize FAQ event listeners
   initFAQEventListeners: function() {
@@ -574,13 +575,14 @@ window.ContactApp = {
   // Toggle FAQ
     toggleFAQ: function (questionElement) {
       const faqIndex = questionElement.dataset.faq;
-      const answerElement = ArsTekYapi.utils.$(`.faq-answer[data-faq="${faqIndex}"]`);
+      const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
+      if (!answerElement) return;
 
       const isOpen = questionElement.classList.contains('active');
 
       // Close all
-      ArsTekYapi.utils.$$('.faq-question').forEach(q => q.classList.remove('active'));
-      ArsTekYapi.utils.$$('.faq-answer').forEach(a => {
+      document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+      document.querySelectorAll('.faq-answer').forEach(a => {
         a.style.maxHeight = '0px';
         a.classList.remove('active');
       });
@@ -589,9 +591,12 @@ window.ContactApp = {
       if (!isOpen) {
         questionElement.classList.add('active');
         answerElement.classList.add('active');
-        answerElement.style.maxHeight = answerElement.scrollHeight + 'px';
+        // measure then animate
+        const h = answerElement.scrollHeight;
+        answerElement.style.maxHeight = h + 'px';
       }
-    }
+    },
+
 
 
   // Utility functions
