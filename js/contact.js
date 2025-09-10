@@ -66,7 +66,6 @@ window.ContactApp = {
   init: function() {
     this.populateSectorDropdown();
     this.setupEventListeners();
-    this.initFileUpload();
     this.initFormValidation();
     this.renderFAQs();
   },
@@ -396,15 +395,6 @@ window.ContactApp = {
         formData.append('sector_name', selectedSector.text);
       }
 
-      // Add file information
-      if (this.state.uploadedFiles.length > 0) {
-        const fileNames = this.state.uploadedFiles.map(f => f.name).join(', ');
-        formData.append('uploaded_files', fileNames);
-        // IMPORTANT: standard name for multiple files
-        this.state.uploadedFiles.forEach((fileObj) => {
-          formData.append('attachments[]', fileObj.file);
-        });
-      }
 
       // Add metadata
       formData.append('_subject', 'Yeni İletişim Formu - ARS TEK YAPI');
@@ -419,8 +409,7 @@ window.ContactApp = {
       });
 
       if (response.ok) {
-        this.showSuccessMessage();
-        this.resetForm(form);
+        window.location.href = '/thanks.html';
       } else {
         const data = await response.json().catch(() => null);
         const msg = data?.errors?.map(e => e.message).join('\n')

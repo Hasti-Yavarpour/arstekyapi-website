@@ -361,26 +361,28 @@
               ></textarea>
             </div>
 
-            <!-- File Upload -->
+            <!-- Optional: file link instead of attachment -->
             <div class="form-group">
-              <label class="form-label">
-                Dosya Yükleyin (İsteğe Bağlı)
+              <label for="file_url" class="form-label">
+                Dosya Bağlantısı (İsteğe Bağlı)
               </label>
-              <div class="file-upload-container">
-                <input type="file" id="file-upload" name="files" multiple class="file-upload-input" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png">
-                <div class="file-upload-area">
-                  <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
-                  <div class="file-upload-text">Dosyalarınızı buraya sürükleyin veya tıklayarak seçin</div>
-                  <div class="file-upload-hint">PDF, DOC, resim dosyaları desteklenir. Maks. 10MB per dosya.</div>
-                </div>
-              </div>
-              <div class="file-upload-list"></div>
+              <input
+                type="url"
+                id="file_url"
+                name="file_url"
+                class="form-input"
+                placeholder="https://drive.google.com/… veya https://www.dropbox.com/…"
+              >
+              <p class="text-sm text-gray-500 mt-2">
+                Dosyalarınızı Google Drive veya Dropbox’a yükleyip bağlantıyı paylaşabilirsiniz.
+              </p>
             </div>
+
 
             <!-- Submit Button -->
             <button type="submit" class="submit-btn">
               <i class="fas fa-paper-plane mr-3"></i>
-              Projeyi Gönder
+               Gönder
             </button>
 
             <!-- Privacy Notice -->
