@@ -1,10 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <!-- SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Primary Meta Tags -->
+  <title>ARS TEK YAPI - Our Portfolio | AI, IoT and Smart Automation Projects</title>
+  <meta name="title" content="ARS TEK YAPI - Our Portfolio | AI, IoT and Smart Automation Projects">
+  <meta name="description" content="Explore our AI, IoT and smart automation projects across fintech, manufacturing, healthcare, education and more sectors. See our success stories.">
+  <meta name="keywords" content="AI projects, IoT portfolio, smart automation examples, fintech project, smart factory, smart home, e-commerce AI, healthcare technology">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="author" content="ARS TEK YAPI A.Ş.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arstekyapi.com/en/portfolio.html">
+  <meta property="og:title" content="ARS TEK YAPI - Our Portfolio | AI, IoT and Smart Automation Projects">
+  <meta property="og:description" content="Explore our AI, IoT and smart automation projects across fintech, manufacturing, healthcare, education and more sectors.">
+  <meta property="og:image" content="https://arstekyapi.com/images/og/arstekyapi-portfolio.jpg">
+  <meta property="og:site_name" content="ARS TEK YAPI">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arstekyapi.com/en/portfolio.html">
+  <meta property="twitter:title" content="ARS TEK YAPI - Our Portfolio | AI, IoT and Smart Automation Projects">
+  <meta property="twitter:description" content="Explore our AI, IoT and smart automation projects across fintech, manufacturing, healthcare, education and more sectors.">
+  <meta property="twitter:image" content="https://arstekyapi.com/images/og/arstekyapi-portfolio.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              'primary': '#1B4F72',
+              'hover': '#143c5c',
+              'secondary': '#2C3E50',
+              'accent': '#34495E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link href="/css/global.css" rel="stylesheet">
+  <link href="/css/components.css" rel="stylesheet">
+  <link href="/css/portfolio.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "ARS TEK YAPI Portfolio",
+    "description": "Explore our AI, IoT and smart automation projects",
+    "url": "https://arstekyapi.com/en/portfolio.html",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "ARS TEK YAPI A.Ş.",
+      "url": "https://arstekyapi.com"
+    }
+  }
+  </script>
 </head>
-<body>
+
+<body class="font-inter bg-white">
+
+  <!-- Header & Navbar -->
+  <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Logo & Company Name -->
+        <div class="flex items-center">
+          <a href="/en/index.html" class="flex items-center space-x-3">
+            <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
+            <div class="hidden sm:block">
+              <span class="text-brand-primary font-bold text-xl">ARS TEK YAPI</span>
+              <p class="text-gray-600 text-xs font-medium">A.Ş.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="/en/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Home
+          </a>
+          <a href="/en/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            About Us
+          </a>
+          <a href="/en/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Services
+          </a>
+          <a href="/en/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Industries
+          </a>
+          <a href="/en/portfolio.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
+            Portfolio
+          </a>
+          <a href="/en/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Contact
+          </a>
+
+          <!-- Language Dropdown -->
+          <div class="relative ml-4" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+                <a href="/en/portfolio.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                English
+              </a>
+              <a href="/portfolio.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                Türkçe
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div class="lg:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/en/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Home
+          </a>
+          <a href="/en/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            About Us
+          </a>
+          <a href="/en/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Services
+          </a>
+          <a href="/en/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Industries
+          </a>
+          <a href="/en/portfolio.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
+            Portfolio
+          </a>
+          <a href="/en/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/en/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Contact
+          </a>
+
+          <!-- Mobile Language Options -->
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Language</p>
+              <a href="/en/portfolio.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              English
+            </a>
+            <a href="/portfolio.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              Türkçe
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Spacer to prevent content from hiding behind fixed navbar -->
+  <div class="h-16"></div>
+
+  <!-- Hero Section -->
+  <section class="portfolio-hero text-white py-20 lg:py-32">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight" data-aos="fade-up">
+          Our Success Stories
+        </h1>
+        <p class="text-xl lg:text-2xl mb-8 text-blue-100 max-w-4xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+          Explore our AI, IoT and smart automation projects across 10+ industries. See how we create value in our clients' digital transformation journey.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full backdrop-blur-sm">
+            <span class="font-semibold">50+ Completed Projects</span>
+          </div>
+          <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full backdrop-blur-sm">
+            <span class="font-semibold">10+ Industries</span>
+          </div>
+          <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full backdrop-blur-sm">
+            <span class="font-semibold">100% Client Satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Filter Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Filter Controls -->
+      <div class="filter-container" data-aos="fade-up">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+            Explore Our Projects
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Filter by industry to explore solutions tailored to your needs.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 filter-buttons">
+          <button class="filter-btn active" data-filter="all">
+            <i class="fas fa-th mr-2"></i>
+            All
+          </button>
+          <button class="filter-btn" data-filter="finance">
+            <i class="fas fa-university mr-2"></i>
+            Fintech
+          </button>
+          <button class="filter-btn" data-filter="manufacturing">
+            <i class="fas fa-industry mr-2"></i>
+            Manufacturing
+          </button>
+          <button class="filter-btn" data-filter="healthcare">
+            <i class="fas fa-heartbeat mr-2"></i>
+            Healthcare
+          </button>
+          <button class="filter-btn" data-filter="retail">
+            <i class="fas fa-shopping-cart mr-2"></i>
+            E-commerce
+          </button>
+          <button class="filter-btn" data-filter="real-estate">
+            <i class="fas fa-home mr-2"></i>
+            Smart Home
+          </button>
+          <button class="filter-btn" data-filter="transportation">
+            <i class="fas fa-truck mr-2"></i>
+            Logistics
+          </button>
+          <button class="filter-btn" data-filter="agriculture">
+            <i class="fas fa-leaf mr-2"></i>
+            Agriculture
+          </button>
+          <button class="filter-btn" data-filter="education">
+            <i class="fas fa-graduation-cap mr-2"></i>
+            Education
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mt-6 max-w-md mx-auto">
+          <div class="relative">
+            <input
+              type="text"
+              id="project-search"
+              placeholder="Search projects..."
+              class="w-full px-4 py-3 pl-12 pr-4 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+            >
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <i class="fas fa-search text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Count -->
+        <div class="text-center mt-4">
+          <span id="project-count" class="text-sm text-gray-600"></span>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="portfolio-grid" class="portfolio-grid mt-12">
+        <!-- Projects will be dynamically loaded here by JavaScript -->
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-container">
+        <button id="load-more-btn" class="load-more-btn" style="display: none;">
+          <i class="fas fa-plus mr-2"></i>
+          Load More Projects
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Statistics -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="portfolio-stats" data-aos="fade-up">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            Our Success in Numbers
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Results and success metrics achieved together with our clients.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="50" data-suffix="+">0+</span>
+            <span class="stat-label">Completed Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="10" data-suffix="+">0+</span>
+            <span class="stat-label">Industry Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="100" data-suffix="%">0%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="24" data-suffix="/7">0/7</span>
+            <span class="stat-label">Technical Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies We Use -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6" data-aos="fade-up">
+          Technologies We Use
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          We use the latest and most reliable technologies in our projects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fab fa-python text-4xl text-blue-600 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">Python</h4>
+          </div>
+        </div>
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="150">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fab fa-react text-4xl text-cyan-500 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">React</h4>
+          </div>
+        </div>
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="200">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fab fa-node-js text-4xl text-green-600 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">Node.js</h4>
+          </div>
+        </div>
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="250">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fab fa-docker text-4xl text-blue-700 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">Docker</h4>
+          </div>
+        </div>
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="300">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fas fa-microchip text-4xl text-purple-600 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">ESP32</h4>
+          </div>
+        </div>
+        <div class="tech-item text-center" data-aos="zoom-in" data-aos-delay="350">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <i class="fas fa-brain text-4xl text-pink-600 mb-3"></i>
+            <h4 class="font-semibold text-gray-900">TensorFlow</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="portfolio-cta">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="content" data-aos="fade-up">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+          Let's Bring Your Project to Life Together
+        </h2>
+        <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+          As you can see in our portfolio, we develop customized solutions for every industry.
+          What kind of smart system can we design for you?
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <a href="/en/contact.html" class="bg-white text-brand-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
+            <i class="fas fa-comments mr-3"></i>
+            Get Free Consultation
+          </a>
+          <a href="/en/blog.html" class="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center">
+            <i class="fas fa-newspaper mr-3"></i>
+            Read More
+          </a>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div class="text-3xl mb-3">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Innovative Solutions</h3>
+            <p class="text-blue-200">Custom solutions with cutting-edge technologies</p>
+          </div>
+          <div>
+            <div class="text-3xl mb-3">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Fast Delivery</h3>
+            <p class="text-blue-200">We deliver your projects on time</p>
+          </div>
+          <div>
+            <div class="text-3xl mb-3">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Long-term Partnership</h3>
+            <p class="text-blue-200">We're with you even after the project</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-primary text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <!-- Company Info -->
+        <div class="col-span-1">
+          <div class="flex items-center space-x-3 mb-4">
+            <img class="h-16 w-auto" src="/images/logos/logo-footer.png" alt="ARS TEK YAPI Logo">
+            <div>
+              <span class="text-white font-bold text-lg">ARS TEK YAPI</span>
+              <p class="text-blue-200 text-xs">A.Ş.</p>
+            </div>
+          </div>
+          <p class="text-blue-100 text-sm leading-relaxed mb-4">
+            Technology company building the future of intelligent systems. We create value for industries with AI, IoT and custom software solutions.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.404-5.957 1.404-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624.003 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="/en/about.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">About Us</a></li>
+            <li><a href="/en/services.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Our Services</a></li>
+            <li><a href="/en/industries.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Industries</a></li>
+            <li><a href="/en/portfolio.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Our Portfolio</a></li>
+            <li><a href="/en/blog.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Blog</a></li>
+            <li><a href="/en/contact.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="/en/services.html#ai-ml" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">AI & Machine Learning</a></li>
+            <li><a href="/en/services.html#iot" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">IoT Systems</a></li>
+            <li><a href="/en/services.html#web-development" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Web & App Development</a></li>
+            <li><a href="/en/services.html#fintech" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Fintech Solutions</a></li>
+            <li><a href="/en/services.html#smart-home" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Smart Home Automation</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-span-1">
+          <h3 class="text-white font-semibold text-lg mb-4">Contact</h3>
+          <div class="space-y-3">
+            <div class="flex items-start space-x-3">
+              <svg class="h-5 w-5 text-blue-200 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <p class="text-blue-200 text-sm">
+                Istanbul, Turkey<br>
+                (Detailed address to be added)
+              </p>
+            </div>
+            <div class="flex items-center space-x-3">
+              <svg class="h-5 w-5 text-blue-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <a href="mailto:info@arstekyapi.com" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">
+                info@arstekyapi.com
+              </a>
+            </div>
+            <div class="flex items-center space-x-3">
+              <svg class="h-5 w-5 text-blue-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              <a href="tel:+90XXXXXXXXX" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">
+                +90 XXX XXX XX XX
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-blue-800 mt-8 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p class="text-blue-200 text-sm">
+            © 2025 ARS TEK YAPI A.Ş. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Privacy Policy</a>
+            <a href="#" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">Terms of Service</a>
+            <a href="/en/contact.html" class="text-blue-200 hover:text-white transition-colors duration-200 text-sm">GDPR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+
+  <!-- Core JavaScript Files -->
+  <script src="/js/global.js" defer></script>
+  <script src="/js/portfolio.js" defer></script>
+
+  <!-- External Libraries -->
+  <!-- AOS (Animate On Scroll) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+  <!-- Font Awesome for Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+
+  <!-- Scroll to Top Button HTML -->
+  <button id="scroll-top" class="fixed bottom-6 right-6 bg-brand-primary text-white p-3 rounded-full shadow-lg opacity-0 translate-y-2 transition-all duration-300 hover:bg-brand-hover z-40">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+
+  <!-- Initialize AOS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    });
+  </script>
 
 </body>
 </html>
