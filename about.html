@@ -773,24 +773,58 @@
       const mobileMenu = document.getElementById('mobile-menu');
 
       if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
           mobileMenu.classList.toggle('hidden');
         });
       }
 
-      // Language dropdown toggle
+      // Language dropdown toggle - FIXED VERSION
       const languageBtn = document.getElementById('language-btn');
       const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
 
       if (languageBtn && languageMenu) {
-        languageBtn.addEventListener('click', function() {
-          languageMenu.classList.toggle('hidden');
+        languageBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Toggle dropdown visibility
+          const isHidden = languageMenu.classList.contains('hidden');
+          if (isHidden) {
+            languageMenu.classList.remove('hidden');
+            languageMenu.style.display = 'block';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(180deg)';
+            }
+          } else {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
         });
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
           if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
             languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
           }
         });
       }
