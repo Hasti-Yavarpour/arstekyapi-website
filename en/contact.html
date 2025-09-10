@@ -145,11 +145,11 @@
               </svg>
             </button>
             <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+              <a href="/contact.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                Turkce
+              </a>
               <a href="/en/contact.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
                 English
-              </a>
-                <a href="/contact.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                Türkçe
               </a>
             </div>
           </div>
@@ -193,11 +193,11 @@
           <!-- Mobile Language Options -->
           <div class="border-t border-gray-200 pt-3 mt-3">
             <p class="px-3 py-1 text-sm font-semibold text-gray-600">Language</p>
-              <a href="/en/contact.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              English
-            </a>
             <a href="/contact.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              Türkçe
+              Turkce
+            </a>
+            <a href="/en/contact.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              English
             </a>
           </div>
         </div>
@@ -652,6 +652,201 @@
         once: true,
         offset: 100
       });
+    });
+  </script>
+
+  <!-- FAQ Accordion and Form Functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // FAQ Accordion functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const arrow = question.querySelector('svg');
+
+        question.addEventListener('click', function() {
+          const isOpen = !answer.classList.contains('hidden');
+
+          // Close all other FAQ items
+          faqItems.forEach(otherItem => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherArrow = otherItem.querySelector('.faq-question svg');
+
+            if (otherItem !== item) {
+              otherAnswer.classList.add('hidden');
+              otherArrow.classList.remove('rotate-180');
+            }
+          });
+
+          // Toggle current item
+          if (isOpen) {
+            answer.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+          } else {
+            answer.classList.remove('hidden');
+            arrow.classList.add('rotate-180');
+          }
+        });
+      });
+
+      // Populate sector dropdown with English options
+      const sectorSelect = document.getElementById('sector-select');
+      if (sectorSelect) {
+        const sectors = [
+          'Select your industry...',
+          'Healthcare & Medical',
+          'Manufacturing & Industry',
+          'Retail & E-commerce',
+          'Finance & Banking',
+          'Transportation & Logistics',
+          'Real Estate & Construction',
+          'Agriculture & Food',
+          'Education & Training',
+          'Hospitality & Tourism',
+          'Energy & Utilities',
+          'Technology & Software',
+          'Other'
+        ];
+
+        sectors.forEach((sector, index) => {
+          const option = document.createElement('option');
+          option.value = index === 0 ? '' : sector;
+          option.textContent = sector;
+          if (index === 0) option.disabled = true;
+          sectorSelect.appendChild(option);
+        });
+      }
+
+      // Form validation with English error messages
+      const form = document.getElementById('contact-form');
+      if (form) {
+        // Custom validation messages in English
+        const validationMessages = {
+          required: 'This field is required.',
+          email: 'Please enter a valid email address.',
+          minLength: 'This field is too short.',
+          pattern: 'Please enter a valid format.'
+        };
+
+        // Remove existing error messages
+        function clearErrors() {
+          const errorElements = form.querySelectorAll('.error-message');
+          errorElements.forEach(el => el.remove());
+
+          const errorInputs = form.querySelectorAll('.border-red-500');
+          errorInputs.forEach(input => {
+            input.classList.remove('border-red-500');
+            input.classList.add('border-gray-300');
+          });
+        }
+
+        // Show error message
+        function showError(input, message) {
+          input.classList.remove('border-gray-300');
+          input.classList.add('border-red-500');
+
+          // Remove existing error for this input
+          const existingError = input.parentNode.querySelector('.error-message');
+          if (existingError) {
+            existingError.remove();
+          }
+
+          // Add new error message
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'error-message flex items-center text-red-600 text-sm mt-1';
+          errorDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i>${message}`;
+          input.parentNode.appendChild(errorDiv);
+        }
+
+        // Validate individual field
+        function validateField(input) {
+          const value = input.value.trim();
+          let isValid = true;
+
+          // Required field validation
+          if (input.hasAttribute('required') && !value) {
+            showError(input, validationMessages.required);
+            isValid = false;
+          }
+          // Email validation
+          else if (input.type === 'email' && value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(value)) {
+              showError(input, validationMessages.email);
+              isValid = false;
+            }
+          }
+          // Minimum length validation
+          else if (input.hasAttribute('minlength') && value) {
+            const minLength = parseInt(input.getAttribute('minlength'));
+            if (value.length < minLength) {
+              showError(input, validationMessages.minLength);
+              isValid = false;
+            }
+          }
+
+          return isValid;
+        }
+
+        // Real-time validation
+        const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+        inputs.forEach(input => {
+          input.addEventListener('blur', function() {
+            validateField(this);
+          });
+
+          input.addEventListener('input', function() {
+            // Clear error on input if field becomes valid
+            if (this.classList.contains('border-red-500')) {
+              const isValid = validateField(this);
+              if (isValid) {
+                this.classList.remove('border-red-500');
+                this.classList.add('border-gray-300');
+                const errorMsg = this.parentNode.querySelector('.error-message');
+                if (errorMsg) errorMsg.remove();
+              }
+            }
+          });
+        });
+
+        // Form submission validation
+        form.addEventListener('submit', function(e) {
+          clearErrors();
+
+          let isFormValid = true;
+          inputs.forEach(input => {
+            const isValid = validateField(input);
+            if (!isValid) {
+              isFormValid = false;
+            }
+          });
+
+          if (!isFormValid) {
+            e.preventDefault();
+
+            // Show error banner
+            const errorBanner = document.getElementById('form-error-banner');
+            if (errorBanner) {
+              errorBanner.classList.remove('hidden');
+              errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Focus on first error field
+            const firstError = form.querySelector('.border-red-500');
+            if (firstError) {
+              firstError.focus();
+            }
+          } else {
+            // Hide error banner if form is valid
+            const errorBanner = document.getElementById('form-error-banner');
+            if (errorBanner) {
+              errorBanner.classList.add('hidden');
+            }
+          }
+        });
+      }
     });
   </script>
 
