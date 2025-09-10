@@ -658,5 +658,48 @@
 
   </script>
 
+  <!-- Language Dropdown (safe, self-contained) -->
+  <script>
+  (function () {
+    const btn  = document.getElementById('language-btn');
+    const menu = document.getElementById('language-menu');
+    const arrow = document.getElementById('dropdown-arrow');
+
+    if (!btn || !menu) return;
+
+    // ensure parent is positioning context
+    const wrap = document.getElementById('language-dropdown');
+    if (wrap && !wrap.classList.contains('relative')) wrap.classList.add('relative');
+
+    // make sure menu starts hidden and above stuff
+    menu.classList.add('hidden');
+    menu.classList.add('z-50');
+
+    let open = false;
+    const setOpen = (v) => {
+      open = v;
+      btn.setAttribute('aria-expanded', String(v));
+      menu.classList.toggle('hidden', !v);
+      if (arrow) arrow.classList.toggle('rotate-180', v);
+    };
+
+    // toggle on click
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!open);
+    });
+
+    // close on outside click
+    document.addEventListener('click', function (e) {
+      if (!btn.contains(e.target) && !menu.contains(e.target)) setOpen(false);
+    });
+
+    // close on Esc
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+  </script>
+
 </body>
 </html>
