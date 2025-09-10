@@ -1,7 +1,6 @@
 /**
  * ARS TEK YAPI - Contact Page JavaScript
- * Contact form functionality with Formspree integration
- * Language-aware version with full dropdown support
+ * Working FAQ implementation with proper toggle functionality
  */
 
 window.ARS = window.ARS || {};
@@ -529,7 +528,7 @@ window.ContactApp = {
     inputsWithError.forEach(input => input.classList.remove('error'));
   },
 
-  // Render FAQs
+  // Render FAQs with working toggle functionality
   renderFAQs: function() {
     const container = document.querySelector('.faq-container');
     if (!container) return;
@@ -537,80 +536,76 @@ window.ContactApp = {
     const lang = this.state.currentLanguage;
     const faqList = this.faqs[lang] || this.faqs.tr;
 
-    const faqsHtml = faqList.map((faq, index) => `
-      <div class="faq-item">
-        <button class="faq-question" data-faq="${index}">
-          <span>${faq.question}</span>
-          <svg class="faq-arrow w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="faq-answer" data-faq="${index}" style="display: none;">
-          <p>${faq.answer}</p>
-        </div>
-      </div>
-    `).join('');
+    // Create FAQ items with proper structure
+    container.innerHTML = '';
 
-    container.innerHTML = faqsHtml;
+    faqList.forEach((faq, index) => {
+      // Create FAQ item wrapper
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item border-b border-gray-200';
 
-    // Add FAQ event listeners after rendering
-    this.initFAQEventListeners();
-  },
+      // Create question button
+      const question = document.createElement('button');
+      question.className = 'faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors';
+      question.setAttribute('type', 'button');
+      question.innerHTML = `
+        <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
+        <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      `;
 
-  // Initialize FAQ event listeners
-  initFAQEventListeners: function() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
+      // Create answer div
+      const answer = document.createElement('div');
+      answer.className = 'faq-answer hidden pb-6';
+      answer.innerHTML = `
+        <p class="text-gray-600 leading-relaxed">${faq.answer}</p>
+      `;
 
-    faqQuestions.forEach(question => {
-      question.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.toggleFAQ(question);
+      // Add click event to question
+      question.addEventListener('click', () => {
+        this.toggleFAQ(question, answer);
       });
+
+      // Append elements
+      faqItem.appendChild(question);
+      faqItem.appendChild(answer);
+      container.appendChild(faqItem);
     });
   },
 
-  // Toggle FAQ
-  toggleFAQ: function(questionElement) {
-    const faqIndex = questionElement.dataset.faq;
-    const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
-    const arrow = questionElement.querySelector('.faq-arrow');
+  // Toggle FAQ with proper show/hide functionality
+  toggleFAQ: function(questionElement, answerElement) {
+    const isOpen = !answerElement.classList.contains('hidden');
+    const arrow = questionElement.querySelector('svg');
 
-    if (!answerElement) return;
-
-    // Close other FAQs first
+    // Close all other FAQs first
     const allQuestions = document.querySelectorAll('.faq-question');
     const allAnswers = document.querySelectorAll('.faq-answer');
-    const allArrows = document.querySelectorAll('.faq-arrow');
 
-    allQuestions.forEach((q, i) => {
+    allQuestions.forEach(q => {
       if (q !== questionElement) {
         q.classList.remove('text-brand-primary');
+        const qArrow = q.querySelector('svg');
+        if (qArrow) qArrow.classList.remove('rotate-180');
       }
     });
 
-    allAnswers.forEach((a, i) => {
+    allAnswers.forEach(a => {
       if (a !== answerElement) {
-        a.style.display = 'none';
-      }
-    });
-
-    allArrows.forEach((arr, i) => {
-      if (arr !== arrow) {
-        arr.classList.remove('rotate-180');
+        a.classList.add('hidden');
       }
     });
 
     // Toggle current FAQ
-    const isOpen = answerElement.style.display === 'block';
-
     if (isOpen) {
       // Close current FAQ
-      answerElement.style.display = 'none';
+      answerElement.classList.add('hidden');
       questionElement.classList.remove('text-brand-primary');
       if (arrow) arrow.classList.remove('rotate-180');
     } else {
       // Open current FAQ
-      answerElement.style.display = 'block';
+      answerElement.classList.remove('hidden');
       questionElement.classList.add('text-brand-primary');
       if (arrow) arrow.classList.add('rotate-180');
     }
