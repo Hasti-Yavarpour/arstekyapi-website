@@ -269,11 +269,15 @@
             enctype="multipart/form-data"
             novalidate>
 
+            <!-- Hidden field for language-aware redirect -->
+            <input type="hidden" name="_next" value="https://arstekyapi.com/en/thanks.html">
+
             <!-- Error message container -->
             <div id="form-error-banner" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
               <strong class="font-bold">Error:</strong>
               <span class="block">Please correct the form errors.</span>
             </div>
+
             <!-- Name and Email Row -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div class="form-group">
@@ -331,7 +335,19 @@
                   class="form-select"
                   required
                 >
-                  <!-- Options will be populated by JavaScript -->
+                  <option value="" disabled selected>Select your industry...</option>
+                  <option value="Healthcare & Medical">Healthcare & Medical</option>
+                  <option value="Manufacturing & Industry">Manufacturing & Industry</option>
+                  <option value="Retail & E-commerce">Retail & E-commerce</option>
+                  <option value="Finance & Banking">Finance & Banking</option>
+                  <option value="Transportation & Logistics">Transportation & Logistics</option>
+                  <option value="Real Estate & Construction">Real Estate & Construction</option>
+                  <option value="Agriculture & Food">Agriculture & Food</option>
+                  <option value="Education & Training">Education & Training</option>
+                  <option value="Hospitality & Tourism">Hospitality & Tourism</option>
+                  <option value="Energy & Utilities">Energy & Utilities</option>
+                  <option value="Technology & Software">Technology & Software</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
             </div>
@@ -500,7 +516,102 @@
       </div>
 
       <div class="faq-container" data-aos="fade-up" data-aos-delay="300">
-        <!-- FAQ items will be populated by JavaScript -->
+        <!-- FAQ Item 1 -->
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">How do your project processes work?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              Our process begins with a detailed analysis of your needs. We conduct a free consultation, create a customized project plan,
+              develop with regular feedback, and provide post-launch support. Each project follows agile methodology for maximum efficiency.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">What technologies do you use?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              We use cutting-edge technologies including Python, Node.js, React, AI frameworks (TensorFlow, PyTorch),
+              IoT platforms (ESP32, Raspberry Pi), cloud services (AWS, Azure), and industry-specific tools.
+              Technology selection depends on your specific project requirements.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">How long do projects take?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              It varies depending on project complexity. Simple IoT projects take 2-4 weeks, comprehensive AI integrations
+              can take 2-6 months. We provide you with a detailed timeline during the initial consultation.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">What support services do you provide?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              We offer 24/7 technical support, regular system maintenance, security updates, performance optimization,
+              staff training, and emergency response services. Support packages are customized according to your needs.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item border-b border-gray-200">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">Do you provide cost estimates?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              Yes, we provide free detailed cost estimates. After understanding your requirements, we prepare a comprehensive
+              proposal including development costs, infrastructure requirements, and ongoing maintenance fees.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+          <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors">
+            <span class="text-lg font-semibold text-gray-900">Can you work with existing systems?</span>
+            <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="faq-answer hidden pb-6">
+            <p class="text-gray-600 leading-relaxed">
+              Absolutely! We specialize in system integration and can seamlessly connect new solutions with your existing
+              infrastructure. We ensure minimal disruption to your current operations during the integration process.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="400">
@@ -655,9 +766,60 @@
     });
   </script>
 
-  <!-- FAQ Accordion and Form Functionality -->
+  <!-- Language Dropdown and Mobile Menu Functionality -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Language dropdown elements
+      const languageBtn = document.getElementById('language-btn');
+      const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      // Language dropdown toggle
+      if (languageBtn && languageMenu) {
+        languageBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+
+          // Toggle dropdown visibility
+          languageMenu.classList.toggle('hidden');
+
+          // Rotate arrow
+          if (dropdownArrow) {
+            dropdownArrow.classList.toggle('rotate-180');
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
+            languageMenu.classList.add('hidden');
+            if (dropdownArrow) {
+              dropdownArrow.classList.remove('rotate-180');
+            }
+          }
+        });
+      }
+
+      // Mobile menu toggle
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Close mobile menu when clicking on a link
+      const mobileLinks = mobileMenu?.querySelectorAll('a');
+      if (mobileLinks) {
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+
       // FAQ Accordion functionality
       const faqItems = document.querySelectorAll('.faq-item');
 
@@ -691,38 +853,10 @@
         });
       });
 
-      // Populate sector dropdown with English options
-      const sectorSelect = document.getElementById('sector-select');
-      if (sectorSelect) {
-        const sectors = [
-          'Select your industry...',
-          'Healthcare & Medical',
-          'Manufacturing & Industry',
-          'Retail & E-commerce',
-          'Finance & Banking',
-          'Transportation & Logistics',
-          'Real Estate & Construction',
-          'Agriculture & Food',
-          'Education & Training',
-          'Hospitality & Tourism',
-          'Energy & Utilities',
-          'Technology & Software',
-          'Other'
-        ];
-
-        sectors.forEach((sector, index) => {
-          const option = document.createElement('option');
-          option.value = index === 0 ? '' : sector;
-          option.textContent = sector;
-          if (index === 0) option.disabled = true;
-          sectorSelect.appendChild(option);
-        });
-      }
-
-      // Form validation with English error messages
+      // Form validation with English error messages only
       const form = document.getElementById('contact-form');
       if (form) {
-        // Custom validation messages in English
+        // English validation messages
         const validationMessages = {
           required: 'This field is required.',
           email: 'Please enter a valid email address.',
@@ -730,8 +864,8 @@
           pattern: 'Please enter a valid format.'
         };
 
-        // Remove existing error messages
-        function clearErrors() {
+        // Remove ALL existing error messages
+        function clearAllErrors() {
           const errorElements = form.querySelectorAll('.error-message');
           errorElements.forEach(el => el.remove());
 
@@ -742,8 +876,8 @@
           });
         }
 
-        // Show error message
-        function showError(input, message) {
+        // Show English error message only
+        function showEnglishError(input, message) {
           input.classList.remove('border-gray-300');
           input.classList.add('border-red-500');
 
@@ -753,7 +887,7 @@
             existingError.remove();
           }
 
-          // Add new error message
+          // Add new English error message
           const errorDiv = document.createElement('div');
           errorDiv.className = 'error-message flex items-center text-red-600 text-sm mt-1';
           errorDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i>${message}`;
@@ -765,16 +899,22 @@
           const value = input.value.trim();
           let isValid = true;
 
+          // Clear existing errors first
+          const existingError = input.parentNode.querySelector('.error-message');
+          if (existingError) {
+            existingError.remove();
+          }
+
           // Required field validation
           if (input.hasAttribute('required') && !value) {
-            showError(input, validationMessages.required);
+            showEnglishError(input, validationMessages.required);
             isValid = false;
           }
           // Email validation
           else if (input.type === 'email' && value) {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(value)) {
-              showError(input, validationMessages.email);
+              showEnglishError(input, validationMessages.email);
               isValid = false;
             }
           }
@@ -782,9 +922,15 @@
           else if (input.hasAttribute('minlength') && value) {
             const minLength = parseInt(input.getAttribute('minlength'));
             if (value.length < minLength) {
-              showError(input, validationMessages.minLength);
+              showEnglishError(input, validationMessages.minLength);
               isValid = false;
             }
+          }
+
+          // If valid, restore normal styling
+          if (isValid) {
+            input.classList.remove('border-red-500');
+            input.classList.add('border-gray-300');
           }
 
           return isValid;
@@ -802,8 +948,6 @@
             if (this.classList.contains('border-red-500')) {
               const isValid = validateField(this);
               if (isValid) {
-                this.classList.remove('border-red-500');
-                this.classList.add('border-gray-300');
                 const errorMsg = this.parentNode.querySelector('.error-message');
                 if (errorMsg) errorMsg.remove();
               }
@@ -813,7 +957,7 @@
 
         // Form submission validation
         form.addEventListener('submit', function(e) {
-          clearErrors();
+          clearAllErrors();
 
           let isFormValid = true;
           inputs.forEach(input => {
