@@ -28,16 +28,21 @@ window.ContactApp = {
         email: 'Geçerli bir e-posta adresi giriniz.',
         tooShort: (min) => `En az ${min} karakter olmalıdır.`,
         tooLong: (max) => `En fazla ${max} karakter olabilir.`,
-        invalid: 'Geçersiz değer.'
+        invalid: 'Geçersiz değer.',
+        bannerTitle: 'Hata:',
+        bannerBody: 'Lütfen form hatalarını düzeltin.'
       },
       en: {
         required: 'This field is required.',
         email: 'Please enter a valid email address.',
         tooShort: (min) => `Must be at least ${min} characters.`,
         tooLong: (max) => `Must be at most ${max} characters.`,
-        invalid: 'Invalid value.'
+        invalid: 'Invalid value.',
+        bannerTitle: 'Error:',
+        bannerBody: 'Please fix the errors in the form.'
       }
     },
+
 
 
   // Sector options for the contact form
@@ -81,20 +86,32 @@ window.ContactApp = {
   ],
 
   // Show banner error above form
-    showBannerError: function(message) {
+    showBannerError: function(customMessage) {
       const banner = ArsTekYapi.utils.$('#form-error-banner');
       if (!banner) return;
 
-      banner.querySelector('span').textContent = message;
+      const lang = ArsTekYapi.state.currentLanguage || 'tr';
+      const msgPack = this.messages[lang] || this.messages.tr;
+
+      // Set text
+      const strongEl = banner.querySelector('strong');
+      const spanEl = banner.querySelector('span');
+      if (strongEl) strongEl.textContent = msgPack.bannerTitle;
+      spanEl.textContent = customMessage || msgPack.bannerBody;
+
+      // Reveal
       banner.classList.remove('hidden');
+
+      // Scroll so the banner is visible below your fixed navbar
+      const header = document.querySelector('header');
+      const offset = header ? (header.offsetHeight + 12) : 80; // small padding
+      // Use your global smooth scroll util
+      ArsTekYapi.utils.scrollTo(banner, 600, offset);
     },
 
-    // Hide banner error
     hideBannerError: function() {
       const banner = ArsTekYapi.utils.$('#form-error-banner');
-      if (banner) {
-        banner.classList.add('hidden');
-      }
+      if (banner) banner.classList.add('hidden');
     },
 
 
@@ -382,12 +399,15 @@ window.ContactApp = {
 
   // Clear field error
   clearFieldError: function(field) {
-    field.classList.remove('error');
-    const errorDiv = field.parentNode.querySelector('.form-error');
-    if (errorDiv) {
-      errorDiv.remove();
-    }
-  },
+      field.classList.remove('error');
+      const errorDiv = field.parentNode.querySelector('.form-error');
+      if (errorDiv) errorDiv.remove();
+
+      // If no fields have error class, hide the top banner
+      const anyError = ArsTekYapi.utils.$('.form-input.error, .form-textarea.error, .form-select.error');
+      if (!anyError) this.hideBannerError();
+    },
+
 
   // Show general error message
   showError: function(message) {
@@ -412,9 +432,22 @@ window.ContactApp = {
     });
 
     if (!isFormValid) {
-      this.showBannerError('Lütfen form hatalarını düzeltin.');
+      // Show bilingual banner and scroll to it
+      this.showBannerError();
+
+      // Focus the first invalid field and ensure it’s visible too
+      const firstInvalid = form.querySelector('.form-input.error, .form-textarea.error, .form-select.error')
+                           || form.querySelector(':invalid');
+      if (firstInvalid) {
+        firstInvalid.focus({ preventScroll: true });
+
+        const header = document.querySelector('header');
+        const offset = header ? (header.offsetHeight + 12) : 80;
+        ArsTekYapi.utils.scrollTo(firstInvalid, 600, offset);
+      }
       return;
     }
+
 
     // Show loading state
     this.state.isSubmitting = true;
@@ -448,15 +481,19 @@ window.ContactApp = {
       });
 
       if (response.ok) {
-        this.hideBannerError();
-        window.location.href = '/thanks.html';
-      } else {
-        const data = await response.json().catch(() => null);
-        const msg = data?.errors?.map(e => e.message).join('\n')
-                || data?.message
-                || `HTTP ${response.status} – Form submission failed`;
-        throw new Error(msg);
-      }
+      // Hide any previous error banner
+      this.hideBannerError();
+
+      // Redirect to the thank you page
+      window.location.href = '/thanks.html';
+    } else {
+      const data = await response.json().catch(() => null);
+      const msg = data?.errors?.map(e => e.message).join('\n')
+              || data?.message
+              || `HTTP ${response.status} – Form submission failed`;
+      throw new Error(msg);
+    }
+
 
     } catch (error) {
       console.error('Form submission error:', error);
