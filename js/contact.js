@@ -22,6 +22,24 @@ window.ContactApp = {
     isSubmitting: false
   },
 
+  messages: {
+      tr: {
+        required: 'Bu alan zorunludur.',
+        email: 'Geçerli bir e-posta adresi giriniz.',
+        tooShort: (min) => `En az ${min} karakter olmalıdır.`,
+        tooLong: (max) => `En fazla ${max} karakter olabilir.`,
+        invalid: 'Geçersiz değer.'
+      },
+      en: {
+        required: 'This field is required.',
+        email: 'Please enter a valid email address.',
+        tooShort: (min) => `Must be at least ${min} characters.`,
+        tooLong: (max) => `Must be at most ${max} characters.`,
+        invalid: 'Invalid value.'
+      }
+    },
+
+
   // Sector options for the contact form
   sectors: [
     { value: '', text: 'Sektörünüzü seçin...' , disabled: true },
@@ -61,6 +79,24 @@ window.ContactApp = {
       answer: 'Her proje için özel teklifler hazırlıyoruz. İlk danışmanlık ücretsizdir. Proje kapsamı belirlendikten sonra sabit fiyat veya zaman bazlı fiyatlandırma seçenekleri sunuyoruz.'
     }
   ],
+
+  // Show banner error above form
+    showBannerError: function(message) {
+      const banner = ArsTekYapi.utils.$('#form-error-banner');
+      if (!banner) return;
+
+      banner.querySelector('span').textContent = message;
+      banner.classList.remove('hidden');
+    },
+
+    // Hide banner error
+    hideBannerError: function() {
+      const banner = ArsTekYapi.utils.$('#form-error-banner');
+      if (banner) {
+        banner.classList.add('hidden');
+      }
+    },
+
 
   // Initialize contact page
   init: function() {
@@ -264,25 +300,28 @@ window.ContactApp = {
     });
   },
 
-  // Get Turkish validation messages
   getValidationMessage: function(input) {
-    const validity = input.validity;
+      const lang = ArsTekYapi.state.currentLanguage || 'tr';
+      const msgs = this.messages[lang] || this.messages.tr;
 
-    if (validity.valueMissing) {
-      return 'Bu alan zorunludur.';
-    }
-    if (validity.typeMismatch) {
-      if (input.type === 'email') return 'Geçerli bir e-posta adresi giriniz.';
-    }
-    if (validity.tooShort) {
-      return `En az ${input.minLength} karakter olmalıdır.`;
-    }
-    if (validity.tooLong) {
-      return `En fazla ${input.maxLength} karakter olabilir.`;
-    }
+      const validity = input.validity;
 
-    return 'Geçersiz değer.';
-  },
+      if (validity.valueMissing) {
+        return msgs.required;
+      }
+      if (validity.typeMismatch) {
+        if (input.type === 'email') return msgs.email;
+      }
+      if (validity.tooShort) {
+        return msgs.tooShort(input.minLength);
+      }
+      if (validity.tooLong) {
+        return msgs.tooLong(input.maxLength);
+      }
+
+      return msgs.invalid;
+    },
+
 
   // Validate individual field
   validateField: function(field) {
@@ -373,7 +412,7 @@ window.ContactApp = {
     });
 
     if (!isFormValid) {
-      this.showError('Lütfen form hatalarını düzeltin.');
+      this.showBannerError('Lütfen form hatalarını düzeltin.');
       return;
     }
 
@@ -409,6 +448,7 @@ window.ContactApp = {
       });
 
       if (response.ok) {
+        this.hideBannerError();
         window.location.href = '/thanks.html';
       } else {
         const data = await response.json().catch(() => null);
@@ -553,6 +593,8 @@ window.ContactApp = {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
   }
 };
+
+
 
 // Initialize contact app when DOM is ready
 ArsTekYapi.utils.ready(() => {
