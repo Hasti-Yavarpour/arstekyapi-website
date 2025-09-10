@@ -1,7 +1,7 @@
 /**
  * ARS TEK YAPI - Contact Page JavaScript
  * Contact form functionality with Formspree integration
- * Language-aware version
+ * Language-aware version with full dropdown support
  */
 
 window.ARS = window.ARS || {};
@@ -127,6 +127,10 @@ window.ContactApp = {
       {
         question: 'Do you provide cost estimates?',
         answer: 'Yes, we provide free detailed cost estimates. After understanding your requirements, we prepare a comprehensive proposal including development costs, infrastructure requirements, and ongoing maintenance fees.'
+      },
+      {
+        question: 'Can you work with existing systems?',
+        answer: 'Absolutely! We specialize in system integration and can seamlessly connect new solutions with your existing infrastructure. We ensure minimal disruption to your current operations during the integration process.'
       }
     ]
   },
@@ -186,9 +190,64 @@ window.ContactApp = {
     if (banner) banner.classList.add('hidden');
   },
 
+  // Initialize navigation functionality
+  initNavigation: function() {
+    // Language dropdown elements
+    const languageBtn = document.getElementById('language-btn');
+    const languageMenu = document.getElementById('language-menu');
+    const dropdownArrow = document.getElementById('dropdown-arrow');
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Language dropdown toggle
+    if (languageBtn && languageMenu) {
+      languageBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+
+        // Toggle dropdown visibility
+        languageMenu.classList.toggle('hidden');
+
+        // Rotate arrow
+        if (dropdownArrow) {
+          dropdownArrow.classList.toggle('rotate-180');
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
+          languageMenu.classList.add('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.classList.remove('rotate-180');
+          }
+        }
+      });
+    }
+
+    // Mobile menu toggle
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileLinks) {
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  },
+
   // Initialize contact page
   init: function() {
     this.detectLanguage();
+    this.initNavigation();
     this.populateSectorDropdown();
     this.setupEventListeners();
     this.initFormValidation();
@@ -235,14 +294,6 @@ window.ContactApp = {
       input.addEventListener('input', (e) => {
         this.clearFieldError(e.target);
       });
-    });
-
-    // FAQ toggles
-    document.addEventListener('click', (e) => {
-      if (e.target.matches('.faq-question') || e.target.closest('.faq-question')) {
-        const question = e.target.closest('.faq-question');
-        this.toggleFAQ(question);
-      }
     });
   },
 
@@ -490,11 +541,11 @@ window.ContactApp = {
       <div class="faq-item border-b border-gray-200">
         <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors" data-faq="${index}">
           <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
-          <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="faq-arrow w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="faq-answer hidden pb-6" data-faq="${index}">
+        <div class="faq-answer pb-6" style="display: none;" data-faq="${index}">
           <p class="text-gray-600 leading-relaxed">
             ${faq.answer}
           </p>
@@ -503,40 +554,67 @@ window.ContactApp = {
     `).join('');
 
     container.innerHTML = faqsHtml;
+
+    // Add FAQ event listeners after rendering
+    this.initFAQEventListeners();
+  },
+
+  // Initialize FAQ event listeners
+  initFAQEventListeners: function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleFAQ(question);
+      });
+    });
   },
 
   // Toggle FAQ
   toggleFAQ: function(questionElement) {
     const faqIndex = questionElement.dataset.faq;
     const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
+    const arrow = questionElement.querySelector('.faq-arrow');
 
-    // Close other FAQs
+    if (!answerElement) return;
+
+    // Close other FAQs first
     const allQuestions = document.querySelectorAll('.faq-question');
     const allAnswers = document.querySelectorAll('.faq-answer');
+    const allArrows = document.querySelectorAll('.faq-arrow');
 
     allQuestions.forEach((q, i) => {
-      if (i.toString() !== faqIndex) {
-        q.classList.remove('active');
-        const arrow = q.querySelector('svg');
-        if (arrow) arrow.classList.remove('rotate-180');
+      if (q !== questionElement) {
+        q.classList.remove('text-brand-primary');
       }
     });
 
     allAnswers.forEach((a, i) => {
-      if (i.toString() !== faqIndex) {
-        a.classList.add('hidden');
+      if (a !== answerElement) {
+        a.style.display = 'none';
+      }
+    });
+
+    allArrows.forEach((arr, i) => {
+      if (arr !== arrow) {
+        arr.classList.remove('rotate-180');
       }
     });
 
     // Toggle current FAQ
-    questionElement.classList.toggle('active');
-    const arrow = questionElement.querySelector('svg');
-    if (arrow) {
-      arrow.classList.toggle('rotate-180');
-    }
+    const isOpen = answerElement.style.display === 'block';
 
-    if (answerElement) {
-      answerElement.classList.toggle('hidden');
+    if (isOpen) {
+      // Close current FAQ
+      answerElement.style.display = 'none';
+      questionElement.classList.remove('text-brand-primary');
+      if (arrow) arrow.classList.remove('rotate-180');
+    } else {
+      // Open current FAQ
+      answerElement.style.display = 'block';
+      questionElement.classList.add('text-brand-primary');
+      if (arrow) arrow.classList.add('rotate-180');
     }
   },
 
