@@ -1,16 +1,16 @@
 /**
  * ARS TEK YAPI - Contact Page JavaScript
  * Contact form functionality with Formspree integration
+ * Language-aware version
  */
 
 window.ARS = window.ARS || {};
-
 
 // Contact page app object
 window.ContactApp = {
   // Configuration
   config: {
-    formspreeEndpoint: 'https://formspree.io/f/mgvldorz', // Replace with actual Formspree URL
+    formspreeEndpoint: 'https://formspree.io/f/mgvldorz',
     maxFileSize: 10 * 1024 * 1024, // 10MB in bytes
     allowedFileTypes: ['pdf', 'doc', 'docx', 'txt', 'jpg', 'jpeg', 'png'],
     maxFiles: 3
@@ -19,104 +19,176 @@ window.ContactApp = {
   // State
   state: {
     uploadedFiles: [],
-    isSubmitting: false
+    isSubmitting: false,
+    currentLanguage: 'tr' // default to Turkish
   },
 
+  // Localized messages
   messages: {
-      tr: {
-        required: 'Bu alan zorunludur.',
-        email: 'Geçerli bir e-posta adresi giriniz.',
-        tooShort: (min) => `En az ${min} karakter olmalıdır.`,
-        tooLong: (max) => `En fazla ${max} karakter olabilir.`,
-        invalid: 'Geçersiz değer.',
-        bannerTitle: 'Hata:',
-        bannerBody: 'Lütfen form hatalarını düzeltin.'
-      },
-      en: {
-        required: 'This field is required.',
-        email: 'Please enter a valid email address.',
-        tooShort: (min) => `Must be at least ${min} characters.`,
-        tooLong: (max) => `Must be at most ${max} characters.`,
-        invalid: 'Invalid value.',
-        bannerTitle: 'Error:',
-        bannerBody: 'Please fix the errors in the form.'
-      }
+    tr: {
+      required: 'Bu alan zorunludur.',
+      email: 'Geçerli bir e-posta adresi giriniz.',
+      tooShort: (min) => `En az ${min} karakter olmalıdır.`,
+      tooLong: (max) => `En fazla ${max} karakter olabilir.`,
+      invalid: 'Geçersiz değer.',
+      bannerTitle: 'Hata:',
+      bannerBody: 'Lütfen form hatalarını düzeltin.',
+      submitting: 'Gönderiliyor...',
+      submitError: 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz veya doğrudan e-posta ile iletişime geçin.'
     },
-
-
-
-  // Sector options for the contact form
-  sectors: [
-    { value: '', text: 'Sektörünüzü seçin...' , disabled: true },
-    { value: 'healthcare', text: 'Sağlık & Tıp' },
-    { value: 'manufacturing', text: 'İmalat & Endüstri' },
-    { value: 'retail', text: 'Perakende & E-ticaret' },
-    { value: 'finance', text: 'Finans & Bankacılık' },
-    { value: 'transportation', text: 'Taşımacılık & Lojistik' },
-    { value: 'real-estate', text: 'Gayrimenkul & İnşaat' },
-    { value: 'agriculture', text: 'Tarım & Gıda' },
-    { value: 'education', text: 'Eğitim & Öğretim' },
-    { value: 'hospitality', text: 'Otelcilik & Turizm' },
-    { value: 'energy', text: 'Enerji & Kamu Hizmetleri' },
-    { value: 'other', text: 'Diğer' }
-  ],
-
-  // FAQ data
-  faqs: [
-    {
-      question: 'Proje süreçleriniz nasıl işliyor?',
-      answer: 'Projelerimiz analiz, tasarım, geliştirme, test ve teslim aşamalarından oluşur. Her aşamada müşterimizle yakın çalışarak şeffaf bir süreç yürütüyoruz.'
-    },
-    {
-      question: 'Hangi teknolojileri kullanıyorsunuz?',
-      answer: 'AI/ML için Python ve TensorFlow, IoT için ESP32 ve Raspberry Pi, web geliştirme için React ve Django kullanıyoruz. Projenize en uygun teknoloji yığınını öneriyoruz.'
-    },
-    {
-      question: 'Proje süresi ne kadar sürer?',
-      answer: 'Proje karmaşıklığına göre değişir. Basit IoT projeleri 2-4 hafta, kapsamlı AI entegrasyonları 2-6 ay sürebilir. İlk görüşmede size detaylı zaman çizelgesi sunuyoruz.'
-    },
-    {
-      question: 'Destek hizmetleriniz nelerdir?',
-      answer: '7/24 teknik destek, düzenli bakım, güncelleme hizmetleri ve eğitim programları sunuyoruz. Teslim sonrası 1 yıl garanti kapsamındayız.'
-    },
-    {
-      question: 'Fiyatlandırma nasıl çalışıyor?',
-      answer: 'Her proje için özel teklifler hazırlıyoruz. İlk danışmanlık ücretsizdir. Proje kapsamı belirlendikten sonra sabit fiyat veya zaman bazlı fiyatlandırma seçenekleri sunuyoruz.'
+    en: {
+      required: 'This field is required.',
+      email: 'Please enter a valid email address.',
+      tooShort: (min) => `Must be at least ${min} characters.`,
+      tooLong: (max) => `Must be at most ${max} characters.`,
+      invalid: 'Invalid value.',
+      bannerTitle: 'Error:',
+      bannerBody: 'Please correct the form errors.',
+      submitting: 'Sending...',
+      submitError: 'An error occurred while sending the form. Please try again or contact us directly via email.'
     }
-  ],
+  },
+
+  // Sector options (language-aware)
+  sectors: {
+    tr: [
+      { value: '', text: 'Sektörünüzü seçin...', disabled: true },
+      { value: 'healthcare', text: 'Sağlık & Tıp' },
+      { value: 'manufacturing', text: 'İmalat & Endüstri' },
+      { value: 'retail', text: 'Perakende & E-ticaret' },
+      { value: 'finance', text: 'Finans & Bankacılık' },
+      { value: 'transportation', text: 'Taşımacılık & Lojistik' },
+      { value: 'real-estate', text: 'Gayrimenkul & İnşaat' },
+      { value: 'agriculture', text: 'Tarım & Gıda' },
+      { value: 'education', text: 'Eğitim & Öğretim' },
+      { value: 'hospitality', text: 'Otelcilik & Turizm' },
+      { value: 'energy', text: 'Enerji & Kamu Hizmetleri' },
+      { value: 'technology', text: 'Teknoloji & Yazılım' },
+      { value: 'other', text: 'Diğer' }
+    ],
+    en: [
+      { value: '', text: 'Select your industry...', disabled: true },
+      { value: 'healthcare', text: 'Healthcare & Medical' },
+      { value: 'manufacturing', text: 'Manufacturing & Industry' },
+      { value: 'retail', text: 'Retail & E-commerce' },
+      { value: 'finance', text: 'Finance & Banking' },
+      { value: 'transportation', text: 'Transportation & Logistics' },
+      { value: 'real-estate', text: 'Real Estate & Construction' },
+      { value: 'agriculture', text: 'Agriculture & Food' },
+      { value: 'education', text: 'Education & Training' },
+      { value: 'hospitality', text: 'Hospitality & Tourism' },
+      { value: 'energy', text: 'Energy & Utilities' },
+      { value: 'technology', text: 'Technology & Software' },
+      { value: 'other', text: 'Other' }
+    ]
+  },
+
+  // FAQ data (language-aware)
+  faqs: {
+    tr: [
+      {
+        question: 'Proje süreçleriniz nasıl işliyor?',
+        answer: 'Projelerimiz analiz, tasarım, geliştirme, test ve teslim aşamalarından oluşur. Her aşamada müşterimizle yakın çalışarak şeffaf bir süreç yürütüyoruz.'
+      },
+      {
+        question: 'Hangi teknolojileri kullanıyorsunuz?',
+        answer: 'AI/ML için Python ve TensorFlow, IoT için ESP32 ve Raspberry Pi, web geliştirme için React ve Django kullanıyoruz. Projenize en uygun teknoloji yığınını öneriyoruz.'
+      },
+      {
+        question: 'Proje süresi ne kadar sürer?',
+        answer: 'Proje karmaşıklığına göre değişir. Basit IoT projeleri 2-4 hafta, kapsamlı AI entegrasyonları 2-6 ay sürebilir. İlk görüşmede size detaylı zaman çizelgesi sunuyoruz.'
+      },
+      {
+        question: 'Destek hizmetleriniz nelerdir?',
+        answer: '7/24 teknik destek, düzenli bakım, güncelleme hizmetleri ve eğitim programları sunuyoruz. Teslim sonrası 1 yıl garanti kapsamındayız.'
+      },
+      {
+        question: 'Fiyatlandırma nasıl çalışıyor?',
+        answer: 'Her proje için özel teklifler hazırlıyoruz. İlk danışmanlık ücretsizdir. Proje kapsamı belirlendikten sonra sabit fiyat veya zaman bazlı fiyatlandırma seçenekleri sunuyoruz.'
+      }
+    ],
+    en: [
+      {
+        question: 'How do your project processes work?',
+        answer: 'Our process begins with a detailed analysis of your needs. We conduct a free consultation, create a customized project plan, develop with regular feedback, and provide post-launch support. Each project follows agile methodology for maximum efficiency.'
+      },
+      {
+        question: 'What technologies do you use?',
+        answer: 'We use cutting-edge technologies including Python, Node.js, React, AI frameworks (TensorFlow, PyTorch), IoT platforms (ESP32, Raspberry Pi), cloud services (AWS, Azure), and industry-specific tools. Technology selection depends on your specific project requirements.'
+      },
+      {
+        question: 'How long do projects take?',
+        answer: 'It varies depending on project complexity. Simple IoT projects take 2-4 weeks, comprehensive AI integrations can take 2-6 months. We provide you with a detailed timeline during the initial consultation.'
+      },
+      {
+        question: 'What support services do you provide?',
+        answer: 'We offer 24/7 technical support, regular system maintenance, security updates, performance optimization, staff training, and emergency response services. Support packages are customized according to your needs.'
+      },
+      {
+        question: 'Do you provide cost estimates?',
+        answer: 'Yes, we provide free detailed cost estimates. After understanding your requirements, we prepare a comprehensive proposal including development costs, infrastructure requirements, and ongoing maintenance fees.'
+      }
+    ]
+  },
+
+  // Detect current language from page
+  detectLanguage: function() {
+    // Check data-lang attribute on body
+    const body = document.body;
+    if (body.getAttribute('data-lang')) {
+      this.state.currentLanguage = body.getAttribute('data-lang');
+      return this.state.currentLanguage;
+    }
+
+    // Check URL path
+    const path = window.location.pathname;
+    if (path.includes('/en/')) {
+      this.state.currentLanguage = 'en';
+    } else {
+      this.state.currentLanguage = 'tr';
+    }
+
+    return this.state.currentLanguage;
+  },
+
+  // Get localized message
+  getMessage: function(key, ...args) {
+    const lang = this.state.currentLanguage;
+    const msgPack = this.messages[lang] || this.messages.tr;
+
+    if (typeof msgPack[key] === 'function') {
+      return msgPack[key](...args);
+    }
+
+    return msgPack[key] || key;
+  },
 
   // Show banner error above form
-    showBannerError: function(customMessage) {
-      const banner = ArsTekYapi.utils.$('#form-error-banner');
-      if (!banner) return;
+  showBannerError: function(customMessage) {
+    const banner = document.getElementById('form-error-banner');
+    if (!banner) return;
 
-      const lang = ArsTekYapi.state.currentLanguage || 'tr';
-      const msgPack = this.messages[lang] || this.messages.tr;
+    // Set text
+    const strongEl = banner.querySelector('strong');
+    const spanEl = banner.querySelector('span');
+    if (strongEl) strongEl.textContent = this.getMessage('bannerTitle');
+    if (spanEl) spanEl.textContent = customMessage || this.getMessage('bannerBody');
 
-      // Set text
-      const strongEl = banner.querySelector('strong');
-      const spanEl = banner.querySelector('span');
-      if (strongEl) strongEl.textContent = msgPack.bannerTitle;
-      spanEl.textContent = customMessage || msgPack.bannerBody;
+    // Reveal
+    banner.classList.remove('hidden');
 
-      // Reveal
-      banner.classList.remove('hidden');
+    // Scroll to banner
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  },
 
-      // Scroll so the banner is visible below your fixed navbar
-      const header = document.querySelector('header');
-      const offset = header ? (header.offsetHeight + 12) : 80; // small padding
-      // Use your global smooth scroll util
-      ArsTekYapi.utils.scrollTo(banner, 600, offset);
-    },
-
-    hideBannerError: function() {
-      const banner = ArsTekYapi.utils.$('#form-error-banner');
-      if (banner) banner.classList.add('hidden');
-    },
-
+  hideBannerError: function() {
+    const banner = document.getElementById('form-error-banner');
+    if (banner) banner.classList.add('hidden');
+  },
 
   // Initialize contact page
   init: function() {
+    this.detectLanguage();
     this.populateSectorDropdown();
     this.setupEventListeners();
     this.initFormValidation();
@@ -125,11 +197,14 @@ window.ContactApp = {
 
   // Populate sector dropdown
   populateSectorDropdown: function() {
-    const select = ArsTekYapi.utils.$('#sector-select');
+    const select = document.getElementById('sector-select');
     if (!select) return;
 
+    const lang = this.state.currentLanguage;
+    const sectorList = this.sectors[lang] || this.sectors.tr;
+
     select.innerHTML = '';
-    this.sectors.forEach(sector => {
+    sectorList.forEach(sector => {
       const option = document.createElement('option');
       option.value = sector.value;
       option.textContent = sector.text;
@@ -142,7 +217,7 @@ window.ContactApp = {
   // Setup event listeners
   setupEventListeners: function() {
     // Contact form submission
-    const form = ArsTekYapi.utils.$('#contact-form');
+    const form = document.getElementById('contact-form');
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -151,7 +226,7 @@ window.ContactApp = {
     }
 
     // Real-time form validation
-    const inputs = ArsTekYapi.utils.$$('.form-input, .form-textarea, .form-select');
+    const inputs = document.querySelectorAll('.form-input, .form-textarea, .form-select');
     inputs.forEach(input => {
       input.addEventListener('blur', (e) => {
         this.validateField(e.target);
@@ -171,141 +246,9 @@ window.ContactApp = {
     });
   },
 
-  // Initialize file upload
-  initFileUpload: function() {
-    const uploadArea = ArsTekYapi.utils.$('.file-upload-area');
-    const fileInput = ArsTekYapi.utils.$('#file-upload');
-
-    if (!uploadArea || !fileInput) return;
-
-    // Click to upload
-    uploadArea.addEventListener('click', () => {
-      fileInput.click();
-    });
-
-    // File input change
-    fileInput.addEventListener('change', (e) => {
-      this.handleFileSelect(e.target.files);
-    });
-
-    // Drag and drop
-    uploadArea.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      uploadArea.classList.add('dragover');
-    });
-
-    uploadArea.addEventListener('dragleave', () => {
-      uploadArea.classList.remove('dragover');
-    });
-
-    uploadArea.addEventListener('drop', (e) => {
-      e.preventDefault();
-      uploadArea.classList.remove('dragover');
-      this.handleFileSelect(e.dataTransfer.files);
-    });
-  },
-
-  // Handle file selection
-  handleFileSelect: function(files) {
-    const fileArray = Array.from(files);
-
-    // Check total file limit
-    if (this.state.uploadedFiles.length + fileArray.length > this.config.maxFiles) {
-      this.showError(`Maksimum ${this.config.maxFiles} dosya yükleyebilirsiniz.`);
-      return;
-    }
-
-    fileArray.forEach(file => {
-      if (this.validateFile(file)) {
-        const fileObj = {
-          id: ArsTekYapi.utils.generateId(),
-          file: file,
-          name: file.name,
-          size: this.formatFileSize(file.size),
-          type: this.getFileType(file.name)
-        };
-
-        this.state.uploadedFiles.push(fileObj);
-      }
-    });
-
-    this.updateFileList();
-    this.updateUploadArea();
-  },
-
-  // Validate file
-  validateFile: function(file) {
-    // Check file size
-    if (file.size > this.config.maxFileSize) {
-      this.showError(`Dosya boyutu ${this.formatFileSize(this.config.maxFileSize)} boyutunu aşmamalıdır.`);
-      return false;
-    }
-
-    // Check file type
-    const extension = this.getFileExtension(file.name);
-    if (!this.config.allowedFileTypes.includes(extension)) {
-      this.showError(`Desteklenen dosya türleri: ${this.config.allowedFileTypes.join(', ')}`);
-      return false;
-    }
-
-    return true;
-  },
-
-  // Update file list display
-  updateFileList: function() {
-    const container = ArsTekYapi.utils.$('.file-upload-list');
-    if (!container) return;
-
-    if (this.state.uploadedFiles.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-
-    const filesHtml = this.state.uploadedFiles.map(fileObj => `
-      <div class="file-item">
-        <div class="file-item-info">
-          <i class="fas ${this.getFileIcon(fileObj.type)} file-item-icon"></i>
-          <span class="file-item-name">${fileObj.name}</span>
-          <span class="file-item-size">(${fileObj.size})</span>
-        </div>
-        <button type="button" class="file-item-remove" onclick="ContactApp.removeFile('${fileObj.id}')">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-    `).join('');
-
-    container.innerHTML = filesHtml;
-  },
-
-  // Remove file
-  removeFile: function(fileId) {
-    this.state.uploadedFiles = this.state.uploadedFiles.filter(file => file.id !== fileId);
-    this.updateFileList();
-    this.updateUploadArea();
-  },
-
-  // Update upload area display
-  updateUploadArea: function() {
-    const uploadText = ArsTekYapi.utils.$('.file-upload-text');
-    const uploadHint = ArsTekYapi.utils.$('.file-upload-hint');
-
-    if (!uploadText || !uploadHint) return;
-
-    const remainingFiles = this.config.maxFiles - this.state.uploadedFiles.length;
-
-    if (remainingFiles > 0) {
-      uploadText.textContent = 'Dosyalarınızı buraya sürükleyin veya tıklayarak seçin';
-      uploadHint.textContent = `${remainingFiles} dosya daha ekleyebilirsiniz. Maks. ${this.formatFileSize(this.config.maxFileSize)} per dosya.`;
-    } else {
-      uploadText.textContent = 'Maksimum dosya sayısına ulaştınız';
-      uploadHint.textContent = 'Yeni dosya eklemek için mevcut dosyaları kaldırın.';
-    }
-  },
-
   // Initialize form validation
   initFormValidation: function() {
-    // Custom validation messages in Turkish
-    const form = ArsTekYapi.utils.$('#contact-form');
+    const form = document.getElementById('contact-form');
     if (!form) return;
 
     const inputs = form.querySelectorAll('input, textarea, select');
@@ -318,27 +261,23 @@ window.ContactApp = {
   },
 
   getValidationMessage: function(input) {
-      const lang = ArsTekYapi.state.currentLanguage || 'tr';
-      const msgs = this.messages[lang] || this.messages.tr;
+    const validity = input.validity;
 
-      const validity = input.validity;
+    if (validity.valueMissing) {
+      return this.getMessage('required');
+    }
+    if (validity.typeMismatch) {
+      if (input.type === 'email') return this.getMessage('email');
+    }
+    if (validity.tooShort) {
+      return this.getMessage('tooShort', input.minLength);
+    }
+    if (validity.tooLong) {
+      return this.getMessage('tooLong', input.maxLength);
+    }
 
-      if (validity.valueMissing) {
-        return msgs.required;
-      }
-      if (validity.typeMismatch) {
-        if (input.type === 'email') return msgs.email;
-      }
-      if (validity.tooShort) {
-        return msgs.tooShort(input.minLength);
-      }
-      if (validity.tooLong) {
-        return msgs.tooLong(input.maxLength);
-      }
-
-      return msgs.invalid;
-    },
-
+    return this.getMessage('invalid');
+  },
 
   // Validate individual field
   validateField: function(field) {
@@ -351,25 +290,25 @@ window.ContactApp = {
 
     // Required field check
     if (field.hasAttribute('required') && !value) {
-      message = 'Bu alan zorunludur.';
+      message = this.getMessage('required');
       isValid = false;
     }
 
     // Email validation
-    if (field.type === 'email' && value && !ArsTekYapi.utils.isValidEmail(value)) {
-      message = 'Geçerli bir e-posta adresi giriniz.';
+    if (field.type === 'email' && value && !this.isValidEmail(value)) {
+      message = this.getMessage('email');
       isValid = false;
     }
 
     // Name validation (minimum 2 characters)
     if (field.name === 'name' && value && value.length < 2) {
-      message = 'İsim en az 2 karakter olmalıdır.';
+      message = this.getMessage('tooShort', 2);
       isValid = false;
     }
 
     // Message validation (minimum 10 characters)
     if (field.name === 'message' && value && value.length < 10) {
-      message = 'Mesaj en az 10 karakter olmalıdır.';
+      message = this.getMessage('tooShort', 10);
       isValid = false;
     }
 
@@ -383,31 +322,41 @@ window.ContactApp = {
   // Show field error
   showFieldError: function(field, message) {
     field.classList.add('error');
+    field.classList.remove('border-gray-300');
+    field.classList.add('border-red-500');
 
     // Remove existing error
-    const existingError = field.parentNode.querySelector('.form-error');
+    const existingError = field.parentNode.querySelector('.form-error, .error-message');
     if (existingError) {
       existingError.remove();
     }
 
     // Add new error
     const errorDiv = document.createElement('div');
-    errorDiv.className = 'form-error';
-    errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i>${message}`;
+    errorDiv.className = 'form-error error-message flex items-center text-red-600 text-sm mt-1';
+    errorDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i>${message}`;
     field.parentNode.appendChild(errorDiv);
   },
 
   // Clear field error
   clearFieldError: function(field) {
-      field.classList.remove('error');
-      const errorDiv = field.parentNode.querySelector('.form-error');
-      if (errorDiv) errorDiv.remove();
+    field.classList.remove('error');
+    field.classList.remove('border-red-500');
+    field.classList.add('border-gray-300');
 
-      // If no fields have error class, hide the top banner
-      const anyError = ArsTekYapi.utils.$('.form-input.error, .form-textarea.error, .form-select.error');
-      if (!anyError) this.hideBannerError();
-    },
+    const errorDiv = field.parentNode.querySelector('.form-error, .error-message');
+    if (errorDiv) errorDiv.remove();
 
+    // If no fields have error class, hide the top banner
+    const anyError = document.querySelector('.form-input.error, .form-textarea.error, .form-select.error');
+    if (!anyError) this.hideBannerError();
+  },
+
+  // Email validation utility
+  isValidEmail: function(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  },
 
   // Show general error message
   showError: function(message) {
@@ -432,29 +381,25 @@ window.ContactApp = {
     });
 
     if (!isFormValid) {
-      // Show bilingual banner and scroll to it
+      // Show banner and scroll to it
       this.showBannerError();
 
-      // Focus the first invalid field and ensure it’s visible too
+      // Focus the first invalid field
       const firstInvalid = form.querySelector('.form-input.error, .form-textarea.error, .form-select.error')
                            || form.querySelector(':invalid');
       if (firstInvalid) {
         firstInvalid.focus({ preventScroll: true });
-
-        const header = document.querySelector('header');
-        const offset = header ? (header.offsetHeight + 12) : 80;
-        ArsTekYapi.utils.scrollTo(firstInvalid, 600, offset);
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       return;
     }
-
 
     // Show loading state
     this.state.isSubmitting = true;
     const submitBtn = form.querySelector('.submit-btn');
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="spinner"></span>Gönderiliyor...';
+    submitBtn.innerHTML = `<span class="spinner"></span>${this.getMessage('submitting')}`;
     form.classList.add('form-loading');
 
     try {
@@ -462,16 +407,30 @@ window.ContactApp = {
 
       // Add sector info
       const sectorSelect = form.querySelector('#sector-select');
-      const selectedSector = this.sectors.find(s => s.value === sectorSelect.value);
+      const lang = this.state.currentLanguage;
+      const sectorList = this.sectors[lang] || this.sectors.tr;
+      const selectedSector = sectorList.find(s => s.value === sectorSelect.value);
       if (selectedSector) {
         formData.append('sector_name', selectedSector.text);
       }
 
+      // Add language info
+      formData.append('form_language', lang);
+
+      // Set the correct redirect URL based on language
+      const baseUrl = window.location.origin;
+      const redirectUrl = lang === 'en' ? `${baseUrl}/en/thanks.html` : `${baseUrl}/thanks.html`;
+
+      // Update the hidden field
+      const nextField = form.querySelector('input[name="_next"]');
+      if (nextField) {
+        nextField.value = redirectUrl;
+      }
 
       // Add metadata
-      formData.append('_subject', 'Yeni İletişim Formu - ARS TEK YAPI');
+      const subjectPrefix = lang === 'en' ? 'New Contact Form - ARS TEK YAPI' : 'Yeni İletişim Formu - ARS TEK YAPI';
+      formData.append('_subject', subjectPrefix);
       formData.append('_replyto', formData.get('email'));
-      formData.append('_next', window.location.origin + '/thanks.html');
 
       // Submit to Formspree
       const response = await fetch(this.config.formspreeEndpoint, {
@@ -481,24 +440,22 @@ window.ContactApp = {
       });
 
       if (response.ok) {
-      // Hide any previous error banner
-      this.hideBannerError();
+        // Hide any previous error banner
+        this.hideBannerError();
 
-      // Redirect to the thank you page
-      window.location.href = '/thanks.html';
-    } else {
-      const data = await response.json().catch(() => null);
-      const msg = data?.errors?.map(e => e.message).join('\n')
-              || data?.message
-              || `HTTP ${response.status} – Form submission failed`;
-      throw new Error(msg);
-    }
-
+        // Redirect to the correct thank you page
+        window.location.href = redirectUrl;
+      } else {
+        const data = await response.json().catch(() => null);
+        const msg = data?.errors?.map(e => e.message).join('\n')
+                || data?.message
+                || `HTTP ${response.status} – Form submission failed`;
+        throw new Error(msg);
+      }
 
     } catch (error) {
       console.error('Form submission error:', error);
-      // Show the REAL reason from Formspree here
-      this.showError(error.message || 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz veya doğrudan e-posta ile iletişime geçin.');
+      this.showError(error.message || this.getMessage('submitError'));
     } finally {
       // Reset loading state
       this.state.isSubmitting = false;
@@ -506,38 +463,15 @@ window.ContactApp = {
       submitBtn.innerHTML = originalBtnText;
       form.classList.remove('form-loading');
     }
-
-  },
-
-  // Show success message
-  showSuccessMessage: function() {
-    const form = ArsTekYapi.utils.$('#contact-form');
-    const successHtml = `
-      <div class="success-message">
-        <i class="fas fa-check-circle"></i>
-        <div>
-          <strong>Mesajınız başarıyla gönderildi!</strong><br>
-          En kısa sürede size geri dönüş yapacağız. Teşekkür ederiz.
-        </div>
-      </div>
-    `;
-
-    form.insertAdjacentHTML('afterbegin', successHtml);
-
-    // Scroll to success message
-    const successMsg = form.querySelector('.success-message');
-    successMsg.scrollIntoView({ behavior: 'smooth' });
   },
 
   // Reset form
   resetForm: function(form) {
     form.reset();
     this.state.uploadedFiles = [];
-    this.updateFileList();
-    this.updateUploadArea();
 
     // Clear all errors
-    const errors = form.querySelectorAll('.form-error');
+    const errors = form.querySelectorAll('.form-error, .error-message');
     errors.forEach(error => error.remove());
 
     const inputsWithError = form.querySelectorAll('.error');
@@ -546,19 +480,24 @@ window.ContactApp = {
 
   // Render FAQs
   renderFAQs: function() {
-    const container = ArsTekYapi.utils.$('.faq-container');
+    const container = document.querySelector('.faq-container');
     if (!container) return;
 
-    const faqsHtml = this.faqs.map((faq, index) => `
-      <div class="faq-item">
-        <button class="faq-question" data-faq="${index}">
-          <span>${faq.question}</span>
-          <i class="fas fa-chevron-down faq-icon"></i>
+    const lang = this.state.currentLanguage;
+    const faqList = this.faqs[lang] || this.faqs.tr;
+
+    const faqsHtml = faqList.map((faq, index) => `
+      <div class="faq-item border-b border-gray-200">
+        <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors" data-faq="${index}">
+          <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
+          <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
         </button>
-        <div class="faq-answer" data-faq="${index}">
-          <div class="faq-answer-content">
+        <div class="faq-answer hidden pb-6" data-faq="${index}">
+          <p class="text-gray-600 leading-relaxed">
             ${faq.answer}
-          </div>
+          </p>
         </div>
       </div>
     `).join('');
@@ -569,27 +508,36 @@ window.ContactApp = {
   // Toggle FAQ
   toggleFAQ: function(questionElement) {
     const faqIndex = questionElement.dataset.faq;
-    const answerElement = ArsTekYapi.utils.$(`.faq-answer[data-faq="${faqIndex}"]`);
+    const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
 
     // Close other FAQs
-    const allQuestions = ArsTekYapi.utils.$$('.faq-question');
-    const allAnswers = ArsTekYapi.utils.$$('.faq-answer');
+    const allQuestions = document.querySelectorAll('.faq-question');
+    const allAnswers = document.querySelectorAll('.faq-answer');
 
     allQuestions.forEach((q, i) => {
       if (i.toString() !== faqIndex) {
         q.classList.remove('active');
+        const arrow = q.querySelector('svg');
+        if (arrow) arrow.classList.remove('rotate-180');
       }
     });
 
     allAnswers.forEach((a, i) => {
       if (i.toString() !== faqIndex) {
-        a.classList.remove('active');
+        a.classList.add('hidden');
       }
     });
 
     // Toggle current FAQ
     questionElement.classList.toggle('active');
-    answerElement.classList.toggle('active');
+    const arrow = questionElement.querySelector('svg');
+    if (arrow) {
+      arrow.classList.toggle('rotate-180');
+    }
+
+    if (answerElement) {
+      answerElement.classList.toggle('hidden');
+    }
   },
 
   // Utility functions
@@ -631,10 +579,8 @@ window.ContactApp = {
   }
 };
 
-
-
 // Initialize contact app when DOM is ready
-ArsTekYapi.utils.ready(() => {
+document.addEventListener('DOMContentLoaded', function() {
   ContactApp.init();
 });
 
