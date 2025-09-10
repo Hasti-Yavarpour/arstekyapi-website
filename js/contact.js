@@ -3,6 +3,9 @@
  * Contact form functionality with Formspree integration
  */
 
+window.ARS = window.ARS || {};
+
+
 // Contact page app object
 window.ContactApp = {
   // Configuration
@@ -21,7 +24,7 @@ window.ContactApp = {
 
   // Sector options for the contact form
   sectors: [
-    { value: '', text: 'Sektörünüzü seçin...' },
+    { value: '', text: 'Sektörünüzü seçin...' , disabled: true },
     { value: 'healthcare', text: 'Sağlık & Tıp' },
     { value: 'manufacturing', text: 'İmalat & Endüstri' },
     { value: 'retail', text: 'Perakende & E-ticaret' },
@@ -78,6 +81,8 @@ window.ContactApp = {
       const option = document.createElement('option');
       option.value = sector.value;
       option.textContent = sector.text;
+      if (sector.disabled) option.disabled = true;
+      if (sector.value === '') option.selected = true;
       select.appendChild(option);
     });
   },
@@ -382,7 +387,6 @@ window.ContactApp = {
     form.classList.add('form-loading');
 
     try {
-      // Prepare form data
       const formData = new FormData(form);
 
       // Add sector info
@@ -396,10 +400,9 @@ window.ContactApp = {
       if (this.state.uploadedFiles.length > 0) {
         const fileNames = this.state.uploadedFiles.map(f => f.name).join(', ');
         formData.append('uploaded_files', fileNames);
-
-        // Add actual files
-        this.state.uploadedFiles.forEach((fileObj, index) => {
-          formData.append(`file_${index}`, fileObj.file);
+        // IMPORTANT: standard name for multiple files
+        this.state.uploadedFiles.forEach((fileObj) => {
+          formData.append('attachments[]', fileObj.file);
         });
       }
 
@@ -412,21 +415,24 @@ window.ContactApp = {
       const response = await fetch(this.config.formspreeEndpoint, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       });
 
       if (response.ok) {
         this.showSuccessMessage();
         this.resetForm(form);
       } else {
-        throw new Error('Form submission failed');
+        const data = await response.json().catch(() => null);
+        const msg = data?.errors?.map(e => e.message).join('\n')
+                || data?.message
+                || `HTTP ${response.status} – Form submission failed`;
+        throw new Error(msg);
       }
 
     } catch (error) {
       console.error('Form submission error:', error);
-      this.showError('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz veya doğrudan e-posta ile iletişime geçin.');
+      // Show the REAL reason from Formspree here
+      this.showError(error.message || 'Form gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz veya doğrudan e-posta ile iletişime geçin.');
     } finally {
       // Reset loading state
       this.state.isSubmitting = false;
@@ -434,6 +440,7 @@ window.ContactApp = {
       submitBtn.innerHTML = originalBtnText;
       form.classList.remove('form-loading');
     }
+
   },
 
   // Show success message

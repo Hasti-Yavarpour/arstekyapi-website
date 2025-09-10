@@ -110,7 +110,7 @@ window.ArsTekYapi = {
       const animation = (currentTime) => {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
-        const run = this.easeInOutCubic(timeElapsed, startPosition, distance, duration);
+        const run = ArsTekYapi.utils.easeInOutCubic(timeElapsed, startPosition, distance, duration);
         window.scrollTo(0, run);
         if (timeElapsed < duration) requestAnimationFrame(animation);
       };
