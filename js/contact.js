@@ -572,51 +572,27 @@ window.ContactApp = {
   },
 
   // Toggle FAQ
-  toggleFAQ: function(questionElement) {
-    const faqIndex = questionElement.dataset.faq;
-    const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
-    const arrow = questionElement.querySelector('.faq-arrow');
+    toggleFAQ: function (questionElement) {
+      const faqIndex = questionElement.dataset.faq;
+      const answerElement = ArsTekYapi.utils.$(`.faq-answer[data-faq="${faqIndex}"]`);
 
-    if (!answerElement) return;
+      const isOpen = questionElement.classList.contains('active');
 
-    // Close other FAQs first
-    const allQuestions = document.querySelectorAll('.faq-question');
-    const allAnswers = document.querySelectorAll('.faq-answer');
-    const allArrows = document.querySelectorAll('.faq-arrow');
+      // Close all
+      ArsTekYapi.utils.$$('.faq-question').forEach(q => q.classList.remove('active'));
+      ArsTekYapi.utils.$$('.faq-answer').forEach(a => {
+        a.style.maxHeight = '0px';
+        a.classList.remove('active');
+      });
 
-    allQuestions.forEach((q, i) => {
-      if (q !== questionElement) {
-        q.classList.remove('text-brand-primary');
+      // Open clicked if it was closed
+      if (!isOpen) {
+        questionElement.classList.add('active');
+        answerElement.classList.add('active');
+        answerElement.style.maxHeight = answerElement.scrollHeight + 'px';
       }
-    });
-
-    allAnswers.forEach((a, i) => {
-      if (a !== answerElement) {
-        a.style.display = 'none';
-      }
-    });
-
-    allArrows.forEach((arr, i) => {
-      if (arr !== arrow) {
-        arr.classList.remove('rotate-180');
-      }
-    });
-
-    // Toggle current FAQ
-    const isOpen = answerElement.style.display === 'block';
-
-    if (isOpen) {
-      // Close current FAQ
-      answerElement.style.display = 'none';
-      questionElement.classList.remove('text-brand-primary');
-      if (arrow) arrow.classList.remove('rotate-180');
-    } else {
-      // Open current FAQ
-      answerElement.style.display = 'block';
-      questionElement.classList.add('text-brand-primary');
-      if (arrow) arrow.classList.add('rotate-180');
     }
-  },
+
 
   // Utility functions
   getFileExtension: function(filename) {

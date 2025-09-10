@@ -422,7 +422,7 @@
 }
 
 .faq-answer.active {
-  max-height: 300px;
+  max-height: 1000px;
   padding: 0 2rem 1.5rem 2rem;
 }
 
