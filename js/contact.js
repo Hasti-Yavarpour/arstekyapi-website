@@ -1,6 +1,7 @@
 /**
  * ARS TEK YAPI - Contact Page JavaScript
- * Working FAQ implementation with proper toggle functionality
+ * Contact form functionality with Formspree integration
+ * Language-aware version with full dropdown support
  */
 
 window.ARS = window.ARS || {};
@@ -528,7 +529,7 @@ window.ContactApp = {
     inputsWithError.forEach(input => input.classList.remove('error'));
   },
 
-  // Render FAQs with working toggle functionality
+  // Render FAQs
   renderFAQs: function() {
     const container = document.querySelector('.faq-container');
     if (!container) return;
@@ -536,76 +537,82 @@ window.ContactApp = {
     const lang = this.state.currentLanguage;
     const faqList = this.faqs[lang] || this.faqs.tr;
 
-    // Create FAQ items with proper structure
-    container.innerHTML = '';
+    const faqsHtml = faqList.map((faq, index) => `
+      <div class="faq-item border-b border-gray-200">
+        <button class="faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors" data-faq="${index}">
+          <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
+          <svg class="faq-arrow w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="faq-answer pb-6" style="display: none;" data-faq="${index}">
+          <p class="text-gray-600 leading-relaxed">
+            ${faq.answer}
+          </p>
+        </div>
+      </div>
+    `).join('');
 
-    faqList.forEach((faq, index) => {
-      // Create FAQ item wrapper
-      const faqItem = document.createElement('div');
-      faqItem.className = 'faq-item border-b border-gray-200';
+    container.innerHTML = faqsHtml;
 
-      // Create question button
-      const question = document.createElement('button');
-      question.className = 'faq-question w-full text-left py-6 flex justify-between items-center hover:text-brand-primary transition-colors';
-      question.setAttribute('type', 'button');
-      question.innerHTML = `
-        <span class="text-lg font-semibold text-gray-900">${faq.question}</span>
-        <svg class="w-6 h-6 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      `;
+    // Add FAQ event listeners after rendering
+    this.initFAQEventListeners();
+  },
 
-      // Create answer div
-      const answer = document.createElement('div');
-      answer.className = 'faq-answer hidden pb-6';
-      answer.innerHTML = `
-        <p class="text-gray-600 leading-relaxed">${faq.answer}</p>
-      `;
+  // Initialize FAQ event listeners
+  initFAQEventListeners: function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
-      // Add click event to question
-      question.addEventListener('click', () => {
-        this.toggleFAQ(question, answer);
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleFAQ(question);
       });
-
-      // Append elements
-      faqItem.appendChild(question);
-      faqItem.appendChild(answer);
-      container.appendChild(faqItem);
     });
   },
 
-  // Toggle FAQ with proper show/hide functionality
-  toggleFAQ: function(questionElement, answerElement) {
-    const isOpen = !answerElement.classList.contains('hidden');
-    const arrow = questionElement.querySelector('svg');
+  // Toggle FAQ
+  toggleFAQ: function(questionElement) {
+    const faqIndex = questionElement.dataset.faq;
+    const answerElement = document.querySelector(`.faq-answer[data-faq="${faqIndex}"]`);
+    const arrow = questionElement.querySelector('.faq-arrow');
 
-    // Close all other FAQs first
+    if (!answerElement) return;
+
+    // Close other FAQs first
     const allQuestions = document.querySelectorAll('.faq-question');
     const allAnswers = document.querySelectorAll('.faq-answer');
+    const allArrows = document.querySelectorAll('.faq-arrow');
 
-    allQuestions.forEach(q => {
+    allQuestions.forEach((q, i) => {
       if (q !== questionElement) {
         q.classList.remove('text-brand-primary');
-        const qArrow = q.querySelector('svg');
-        if (qArrow) qArrow.classList.remove('rotate-180');
       }
     });
 
-    allAnswers.forEach(a => {
+    allAnswers.forEach((a, i) => {
       if (a !== answerElement) {
-        a.classList.add('hidden');
+        a.style.display = 'none';
+      }
+    });
+
+    allArrows.forEach((arr, i) => {
+      if (arr !== arrow) {
+        arr.classList.remove('rotate-180');
       }
     });
 
     // Toggle current FAQ
+    const isOpen = answerElement.style.display === 'block';
+
     if (isOpen) {
       // Close current FAQ
-      answerElement.classList.add('hidden');
+      answerElement.style.display = 'none';
       questionElement.classList.remove('text-brand-primary');
       if (arrow) arrow.classList.remove('rotate-180');
     } else {
       // Open current FAQ
-      answerElement.classList.remove('hidden');
+      answerElement.style.display = 'block';
       questionElement.classList.add('text-brand-primary');
       if (arrow) arrow.classList.add('rotate-180');
     }
