@@ -189,10 +189,10 @@
           <div class="border-t border-gray-200 pt-3 mt-3">
             <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
             <a href="/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇹🇷 Türkçe
+               Türkçe
             </a>
             <a href="/en/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇬🇧 English
+               English
             </a>
           </div>
         </div>
@@ -1067,15 +1067,225 @@
     </svg>
   </button>
 
-  <!-- Initialize AOS -->
+  <!-- Initialize Scripts with Fixed Dropdown -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
       AOS.init({
         duration: 800,
         easing: 'ease-in-out',
         once: true,
         offset: 100
       });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Language dropdown toggle - FIXED VERSION
+      const languageBtn = document.getElementById('language-btn');
+      const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+
+      if (languageBtn && languageMenu) {
+        languageBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Toggle dropdown visibility
+          const isHidden = languageMenu.classList.contains('hidden');
+          if (isHidden) {
+            languageMenu.classList.remove('hidden');
+            languageMenu.style.display = 'block';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(180deg)';
+            }
+          } else {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+      }
+
+      // Industry search functionality
+      const searchInput = document.getElementById('industry-search');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const searchResultsCount = document.getElementById('search-results-count');
+      const industryCards = document.querySelectorAll('.industry-card');
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const resultsCount = document.getElementById('results-count');
+
+      // Search functionality
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const searchTerm = e.target.value.toLowerCase().trim();
+
+          if (searchTerm) {
+            clearSearchBtn.style.display = 'flex';
+            performSearch(searchTerm);
+          } else {
+            clearSearchBtn.style.display = 'none';
+            searchResultsCount.style.display = 'none';
+            showAllCards();
+          }
+        });
+      }
+
+      if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          clearSearchBtn.style.display = 'none';
+          searchResultsCount.style.display = 'none';
+          showAllCards();
+        });
+      }
+
+      // Filter functionality
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+
+          // Update active tab
+          filterTabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+
+          // Clear search
+          if (searchInput) {
+            searchInput.value = '';
+            clearSearchBtn.style.display = 'none';
+            searchResultsCount.style.display = 'none';
+          }
+
+          // Filter cards
+          filterCards(filter);
+        });
+      });
+
+      function performSearch(searchTerm) {
+        let visibleCount = 0;
+
+        industryCards.forEach(card => {
+          const title = card.querySelector('.industry-title').textContent.toLowerCase();
+          const subtitle = card.querySelector('.industry-subtitle').textContent.toLowerCase();
+          const content = card.textContent.toLowerCase();
+
+          if (title.includes(searchTerm) || subtitle.includes(searchTerm) || content.includes(searchTerm)) {
+            card.classList.add('show');
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.classList.remove('show');
+            card.style.display = 'none';
+          }
+        });
+
+        // Update search results count (Turkish text)
+        searchResultsCount.textContent = `"${searchInput.value}" için ${visibleCount} sektör bulundu`;
+        searchResultsCount.style.display = 'block';
+
+        // Update results count
+        resultsCount.textContent = `Arama Sonuçları (${visibleCount} sektör)`;
+      }
+
+      function filterCards(filter) {
+        let visibleCount = 0;
+
+        industryCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.classList.add('show');
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.classList.remove('show');
+            card.style.display = 'none';
+          }
+        });
+
+        // Update results count (Turkish text)
+        const filterText = filter === 'all' ? 'Tüm Sektörler' : getFilterTextTurkish(filter);
+        resultsCount.textContent = `${filterText} (${visibleCount} sektör)`;
+      }
+
+      function getFilterTextTurkish(filter) {
+        const filterMap = {
+          'healthcare': 'Sağlık',
+          'manufacturing': 'İmalat',
+          'retail': 'Perakende',
+          'finance': 'Finans',
+          'transportation': 'Taşımacılık',
+          'realestate': 'Gayrimenkul',
+          'agriculture': 'Tarım',
+          'education': 'Eğitim',
+          'hospitality': 'Otelcilik',
+          'energy': 'Enerji'
+        };
+        return filterMap[filter] || filter;
+      }
+
+      function showAllCards() {
+        industryCards.forEach(card => {
+          card.classList.add('show');
+          card.style.display = 'block';
+        });
+
+        // Reset to "All" filter
+        filterTabs.forEach(t => t.classList.remove('active'));
+        document.querySelector('[data-filter="all"]').classList.add('active');
+        resultsCount.textContent = 'Tüm Sektörler (10 sektör)';
+      }
+
+      // Scroll to top functionality
+      const scrollTopBtn = document.getElementById('scroll-top');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
+            scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+          } else {
+            scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+            scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
+          }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
     });
   </script>
 
