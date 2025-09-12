@@ -101,41 +101,30 @@ class AboutPage {
   }
 
   // Language Dropdown Functionality
+  // Language Dropdown Functionality
   setupLanguageDropdown() {
-    const languageBtn = document.getElementById('lang-btn-new');  // Changed
-    const languageMenu = document.getElementById('lang-menu-new'); // Changed
-    const dropdownArrow = document.getElementById('lang-arrow-new'); // Changed
+    const languageBtn = document.getElementById('language-btn');
+    const languageMenu = document.getElementById('language-menu');
+    const dropdownArrow = document.getElementById('dropdown-arrow');
 
     if (languageBtn && languageMenu) {
-      languageBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation(); // Add this for mobile
-        this.toggleLanguageDropdown(languageMenu, dropdownArrow);
-      });
+      // Handle both click and touch for mobile
+      const toggleDropdown = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleLanguageDropdown(languageMenu, dropdownArrow);
+    };
 
-      // Add touch event for mobile
-      languageBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.toggleLanguageDropdown(languageMenu, dropdownArrow);
-      }, { passive: false });
+      languageBtn.addEventListener('click', toggleDropdown);
+      languageBtn.addEventListener('touchstart', toggleDropdown, { passive: false });
 
       // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
-        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-          this.closeLanguageDropdown(languageMenu, dropdownArrow);
-        }
-      });
-
-      // Handle language selection
-      const languageLinks = languageMenu.querySelectorAll('a');
-      languageLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          this.closeLanguageDropdown(languageMenu, dropdownArrow);
-        });
-      });
+      if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
+        this.closeLanguageDropdown(languageMenu, dropdownArrow);
+      }
+    });
     }
-
   }
 
   toggleLanguageDropdown(languageMenu, dropdownArrow) {
