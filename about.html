@@ -792,67 +792,6 @@
         offset: 100
       });
 
-      // Mobile menu toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-
-      // MOBILE + DESKTOP Language dropdown
-      const langBtn = document.getElementById('lang-btn-new');
-      const langMenu = document.getElementById('lang-menu-new');
-      const langArrow = document.getElementById('lang-arrow-new');
-
-      if (langBtn && langMenu) {
-        // Function to toggle dropdown
-        function toggleDropdown(e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          if (langMenu.classList.contains('hidden')) {
-            langMenu.classList.remove('hidden');
-            if (langArrow) langArrow.style.transform = 'rotate(180deg)';
-          } else {
-            langMenu.classList.add('hidden');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-          }
-        }
-
-        // Add both click and touch events for mobile compatibility
-        langBtn.addEventListener('click', toggleDropdown);
-        langBtn.addEventListener('touchstart', toggleDropdown, { passive: false });
-
-        // Close dropdown when clicking/touching outside
-        function closeDropdown(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            langMenu.classList.add('hidden');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-          }
-        }
-
-        document.addEventListener('click', closeDropdown);
-        document.addEventListener('touchstart', closeDropdown);
-      }
-
-      // Set correct language display
-      const currentLangText = document.getElementById('current-lang-text');
-      const currentLangEmoji = document.getElementById('current-lang-emoji');
-      const path = window.location.pathname;
-
-      if (path.startsWith('/en/')) {
-        if (currentLangText) currentLangText.textContent = 'EN';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
-      } else {
-        if (currentLangText) currentLangText.textContent = 'TR';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
-      }
-
-      // Rest of your existing functionality...
-      // Counter animations, smooth scrolling, etc.
 
       // Counter animation for stats
       function animateCounter(element, target, suffix = '') {
