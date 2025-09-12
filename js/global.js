@@ -498,6 +498,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
 
+  const currentLang = document.getElementById('current-lang');
+
+  // Detect current language and update display
+  const path = window.location.pathname;
+  if (path.startsWith('/en/')) {
+    currentLang.textContent = '🇬🇧';
+  } else {
+    currentLang.textContent = '🇹🇷';
+  }
+
   // Language dropdown toggle
   if (languageBtn && languageMenu) {
     languageBtn.addEventListener('click', function(e) {
