@@ -96,6 +96,14 @@
     ]
   }
   </script>
+  <style>
+  .dropdown-arrow {
+    transition: transform 0.2s ease;
+  }
+  .dropdown-arrow.rotate {
+    transform: rotate(180deg);
+  }
+  </style>
 </head>
 
 <body class="font-inter bg-white">
@@ -139,34 +147,45 @@
           <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Contact
           </a>
+        </div>
 
-          <!-- Language Dropdown -->
-          <div class="relative ml-4" id="language-dropdown">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
-              <span id="current-lang">EN</span>
-              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+        <!-- Right Side: Language Dropdown + Mobile Menu Button -->
+        <div class="flex items-center space-x-3">
+
+          <!-- Language Dropdown (Both Desktop & Mobile) -->
+          <div class="relative" id="lang-dropdown-new">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="lang-btn-new">
+              <!-- Desktop Text -->
+              <span id="current-lang-text" class="hidden sm:block font-semibold">EN</span>
+              <!-- Mobile Emoji -->
+              <span id="current-lang-emoji" class="block sm:hidden text-lg">🇬🇧</span>
+              <svg class="w-3 h-3 dropdown-arrow" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
-              <a href="/en/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 English
+            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 border border-gray-200" id="lang-menu-new">
+              <a href="/en/index.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
+                <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
+                <span class="hidden sm:inline mr-2">EN</span>
+                English
               </a>
-              <a href="/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 Türkçe
+              <a href="/index.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md">
+                <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
+                <span class="hidden sm:inline mr-2">TR</span>
+                Türkçe
               </a>
-
             </div>
           </div>
-        </div>
 
-        <!-- Mobile menu button -->
-        <div class="lg:hidden">
-          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
+          <!-- Mobile menu button -->
+          <div class="lg:hidden">
+            <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+
         </div>
       </div>
 
@@ -194,17 +213,6 @@
           <a href="/en/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Contact
           </a>
-
-          <!-- Mobile Language Options -->
-          <div class="border-t border-gray-200 pt-3 mt-3">
-            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Language</p>
-            <a href="/en/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-               English
-            </a>
-            <a href="/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-               Türkçe
-            </a>
-          </div>
         </div>
       </div>
     </nav>
@@ -814,6 +822,46 @@
         offset: 100
       });
     });
+  </script>
+  <script>
+  // Language dropdown for English version - works alongside global.js
+  document.addEventListener('DOMContentLoaded', function() {
+    // Use new IDs to avoid conflicts with global.js
+    const langBtn = document.getElementById('lang-btn-new');
+    const langMenu = document.getElementById('lang-menu-new');
+    const langArrow = document.getElementById('lang-arrow-new');
+    const currentLangText = document.getElementById('current-lang-text');
+    const currentLangEmoji = document.getElementById('current-lang-emoji');
+
+    // Set language display for English page
+    const path = window.location.pathname;
+    if (path.startsWith('/en/')) {
+      if (currentLangText) currentLangText.textContent = 'EN';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
+    } else {
+      if (currentLangText) currentLangText.textContent = 'TR';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
+    }
+
+    // Language dropdown functionality
+    if (langBtn && langMenu) {
+      langBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        langMenu.classList.toggle('hidden');
+        if (langArrow) langArrow.classList.toggle('rotate');
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+          langMenu.classList.add('hidden');
+          if (langArrow) langArrow.classList.remove('rotate');
+        }
+      });
+    }
+  });
   </script>
 
 </body>
