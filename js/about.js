@@ -101,31 +101,49 @@ class AboutPage {
   }
 
   // Language Dropdown Functionality
-  // Language Dropdown Functionality
+
   setupLanguageDropdown() {
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
+      const languageBtn = document.getElementById('lang-btn');
+      const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+      const currentLangText = document.getElementById('current-lang-text');
+      const currentLangEmoji = document.getElementById('current-lang-emoji');
 
-    if (languageBtn && languageMenu) {
-      // Handle both click and touch for mobile
-      const toggleDropdown = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      this.toggleLanguageDropdown(languageMenu, dropdownArrow);
-    };
-
-      languageBtn.addEventListener('click', toggleDropdown);
-      languageBtn.addEventListener('touchstart', toggleDropdown, { passive: false });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-      if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-        this.closeLanguageDropdown(languageMenu, dropdownArrow);
+      // Set language display
+      const path = window.location.pathname;
+      if (path.startsWith('/en/')) {
+        if (currentLangText) currentLangText.textContent = 'EN';
+        if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
+      } else {
+        if (currentLangText) currentLangText.textContent = 'TR';
+        if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
       }
-    });
+
+      if (languageBtn && languageMenu) {
+        const toggleDropdown = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (languageMenu.classList.contains('hidden')) {
+            languageMenu.classList.remove('hidden');
+            if (dropdownArrow) dropdownArrow.style.transform = 'rotate(180deg)';
+          } else {
+            languageMenu.classList.add('hidden');
+            if (dropdownArrow) dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        };
+
+        languageBtn.addEventListener('click', toggleDropdown);
+        languageBtn.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+        document.addEventListener('click', (e) => {
+          if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
+            languageMenu.classList.add('hidden');
+            if (dropdownArrow) dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      }
     }
-  }
 
   toggleLanguageDropdown(languageMenu, dropdownArrow) {
     languageMenu.classList.toggle('hidden');
