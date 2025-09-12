@@ -99,6 +99,20 @@
   .dropdown-arrow.rotate {
     transform: rotate(180deg);
   }
+  /* Mobile touch improvements */
+  @media (max-width: 640px) {
+    #lang-btn-new {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    #lang-menu-new {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      z-index: 50;
+    }
+  }
   </style>
 </head>
 
@@ -788,16 +802,17 @@
         });
       }
 
-      // SIMPLE Language dropdown that works everywhere
+      // MOBILE + DESKTOP Language dropdown
       const langBtn = document.getElementById('lang-btn-new');
       const langMenu = document.getElementById('lang-menu-new');
       const langArrow = document.getElementById('lang-arrow-new');
 
       if (langBtn && langMenu) {
-        langBtn.addEventListener('click', function(e) {
+        // Function to toggle dropdown
+        function toggleDropdown(e) {
+          e.preventDefault();
           e.stopPropagation();
 
-          // Simple toggle
           if (langMenu.classList.contains('hidden')) {
             langMenu.classList.remove('hidden');
             if (langArrow) langArrow.style.transform = 'rotate(180deg)';
@@ -805,13 +820,22 @@
             langMenu.classList.add('hidden');
             if (langArrow) langArrow.style.transform = 'rotate(0deg)';
           }
-        });
+        }
 
-        // Close when clicking anywhere else
-        document.addEventListener('click', function() {
-          langMenu.classList.add('hidden');
-          if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-        });
+        // Add both click and touch events for mobile compatibility
+        langBtn.addEventListener('click', toggleDropdown);
+        langBtn.addEventListener('touchstart', toggleDropdown, { passive: false });
+
+        // Close dropdown when clicking/touching outside
+        function closeDropdown(e) {
+          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+            langMenu.classList.add('hidden');
+            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+
+        document.addEventListener('click', closeDropdown);
+        document.addEventListener('touchstart', closeDropdown);
       }
 
       // Set correct language display
