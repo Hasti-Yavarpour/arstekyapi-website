@@ -102,15 +102,23 @@ class AboutPage {
 
   // Language Dropdown Functionality
   setupLanguageDropdown() {
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
+    const languageBtn = document.getElementById('lang-btn-new');  // Changed
+    const languageMenu = document.getElementById('lang-menu-new'); // Changed
+    const dropdownArrow = document.getElementById('lang-arrow-new'); // Changed
 
     if (languageBtn && languageMenu) {
       languageBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation(); // Add this for mobile
         this.toggleLanguageDropdown(languageMenu, dropdownArrow);
       });
+
+      // Add touch event for mobile
+      languageBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleLanguageDropdown(languageMenu, dropdownArrow);
+      }, { passive: false });
 
       // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
@@ -127,6 +135,7 @@ class AboutPage {
         });
       });
     }
+
   }
 
   toggleLanguageDropdown(languageMenu, dropdownArrow) {
