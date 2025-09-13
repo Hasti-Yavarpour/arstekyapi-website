@@ -113,6 +113,31 @@
       z-index: 50;
     }
   }
+    /* Improve mobile touch targets */
+  #lang-btn-new {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #lang-menu-new {
+    position: absolute !important;
+    z-index: 9999 !important;
+  }
+
+  /* Ensure dropdown doesn't get clipped */
+  @media (max-width: 640px) {
+    #lang-dropdown-new {
+      position: relative;
+    }
+
+    #lang-menu-new {
+      position: fixed !important;
+      right: 1rem !important;
+      top: 4rem !important;
+    }
+  }
   </style>
 </head>
 
@@ -164,22 +189,33 @@
 
           <!-- Language Dropdown (Both Desktop & Mobile) -->
           <div class="relative" id="lang-dropdown-new">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="lang-btn-new">
+            <button
+              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200 touch-manipulation select-none"
+              id="lang-btn-new"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="min-height: 44px; min-width: 44px; -webkit-tap-highlight-color: transparent;"
+            >
               <!-- Desktop Text -->
-              <span id="current-lang-text" class="hidden sm:block font-semibold">TR</span>
+              <span id="current-lang-text" class="hidden sm:block font-semibold pointer-events-none">TR</span>
               <!-- Mobile Emoji -->
-              <span id="current-lang-emoji" class="block sm:hidden text-lg">🇹🇷</span>
-              <svg class="w-3 h-3 dropdown-arrow" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
+              <span id="current-lang-emoji" class="block sm:hidden text-lg pointer-events-none">🇹🇷</span>
+              <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200 pointer-events-none" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 border border-gray-200" id="lang-menu-new">
-              <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
+            <div
+              class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200"
+              id="lang-menu-new"
+              style="z-index: 9999;"
+            >
+              <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md touch-manipulation" style="min-height: 44px;">
                 <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
                 <span class="hidden sm:inline mr-2">TR</span>
                 Türkçe
               </a>
-              <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md">
+              <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md touch-manipulation" style="min-height: 44px;">
                 <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
                 <span class="hidden sm:inline mr-2">EN</span>
                 English
@@ -847,16 +883,19 @@
     });
     </script>
     <script>
-    // Language dropdown for About page - matches index page functionality
+    // Mobile-optimized language dropdown for About page
     document.addEventListener('DOMContentLoaded', function() {
-      // Use same IDs as index page for consistency
+      console.log('About page language script loading...');
+
       const langBtn = document.getElementById('lang-btn-new');
       const langMenu = document.getElementById('lang-menu-new');
       const langArrow = document.getElementById('lang-arrow-new');
       const currentLangText = document.getElementById('current-lang-text');
       const currentLangEmoji = document.getElementById('current-lang-emoji');
 
-      // Set language display
+      console.log('Language elements found:', { langBtn, langMenu, langArrow });
+
+      // Set language display based on URL
       const path = window.location.pathname;
       if (path.startsWith('/en/')) {
         if (currentLangText) currentLangText.textContent = 'EN';
@@ -866,23 +905,69 @@
         if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
       }
 
-      // Language dropdown functionality
       if (langBtn && langMenu) {
-        langBtn.addEventListener('click', function(e) {
+        let isDropdownOpen = false;
+
+        function toggleDropdown(e) {
           e.preventDefault();
           e.stopPropagation();
 
-          langMenu.classList.toggle('hidden');
-          if (langArrow) langArrow.classList.toggle('rotate');
+          console.log('Toggle dropdown clicked, current state:', isDropdownOpen);
+
+          if (isDropdownOpen) {
+            // Close dropdown
+            langMenu.classList.add('hidden');
+            langBtn.setAttribute('aria-expanded', 'false');
+            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+            isDropdownOpen = false;
+          } else {
+            // Open dropdown
+            langMenu.classList.remove('hidden');
+            langBtn.setAttribute('aria-expanded', 'true');
+            if (langArrow) langArrow.style.transform = 'rotate(180deg)';
+            isDropdownOpen = true;
+          }
+        }
+
+        function closeDropdown() {
+          if (isDropdownOpen) {
+            langMenu.classList.add('hidden');
+            langBtn.setAttribute('aria-expanded', 'false');
+            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+            isDropdownOpen = false;
+          }
+        }
+
+        // Add multiple event listeners for better mobile support
+        langBtn.addEventListener('click', toggleDropdown);
+        langBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          toggleDropdown(e);
         });
 
-        // Close when clicking outside
+        // Close dropdown when clicking/touching outside
         document.addEventListener('click', function(e) {
           if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            langMenu.classList.add('hidden');
-            if (langArrow) langArrow.classList.remove('rotate');
+            closeDropdown();
           }
         });
+
+        document.addEventListener('touchend', function(e) {
+          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+            closeDropdown();
+          }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeDropdown();
+          }
+        });
+
+        console.log('Language dropdown events attached successfully');
+      } else {
+        console.error('Language dropdown elements not found!');
       }
     });
     </script>

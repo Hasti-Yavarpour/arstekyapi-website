@@ -102,9 +102,9 @@ class AboutPage {
 
   // Language Dropdown Functionality
 
-  setupLanguageDropdown() {
-      const languageBtn = document.getElementById('lang-btn');
-      const languageMenu = document.getElementById('language-menu');
+//  setupLanguageDropdown() {
+//      const languageBtn = document.getElementById('lang-btn');
+/*      const languageMenu = document.getElementById('language-menu');
       const dropdownArrow = document.getElementById('dropdown-arrow');
       const currentLangText = document.getElementById('current-lang-text');
       const currentLangEmoji = document.getElementById('current-lang-emoji');
@@ -143,7 +143,7 @@ class AboutPage {
           }
         });
       }
-    }
+    }*/
 
   toggleLanguageDropdown(languageMenu, dropdownArrow) {
     languageMenu.classList.toggle('hidden');
