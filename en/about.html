@@ -93,27 +93,25 @@
   </script>
 
   <style>
-  /* Mobile-first CSS */
-  #simple-lang-btn {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
+  #lang-btn-new {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   }
 
-  #simple-lang-menu {
+  #lang-menu-new {
     position: absolute !important;
-    z-index: 1001 !important;
+    z-index: 9999 !important;
   }
 
-  /* Ensure proper mobile touch targets */
   @media (max-width: 640px) {
-    #simple-lang-btn {
+    #lang-btn-new {
       min-height: 48px !important;
       min-width: 48px !important;
     }
 
-    #simple-lang-menu a {
+    #lang-menu-new a {
       min-height: 48px !important;
       padding: 12px 16px !important;
     }
@@ -169,29 +167,40 @@
 
 
           <!-- Language Dropdown (Both Desktop & Mobile) -->
-          <div class="relative">
-          <div onclick="toggleLang()" class="bg-brand-primary text-white px-3 py-2 rounded-md cursor-pointer inline-flex items-center space-x-1 hover:bg-brand-hover" style="min-height: 44px; min-width: 44px; -webkit-tap-highlight-color: transparent;">
-            <!-- Desktop Text -->
-            <span id="lang-text" class="hidden sm:block font-semibold">TR</span>
-            <!-- Mobile Emoji -->
-            <span id="lang-emoji" class="block sm:hidden" style="font-size: 18px;">🇹🇷</span>
-            <svg class="w-3 h-3" id="lang-svg" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
+          <div class="relative" id="lang-dropdown-new">
+            <button
+              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200 touch-manipulation select-none"
+              id="lang-btn-new"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="min-height: 44px; min-width: 44px; -webkit-tap-highlight-color: transparent;"
+            >
+              <!-- Desktop Text -->
+              <span id="current-lang-text" class="hidden sm:block font-semibold pointer-events-none">EN</span>
+              <!-- Mobile Emoji -->
+              <span id="current-lang-emoji" class="block sm:hidden text-lg pointer-events-none">🇬🇧</span>
+              <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200 pointer-events-none" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <div
+              class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200"
+              id="lang-menu-new"
+              style="z-index: 9999;"
+            >
+              <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md touch-manipulation" style="min-height: 44px;">
+                <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
+                <span class="hidden sm:inline mr-2">TR</span>
+                Türkçe
+              </a>
+              <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md touch-manipulation" style="min-height: 44px;">
+                <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
+                <span class="hidden sm:inline mr-2">EN</span>
+                English
+              </a>
+            </div>
           </div>
-          <div id="lang-options" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200" style="z-index: 9999;">
-            <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md" style="min-height: 44px;">
-              <span class="mr-2 sm:hidden">🇹🇷</span>
-              <span class="hidden sm:inline mr-2">TR</span>
-              Türkçe
-            </a>
-            <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md" style="min-height: 44px;">
-              <span class="mr-2 sm:hidden">🇬🇧</span>
-              <span class="hidden sm:inline mr-2">EN</span>
-              English
-            </a>
-          </div>
-        </div>
 
           <!-- Mobile menu button -->
           <div class="lg:hidden">
@@ -870,50 +879,92 @@
     });
   </script>
   <script>
-  // Global function - no conflicts possible
-  let isLangOpen = false;
-
-  function toggleLang() {
-    console.log('toggleLang called, current state:', isLangOpen);
-    const menu = document.getElementById('lang-options');
-    const arrow = document.getElementById('lang-svg');
-
-    if (isLangOpen) {
-      menu.style.display = 'none';
-      menu.classList.add('hidden');
-      if (arrow) arrow.style.transform = 'rotate(0deg)';
-      isLangOpen = false;
-    } else {
-      menu.style.display = 'block';
-      menu.classList.remove('hidden');
-      if (arrow) arrow.style.transform = 'rotate(180deg)';
-      isLangOpen = true;
-    }
-  }
-
-  // Set language on page load
+  // Mobile-optimized language dropdown for English pages
   document.addEventListener('DOMContentLoaded', function() {
-    const isEnglish = window.location.pathname.includes('/en/');
-    const langText = document.getElementById('lang-text');
-    const langEmoji = document.getElementById('lang-emoji');
+    console.log('English page language script loading...');
 
-    if (isEnglish) {
-      if (langText) langText.textContent = 'EN';
-      if (langEmoji) langEmoji.textContent = '🇬🇧';
+    const langBtn = document.getElementById('lang-btn-new');
+    const langMenu = document.getElementById('lang-menu-new');
+    const langArrow = document.getElementById('lang-arrow-new');
+    const currentLangText = document.getElementById('current-lang-text');
+    const currentLangEmoji = document.getElementById('current-lang-emoji');
+
+    console.log('Language elements found:', { langBtn, langMenu, langArrow });
+
+    // Set language display based on URL
+    const path = window.location.pathname;
+    if (path.startsWith('/en/')) {
+      if (currentLangText) currentLangText.textContent = 'EN';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
     } else {
-      if (langText) langText.textContent = 'TR';
-      if (langEmoji) langEmoji.textContent = '🇹🇷';
+      if (currentLangText) currentLangText.textContent = 'TR';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
     }
 
-    // Close on outside click
-    document.addEventListener('click', function(e) {
-      const langDiv = e.target.closest('[onclick="toggleLang()"]');
-      const langMenu = document.getElementById('lang-options');
+    if (langBtn && langMenu) {
+      let isDropdownOpen = false;
 
-      if (!langDiv && !langMenu.contains(e.target) && isLangOpen) {
-        toggleLang();
+      function toggleDropdown(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log('Toggle dropdown clicked, current state:', isDropdownOpen);
+
+        if (isDropdownOpen) {
+          // Close dropdown
+          langMenu.classList.add('hidden');
+          langBtn.setAttribute('aria-expanded', 'false');
+          if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+          isDropdownOpen = false;
+        } else {
+          // Open dropdown
+          langMenu.classList.remove('hidden');
+          langBtn.setAttribute('aria-expanded', 'true');
+          if (langArrow) langArrow.style.transform = 'rotate(180deg)';
+          isDropdownOpen = true;
+        }
       }
-    });
+
+      function closeDropdown() {
+        if (isDropdownOpen) {
+          langMenu.classList.add('hidden');
+          langBtn.setAttribute('aria-expanded', 'false');
+          if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+          isDropdownOpen = false;
+        }
+      }
+
+      // Add multiple event listeners for better mobile support
+      langBtn.addEventListener('click', toggleDropdown);
+      langBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        toggleDropdown(e);
+      });
+
+      // Close dropdown when clicking/touching outside
+      document.addEventListener('click', function(e) {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+          closeDropdown();
+        }
+      });
+
+      document.addEventListener('touchend', function(e) {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+          closeDropdown();
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeDropdown();
+        }
+      });
+
+      console.log('Language dropdown events attached successfully');
+    } else {
+      console.error('Language dropdown elements not found!');
+    }
   });
   </script>
 
