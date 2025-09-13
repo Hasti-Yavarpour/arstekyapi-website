@@ -169,38 +169,29 @@
 
 
           <!-- Language Dropdown (Both Desktop & Mobile) -->
-          <div class="relative" style="z-index: 1000;">
-            <button
-              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200"
-              id="simple-lang-btn"
-              style="min-height: 48px; min-width: 48px; -webkit-tap-highlight-color: transparent; user-select: none;"
-              type="button"
-            >
-              <!-- Desktop Text -->
-              <span id="desktop-lang" class="hidden sm:block font-semibold">TR</span>
-              <!-- Mobile Emoji -->
-              <span id="mobile-lang" class="block sm:hidden text-xl" style="font-size: 20px;">🇹🇷</span>
-              <svg class="w-3 h-3 transition-transform duration-200" id="simple-arrow" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
-            <div
-              class="hidden absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg border border-gray-200"
-              id="simple-lang-menu"
-              style="z-index: 1001; top: 100%;"
-            >
-              <a href="/about.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md" style="min-height: 48px;">
-                <span class="text-xl mr-3 sm:hidden">🇹🇷</span>
-                <span class="hidden sm:inline mr-2 font-medium">TR</span>
-                <span class="font-medium">Türkçe</span>
-              </a>
-              <a href="/en/about.html" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md" style="min-height: 48px;">
-                <span class="text-xl mr-3 sm:hidden">🇬🇧</span>
-                <span class="hidden sm:inline mr-2 font-medium">EN</span>
-                <span class="font-medium">English</span>
-              </a>
-            </div>
+          <div class="relative">
+          <div onclick="toggleLang()" class="bg-brand-primary text-white px-3 py-2 rounded-md cursor-pointer inline-flex items-center space-x-1 hover:bg-brand-hover" style="min-height: 44px; min-width: 44px; -webkit-tap-highlight-color: transparent;">
+            <!-- Desktop Text -->
+            <span id="lang-text" class="hidden sm:block font-semibold">TR</span>
+            <!-- Mobile Emoji -->
+            <span id="lang-emoji" class="block sm:hidden" style="font-size: 18px;">🇹🇷</span>
+            <svg class="w-3 h-3" id="lang-svg" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
           </div>
+          <div id="lang-options" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200" style="z-index: 9999;">
+            <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md" style="min-height: 44px;">
+              <span class="mr-2 sm:hidden">🇹🇷</span>
+              <span class="hidden sm:inline mr-2">TR</span>
+              Türkçe
+            </a>
+            <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md" style="min-height: 44px;">
+              <span class="mr-2 sm:hidden">🇬🇧</span>
+              <span class="hidden sm:inline mr-2">EN</span>
+              English
+            </a>
+          </div>
+        </div>
 
           <!-- Mobile menu button -->
           <div class="lg:hidden">
@@ -879,169 +870,50 @@
     });
   </script>
   <script>
-  // Bulletproof mobile-first language dropdown
+  // Global function - no conflicts possible
+  let isLangOpen = false;
+
+  function toggleLang() {
+    console.log('toggleLang called, current state:', isLangOpen);
+    const menu = document.getElementById('lang-options');
+    const arrow = document.getElementById('lang-svg');
+
+    if (isLangOpen) {
+      menu.style.display = 'none';
+      menu.classList.add('hidden');
+      if (arrow) arrow.style.transform = 'rotate(0deg)';
+      isLangOpen = false;
+    } else {
+      menu.style.display = 'block';
+      menu.classList.remove('hidden');
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+      isLangOpen = true;
+    }
+  }
+
+  // Set language on page load
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Starting mobile language dropdown...');
-
-    // Get elements
-    const langBtn = document.getElementById('simple-lang-btn');
-    const langMenu = document.getElementById('simple-lang-menu');
-    const langArrow = document.getElementById('simple-arrow');
-    const desktopLang = document.getElementById('desktop-lang');
-    const mobileLang = document.getElementById('mobile-lang');
-
-    console.log('Elements found:', { langBtn: !!langBtn, langMenu: !!langMenu });
-
-    // Set language based on URL
     const isEnglish = window.location.pathname.includes('/en/');
+    const langText = document.getElementById('lang-text');
+    const langEmoji = document.getElementById('lang-emoji');
+
     if (isEnglish) {
-      if (desktopLang) desktopLang.textContent = 'EN';
-      if (mobileLang) mobileLang.textContent = '🇬🇧';
+      if (langText) langText.textContent = 'EN';
+      if (langEmoji) langEmoji.textContent = '🇬🇧';
     } else {
-      if (desktopLang) desktopLang.textContent = 'TR';
-      if (mobileLang) mobileLang.textContent = '🇹🇷';
+      if (langText) langText.textContent = 'TR';
+      if (langEmoji) langEmoji.textContent = '🇹🇷';
     }
 
-    // Simple toggle function
-    let isOpen = false;
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+      const langDiv = e.target.closest('[onclick="toggleLang()"]');
+      const langMenu = document.getElementById('lang-options');
 
-    function toggleDropdown(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
+      if (!langDiv && !langMenu.contains(e.target) && isLangOpen) {
+        toggleLang();
       }
-
-      console.log('🔄 Toggle clicked, current state:', isOpen);
-
-      if (isOpen) {
-        // Close
-        langMenu.style.display = 'none';
-        langMenu.classList.add('hidden');
-        if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-        isOpen = false;
-      } else {
-        // Open
-        langMenu.style.display = 'block';
-        langMenu.classList.remove('hidden');
-        if (langArrow) langArrow.style.transform = 'rotate(180deg)';
-        isOpen = true;
-      }
-    }
-
-    function closeDropdown() {
-      if (isOpen) {
-        langMenu.style.display = 'none';
-        langMenu.classList.add('hidden');
-        if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-        isOpen = false;
-      }
-    }
-
-    if (langBtn && langMenu) {
-      // Multiple event types for mobile compatibility
-      langBtn.addEventListener('click', toggleDropdown);
-      langBtn.addEventListener('touchstart', function(e) {
-        console.log('📱 Touch start detected');
-        e.preventDefault();
-        toggleDropdown();
-      });
-      langBtn.addEventListener('touchend', function(e) {
-        console.log('📱 Touch end detected');
-        e.preventDefault();
-      });
-
-      // Close on outside click
-      document.addEventListener('click', function(e) {
-        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-          closeDropdown();
-        }
-      });
-
-      // Close on escape
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeDropdown();
-        }
-      });
-
-      console.log('✅ Language dropdown initialized successfully');
-    } else {
-      console.error('❌ Language dropdown elements not found!');
-    }
-
-    // Rest of your existing functionality...
-    // AOS initialization
-    if (typeof AOS !== 'undefined') {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100
-      });
-    }
-
-    // Mobile menu
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Counter animation
-    function animateCounter(element, target, suffix = '') {
-      let current = 0;
-      const increment = target / 100;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target + suffix;
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current) + suffix;
-        }
-      }, 20);
-    }
-
-    const counterElements = document.querySelectorAll('.stat-number');
-    if (counterElements.length > 0) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const element = entry.target;
-            const target = parseInt(element.getAttribute('data-target'));
-            const suffix = element.getAttribute('data-suffix') || '';
-            if (!isNaN(target)) {
-              element.textContent = '0' + suffix;
-              animateCounter(element, target, suffix);
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      });
-      counterElements.forEach(el => observer.observe(el));
-    }
-
-    // Scroll to top
-    const scrollTopBtn = document.getElementById('scroll-top');
-    if (scrollTopBtn) {
-      window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-          scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
-          scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
-        } else {
-          scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
-          scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
-        }
-      });
-
-      scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+    });
   });
   </script>
 
