@@ -142,41 +142,44 @@
             İletişim
           </a>
 
-          <!-- Language Dropdown -->
-          <!-- Replace the desktop language dropdown with this: -->
-          <div class="relative" id="lang-dropdown-new">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="lang-btn-new">
-              <!-- Desktop Text -->
-              <span id="current-lang-text" class="hidden sm:block font-semibold">TR</span>
-              <!-- Mobile Emoji -->
-              <span id="current-lang-emoji" class="block sm:hidden text-lg">🇹🇷</span>
-              <svg class="w-3 h-3 dropdown-arrow" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 border border-gray-200" id="lang-menu-new">
-              <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
-                <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
-                <span class="hidden sm:inline mr-2">TR</span>
-                Türkçe
-              </a>
-              <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md">
-                <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
-                <span class="hidden sm:inline mr-2">EN</span>
-                English
-              </a>
-            </div>
-          </div>
+          <!-- Right Side: Language Dropdown + Mobile Menu Button -->
+          <div class="flex items-center space-x-3">
 
-        <!-- Mobile menu button -->
-        <div class="lg:hidden">
-          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+            <!-- Language Dropdown (Both Desktop & Mobile) - OUTSIDE hamburger -->
+            <div class="relative" id="lang-dropdown-new">
+              <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="lang-btn-new">
+                <!-- Desktop Text -->
+                <span id="current-lang-text" class="hidden sm:block font-semibold">TR</span>
+                <!-- Mobile Emoji ONLY -->
+                <span id="current-lang-emoji" class="block sm:hidden text-lg">🇹🇷</span>
+                <svg class="w-3 h-3 dropdown-arrow" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+              <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 border border-gray-200" id="lang-menu-new">
+                <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
+                  <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
+                  <span class="hidden sm:inline mr-2">TR</span>
+                  Türkçe
+                </a>
+                <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md">
+                  <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
+                  <span class="hidden sm:inline mr-2">EN</span>
+                  English
+                </a>
+              </div>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="lg:hidden">
+              <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+
+          </div>
 
       <!-- Mobile Navigation Menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
@@ -203,16 +206,6 @@
             İletişim
           </a>
 
-          <!-- Mobile Language Options -->
-          <div class="border-t border-gray-200 pt-3 mt-3">
-            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
-            <a href="/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇹🇷 Türkçe
-            </a>
-            <a href="/en/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇬🇧 English
-            </a>
-          </div>
         </div>
       </div>
     </nav>
