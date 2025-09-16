@@ -100,104 +100,104 @@
   </script>
 
   <style>
-  /* MOBILE LANGUAGE DROPDOWN FIX */
+    /* MOBILE LANGUAGE DROPDOWN FIX */
 
-  /* Ensure language dropdown is always visible and clickable on mobile */
-  #lang-dropdown-new {
-    position: relative !important;
-    z-index: 9999 !important;
-  }
-
-  #lang-btn-new {
-    position: relative !important;
-    z-index: 10000 !important;
-    touch-action: manipulation !important;
-    -webkit-tap-highlight-color: transparent !important;
-    user-select: none !important;
-    min-height: 44px !important;
-    min-width: 60px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  #lang-menu-new {
-    position: absolute !important;
-    top: 100% !important;
-    right: 0 !important;
-    z-index: 10001 !important;
-    min-width: 140px !important;
-    background: white !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 8px !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-    margin-top: 4px !important;
-    display: none !important;
-  }
-
-  /* Mobile specific positioning */
-  @media (max-width: 1024px) {
-    #lang-menu-new {
-      position: fixed !important;
-      top: 68px !important; /* Just below navbar */
-      right: 16px !important;
-      left: auto !important;
-      width: 140px !important;
+    /* Ensure language dropdown is always visible and clickable on mobile */
+    #lang-dropdown-new {
+      position: relative !important;
+      z-index: 9999 !important;
     }
 
-    /* Ensure mobile menu doesn't overlap */
-    #mobile-menu {
-      margin-top: 0 !important;
-      z-index: 9998 !important; /* Lower than language dropdown */
-    }
-  }
-
-  @media (max-width: 640px) {
     #lang-btn-new {
-      min-height: 48px !important;
-      min-width: 48px !important;
-      padding: 8px 12px !important;
+      position: relative !important;
+      z-index: 10000 !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: transparent !important;
+      user-select: none !important;
+      min-height: 44px !important;
+      min-width: 60px !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     #lang-menu-new {
-      top: 64px !important;
-      right: 8px !important;
-      width: 130px !important;
+      position: absolute !important;
+      top: 100% !important;
+      right: 0 !important;
+      z-index: 10001 !important;
+      min-width: 140px !important;
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 8px !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+      margin-top: 4px !important;
+      display: none !important;
     }
-  }
 
-  /* Ensure dropdown links are clickable */
-  #lang-menu-new a {
-    display: flex !important;
-    align-items: center !important;
-    padding: 12px 16px !important;
-    color: #374151 !important;
-    text-decoration: none !important;
-    font-size: 14px !important;
-    border-bottom: 1px solid #f3f4f6 !important;
-    touch-action: manipulation !important;
-    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1) !important;
-  }
+    /* Mobile specific positioning */
+    @media (max-width: 1024px) {
+      #lang-menu-new {
+        position: fixed !important;
+        top: 68px !important; /* Just below navbar */
+        right: 16px !important;
+        left: auto !important;
+        width: 140px !important;
+      }
 
-  #lang-menu-new a:last-child {
-    border-bottom: none !important;
-    border-radius: 0 0 8px 8px !important;
-  }
+      /* Ensure mobile menu doesn't overlap */
+      #mobile-menu {
+        margin-top: 0 !important;
+        z-index: 9998 !important; /* Lower than language dropdown */
+      }
+    }
 
-  #lang-menu-new a:first-child {
-    border-radius: 8px 8px 0 0 !important;
-  }
+    @media (max-width: 640px) {
+      #lang-btn-new {
+        min-height: 48px !important;
+        min-width: 48px !important;
+        padding: 8px 12px !important;
+      }
 
-  #lang-menu-new a:hover {
-    background-color: #f9fafb !important;
-    color: #1B4F72 !important;
-  }
+      #lang-menu-new {
+        top: 64px !important;
+        right: 8px !important;
+        width: 130px !important;
+      }
+    }
 
-  /* Arrow rotation */
-  .lang-arrow-rotate {
-    transform: rotate(180deg) !important;
-    transition: transform 0.2s ease !important;
-  }
+    /* Ensure dropdown links are clickable */
+    #lang-menu-new a {
+      display: flex !important;
+      align-items: center !important;
+      padding: 12px 16px !important;
+      color: #374151 !important;
+      text-decoration: none !important;
+      font-size: 14px !important;
+      border-bottom: 1px solid #f3f4f6 !important;
+      touch-action: manipulation !important;
+      -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1) !important;
+    }
+
+    #lang-menu-new a:last-child {
+      border-bottom: none !important;
+      border-radius: 0 0 8px 8px !important;
+    }
+
+    #lang-menu-new a:first-child {
+      border-radius: 8px 8px 0 0 !important;
+    }
+
+    #lang-menu-new a:hover {
+      background-color: #f9fafb !important;
+      color: #1B4F72 !important;
+    }
+
+    /* Arrow rotation */
+    .lang-arrow-rotate {
+      transform: rotate(180deg) !important;
+      transition: transform 0.2s ease !important;
+    }
+    .lang-menu-open { display: block !important; }
   </style>
 
   <style>
@@ -269,6 +269,10 @@
               <span id="current-lang-text" class="hidden sm:block font-semibold pointer-events-none">TR</span>
               <!-- Mobile Emoji -->
               <span id="current-lang-emoji" class="block sm:hidden text-lg pointer-events-none">🇹🇷</span>
+
+              <span id="current-lang" class="hidden" aria-hidden="true"></span>
+
+
               <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200 pointer-events-none" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
@@ -1271,25 +1275,20 @@
     // Language dropdown functions
     function openLangDropdown() {
       if (!langMenu) return;
-
       langDropdownOpen = true;
-      langMenu.style.display = 'block';
+      langMenu.classList.remove('hidden');            // NEW
       if (langArrow) langArrow.classList.add('lang-arrow-rotate');
       if (langBtn) langBtn.setAttribute('aria-expanded', 'true');
-
-      console.log('Language dropdown opened');
     }
 
     function closeLangDropdown() {
       if (!langMenu) return;
-
       langDropdownOpen = false;
-      langMenu.style.display = 'none';
+      langMenu.classList.add('hidden');               // NEW
       if (langArrow) langArrow.classList.remove('lang-arrow-rotate');
       if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
-
-      console.log('Language dropdown closed');
     }
+
 
     function toggleLangDropdown(e) {
       e.preventDefault();
