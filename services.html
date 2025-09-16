@@ -134,6 +134,8 @@
       display: none !important;
     }
 
+    #lang-menu-new.lang-menu-open { display: block !important; }
+
     /* Mobile specific positioning */
     @media (max-width: 1024px) {
       #lang-menu-new {
@@ -1233,6 +1235,26 @@
     });
   </script>
 
+  <script>
+    // Harmless placeholders so global.js won't error on missing old IDs
+    (function () {
+      function ensure(id, tag) {
+        if (!document.getElementById(id)) {
+          const el = document.createElement(tag || 'div');
+          el.id = id;
+          el.style.display = 'none';
+          document.body.appendChild(el);
+        }
+      }
+
+      // Legacy IDs that global.js might query:
+      ensure('language-btn', 'button');
+      ensure('language-menu', 'div');
+      ensure('dropdown-arrow', 'span');
+    })();
+  </script>
+
+
   <!-- Core JavaScript Files -->
   <script src="/js/global.js" defer></script>
   <script src="/js/services.js" defer></script>
@@ -1276,7 +1298,8 @@
     function openLangDropdown() {
       if (!langMenu) return;
       langDropdownOpen = true;
-      langMenu.classList.remove('hidden');            // NEW
+      langMenu.classList.add('lang-menu-open');   // ← show it (overrides !important)
+      langMenu.classList.remove('hidden');
       if (langArrow) langArrow.classList.add('lang-arrow-rotate');
       if (langBtn) langBtn.setAttribute('aria-expanded', 'true');
     }
@@ -1284,10 +1307,12 @@
     function closeLangDropdown() {
       if (!langMenu) return;
       langDropdownOpen = false;
-      langMenu.classList.add('hidden');               // NEW
+      langMenu.classList.remove('lang-menu-open'); // ← hide it
+      langMenu.classList.add('hidden');
       if (langArrow) langArrow.classList.remove('lang-arrow-rotate');
       if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
     }
+
 
 
     function toggleLangDropdown(e) {
