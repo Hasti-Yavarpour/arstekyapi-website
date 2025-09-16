@@ -1273,94 +1273,60 @@
 
 
   <script>
-    // Mobile-optimized language dropdown for About page
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('About page language script loading...');
-
-      const langBtn = document.getElementById('lang-btn-new');
-      const langMenu = document.getElementById('lang-menu-new');
+    document.addEventListener('DOMContentLoaded', function () {
+      const langBtn   = document.getElementById('lang-btn-new');
+      const langMenu  = document.getElementById('lang-menu-new');
       const langArrow = document.getElementById('lang-arrow-new');
-      const currentLangText = document.getElementById('current-lang-text');
+      const currentLangText  = document.getElementById('current-lang-text');
       const currentLangEmoji = document.getElementById('current-lang-emoji');
 
-      console.log('Language elements found:', { langBtn, langMenu, langArrow });
+      // set TR/EN label
+      const isEN = window.location.pathname.startsWith('/en/');
+      if (currentLangText)  currentLangText.textContent  = isEN ? 'EN' : 'TR';
+      if (currentLangEmoji) currentLangEmoji.textContent = isEN ? '🇬🇧' : '🇹🇷';
 
-      // Set language display based on URL
-      const path = window.location.pathname;
-      if (path.startsWith('/en/')) {
-        if (currentLangText) currentLangText.textContent = 'EN';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
-      } else {
-        if (currentLangText) currentLangText.textContent = 'TR';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
+      if (!langBtn || !langMenu) return;
+
+      let open = false;
+
+      function openDropdown() {
+        open = true;
+        langMenu.classList.remove('hidden');
+        langMenu.classList.add('lang-menu-open');        // <-- important
+        langBtn.setAttribute('aria-expanded', 'true');
+        langArrow?.classList.add('lang-arrow-rotate');
       }
 
-      if (langBtn && langMenu) {
-        let isDropdownOpen = false;
-
-        function toggleDropdown(e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          console.log('Toggle dropdown clicked, current state:', isDropdownOpen);
-
-          if (isDropdownOpen) {
-            // Close dropdown
-            langMenu.classList.add('hidden');
-            langBtn.setAttribute('aria-expanded', 'false');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-            isDropdownOpen = false;
-          } else {
-            // Open dropdown
-            langMenu.classList.remove('hidden');
-            langBtn.setAttribute('aria-expanded', 'true');
-            if (langArrow) langArrow.style.transform = 'rotate(180deg)';
-            isDropdownOpen = true;
-          }
-        }
-
-        function closeDropdown() {
-          if (isDropdownOpen) {
-            langMenu.classList.add('hidden');
-            langBtn.setAttribute('aria-expanded', 'false');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-            isDropdownOpen = false;
-          }
-        }
-
-        // Add multiple event listeners for better mobile support
-        langBtn.addEventListener('click', toggleDropdown);
-        langBtn.addEventListener('touchend', function(e) {
-          e.preventDefault();
-          toggleDropdown(e);
-        });
-
-        // Close dropdown when clicking/touching outside
-        document.addEventListener('click', function(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            closeDropdown();
-          }
-        });
-
-        document.addEventListener('touchend', function(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            closeDropdown();
-          }
-        });
-
-        // Handle escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            closeDropdown();
-          }
-        });
-
-        console.log('Language dropdown events attached successfully');
-      } else {
-        console.error('Language dropdown elements not found!');
+      function closeDropdown() {
+        open = false;
+        langMenu.classList.add('hidden');
+        langMenu.classList.remove('lang-menu-open');     // <-- important
+        langBtn.setAttribute('aria-expanded', 'false');
+        langArrow?.classList.remove('lang-arrow-rotate');
       }
+
+      function toggleDropdown(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        open ? closeDropdown() : openDropdown();
+      }
+
+      // Use a single pointer event (avoids iOS double fire)
+      langBtn.addEventListener('pointerup', toggleDropdown);
+
+      // Close when clicking outside or pressing Esc
+      document.addEventListener('click', (e) => {
+        if (open && !langBtn.contains(e.target) && !langMenu.contains(e.target)) closeDropdown();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDropdown();
+      });
+
+      // optional: quick debugger
+      window.debugLang = () => ({ open, menuClasses: langMenu.className });
     });
     </script>
+
 
 
 

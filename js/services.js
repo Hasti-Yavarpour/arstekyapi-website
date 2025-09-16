@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProcessStepsAnimation();
     initServiceCardsInteraction();
     initServiceCTAButtons();
-    initScrollProgress();
+    //initScrollProgress();
     initServiceForms();
 
     // Log that services page JS is loaded
