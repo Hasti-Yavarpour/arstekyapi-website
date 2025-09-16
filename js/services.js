@@ -11,39 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
 
     /**
-     * Handle smooth scrolling to service sections
-     */
-    /**function initServiceNavigation() {
-        const serviceNavLinks = document.querySelectorAll('.services-nav-links a[href^="#"]');
-
-        serviceNavLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    // Remove active class from all links
-                    serviceNavLinks.forEach(navLink => navLink.classList.remove('active'));
-                    // Add active class to clicked link
-                    this.classList.add('active');
-
-                    // Calculate scroll position accounting for sticky headers
-                    const headerHeight = 80; // Main navbar
-                    const serviceNavHeight = 80; // Services nav
-                    const offsetTop = targetElement.offsetTop - headerHeight - serviceNavHeight;
-
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }*/
-
-    /**
      * Update active navigation link based on scroll position
      */
     function updateActiveNavOnScroll() {
@@ -310,38 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===================================
-    // SCROLL PROGRESS INDICATOR
-    // ===================================
-
-    /**
-     * Add scroll progress indicator for services page
-     */
-//    function initScrollProgress() {
-//        const progressBar = document.createElement('div');
-//        progressBar.className = 'scroll-progress';
-//        progressBar.style.cssText = `
-//            position: fixed;
-//            top: 0;
-//            left: 0;
-//            width: 0%;
-//            height: 3px;
-//            background: linear-gradient(90deg, #1B4F72, #2C3E50);
-//            z-index: 9999;
-//            transition: width 0.25s ease;
-//        `;
-//        document.body.appendChild(progressBar);
-//
-//        function updateScrollProgress() {
-//            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-//            const scrolled = (window.scrollY / windowHeight) * 100;
-//            progressBar.style.width = Math.min(scrolled, 100) + '%';
-//        }
-//
-//        window.addEventListener('scroll', updateScrollProgress);
-//        updateScrollProgress(); // Initial call
-//    }
-
-    // ===================================
     // FORM VALIDATIONS (if contact forms exist)
     // ===================================
 
@@ -429,7 +364,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
 
     // Initialize all services page functionality
-    //initServiceNavigation();
     initFAQ();
     initTechStackInteractions();
     initIndustryTags();
@@ -437,7 +371,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initProcessStepsAnimation();
     initServiceCardsInteraction();
     initServiceCTAButtons();
-    initScrollProgress();
     initServiceForms();
 
     // Log that services page JS is loaded
@@ -508,7 +441,6 @@ window.ServicesPage = {
     getServiceDetails,
     showServiceModal
 };
-
 
 // Force section title colors with JavaScript
 document.addEventListener('DOMContentLoaded', function() {
