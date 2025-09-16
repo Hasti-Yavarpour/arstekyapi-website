@@ -1237,24 +1237,26 @@
   </script>
 
   <script>
-    // Harmless placeholders so global.js won't error on missing old IDs
-    (function () {
-      function ensure(id, tag) {
-        if (!document.getElementById(id)) {
-          const el = document.createElement(tag || 'div');
-          el.id = id;
-          el.style.display = 'none';
-          document.body.appendChild(el);
-        }
+  (function () {
+    const wanted = {
+      'language-btn': 'button',
+      'language-menu': 'div',
+      'dropdown-arrow': 'span',
+      'language-text': 'span',        // <- global.js often sets this
+      'current-lang-text': 'span',
+      'current-lang-emoji': 'span'
+    };
+    Object.entries(wanted).forEach(([id, tag]) => {
+      if (!document.getElementById(id)) {
+        const el = document.createElement(tag);
+        el.id = id;
+        el.style.display = 'none';
+        document.body.appendChild(el);
       }
-
-      // Legacy IDs that global.js might query:
-      ensure('language-btn', 'button');
-      ensure('language-menu', 'div');
-      ensure('dropdown-arrow', 'span');
-      ensure('language-text', 'span');
-    })();
+    });
+  })();
   </script>
+
 
 
   <!-- Core JavaScript Files -->

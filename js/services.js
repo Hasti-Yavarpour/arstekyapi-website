@@ -424,6 +424,53 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollTimeout = setTimeout(handleScroll, 10);
     });
 
+    // === Language dropdown (same behavior as About, adapted to *-new IDs) ===
+    function setupLanguageDropdownServices() {
+      const btn   = document.getElementById('lang-btn-new');
+      const menu  = document.getElementById('lang-menu-new');
+      const arrow = document.getElementById('lang-arrow-new');
+      const text  = document.getElementById('current-lang-text');
+      const emoji = document.getElementById('current-lang-emoji');
+
+      // Label from URL
+      const isEn = location.pathname.startsWith('/en/');
+      if (text)  text.textContent  = isEn ? 'EN' : 'TR';
+      if (emoji) emoji.textContent = isEn ? '🇬🇧' : '🇹🇷';
+
+      if (!btn || !menu) return;
+
+      let open = false;
+
+      function openMenu() {
+        open = true;
+        menu.classList.remove('hidden');
+        menu.classList.add('lang-menu-open'); // wins over any display:none !important
+        btn.setAttribute('aria-expanded', 'true');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+      function closeMenu() {
+        open = false;
+        menu.classList.add('hidden');
+        menu.classList.remove('lang-menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      }
+      function toggle(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        open ? closeMenu() : openMenu();
+      }
+
+      btn.addEventListener('click', toggle);
+      btn.addEventListener('touchend', toggle);
+
+      // outside-click / esc
+      document.addEventListener('click',  (e) => { if (open && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
+      document.addEventListener('touchend',(e) => { if (open && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    }
+
+
     // ===================================
     // INITIALIZE ALL FUNCTIONALITY
     // ===================================
@@ -439,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initServiceCTAButtons();
     //initScrollProgress();
     initServiceForms();
+    setupLanguageDropdownServices();
 
     // Log that services page JS is loaded
     console.log('Services page JavaScript initialized successfully');
