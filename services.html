@@ -1438,6 +1438,316 @@
     });
   });
   </script>
+  // MOBILE-SPECIFIC NAVIGATION FIX
+// Replace your current navigation script with this mobile-optimized version
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      console.log('Mobile Navigation Fix Loading...');
+
+      // Mobile detection
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      console.log('Is Mobile:', isMobile);
+
+      // Get elements
+      const langBtn = document.getElementById('lang-btn-new');
+      const langMenu = document.getElementById('lang-menu-new');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      console.log('Elements:', {
+          langBtn: !!langBtn,
+          langMenu: !!langMenu,
+          mobileMenuBtn: !!mobileMenuBtn,
+          mobileMenu: !!mobileMenu
+      });
+
+      // State tracking
+      let langDropdownOpen = false;
+      let mobileMenuOpen = false;
+
+      // Language dropdown functions
+      function openLangDropdown() {
+          if (!langMenu) return;
+
+          console.log('Opening language dropdown');
+          langDropdownOpen = true;
+
+          // Show menu
+          langMenu.classList.remove('hidden');
+          langMenu.style.display = 'block';
+          langMenu.style.visibility = 'visible';
+          langMenu.style.opacity = '1';
+
+          // Mobile-specific positioning
+          if (isMobile) {
+              langMenu.style.position = 'fixed';
+              langMenu.style.top = '70px';
+              langMenu.style.right = '10px';
+              langMenu.style.left = 'auto';
+              langMenu.style.zIndex = '99999';
+              langMenu.style.minWidth = '120px';
+              langMenu.style.maxWidth = '150px';
+              langMenu.style.backgroundColor = 'white';
+              langMenu.style.border = '1px solid #e5e7eb';
+              langMenu.style.borderRadius = '8px';
+              langMenu.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+              langMenu.style.padding = '0';
+
+              // Style the links
+              const links = langMenu.querySelectorAll('a');
+              links.forEach(link => {
+                  link.style.display = 'block';
+                  link.style.padding = '12px 16px';
+                  link.style.color = '#374151';
+                  link.style.textDecoration = 'none';
+                  link.style.fontSize = '14px';
+                  link.style.borderBottom = '1px solid #f3f4f6';
+              });
+
+              // Remove border from last link
+              if (links.length > 0) {
+                  links[links.length - 1].style.borderBottom = 'none';
+              }
+          }
+      }
+
+      function closeLangDropdown() {
+          if (!langMenu) return;
+
+          console.log('Closing language dropdown');
+          langDropdownOpen = false;
+
+          langMenu.classList.add('hidden');
+          langMenu.style.display = 'none';
+          langMenu.style.visibility = 'hidden';
+          langMenu.style.opacity = '0';
+      }
+
+      function toggleMobileMenu() {
+          if (!mobileMenu) return;
+
+          mobileMenuOpen = !mobileMenuOpen;
+          console.log('Toggling mobile menu:', mobileMenuOpen);
+
+          if (mobileMenuOpen) {
+              mobileMenu.classList.remove('hidden');
+          } else {
+              mobileMenu.classList.add('hidden');
+          }
+      }
+
+      // Language button event listeners - MOBILE OPTIMIZED
+      if (langBtn) {
+          // Remove existing listeners
+          langBtn.replaceWith(langBtn.cloneNode(true));
+          const newLangBtn = document.getElementById('lang-btn-new');
+
+          // Touch events for mobile
+          if (isMobile) {
+              let touchStartTime = 0;
+
+              newLangBtn.addEventListener('touchstart', function(e) {
+                  touchStartTime = Date.now();
+                  e.preventDefault();
+              }, { passive: false });
+
+              newLangBtn.addEventListener('touchend', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  const touchDuration = Date.now() - touchStartTime;
+                  if (touchDuration < 500) { // Prevent long press issues
+                      console.log('Language button touched');
+                      if (langDropdownOpen) {
+                          closeLangDropdown();
+                      } else {
+                          openLangDropdown();
+                      }
+                  }
+              }, { passive: false });
+
+          } else {
+              // Desktop click events
+              newLangBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  if (langDropdownOpen) {
+                      closeLangDropdown();
+                  } else {
+                      openLangDropdown();
+                  }
+              });
+          }
+      }
+
+      // Mobile menu button event listeners
+      if (mobileMenuBtn) {
+          // Remove existing listeners
+          mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true));
+          const newMobileBtn = document.getElementById('mobile-menu-btn');
+
+          if (isMobile) {
+              let touchStartTime = 0;
+
+              newMobileBtn.addEventListener('touchstart', function(e) {
+                  touchStartTime = Date.now();
+                  e.preventDefault();
+              }, { passive: false });
+
+              newMobileBtn.addEventListener('touchend', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  const touchDuration = Date.now() - touchStartTime;
+                  if (touchDuration < 500) {
+                      console.log('Mobile menu button touched');
+                      toggleMobileMenu();
+                  }
+              }, { passive: false });
+
+          } else {
+              newMobileBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleMobileMenu();
+              });
+          }
+      }
+
+      // Global touch/click handler for closing dropdowns
+      function handleGlobalTouch(e) {
+          const target = e.target;
+
+          // Get current elements (they may have been cloned)
+          const currentLangBtn = document.getElementById('lang-btn-new');
+          const currentLangMenu = document.getElementById('lang-menu-new');
+          const currentMobileBtn = document.getElementById('mobile-menu-btn');
+          const currentMobileMenu = document.getElementById('mobile-menu');
+
+          // Close language dropdown if touching outside
+          if (langDropdownOpen && currentLangBtn && currentLangMenu) {
+              if (!currentLangBtn.contains(target) && !currentLangMenu.contains(target)) {
+                  console.log('Closing language dropdown - outside touch');
+                  closeLangDropdown();
+              }
+          }
+
+          // Close mobile menu if touching outside (but not on language dropdown)
+          if (mobileMenuOpen && currentMobileBtn && currentMobileMenu) {
+              const touchedLangArea = (currentLangBtn && currentLangBtn.contains(target)) ||
+                                     (currentLangMenu && currentLangMenu.contains(target));
+
+              if (!touchedLangArea && !currentMobileBtn.contains(target) && !currentMobileMenu.contains(target)) {
+                  console.log('Closing mobile menu - outside touch');
+                  mobileMenuOpen = false;
+                  currentMobileMenu.classList.add('hidden');
+              }
+          }
+      }
+
+      // Add global listeners for both touch and click
+      if (isMobile) {
+          document.addEventListener('touchstart', handleGlobalTouch, { passive: true });
+          document.addEventListener('touchend', handleGlobalTouch, { passive: true });
+      } else {
+          document.addEventListener('click', handleGlobalTouch, true);
+      }
+
+      // Prevent scrolling when dropdowns are open on mobile
+      if (isMobile) {
+          document.addEventListener('touchmove', function(e) {
+              if (langDropdownOpen || mobileMenuOpen) {
+                  // Allow scrolling within dropdown menus
+                  if (langMenu && langMenu.contains(e.target)) return;
+                  if (mobileMenu && mobileMenu.contains(e.target)) return;
+
+                  // Prevent body scrolling
+                  e.preventDefault();
+              }
+          }, { passive: false });
+      }
+
+      // Handle orientation changes on mobile
+      if (isMobile) {
+          window.addEventListener('orientationchange', function() {
+              // Close dropdowns on orientation change
+              if (langDropdownOpen) closeLangDropdown();
+              if (mobileMenuOpen) {
+                  mobileMenuOpen = false;
+                  if (mobileMenu) mobileMenu.classList.add('hidden');
+              }
+          });
+      }
+
+      // Initialize other page functionality
+      if (typeof AOS !== 'undefined') {
+          AOS.init({
+              duration: 800,
+              easing: 'ease-in-out',
+              once: true,
+              offset: 100
+          });
+      }
+
+      // FAQ functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question');
+          if (question) {
+              question.addEventListener('click', function() {
+                  const answer = item.querySelector('.faq-answer');
+                  if (answer) {
+                      const isOpen = answer.style.display === 'block';
+                      faqItems.forEach(otherItem => {
+                          const otherAnswer = otherItem.querySelector('.faq-answer');
+                          if (otherAnswer && otherItem !== item) {
+                              otherAnswer.style.display = 'none';
+                              otherItem.classList.remove('active');
+                          }
+                      });
+                      if (isOpen) {
+                          answer.style.display = 'none';
+                          item.classList.remove('active');
+                      } else {
+                          answer.style.display = 'block';
+                          item.classList.add('active');
+                      }
+                  }
+              });
+          }
+      });
+
+      console.log('Mobile navigation fix initialized successfully');
+  });
+
+  // Debug functions for mobile testing
+  window.debugMobile = function() {
+      console.log('Mobile Debug Info:');
+      console.log('User Agent:', navigator.userAgent);
+      console.log('Window Width:', window.innerWidth);
+      console.log('Language Menu Hidden:', document.getElementById('lang-menu-new')?.classList.contains('hidden'));
+      console.log('Mobile Menu Hidden:', document.getElementById('mobile-menu')?.classList.contains('hidden'));
+  };
+
+  // Force close all dropdowns (useful for debugging)
+  window.forceCloseAll = function() {
+      const langMenu = document.getElementById('lang-menu-new');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (langMenu) {
+          langMenu.classList.add('hidden');
+          langMenu.style.display = 'none';
+      }
+
+      if (mobileMenu) {
+          mobileMenu.classList.add('hidden');
+      }
+
+      console.log('All dropdowns force closed');
+  };
+  </script>
 
   <style>
   .dropdown-arrow {
