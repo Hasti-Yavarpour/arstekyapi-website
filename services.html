@@ -134,7 +134,9 @@
       display: none !important;
     }
 
-    #lang-menu-new.lang-menu-open { display: block !important; }
+    #lang-menu-new { display: none !important; }
+    .lang-menu-open { display: block !important; }
+
 
     /* Mobile specific positioning */
     @media (max-width: 1024px) {
@@ -199,7 +201,7 @@
       transform: rotate(180deg) !important;
       transition: transform 0.2s ease !important;
     }
-    .lang-menu-open { display: block !important; }
+
   </style>
 
   <style>
@@ -1298,20 +1300,21 @@
     function openLangDropdown() {
       if (!langMenu) return;
       langDropdownOpen = true;
-      langMenu.classList.add('lang-menu-open');   // ← show it (overrides !important)
       langMenu.classList.remove('hidden');
-      if (langArrow) langArrow.classList.add('lang-arrow-rotate');
-      if (langBtn) langBtn.setAttribute('aria-expanded', 'true');
+      langMenu.classList.add('lang-menu-open');   // <- important
+      langArrow?.classList.add('lang-arrow-rotate');
+      langBtn?.setAttribute('aria-expanded','true');
     }
 
     function closeLangDropdown() {
       if (!langMenu) return;
       langDropdownOpen = false;
-      langMenu.classList.remove('lang-menu-open'); // ← hide it
       langMenu.classList.add('hidden');
-      if (langArrow) langArrow.classList.remove('lang-arrow-rotate');
-      if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
+      langMenu.classList.remove('lang-menu-open'); // <- important
+      langArrow?.classList.remove('lang-arrow-rotate');
+      langBtn?.setAttribute('aria-expanded','false');
     }
+
 
 
 
@@ -1463,7 +1466,8 @@
       margin: 0 !important;
       padding-top: 0 !important;
       z-index: 50 !important;
-      transform: translateY(0) !important;
+      transform: none !important;
+      overflow: visible !important;      /* prevent clipping */
     }
 
     /* Remove any top spacing from body */
