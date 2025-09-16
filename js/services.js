@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Handle smooth scrolling to service sections
      */
-    function initServiceNavigation() {
+    /**function initServiceNavigation() {
         const serviceNavLinks = document.querySelectorAll('.services-nav-links a[href^="#"]');
 
         serviceNavLinks.forEach(link => {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    }
+    }*/
 
     /**
      * Update active navigation link based on scroll position
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
 
     // Initialize all services page functionality
-    initServiceNavigation();
+    //initServiceNavigation();
     initFAQ();
     initTechStackInteractions();
     initIndustryTags();
