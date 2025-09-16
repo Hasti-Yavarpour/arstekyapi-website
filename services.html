@@ -1252,6 +1252,7 @@
       ensure('language-btn', 'button');
       ensure('language-menu', 'div');
       ensure('dropdown-arrow', 'span');
+      ensure('language-text', 'span');
     })();
   </script>
 
@@ -1273,59 +1274,57 @@
 
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const langBtn   = document.getElementById('lang-btn-new');
-      const langMenu  = document.getElementById('lang-menu-new');
-      const langArrow = document.getElementById('lang-arrow-new');
-      const currentLangText  = document.getElementById('current-lang-text');
-      const currentLangEmoji = document.getElementById('current-lang-emoji');
+  document.addEventListener('DOMContentLoaded', function () {
+    const langBtn   = document.getElementById('lang-btn-new');
+    const langMenu  = document.getElementById('lang-menu-new');
+    const langArrow = document.getElementById('lang-arrow-new');
+    const currentLangText  = document.getElementById('current-lang-text');
+    const currentLangEmoji = document.getElementById('current-lang-emoji');
 
-      // set TR/EN label
-      const isEN = window.location.pathname.startsWith('/en/');
-      if (currentLangText)  currentLangText.textContent  = isEN ? 'EN' : 'TR';
-      if (currentLangEmoji) currentLangEmoji.textContent = isEN ? '🇬🇧' : '🇹🇷';
+    // Set display from URL
+    if (window.location.pathname.startsWith('/en/')) {
+      if (currentLangText)  currentLangText.textContent  = 'EN';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
+    } else {
+      if (currentLangText)  currentLangText.textContent  = 'TR';
+      if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
+    }
 
-      if (!langBtn || !langMenu) return;
+    if (!langBtn || !langMenu) return;
+    let isOpen = false;
 
-      let open = false;
+    function openMenu() {
+      isOpen = true;
+      langMenu.classList.add('lang-menu-open');     // <-- important
+      langMenu.classList.remove('hidden');
+      langBtn.setAttribute('aria-expanded', 'true');
+      if (langArrow) langArrow.style.transform = 'rotate(180deg)';
+    }
+    function closeMenu() {
+      isOpen = false;
+      langMenu.classList.remove('lang-menu-open');  // <-- important
+      langMenu.classList.add('hidden');
+      langBtn.setAttribute('aria-expanded', 'false');
+      if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+    }
+    function toggleMenu(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      isOpen ? closeMenu() : openMenu();
+    }
 
-      function openDropdown() {
-        open = true;
-        langMenu.classList.remove('hidden');
-        langMenu.classList.add('lang-menu-open');        // <-- important
-        langBtn.setAttribute('aria-expanded', 'true');
-        langArrow?.classList.add('lang-arrow-rotate');
-      }
-
-      function closeDropdown() {
-        open = false;
-        langMenu.classList.add('hidden');
-        langMenu.classList.remove('lang-menu-open');     // <-- important
-        langBtn.setAttribute('aria-expanded', 'false');
-        langArrow?.classList.remove('lang-arrow-rotate');
-      }
-
-      function toggleDropdown(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        open ? closeDropdown() : openDropdown();
-      }
-
-      // Use a single pointer event (avoids iOS double fire)
-      langBtn.addEventListener('pointerup', toggleDropdown);
-
-      // Close when clicking outside or pressing Esc
-      document.addEventListener('click', (e) => {
-        if (open && !langBtn.contains(e.target) && !langMenu.contains(e.target)) closeDropdown();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeDropdown();
-      });
-
-      // optional: quick debugger
-      window.debugLang = () => ({ open, menuClasses: langMenu.className });
+    langBtn.addEventListener('click', toggleMenu);
+    langBtn.addEventListener('touchend', toggleMenu);
+    document.addEventListener('click', (e) => {
+      if (isOpen && !langBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
     });
-    </script>
+    document.addEventListener('touchend', (e) => {
+      if (isOpen && !langBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  });
+  </script>
+
 
 
 
