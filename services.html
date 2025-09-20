@@ -99,119 +99,6 @@
   }
   </script>
 
-  <style>
-    /* MOBILE LANGUAGE DROPDOWN FIX */
-
-    /* Ensure language dropdown is always visible and clickable on mobile */
-    #lang-dropdown-new {
-      position: relative !important;
-      z-index: 9999 !important;
-    }
-
-    #lang-btn-new {
-      position: relative !important;
-      z-index: 10000 !important;
-      touch-action: manipulation !important;
-      -webkit-tap-highlight-color: transparent !important;
-      user-select: none !important;
-      min-height: 44px !important;
-      min-width: 60px !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-
-    #lang-menu-new {
-      position: absolute !important;
-      top: 100% !important;
-      right: 0 !important;
-      z-index: 10001 !important;
-      min-width: 140px !important;
-      background: white !important;
-      border: 1px solid #e5e7eb !important;
-      border-radius: 8px !important;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-      margin-top: 4px !important;
-      display: none !important;
-    }
-
-    #lang-menu-new { display: none !important; }
-    .lang-menu-open { display: block !important; }
-
-
-    /* Mobile specific positioning */
-    @media (max-width: 1024px) {
-      #lang-menu-new {
-        position: fixed !important;
-        top: 68px !important; /* Just below navbar */
-        right: 16px !important;
-        left: auto !important;
-        width: 140px !important;
-      }
-
-      /* Ensure mobile menu doesn't overlap */
-      #mobile-menu {
-        margin-top: 0 !important;
-        z-index: 9998 !important; /* Lower than language dropdown */
-      }
-    }
-
-    @media (max-width: 640px) {
-      #lang-btn-new {
-        min-height: 48px !important;
-        min-width: 48px !important;
-        padding: 8px 12px !important;
-      }
-
-      #lang-menu-new {
-        top: 64px !important;
-        right: 8px !important;
-        width: 130px !important;
-      }
-    }
-
-    /* Ensure dropdown links are clickable */
-    #lang-menu-new a {
-      display: flex !important;
-      align-items: center !important;
-      padding: 12px 16px !important;
-      color: #374151 !important;
-      text-decoration: none !important;
-      font-size: 14px !important;
-      border-bottom: 1px solid #f3f4f6 !important;
-      touch-action: manipulation !important;
-      -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1) !important;
-    }
-
-    #lang-menu-new a:last-child {
-      border-bottom: none !important;
-      border-radius: 0 0 8px 8px !important;
-    }
-
-    #lang-menu-new a:first-child {
-      border-radius: 8px 8px 0 0 !important;
-    }
-
-    #lang-menu-new a:hover {
-      background-color: #f9fafb !important;
-      color: #1B4F72 !important;
-    }
-
-    /* Arrow rotation */
-    .lang-arrow-rotate {
-      transform: rotate(180deg) !important;
-      transition: transform 0.2s ease !important;
-    }
-
-  </style>
-
-  <style>
-  .dropdown-arrow {
-    transition: transform 0.2s ease;
-  }
-  .dropdown-arrow.rotate {
-    transform: rotate(180deg);
-  }
-  </style>
 </head>
 
 <body class="font-inter bg-white">
@@ -262,17 +149,19 @@
         <div class="flex items-center space-x-3">
 
           <!-- Language Dropdown (Both Desktop & Mobile) -->
-          <div class="relative" id="lang-dropdown-new">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="lang-btn-new">
+          <!-- Single, Clean Language Dropdown -->
+          <div class="relative" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn" aria-expanded="false">
               <!-- Desktop Text -->
               <span id="current-lang-text" class="hidden sm:block font-semibold">TR</span>
               <!-- Mobile Emoji -->
               <span id="current-lang-emoji" class="block sm:hidden text-lg">🇹🇷</span>
-              <svg class="w-3 h-3 dropdown-arrow" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 border border-gray-200" id="lang-menu-new">
+
+            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-50 border border-gray-200" id="language-menu">
               <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
                 <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
                 <span class="hidden sm:inline mr-2">TR</span>
@@ -1175,76 +1064,9 @@
         once: true,
         offset: 100
       });
-
-
-      // FAQ Toggle functionality
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        if (question) {
-          question.addEventListener('click', () => {
-            const answer = item.querySelector('.faq-answer');
-            if (answer) {
-              const isOpen = answer.style.display === 'block';
-
-              // Close all other FAQs
-              faqItems.forEach(otherItem => {
-                const otherAnswer = otherItem.querySelector('.faq-answer');
-                if (otherAnswer && otherItem !== item) {
-                  otherAnswer.style.display = 'none';
-                  otherItem.classList.remove('active');
-                }
-              });
-
-              // Toggle current FAQ
-              if (isOpen) {
-                answer.style.display = 'none';
-                item.classList.remove('active');
-              } else {
-                answer.style.display = 'block';
-                item.classList.add('active');
-              }
-            }
-          });
-        }
-      });
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-    });
   </script>
 
-  <script>
-  (function () {
-    const wanted = {
-      'language-btn': 'button',
-      'language-menu': 'div',
-      'dropdown-arrow': 'span',
-      'language-text': 'span',        // <- global.js often sets this
-      'current-lang-text': 'span',
-      'current-lang-emoji': 'span'
-    };
-    Object.entries(wanted).forEach(([id, tag]) => {
-      if (!document.getElementById(id)) {
-        const el = document.createElement(tag);
-        el.id = id;
-        el.style.display = 'none';
-        document.body.appendChild(el);
-      }
-    });
-  })();
-  </script>
+
 
 
 
@@ -1264,129 +1086,12 @@
 
 
 
-  <script>
-  // Complete Language and Mobile Menu Script
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded'); // For debugging
-
-    // Get all elements
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-    const currentLangText = document.getElementById('current-lang-text');
-    const currentLangEmoji = document.getElementById('current-lang-emoji');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    console.log('Language button:', languageBtn); // For debugging
-    console.log('Language menu:', languageMenu); // For debugging
-
-    // Set initial language display
-    const path = window.location.pathname;
-    if (path.startsWith('/en/')) {
-      if (currentLangText) currentLangText.textContent = 'EN';
-      if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
-    } else {
-      if (currentLangText) currentLangText.textContent = 'TR';
-      if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
-    }
-
-    // Language dropdown functionality
-    if (languageBtn && languageMenu) {
-      languageBtn.addEventListener('click', function(e) {
-        console.log('Language button clicked'); // For debugging
-        e.preventDefault();
-        e.stopPropagation();
-
-        // Toggle menu visibility
-        const isHidden = languageMenu.classList.contains('hidden');
-        if (isHidden) {
-          languageMenu.classList.remove('hidden');
-          if (dropdownArrow) dropdownArrow.classList.add('rotate');
-        } else {
-          languageMenu.classList.add('hidden');
-          if (dropdownArrow) dropdownArrow.classList.remove('rotate');
-        }
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-          languageMenu.classList.add('hidden');
-          if (dropdownArrow) dropdownArrow.classList.remove('rotate');
-        }
-      });
-    } else {
-      console.log('Language dropdown elements not found');
-    }
-
-    // Mobile menu functionality
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', function(e) {
-        console.log('Mobile menu button clicked'); // For debugging
-        e.preventDefault();
-        e.stopPropagation();
-
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.add('hidden');
-        }
-      });
-    } else {
-      console.log('Mobile menu elements not found');
-    }
-  });
-  </script>
-  <script>
-  // Additional script for new language dropdown - works alongside global.js
-  document.addEventListener('DOMContentLoaded', function() {
-    // Use new IDs to avoid conflicts with global.js
-    const langBtn = document.getElementById('lang-btn-new');
-    const langMenu = document.getElementById('lang-menu-new');
-    const langArrow = document.getElementById('lang-arrow-new');
-    const currentLangText = document.getElementById('current-lang-text');
-    const currentLangEmoji = document.getElementById('current-lang-emoji');
-
-    // Set language display
-    const path = window.location.pathname;
-    if (path.startsWith('/en/')) {
-      if (currentLangText) currentLangText.textContent = 'EN';
-      if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
-    } else {
-      if (currentLangText) currentLangText.textContent = 'TR';
-      if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
-    }
-
-    // New language dropdown functionality
-    if (langBtn && langMenu) {
-      langBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        langMenu.classList.toggle('hidden');
-        if (langArrow) langArrow.classList.toggle('rotate');
-      });
-
-      // Close when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-          langMenu.classList.add('hidden');
-          if (langArrow) langArrow.classList.remove('rotate');
-        }
-      });
-    }
-  });
-  </script>
 
 
 
 
 
-  <style>
+<!--  <style>
   /* Force service colors - loads after Tailwind */
   [id="ai-ml"] h3, [id="ai-ml"] h3 i { color: #F39C12 !important; }
   [id="iot"] h3, [id="iot"] h3 i { color: #27AE60 !important; }
@@ -1451,7 +1156,7 @@
       padding-top: 0 !important;
     }
   </style>
-
+-->
 </body>
 </html>
 
