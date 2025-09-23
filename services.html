@@ -99,6 +99,11 @@
   }
   </script>
 
+  <style>
+    [data-lang-arrow].rotate-180 { transform: rotate(180deg); }
+  </style>
+
+
 </head>
 
 <body class="font-inter bg-white">
@@ -144,46 +149,50 @@
           </a>
         </div>
 
-        <!-- Right Side: Language Dropdown + Mobile Menu Button -->
-        <div class="flex items-center space-x-3">
+        <!-- DESKTOP language dropdown (inline) -->
+        <div class="relative hidden lg:block" id="lang-desktop">
+          <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
+                  data-lang-btn>
+            <span class="font-semibold">TR</span>
+            <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
 
-          <!-- Language Dropdown (Desktop & Mobile - but positioned differently) -->
-          <div class="relative" id="language-dropdown">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn" aria-expanded="false">
-              <!-- Desktop Text -->
-              <span id="current-lang-text" class="hidden sm:block font-semibold">TR</span>
-              <!-- Mobile Emoji -->
-              <span id="current-lang-emoji" class="block sm:hidden text-lg">🇹🇷</span>
-              <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200 z-[60]"
+               data-lang-menu>
+            <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+              <span class="mr-2">TR</span> Türkçe
+            </a>
+            <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+              <span class="mr-2">EN</span> English
+            </a>
+          </div>
+        </div>
+
+        <!-- MOBILE language dropdown (fixed & independent of hamburger) -->
+        <div class="fixed top-3 right-16 z-[70] lg:hidden" id="lang-mobile">
+          <div class="relative">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
+                    data-lang-btn>
+              <span class="text-lg">🇹🇷</span>
+              <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
             </button>
 
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200" id="language-menu">
-              <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md">
-                <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
-                <span class="hidden sm:inline mr-2">TR</span>
-                Türkçe
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-[80]"
+                 data-lang-menu>
+              <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+                <span class="text-lg mr-2">🇹🇷</span> Türkçe
               </a>
-              <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md">
-                <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
-                <span class="hidden sm:inline mr-2">EN</span>
-                English
+              <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+                <span class="text-lg mr-2">🇬🇧</span> English
               </a>
             </div>
           </div>
-
-          <!-- Mobile menu button -->
-          <div class="lg:hidden">
-            <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-
         </div>
-      </div>
+
 
       <!-- Mobile Navigation Menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
@@ -1063,6 +1072,44 @@
         offset: 100
       });
   </script>
+  <script>
+  (function () {
+    function setupLangDropdowns() {
+      const btns = document.querySelectorAll('[data-lang-btn]');
+      const menus = document.querySelectorAll('[data-lang-menu]');
+      const arrows = document.querySelectorAll('[data-lang-arrow]');
+
+      const closeAll = () => {
+        menus.forEach(m => m.classList.add('hidden'));
+        arrows.forEach(a => a.classList.remove('rotate-180'));
+      };
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const menu = btn.parentElement.querySelector('[data-lang-menu]');
+          const arrow = btn.querySelector('[data-lang-arrow]');
+          const willOpen = menu.classList.contains('hidden');
+          closeAll();
+          if (willOpen) {
+            menu.classList.remove('hidden');
+            if (arrow) arrow.classList.add('rotate-180');
+          }
+        });
+      });
+
+      document.addEventListener('click', closeAll);
+    }
+
+    // Run after DOM ready (works whether scripts are deferred or not)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupLangDropdowns);
+    } else {
+      setupLangDropdowns();
+    }
+  })();
+  </script>
+
 
 
 
