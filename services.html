@@ -100,8 +100,10 @@
   </script>
 
   <style>
-    [data-lang-arrow].rotate-180 { transform: rotate(180deg); }
+    .dropdown-arrow { transition: transform .2s ease; }
+    .dropdown-arrow.rotate { transform: rotate(180deg); }
   </style>
+
 
 
 </head>
@@ -110,11 +112,12 @@
 
 
   <!-- Header & Navbar -->
+  <!-- Header & Navbar -->
   <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
 
-        <!-- Logo & Company Name -->
+        <!-- Logo -->
         <div class="flex items-center">
           <a href="/index.html" class="flex items-center space-x-3">
             <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
@@ -125,25 +128,25 @@
           </a>
         </div>
 
-        <!-- Desktop Navigation -->
+        <!-- Desktop nav -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Ana Sayfa</a>
-          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Hakkımızda</a>
-          <a href="/services.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">Hizmetler</a>
-          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Sektörler</a>
-          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Portföy</a>
-          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Blog</a>
-          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">İletişim</a>
+          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Ana Sayfa</a>
+          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Hakkımızda</a>
+          <a href="/services.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm">Hizmetler</a>
+          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Sektörler</a>
+          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Portföy</a>
+          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">İletişim</a>
         </div>
 
-        <!-- Right side: desktop language + mobile hamburger -->
+        <!-- Right side -->
         <div class="flex items-center space-x-3">
-          <!-- DESKTOP language dropdown (inline) -->
-          <div class="relative hidden lg:block" id="lang-desktop">
+          <!-- Desktop language -->
+          <div class="relative hidden lg:block">
             <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
                     data-lang-btn>
               <span class="font-semibold">TR</span>
-              <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+              <svg class="w-3 h-3 dropdown-arrow" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
             </button>
@@ -153,51 +156,54 @@
             </div>
           </div>
 
-          <!-- Mobile hamburger button (visible < lg) -->
+          <!-- Hamburger (mobile) -->
           <div class="lg:hidden">
-            <button id="mobile-menu-btn"
-                    class="text-gray-600 hover:text-brand-primary focus:outline-none transition-colors duration-200"
-                    aria-controls="mobile-menu" aria-expanded="false">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-primary focus:outline-none transition" aria-controls="mobile-menu" aria-expanded="false">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Mobile Navigation Menu -->
+      <!-- Mobile menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md rounded-b-md">
-          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">Ana Sayfa</a>
-          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">Hakkımızda</a>
+          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Ana Sayfa</a>
+          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Hakkımızda</a>
           <a href="/services.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-gray-50 rounded-md">Hizmetler</a>
-          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">Sektörler</a>
-          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">Portföy</a>
-          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">Blog</a>
-          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md transition">İletişim</a>
+          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Sektörler</a>
+          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Portföy</a>
+          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Blog</a>
+          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">İletişim</a>
         </div>
       </div>
     </nav>
 
-    <!-- MOBILE language dropdown (fixed & independent of hamburger) -->
-    <div class="fixed top-3 right-16 z-[70] lg:hidden" id="lang-mobile">
+    <!-- MOBILE language dropdown — same IDs/classes as About -->
+    <div class="fixed top-3 right-16 z-[70] lg:hidden" id="language-dropdown">
       <div class="relative">
-        <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
-                data-lang-btn>
+        <button id="language-btn"
+                class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition">
           <span class="text-lg">🇹🇷</span>
-          <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+          <svg class="w-3 h-3 dropdown-arrow" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
           </svg>
         </button>
-        <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-[80]" data-lang-menu>
-          <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md"><span class="text-lg mr-2">🇹🇷</span> Türkçe</a>
-          <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md"><span class="text-lg mr-2">🇬🇧</span> English</a>
+
+        <!-- On mobile, about.css/services.css will set this to position:fixed right/top -->
+        <div id="language-menu"
+             class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200">
+          <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+            <span class="text-lg mr-2">🇹🇷</span> Türkçe
+          </a>
+          <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+            <span class="text-lg mr-2">🇬🇧</span> English
+          </a>
         </div>
       </div>
     </div>
   </header>
+
 
   <!-- Spacer to prevent content from hiding behind fixed navbar -->
   <div class="h-16"></div>
