@@ -59,21 +59,53 @@ html, body {
 }
 
 /* Mobile specific positioning with much higher z-index */
+/* Force language dropdown to appear above everything on mobile */
 @media (max-width: 1024px) {
-  #language-dropdown {
-    z-index: 150 !important; /* Much higher for mobile */
+
+  /* Ensure the language dropdown container doesn't get clipped */
+  header.navbar nav {
+    overflow: visible !important;
   }
 
-  #language-btn {
-    z-index: 151 !important;
+  /* Ensure the main header container allows overflow */
+  header.navbar {
+    overflow: visible !important;
   }
 
+  /* Position language menu outside normal flow on mobile */
   #language-menu {
     position: fixed !important;
-    top: 68px !important;
+    top: 64px !important;
     right: 16px !important;
+    left: auto !important;
     width: 140px !important;
-    z-index: 152 !important; /* Much higher z-index for mobile */
+    z-index: 9999 !important;
+    transform: none !important;
+  }
+
+  /* Ensure language button is always clickable */
+  #language-btn {
+    position: relative !important;
+    z-index: 9998 !important;
+  }
+
+  /* Ensure language dropdown container allows positioning */
+  #language-dropdown {
+    position: static !important;
+  }
+
+  /* Make sure mobile menu doesn't interfere */
+  #mobile-menu {
+    z-index: 9997 !important;
+  }
+}
+
+/* Additional mobile-specific fixes */
+@media (max-width: 768px) {
+  #language-menu {
+    top: 60px !important;
+    right: 12px !important;
+    width: 130px !important;
   }
 }
 
