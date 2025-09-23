@@ -34,17 +34,22 @@ html, body {
   box-sizing: border-box;
 }
 
-/* 3. LANGUAGE DROPDOWN POSITIONING */
+/* 3. LANGUAGE DROPDOWN POSITIONING - UPDATED WITH HIGHER Z-INDEX */
 #language-dropdown {
   position: relative !important;
-  z-index: 60 !important;
+  z-index: 100 !important; /* Increased from 60 */
+}
+
+#language-btn {
+  position: relative !important;
+  z-index: 101 !important; /* Ensure button is always clickable */
 }
 
 #language-menu {
   position: absolute !important;
   top: 100% !important;
   right: 0 !important;
-  z-index: 61 !important;
+  z-index: 102 !important; /* Increased from 61 */
   min-width: 140px !important;
   margin-top: 4px !important;
   background: white !important;
@@ -53,12 +58,34 @@ html, body {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Mobile specific positioning with much higher z-index */
 @media (max-width: 1024px) {
+  #language-dropdown {
+    z-index: 150 !important; /* Much higher for mobile */
+  }
+
+  #language-btn {
+    z-index: 151 !important;
+  }
+
   #language-menu {
     position: fixed !important;
     top: 68px !important;
     right: 16px !important;
     width: 140px !important;
+    z-index: 152 !important; /* Much higher z-index for mobile */
+  }
+}
+
+/* Ensure mobile menu doesn't interfere */
+#mobile-menu {
+  z-index: 149 !important; /* Lower than language dropdown */
+}
+
+/* Ensure main navbar doesn't interfere */
+@media (max-width: 1024px) {
+  header.navbar, header, .navbar {
+    z-index: 148 !important; /* Lower than language dropdown */
   }
 }
 
