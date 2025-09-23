@@ -60,45 +60,32 @@ html, body {
 
 /* Mobile specific positioning with much higher z-index */
 /* Force language dropdown to appear above everything on mobile */
+/* ---- Services page: force mobile lang button position like About ---- */
 @media (max-width: 1024px) {
-
-  /* Ensure the language dropdown container doesn't get clipped */
-  header.navbar nav {
-    overflow: visible !important;
+  /* keep the button fixed near the hamburger */
+  #language-dropdown {
+    position: fixed !important;
+    top: 12px !important;           /* ~top-3 */
+    right: 64px !important;         /* leaves room for the hamburger on the far right */
+    left: auto !important;
+    z-index: 9999 !important;
   }
 
-  /* Ensure the main header container allows overflow */
-  header.navbar {
-    overflow: visible !important;
-  }
-
-  /* Position language menu outside normal flow on mobile */
+  /* keep the dropdown menu anchored to the top-right */
   #language-menu {
     position: fixed !important;
-    top: 64px !important;
+    top: 56px !important;           /* just below the header */
     right: 16px !important;
     left: auto !important;
-    width: 140px !important;
-    z-index: 9999 !important;
+    z-index: 10000 !important;
     transform: none !important;
   }
 
-  /* Ensure language button is always clickable */
-  #language-btn {
-    position: relative !important;
-    z-index: 9998 !important;
-  }
-
-  /* Ensure language dropdown container allows positioning */
-  #language-dropdown {
-    position: static !important;
-  }
-
-  /* Make sure mobile menu doesn't interfere */
-  #mobile-menu {
-    z-index: 9997 !important;
-  }
+  /* ensure header doesn’t clip */
+  header.navbar,
+  header.navbar nav { overflow: visible !important; }
 }
+
 
 /* Additional mobile-specific fixes */
 @media (max-width: 768px) {
