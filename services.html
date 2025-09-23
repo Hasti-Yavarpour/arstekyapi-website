@@ -1050,6 +1050,18 @@
   </script>
   <script>
   (function () {
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => {
+        const isHidden = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(isHidden));
+      });
+    }
+
+    // Language dropdowns (desktop + mobile)
     function setupLangDropdowns() {
       const btns = document.querySelectorAll('[data-lang-btn]');
       const menus = document.querySelectorAll('[data-lang-menu]');
@@ -1065,9 +1077,9 @@
           e.stopPropagation();
           const menu = btn.parentElement.querySelector('[data-lang-menu]');
           const arrow = btn.querySelector('[data-lang-arrow]');
-          const willOpen = menu.classList.contains('hidden');
+          const willOpen = menu && menu.classList.contains('hidden');
           closeAll();
-          if (willOpen) {
+          if (menu && willOpen) {
             menu.classList.remove('hidden');
             if (arrow) arrow.classList.add('rotate-180');
           }
@@ -1077,7 +1089,6 @@
       document.addEventListener('click', closeAll);
     }
 
-    // Run after DOM ready (works whether scripts are deferred or not)
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', setupLangDropdowns);
     } else {
@@ -1085,9 +1096,6 @@
     }
   })();
   </script>
-
-
-
 
 
 
