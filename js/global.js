@@ -33,6 +33,7 @@ window.ArsTekYapi = {
     this.initScrollEffects();
     this.initLanguageToggle();
     this.detectLanguage();
+    this.langDropdown.init();
   },
 
   // Utility Functions
@@ -461,6 +462,91 @@ window.ArsTekYapi = {
   }
 };
 
+     /**
+   * Unified Language Dropdown Controller
+   * Works for any number of dropdown instances that use [data-lang], [data-lang-btn], [data-lang-menu]
+   */
+  langDropdown: {
+    openInstance: null,
+
+    init() {
+      const instances = document.querySelectorAll('[data-lang]');
+      if (!instances.length) return;
+
+      // Set current flag/label on load
+      const isEN = window.location.pathname.startsWith('/en/');
+      instances.forEach(inst => {
+        const current = inst.querySelector('[data-lang-current]');
+        if (current) current.textContent = isEN ? 'EN' : 'TR';
+        this.bind(inst);
+      });
+
+      // Global outside click + Esc close
+      document.addEventListener('click', (e) => {
+        if (!this.openInstance) return;
+        if (!this.openInstance.contains(e.target)) this.close(this.openInstance);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.openInstance) this.close(this.openInstance, true);
+      });
+    },
+
+    bind(instance) {
+      const btn = instance.querySelector('[data-lang-btn]');
+      const menu = instance.querySelector('[data-lang-menu]');
+      const arrow = instance.querySelector('[data-lang-arrow]');
+
+      if (!btn || !menu) return;
+
+      // Toggle
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = menu.classList.contains('hidden');
+        // Close any other open instance
+        if (this.openInstance && this.openInstance !== instance) {
+          this.close(this.openInstance);
+        }
+        if (willOpen) this.open(instance, btn, menu, arrow);
+        else this.close(instance);
+      });
+
+      // Optional: set hrefs dynamically based on current path so this works on every page
+      const toTR = menu.querySelector('[data-lang-opt="tr"]');
+      const toEN = menu.querySelector('[data-lang-opt="en"]');
+      if (toTR && toEN) {
+        const path = window.location.pathname;
+        toEN.href = path.startsWith('/en/') ? path : '/en' + path;
+        toTR.href = path.replace(/^\/en(\/|$)/, '/');
+      }
+    },
+
+    open(instance, btn, menu, arrow) {
+      menu.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+      this.openInstance = instance;
+
+      // Basic focus management: focus first item for keyboard
+      const firstItem = menu.querySelector('.lang__item');
+      if (firstItem) firstItem.focus({ preventScroll: true });
+    },
+
+    close(instance, focusButton = false) {
+      const btn = instance.querySelector('[data-lang-btn]');
+      const menu = instance.querySelector('[data-lang-menu]');
+      const arrow = instance.querySelector('[data-lang-arrow]');
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      if (arrow) arrow.style.transform = 'rotate(0deg)';
+      if (focusButton) btn.focus({ preventScroll: true });
+      if (this.openInstance === instance) this.openInstance = null;
+    }
+  }
+};
+
 // Scroll to top button functionality
 document.addEventListener('DOMContentLoaded', function() {
   const scrollTopBtn = document.getElementById('scroll-top');
@@ -487,69 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Language Dropdown Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Language dropdown elements
-  const languageBtn = document.getElementById('language-btn');
-  const languageMenu = document.getElementById('language-menu');
-  const dropdownArrow = document.getElementById('dropdown-arrow');
 
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  const currentLang = document.getElementById('current-lang');
-
-  // Detect current language and update display
-  const path = window.location.pathname;
-  if (path.startsWith('/en/')) {
-    currentLang.textContent = '🇬🇧';
-  } else {
-    currentLang.textContent = '🇹🇷';
-  }
-
-  // Language dropdown toggle
-  if (languageBtn && languageMenu) {
-    languageBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-
-      // Toggle dropdown visibility
-      languageMenu.classList.toggle('hidden');
-
-      // Rotate arrow
-      if (dropdownArrow) {
-        dropdownArrow.classList.toggle('rotate-180');
-      }
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-        languageMenu.classList.add('hidden');
-        if (dropdownArrow) {
-          dropdownArrow.classList.remove('rotate-180');
-        }
-      }
-    });
-  }
-
-  // Mobile menu toggle
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  // Close mobile menu when clicking on a link
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  if (mobileLinks) {
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-  }
-});
 
 // Initialize when DOM is ready
 ArsTekYapi.utils.ready(() => {
