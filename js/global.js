@@ -460,11 +460,16 @@ window.ArsTekYapi = {
       }
     });
   }
-};
 
-     /**
+    /**
    * Unified Language Dropdown Controller
-   * Works for any number of dropdown instances that use [data-lang], [data-lang-btn], [data-lang-menu]
+   * Multiple instances supported:
+   * wrapper [data-lang] + [data-lang-display="text|emoji"]
+   * button  [data-lang-btn]
+   * arrow   [data-lang-arrow]
+   * panel   [data-lang-menu]
+   * current label node [data-lang-current]
+   * options [data-lang-opt="tr" | "en"]
    */
   langDropdown: {
     openInstance: null,
@@ -473,54 +478,47 @@ window.ArsTekYapi = {
       const instances = document.querySelectorAll('[data-lang]');
       if (!instances.length) return;
 
-      // Set current flag/label on load
       const isEN = window.location.pathname.startsWith('/en/');
-      instances.forEach(inst => {
+      instances.forEach((inst) => {
         const current = inst.querySelector('[data-lang-current]');
-        if (current) current.textContent = isEN ? 'EN' : 'TR';
+        const display = inst.getAttribute('data-lang-display') || 'text';
+        if (current) current.textContent = isEN
+          ? (display === 'emoji' ? '🇬🇧' : 'EN')
+          : (display === 'emoji' ? '🇹🇷' : 'TR');
         this.bind(inst);
       });
 
-      // Global outside click + Esc close
+      // close on outside click / ESC
       document.addEventListener('click', (e) => {
-        if (!this.openInstance) return;
-        if (!this.openInstance.contains(e.target)) this.close(this.openInstance);
+        if (this.openInstance && !this.openInstance.contains(e.target)) {
+          this.close(this.openInstance);
+        }
       });
-
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && this.openInstance) this.close(this.openInstance, true);
       });
     },
 
     bind(instance) {
-      const btn = instance.querySelector('[data-lang-btn]');
-      const menu = instance.querySelector('[data-lang-menu]');
+      const btn   = instance.querySelector('[data-lang-btn]');
+      const menu  = instance.querySelector('[data-lang-menu]');
       const arrow = instance.querySelector('[data-lang-arrow]');
-
       if (!btn || !menu) return;
 
-      // Toggle
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-
-        const willOpen = menu.classList.contains('hidden');
-        // Close any other open instance
-        if (this.openInstance && this.openInstance !== instance) {
-          this.close(this.openInstance);
-        }
-        if (willOpen) this.open(instance, btn, menu, arrow);
-        else this.close(instance);
+        const open = menu.classList.contains('hidden');
+        if (this.openInstance && this.openInstance !== instance) this.close(this.openInstance);
+        open ? this.open(instance, btn, menu, arrow) : this.close(instance);
       });
 
-      // Optional: set hrefs dynamically based on current path so this works on every page
+      // set hrefs based on current path
       const toTR = menu.querySelector('[data-lang-opt="tr"]');
       const toEN = menu.querySelector('[data-lang-opt="en"]');
-      if (toTR && toEN) {
-        const path = window.location.pathname;
-        toEN.href = path.startsWith('/en/') ? path : '/en' + path;
-        toTR.href = path.replace(/^\/en(\/|$)/, '/');
-      }
+      const path = window.location.pathname;
+      if (toTR) toTR.setAttribute('href', path.replace(/^\/en(\/|$)/, '/'));
+      if (toEN) toEN.setAttribute('href', path.startsWith('/en/') ? path : '/en' + path);
     },
 
     open(instance, btn, menu, arrow) {
@@ -528,20 +526,17 @@ window.ArsTekYapi = {
       btn.setAttribute('aria-expanded', 'true');
       if (arrow) arrow.style.transform = 'rotate(180deg)';
       this.openInstance = instance;
-
-      // Basic focus management: focus first item for keyboard
-      const firstItem = menu.querySelector('.lang__item');
-      if (firstItem) firstItem.focus({ preventScroll: true });
+      menu.querySelector('a')?.focus({ preventScroll: true });
     },
 
-    close(instance, focusButton = false) {
-      const btn = instance.querySelector('[data-lang-btn]');
-      const menu = instance.querySelector('[data-lang-menu]');
+    close(instance, focusBtn = false) {
+      const btn   = instance.querySelector('[data-lang-btn]');
+      const menu  = instance.querySelector('[data-lang-menu]');
       const arrow = instance.querySelector('[data-lang-arrow]');
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
+      if (menu)  menu.classList.add('hidden');
+      if (btn)   btn.setAttribute('aria-expanded', 'false');
       if (arrow) arrow.style.transform = 'rotate(0deg)';
-      if (focusButton) btn.focus({ preventScroll: true });
+      if (focusBtn && btn) btn.focus({ preventScroll: true });
       if (this.openInstance === instance) this.openInstance = null;
     }
   }
