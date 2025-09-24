@@ -87,6 +87,10 @@
     "url": "https://arstekyapi.com/industries.html"
   }
   </script>
+  <style>
+    .dropdown-arrow { transition: transform .2s ease; }
+    .dropdown-arrow.rotate { transform: rotate(180deg); }
+  </style>
 </head>
 
 <body class="font-inter bg-white">
@@ -96,7 +100,7 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
 
-        <!-- Logo & Company Name -->
+        <!-- Logo -->
         <div class="flex items-center">
           <a href="/index.html" class="flex items-center space-x-3">
             <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
@@ -107,127 +111,96 @@
           </a>
         </div>
 
-        <!-- Desktop Navigation -->
+        <!-- Desktop navigation -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Ana Sayfa
-          </a>
-          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Hakkımızda
-          </a>
-          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Hizmetler
-          </a>
-          <a href="/industries.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
-            Sektörler
-          </a>
-          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Portföy
-          </a>
-          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Blog
-          </a>
-          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            İletişim
-          </a>
+          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Ana Sayfa</a>
+          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Hakkımızda</a>
+          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Hizmetler</a>
+          <a href="/industries.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">Sektörler</a>
+          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Portföy</a>
+          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Blog</a>
+          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">İletişim</a>
 
-          <!-- DESKTOP language dropdown (inline) -->
-          <div class="relative hidden lg:block" id="lang-desktop">
+          <!-- Desktop language -->
+          <div class="relative" id="lang-desktop">
             <button
-              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
-              data-lang-btn>
+              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center hover:bg-brand-hover transition"
+              type="button" data-lang-btn aria-haspopup="true" aria-expanded="false">
               <span class="font-semibold">TR</span>
-              <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+              <svg class="w-3 h-3 ml-1 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
             </button>
-
-            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-[60]"
-                 data-lang-menu>
-              <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+            <div
+              class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-[60]"
+              role="menu" data-lang-menu>
+              <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md" role="menuitem">
                 <span class="text-lg mr-2">🇹🇷</span> Türkçe
               </a>
-              <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+              <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md" role="menuitem">
+                <span class="text-lg mr-2">🇬🇧</span> English
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile controls -->
+        <div class="flex items-center gap-2 lg:hidden">
+          <!-- Mobile language -->
+          <div class="relative">
+            <button
+              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center hover:bg-brand-hover transition"
+              type="button" data-lang-btn aria-haspopup="true" aria-expanded="false">
+              <span class="text-lg">🇹🇷</span>
+              <svg class="w-3 h-3 ml-1 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div
+              class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-[80]"
+              role="menu" data-lang-menu>
+              <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md" role="menuitem">
+                <span class="text-lg mr-2">🇹🇷</span> Türkçe
+              </a>
+              <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md" role="menuitem">
                 <span class="text-lg mr-2">🇬🇧</span> English
               </a>
             </div>
           </div>
 
-          <!-- MOBILE language dropdown (fixed & independent of hamburger) -->
-          <div class="fixed top-3 right-16 z-[70] lg:hidden" id="lang-mobile">
-            <div class="relative">
-              <button
-                class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
-                data-lang-btn>
-                <span class="text-lg">🇹🇷</span>
-                <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-              </button>
-
-              <div class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-[80]"
-                   data-lang-menu>
-                <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
-                  <span class="text-lg mr-2">🇹🇷</span> Türkçe
-                </a>
-                <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
-                  <span class="text-lg mr-2">🇬🇧</span> English
-                </a>
-              </div>
-            </div>
-          </div>
-
-
-        <!-- Mobile menu button -->
-        <div class="lg:hidden">
-          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <!-- Hamburger -->
+          <button
+            class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200"
+            id="mobile-menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Navigation Menu -->
+      <!-- Mobile menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Ana Sayfa
-          </a>
-          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Hakkımızda
-          </a>
-          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Hizmetler
-          </a>
-          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
-            Sektörler
-          </a>
-          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Portföy
-          </a>
-          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Blog
-          </a>
-          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            İletişim
-          </a>
+          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Ana Sayfa</a>
+          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Hakkımızda</a>
+          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Hizmetler</a>
+          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">Sektörler</a>
+          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Portföy</a>
+          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Blog</a>
+          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">İletişim</a>
 
-          <!-- Mobile Language Options -->
+          <!-- Mobile language choices (optional duplicate for discoverability) -->
           <div class="border-t border-gray-200 pt-3 mt-3">
             <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
-            <a href="/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-               Türkçe
-            </a>
-            <a href="/en/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-               English
-            </a>
+            <a href="/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">Türkçe</a>
+            <a href="/en/industries.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">English</a>
           </div>
         </div>
       </div>
-      </div>
     </nav>
   </header>
+
 
   <!-- Spacer to prevent content from hiding behind fixed navbar -->
   <div class="h-16"></div>
@@ -1107,71 +1080,46 @@
         offset: 100
       });
 
-      // Mobile menu toggle
+      // Mobile menu
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
-
       if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           mobileMenu.classList.toggle('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
         });
       }
 
-      // Language dropdowns (works for both desktop & mobile instances)
+      // Language dropdowns (desktop + mobile)
       const langButtons = document.querySelectorAll('[data-lang-btn]');
+      const allMenus = document.querySelectorAll('[data-lang-menu]');
+      const closeAllLangMenus = () => {
+        allMenus.forEach(m => m.classList.add('hidden'));
+        document.querySelectorAll('[data-lang-arrow]').forEach(a => a.style.transform = 'rotate(0deg)');
+      };
+
       langButtons.forEach(btn => {
         const wrapper = btn.closest('div');
         const menu = wrapper.querySelector('[data-lang-menu]');
         const arrow = btn.querySelector('[data-lang-arrow]');
 
-        const closeMenu = () => {
-          if (!menu.classList.contains('hidden')) {
-            menu.classList.add('hidden');
-            if (arrow) arrow.style.transform = 'rotate(0deg)';
-          }
-        };
-
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
           const willOpen = menu.classList.contains('hidden');
-          document.querySelectorAll('[data-lang-menu]').forEach(m => { if (m !== menu) m.classList.add('hidden'); });
+          closeAllLangMenus();
           if (willOpen) {
             menu.classList.remove('hidden');
             if (arrow) arrow.style.transform = 'rotate(180deg)';
-          } else {
-            closeMenu();
           }
         });
 
-        document.addEventListener('click', (ev) => { if (!wrapper.contains(ev.target)) closeMenu(); });
-        document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closeMenu(); });
+        document.addEventListener('click', (ev) => { if (!wrapper.contains(ev.target)) { menu.classList.add('hidden'); if (arrow) arrow.style.transform='rotate(0deg)'; }});
+        document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') { menu.classList.add('hidden'); if (arrow) arrow.style.transform='rotate(0deg)'; }});
       });
 
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-          if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
-          }
-        });
-
-        // Close dropdown when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape') {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
-          }
-        });
-      }
 
       // Industry search functionality
       const searchInput = document.getElementById('industry-search');
