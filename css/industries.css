@@ -437,3 +437,29 @@
     margin-bottom: 20px;
   }
 }
+
+/* Ensure header never clips the dropdowns */
+header.navbar, header.navbar nav { overflow: visible !important; }
+
+/* Desktop panel layering */
+#lang-desktop [data-lang-menu] { z-index: 60 !important; }
+
+/* Mobile: fix position near hamburger; float menu above everything */
+@media (max-width: 1024px) {
+  #lang-mobile { position: fixed !important; top: 12px !important; right: 64px !important; z-index: 9999 !important; }
+  #lang-mobile [data-lang-menu] {
+    position: fixed !important;
+    top: 56px !important;     /* just under the header */
+    right: 16px !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 10000 !important;
+  }
+  header.navbar { z-index: 148 !important; } /* keep header below the menu for taps */
+}
+
+/* Panel look */
+[data-lang-menu] {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+}

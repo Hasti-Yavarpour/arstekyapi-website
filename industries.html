@@ -131,24 +131,52 @@
             İletişim
           </a>
 
-          <!-- Language Dropdown -->
-          <div class="relative ml-4" id="language-dropdown">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
-              <span id="current-lang">TR</span>
-              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          <!-- DESKTOP language dropdown (inline) -->
+          <div class="relative hidden lg:block" id="lang-desktop">
+            <button
+              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
+              data-lang-btn>
+              <span class="font-semibold">TR</span>
+              <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
-              <a href="/industries.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 Türkçe
+
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200 z-[60]"
+                 data-lang-menu>
+              <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+                <span class="text-lg mr-2">🇹🇷</span> Türkçe
               </a>
-              <a href="/en/industries.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 English
+              <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+                <span class="text-lg mr-2">🇬🇧</span> English
               </a>
             </div>
           </div>
-        </div>
+
+          <!-- MOBILE language dropdown (fixed & independent of hamburger) -->
+          <div class="fixed top-3 right-16 z-[70] lg:hidden" id="lang-mobile">
+            <div class="relative">
+              <button
+                class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
+                data-lang-btn>
+                <span class="text-lg">🇹🇷</span>
+                <svg class="w-3 h-3 transition-transform" data-lang-arrow viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+
+              <div class="hidden absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg border border-gray-200 z-[80]"
+                   data-lang-menu>
+                <a href="/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
+                  <span class="text-lg mr-2">🇹🇷</span> Türkçe
+                </a>
+                <a href="/en/industries.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
+                  <span class="text-lg mr-2">🇬🇧</span> English
+                </a>
+              </div>
+            </div>
+          </div>
+
 
         <!-- Mobile menu button -->
         <div class="lg:hidden">
@@ -196,6 +224,7 @@
             </a>
           </div>
         </div>
+      </div>
       </div>
     </nav>
   </header>
@@ -1089,32 +1118,37 @@
         });
       }
 
-      // Language dropdown toggle - FIXED VERSION
-      const languageBtn = document.getElementById('language-btn');
-      const languageMenu = document.getElementById('language-menu');
-      const dropdownArrow = document.getElementById('dropdown-arrow');
+      // Language dropdowns (works for both desktop & mobile instances)
+      const langButtons = document.querySelectorAll('[data-lang-btn]');
+      langButtons.forEach(btn => {
+        const wrapper = btn.closest('div');
+        const menu = wrapper.querySelector('[data-lang-menu]');
+        const arrow = btn.querySelector('[data-lang-arrow]');
 
-      if (languageBtn && languageMenu) {
-        languageBtn.addEventListener('click', function(e) {
+        const closeMenu = () => {
+          if (!menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+            if (arrow) arrow.style.transform = 'rotate(0deg)';
+          }
+        };
+
+        btn.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-
-          // Toggle dropdown visibility
-          const isHidden = languageMenu.classList.contains('hidden');
-          if (isHidden) {
-            languageMenu.classList.remove('hidden');
-            languageMenu.style.display = 'block';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(180deg)';
-            }
+          const willOpen = menu.classList.contains('hidden');
+          document.querySelectorAll('[data-lang-menu]').forEach(m => { if (m !== menu) m.classList.add('hidden'); });
+          if (willOpen) {
+            menu.classList.remove('hidden');
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
           } else {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
+            closeMenu();
           }
         });
+
+        document.addEventListener('click', (ev) => { if (!wrapper.contains(ev.target)) closeMenu(); });
+        document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closeMenu(); });
+      });
+
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
