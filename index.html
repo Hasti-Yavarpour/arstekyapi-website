@@ -96,26 +96,16 @@
     ]
   }
   </script>
-
-  <style>
-    .dropdown-arrow {
-      transition: transform 0.2s ease;
-    }
-    .dropdown-arrow.rotate {
-      transform: rotate(180deg);
-    }
-    header.navbar, header.navbar nav { overflow: visible; }
-  </style>
 </head>
 
 <body class="font-inter bg-white">
 
   <!-- Header & Navbar -->
-  <!-- Header & Navbar -->
   <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
+
+        <!-- Logo & Company Name -->
         <div class="flex items-center">
           <a href="/index.html" class="flex items-center space-x-3">
             <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
@@ -128,87 +118,96 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="/index.html" class="nav-link text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm">Ana Sayfa</a>
-          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Hakkımızda</a>
-          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Hizmetler</a>
-          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Sektörler</a>
-          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Portföy</a>
-          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">İletişim</a>
-        </div>
+          <a href="/index.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
+            Ana Sayfa
+          </a>
+          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Hakkımızda
+          </a>
+          <a href="/services.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Hizmetler
+          </a>
+          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Sektörler
+          </a>
+          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Portföy
+          </a>
+          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            İletişim
+          </a>
 
-        <!-- Right utilities: Language dropdown (outside mobile menu) + Hamburger -->
-        <div class="flex items-center space-x-3">
-          <!-- Language Dropdown (desktop + mobile, same component) -->
-          <div class="lang" data-lang>
-            <button
-              class="lang__button"
-              data-lang-btn
-              aria-haspopup="true"
-              aria-expanded="false"
-              aria-label="Dil seçimi"
-            >
-              <img
-                data-lang-current-img
-                src="/assets/flags/tr.png"  <!-- will be replaced by JS on load if /en/ -->
-                alt="Current language"
-                class="h-5 w-5 lang__flag"
-              />
-              <svg data-lang-arrow class="lang__chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+          <!-- Language Dropdown -->
+          <div class="relative ml-4" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
+              <span id="current-lang">TR</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-
-            <div class="lang__menu hidden" data-lang-menu>
-              <a class="lang__item flex items-center gap-2" data-lang-opt="tr" href="#">
-                <img src="/assets/flags/tr.png" alt="Türkçe" class="h-4 w-4" />
-                <span>Türkçe</span>
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+              <a href="/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                 Türkçe
               </a>
-              <a class="lang__item flex items-center gap-2" data-lang-opt="en" href="#">
-                <img src="/assets/flags/gb.png" alt="English" class="h-4 w-4" />
-                <span>English</span>
+              <a href="/en/index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                 English
               </a>
             </div>
           </div>
+        </div>
 
-          <!-- Mobile menu button -->
-          <div class="lg:hidden">
-            <button
-              id="mobile-menu-btn"
-              class="text-gray-600 hover:text-brand-primary focus:outline-none transition-colors"
-              aria-label="Menüyü aç/kapat"
-              aria-expanded="false"
-            >
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </div>
 
-      <!-- Mobile Navigation Menu (language dropdown is NOT inside this) -->
+      <!-- Mobile Navigation Menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 bg-white">
-          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-brand-primary rounded-md">Ana Sayfa</a>
-          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">Hakkımızda</a>
-          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">Hizmetler</a>
-          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">Sektörler</a>
-          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">Portföy</a>
-          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">Blog</a>
-          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary rounded-md">İletişim</a>
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
+            Ana Sayfa
+          </a>
+          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Hakkımızda
+          </a>
+          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Hizmetler
+          </a>
+          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Sektörler
+          </a>
+          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Portföy
+          </a>
+          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            İletişim
+          </a>
+
+          <!-- Mobile Language Options -->
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
+            <a href="/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              Türkçe
+            </a>
+            <a href="/en/index.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              English
+            </a>
+          </div>
         </div>
       </div>
     </nav>
   </header>
-
-  <!-- Spacer to prevent content underlap -->
-  <div class="h-16"></div>
-
-
-
-
 
   <!-- Spacer to prevent content from hiding behind fixed navbar -->
   <div class="h-16"></div>
@@ -815,7 +814,6 @@
       });
     });
   </script>
-
 
 </body>
 </html>

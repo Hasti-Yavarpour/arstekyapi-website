@@ -98,10 +98,6 @@
     "areaServed": "Turkey"
   }
   </script>
-  <style>
-    .dropdown-arrow { transition: transform .2s ease; }
-    .dropdown-arrow.rotate { transform: rotate(180deg); }
-  </style>
 </head>
 
 <body class="font-inter bg-white">
@@ -111,9 +107,9 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
 
-        <!-- Logo -->
+        <!-- Logo & Company Name -->
         <div class="flex items-center">
-          <a href="en/index.html" class="flex items-center space-x-3">
+          <a href="/en/index.html" class="flex items-center space-x-3">
             <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
             <div class="hidden sm:block">
               <span class="text-brand-primary font-bold text-xl">ARS TEK YAPI</span>
@@ -122,80 +118,98 @@
           </a>
         </div>
 
-        <!-- Desktop nav -->
+        <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
-          <a href="about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">About Us</a>
-          <a href="services.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm">Services</a>
-          <a href="industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Industries</a>
-          <a href="portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
-          <a href="blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Blog</a>
-          <a href="contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-        </div>
+          <a href="/en/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Home
+          </a>
+          <a href="/en/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            About Us
+          </a>
+          <a href="/en/services.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
+            Services
+          </a>
+          <a href="/en/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Industries
+          </a>
+          <a href="/en/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Portfolio
+          </a>
+          <a href="/en/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            Contact
+          </a>
 
-        <!-- Right side -->
-        <div class="flex items-center space-x-3">
-          <!-- Desktop language -->
-          <div class="relative hidden lg:block">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition"
-                    data-lang-btn>
-              <span class="font-semibold">EN</span>
-              <svg class="w-3 h-3 dropdown-arrow" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          <!-- Language Dropdown -->
+          <div class="relative ml-4" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200 z-[60]" data-lang-menu>
-              <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md"><span class="mr-2">EN</span> English</a>
-              <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md"><span class="mr-2">TR</span> Türkçe</a>
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+                <a href="/en/services.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                English
+              </a>
+                <a href="/services.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                Türkçe
+              </a>
+
             </div>
           </div>
+        </div>
 
-          <!-- Hamburger (mobile) -->
-          <div class="lg:hidden">
-            <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-primary focus:outline-none transition" aria-controls="mobile-menu" aria-expanded="false">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-          </div>
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </div>
 
-      <!-- Mobile menu -->
+      <!-- Mobile Navigation Menu -->
       <div class="lg:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md rounded-b-md">
-          <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Home</a>
-          <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">About Us</a>
-          <a href="services.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-gray-50 rounded-md">Services</a>
-          <a href="industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Industries</a>
-          <a href="portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Portfolio</a>
-          <a href="blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Blog</a>
-          <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50 rounded-md">Contact</a>
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/en/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Home
+          </a>
+          <a href="/en/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            About Us
+          </a>
+          <a href="/en/services.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
+            Services
+          </a>
+          <a href="/en/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Industries
+          </a>
+          <a href="/en/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Portfolio
+          </a>
+          <a href="/en/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Blog
+          </a>
+          <a href="/en/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+            Contact
+          </a>
+
+          <!-- Mobile Language Options -->
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Language</p>
+              <a href="/en/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              English
+            </a>
+            <a href="/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+              Türkçe
+            </a>
+          </div>
         </div>
       </div>
     </nav>
-
-    <!-- MOBILE language dropdown — same IDs/classes as About -->
-    <div class="fixed top-3 right-16 z-[70] lg:hidden" id="language-dropdown">
-      <div class="relative">
-        <button id="language-btn"
-                class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition">
-          <span class="text-lg">🇬🇧</span>
-          <svg class="w-3 h-3 dropdown-arrow" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-          </svg>
-        </button>
-
-        <!-- On mobile, about.css/services.css will set this to position:fixed right/top -->
-        <div id="language-menu"
-             class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-200">
-          <a href="/en/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-md">
-            <span class="text-lg mr-2">🇬🇧</span> English
-          </a>
-          <a href="/services.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-md">
-            <span class="text-lg mr-2">🇹🇷</span> Türkçe
-          </a>
-        </div>
-      </div>
-    </div>
   </header>
 
   <!-- Spacer to prevent content from hiding behind fixed navbar -->
@@ -1058,56 +1072,143 @@
         once: true,
         offset: 100
       });
-  </script>
 
-  <script>
-    (function () {
       // Mobile menu toggle
-      const menuBtn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      if (menuBtn && menu) {
-        menuBtn.addEventListener('click', () => {
-          const isHidden = menu.classList.contains('hidden');
-          menu.classList.toggle('hidden');
-          menuBtn.setAttribute('aria-expanded', String(isHidden));
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
         });
       }
 
-      // Language dropdowns (desktop + mobile)
-      function setupLangDropdowns() {
-        const btns = document.querySelectorAll('[data-lang-btn]');
-        const menus = document.querySelectorAll('[data-lang-menu]');
-        const arrows = document.querySelectorAll('[data-lang-arrow]');
+      // Language dropdown toggle - FIXED VERSION
+      const languageBtn = document.getElementById('language-btn');
+      const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
 
-        const closeAll = () => {
-          menus.forEach(m => m.classList.add('hidden'));
-          arrows.forEach(a => a.classList.remove('rotate-180'));
-        };
+      if (languageBtn && languageMenu) {
+        languageBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
 
-        btns.forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const menu = btn.parentElement.querySelector('[data-lang-menu]');
-            const arrow = btn.querySelector('[data-lang-arrow]');
-            const willOpen = menu && menu.classList.contains('hidden');
-            closeAll();
-            if (menu && willOpen) {
-              menu.classList.remove('hidden');
-              if (arrow) arrow.classList.add('rotate-180');
+          // Toggle dropdown visibility
+          const isHidden = languageMenu.classList.contains('hidden');
+          if (isHidden) {
+            languageMenu.classList.remove('hidden');
+            languageMenu.style.display = 'block';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(180deg)';
+            }
+          } else {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+      }
+
+      // FAQ Toggle functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+          question.addEventListener('click', () => {
+            const answer = item.querySelector('.faq-answer');
+            if (answer) {
+              const isOpen = answer.style.display === 'block';
+
+              // Close all other FAQs
+              faqItems.forEach(otherItem => {
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                if (otherAnswer && otherItem !== item) {
+                  otherAnswer.style.display = 'none';
+                  otherItem.classList.remove('active');
+                }
+              });
+
+              // Toggle current FAQ
+              if (isOpen) {
+                answer.style.display = 'none';
+                item.classList.remove('active');
+              } else {
+                answer.style.display = 'block';
+                item.classList.add('active');
+              }
             }
           });
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
         });
-
-        document.addEventListener('click', closeAll);
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupLangDropdowns);
-      } else {
-        setupLangDropdowns();
-      }
-    })();
+      });
+    });
   </script>
+
+  <style>
+  /* Force service colors - loads after Tailwind */
+  [id="ai-ml"] h3, [id="ai-ml"] h3 i { color: #F39C12 !important; }
+  [id="iot"] h3, [id="iot"] h3 i { color: #27AE60 !important; }
+  [id="web-development"] h3, [id="web-development"] h3 i { color: #2980B9 !important; }
+  [id="fintech"] h3, [id="fintech"] h3 i { color: #8E44AD !important; }
+  [id="smart-home"] h3, [id="smart-home"] h3 i { color: #E74C3C !important; }
+
+  /* Force navbar to top with no gap */
+  header, .navbar, header.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    z-index: 50 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Remove any top spacing from body */
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  </style>
 
 </body>
 </html>

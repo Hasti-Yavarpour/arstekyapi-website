@@ -91,55 +91,6 @@
     }
   }
   </script>
-
-  <style>
-    .dropdown-arrow {
-      transition: transform 0.2s ease;
-    }
-    .dropdown-arrow.rotate {
-      transform: rotate(180deg);
-    }
-    /* Mobile touch improvements */
-    @media (max-width: 640px) {
-      #lang-btn {
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-      }
-
-      #language-menu {
-        position: absolute;
-        right: 0;
-        top: 100%;
-        z-index: 50;
-      }
-    }
-
-    /* Improve mobile touch targets */
-    #lang-btn-new {
-      touch-action: manipulation;
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    #lang-menu-new {
-      position: absolute !important;
-      z-index: 9999 !important;
-    }
-
-    /* Ensure dropdown doesn't get clipped */
-    @media (max-width: 640px) {
-      #lang-dropdown-new {
-        position: relative;
-      }
-      #lang-menu-new {
-        position: fixed !important;
-        right: 1rem !important;
-        top: 4rem !important;
-      }
-    }
-  </style>
-
 </head>
 
 <body class="font-inter bg-white">
@@ -183,57 +134,33 @@
           <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
             Contact
           </a>
-        </div>
 
-        <!-- Right Side: Language Dropdown + Mobile Menu Button -->
-        <div class="flex items-center space-x-3">
-
-
-          <!-- Language Dropdown (Both Desktop & Mobile) -->
-          <div class="relative" id="lang-dropdown-new">
-            <button
-              class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200 touch-manipulation select-none"
-              id="lang-btn-new"
-              type="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-              style="min-height: 44px; min-width: 44px; -webkit-tap-highlight-color: transparent;"
-            >
-              <!-- Desktop Text -->
-              <span id="current-lang-text" class="hidden sm:block font-semibold pointer-events-none">EN</span>
-              <!-- Mobile Emoji -->
-              <span id="current-lang-emoji" class="block sm:hidden text-lg pointer-events-none">🇬🇧</span>
-              <svg class="w-3 h-3 dropdown-arrow transition-transform duration-200 pointer-events-none" id="lang-arrow-new" fill="currentColor" viewBox="0 0 20 20">
+          <!-- Language Dropdown -->
+          <div class="relative ml-4" id="language-dropdown">
+            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div
-              class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-200"
-              id="lang-menu-new"
-              style="z-index: 9999;"
-            >
-              <a href="/en/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-b-md touch-manipulation" style="min-height: 44px;">
-                <span class="text-lg mr-2 sm:hidden">🇬🇧</span>
-                <span class="hidden sm:inline mr-2">EN</span>
-                English
+            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
+              <a href="/en/about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                 English
               </a>
-              <a href="/about.html" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200 rounded-t-md touch-manipulation" style="min-height: 44px;">
-                <span class="text-lg mr-2 sm:hidden">🇹🇷</span>
-                <span class="hidden sm:inline mr-2">TR</span>
-                Türkçe
+              <a href="/about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
+                 Türkçe
               </a>
             </div>
           </div>
+        </div>
 
-          <!-- Mobile menu button -->
-          <div class="lg:hidden">
-            <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -261,6 +188,17 @@
           <a href="/en/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
             Contact
           </a>
+
+          <!-- Mobile Language Options -->
+          <div class="border-t border-gray-200 pt-3 mt-3">
+            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Language</p>
+            <a href="/en/about.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+               English
+            </a>
+            <a href="/about.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
+               Türkçe
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -829,6 +767,67 @@
         offset: 100
       });
 
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Language dropdown toggle - FIXED VERSION
+      const languageBtn = document.getElementById('language-btn');
+      const languageMenu = document.getElementById('language-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+
+      if (languageBtn && languageMenu) {
+        languageBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Toggle dropdown visibility
+          const isHidden = languageMenu.classList.contains('hidden');
+          if (isHidden) {
+            languageMenu.classList.remove('hidden');
+            languageMenu.style.display = 'block';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(180deg)';
+            }
+          } else {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+            languageMenu.classList.add('hidden');
+            languageMenu.style.display = 'none';
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+      }
+
       // Counter animation for stats
       function animateCounter(element, target, suffix = '') {
         let current = 0;
@@ -901,96 +900,6 @@
       }
     });
   </script>
-  <script>
-    // Mobile-optimized language dropdown for About page
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('About page language script loading...');
-
-      const langBtn = document.getElementById('lang-btn-new');
-      const langMenu = document.getElementById('lang-menu-new');
-      const langArrow = document.getElementById('lang-arrow-new');
-      const currentLangText = document.getElementById('current-lang-text');
-      const currentLangEmoji = document.getElementById('current-lang-emoji');
-
-      console.log('Language elements found:', { langBtn, langMenu, langArrow });
-
-      // Set language display based on URL
-      const path = window.location.pathname;
-      if (path.startsWith('/en/')) {
-        if (currentLangText) currentLangText.textContent = 'EN';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇬🇧';
-      } else {
-        if (currentLangText) currentLangText.textContent = 'TR';
-        if (currentLangEmoji) currentLangEmoji.textContent = '🇹🇷';
-      }
-
-      if (langBtn && langMenu) {
-        let isDropdownOpen = false;
-
-        function toggleDropdown(e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          console.log('Toggle dropdown clicked, current state:', isDropdownOpen);
-
-          if (isDropdownOpen) {
-            // Close dropdown
-            langMenu.classList.add('hidden');
-            langBtn.setAttribute('aria-expanded', 'false');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-            isDropdownOpen = false;
-          } else {
-            // Open dropdown
-            langMenu.classList.remove('hidden');
-            langBtn.setAttribute('aria-expanded', 'true');
-            if (langArrow) langArrow.style.transform = 'rotate(180deg)';
-            isDropdownOpen = true;
-          }
-        }
-
-        function closeDropdown() {
-          if (isDropdownOpen) {
-            langMenu.classList.add('hidden');
-            langBtn.setAttribute('aria-expanded', 'false');
-            if (langArrow) langArrow.style.transform = 'rotate(0deg)';
-            isDropdownOpen = false;
-          }
-        }
-
-        // Add multiple event listeners for better mobile support
-        langBtn.addEventListener('click', toggleDropdown);
-        langBtn.addEventListener('touchend', function(e) {
-          e.preventDefault();
-          toggleDropdown(e);
-        });
-
-        // Close dropdown when clicking/touching outside
-        document.addEventListener('click', function(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            closeDropdown();
-          }
-        });
-
-        document.addEventListener('touchend', function(e) {
-          if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-            closeDropdown();
-          }
-        });
-
-        // Handle escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            closeDropdown();
-          }
-        });
-
-        console.log('Language dropdown events attached successfully');
-      } else {
-        console.error('Language dropdown elements not found!');
-      }
-    });
-  </script>
-
 
 </body>
 </html>
