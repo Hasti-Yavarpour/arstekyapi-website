@@ -31,7 +31,6 @@ window.ArsTekYapi = {
     this.setupEventListeners();
     this.initNavigation();
     this.initScrollEffects();
-    this.initLanguageToggle();
     this.detectLanguage();
     this.langDropdown.init();
   },
@@ -264,39 +263,108 @@ window.ArsTekYapi = {
     window.addEventListener('scroll', handleScroll, { passive: true });
   },
 
-  // Language detection and switching
-  detectLanguage: function() {
-    const path = window.location.pathname;
-    if (path.startsWith('/en/')) {
-      this.state.currentLanguage = 'en';
-    }
-  },
+  /* ---------- Language: unified dropdown controller (flags) ---------- */
+    detectLanguage: function () {
+      // set state once; we still use this elsewhere if needed
+      this.state.currentLanguage = window.location.pathname.startsWith('/en/') ? 'en' : 'tr';
+    },
 
-  initLanguageToggle: function() {
-    const langToggle = this.utils.$('.lang-toggle');
-    if (langToggle) {
-      langToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.switchLanguage();
-      });
-    }
-  },
+    /**
+     * Language dropdown controller
+     * Markup contract (works for desktop & mobile, outside hamburger):
+     * <div data-lang>
+     *   <button data-lang-btn aria-expanded="false">
+     *     <img data-lang-current-img class="h-5 w-5" alt="Current language">
+     *     <svg data-lang-arrow ...>...</svg>
+     *   </button>
+     *   <div data-lang-menu class="hidden">
+     *     <a data-lang-opt="tr"><img src="/assets/flags/tr.svg"> Türkçe</a>
+     *     <a data-lang-opt="en"><img src="/assets/flags/gb.svg"> English</a>
+     *   </div>
+     * </div>
+     */
+    langDropdown: {
+      openInstance: null,
+      flags: {
+        tr: '/assets/flags/tr.png', // <- adjust paths if different
+        en: '/assets/flags/gb.png'
+      },
 
-  switchLanguage: function() {
-    const currentPath = window.location.pathname;
-    let newPath;
+      init() {
+        const instances = document.querySelectorAll('[data-lang]');
+        if (!instances.length) return;
 
-    if (this.state.currentLanguage === 'tr') {
-      // Switch to English
-      newPath = '/en' + currentPath;
-    } else {
-      // Switch to Turkish
-      newPath = currentPath.replace('/en', '');
-      if (newPath === '') newPath = '/';
-    }
+        const isEN = window.location.pathname.startsWith('/en/');
+        instances.forEach((inst) => this.bind(inst, isEN));
 
-    window.location.href = newPath;
-  },
+        // Close on outside click / ESC (global, one time)
+        document.addEventListener('click', (e) => {
+          if (this.openInstance && !this.openInstance.contains(e.target)) {
+            this.close(this.openInstance);
+          }
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && this.openInstance) this.close(this.openInstance, true);
+        });
+      },
+
+      bind(instance, isEN) {
+        const btn   = instance.querySelector('[data-lang-btn]');
+        const menu  = instance.querySelector('[data-lang-menu]');
+        const arrow = instance.querySelector('[data-lang-arrow]');
+        const img   = instance.querySelector('[data-lang-current-img]');
+
+        if (!btn || !menu) return;
+
+        // Set current flag image
+        if (img) img.src = isEN ? this.flags.en : this.flags.tr;
+
+        // Wire option links to the SAME path in each language
+        const toTR = menu.querySelector('[data-lang-opt="tr"]');
+        const toEN = menu.querySelector('[data-lang-opt="en"]');
+        const path = window.location.pathname;
+
+        // /en/... -> /...
+        if (toTR) toTR.setAttribute('href', path.replace(/^\/en(\/|$)/, '/'));
+        // /... -> /en/... (idempotent for already /en/)
+        if (toEN) toEN.setAttribute('href', path.startsWith('/en/') ? path : '/en' + path);
+
+        // Toggle
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const willOpen = menu.classList.contains('hidden');
+          if (this.openInstance && this.openInstance !== instance) this.close(this.openInstance);
+          willOpen ? this.open(instance, btn, menu, arrow) : this.close(instance);
+        });
+      },
+
+      open(instance, btn, menu, arrow) {
+        menu.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+        this.openInstance = instance;
+        // focus first item for accessibility
+        const first = menu.querySelector('a,button,[tabindex]:not([tabindex="-1"])');
+        if (first) first.focus({ preventScroll: true });
+      },
+
+      close(instance, focusBtn = false) {
+        const btn   = instance.querySelector('[data-lang-btn]');
+        const menu  = instance.querySelector('[data-lang-menu]');
+        const arrow = instance.querySelector('[data-lang-arrow]');
+        if (menu)  menu.classList.add('hidden');
+        if (btn)   btn.setAttribute('aria-expanded', 'false');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+        if (focusBtn && btn) btn.focus({ preventScroll: true });
+        if (this.openInstance === instance) this.openInstance = null;
+      }
+    },
+    /* ---------- /Language ---------- */
+
+
+
+
 
   // Form handling utilities
   form: {
@@ -461,85 +529,7 @@ window.ArsTekYapi = {
     });
   }
 
-    /**
-   * Unified Language Dropdown Controller
-   * Multiple instances supported:
-   * wrapper [data-lang] + [data-lang-display="text|emoji"]
-   * button  [data-lang-btn]
-   * arrow   [data-lang-arrow]
-   * panel   [data-lang-menu]
-   * current label node [data-lang-current]
-   * options [data-lang-opt="tr" | "en"]
-   */
-  langDropdown: {
-    openInstance: null,
 
-    init() {
-      const instances = document.querySelectorAll('[data-lang]');
-      if (!instances.length) return;
-
-      const isEN = window.location.pathname.startsWith('/en/');
-      instances.forEach((inst) => {
-        const current = inst.querySelector('[data-lang-current]');
-        const display = inst.getAttribute('data-lang-display') || 'text';
-        if (current) current.textContent = isEN
-          ? (display === 'emoji' ? '🇬🇧' : 'EN')
-          : (display === 'emoji' ? '🇹🇷' : 'TR');
-        this.bind(inst);
-      });
-
-      // close on outside click / ESC
-      document.addEventListener('click', (e) => {
-        if (this.openInstance && !this.openInstance.contains(e.target)) {
-          this.close(this.openInstance);
-        }
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && this.openInstance) this.close(this.openInstance, true);
-      });
-    },
-
-    bind(instance) {
-      const btn   = instance.querySelector('[data-lang-btn]');
-      const menu  = instance.querySelector('[data-lang-menu]');
-      const arrow = instance.querySelector('[data-lang-arrow]');
-      if (!btn || !menu) return;
-
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const open = menu.classList.contains('hidden');
-        if (this.openInstance && this.openInstance !== instance) this.close(this.openInstance);
-        open ? this.open(instance, btn, menu, arrow) : this.close(instance);
-      });
-
-      // set hrefs based on current path
-      const toTR = menu.querySelector('[data-lang-opt="tr"]');
-      const toEN = menu.querySelector('[data-lang-opt="en"]');
-      const path = window.location.pathname;
-      if (toTR) toTR.setAttribute('href', path.replace(/^\/en(\/|$)/, '/'));
-      if (toEN) toEN.setAttribute('href', path.startsWith('/en/') ? path : '/en' + path);
-    },
-
-    open(instance, btn, menu, arrow) {
-      menu.classList.remove('hidden');
-      btn.setAttribute('aria-expanded', 'true');
-      if (arrow) arrow.style.transform = 'rotate(180deg)';
-      this.openInstance = instance;
-      menu.querySelector('a')?.focus({ preventScroll: true });
-    },
-
-    close(instance, focusBtn = false) {
-      const btn   = instance.querySelector('[data-lang-btn]');
-      const menu  = instance.querySelector('[data-lang-menu]');
-      const arrow = instance.querySelector('[data-lang-arrow]');
-      if (menu)  menu.classList.add('hidden');
-      if (btn)   btn.setAttribute('aria-expanded', 'false');
-      if (arrow) arrow.style.transform = 'rotate(0deg)';
-      if (focusBtn && btn) btn.focus({ preventScroll: true });
-      if (this.openInstance === instance) this.openInstance = null;
-    }
-  }
 };
 
 // Scroll to top button functionality
