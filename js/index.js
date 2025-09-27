@@ -21,8 +21,6 @@
     initScrollAnimations();
     initParallaxEffects();
     initContactCTA();
-    initLanguageDropdown();
-    initMobileMenu();
     initScrollToTop();
   }
 
@@ -284,63 +282,7 @@
     });
   }
 
-  // Language Dropdown
-  function initLanguageDropdown() {
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
 
-    if (languageBtn && languageMenu) {
-      languageBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isHidden = languageMenu.classList.contains('hidden');
-
-        if (isHidden) {
-          languageMenu.classList.remove('hidden');
-          dropdownArrow?.classList.add('rotate-180');
-        } else {
-          languageMenu.classList.add('hidden');
-          dropdownArrow?.classList.remove('rotate-180');
-        }
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-          languageMenu.classList.add('hidden');
-          dropdownArrow?.classList.remove('rotate-180');
-        }
-      });
-    }
-  }
-
-  // Mobile Menu
-  function initMobileMenu() {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-
-        if (isHidden) {
-          mobileMenu.classList.remove('hidden');
-          mobileMenuBtn.setAttribute('aria-expanded', 'true');
-        } else {
-          mobileMenu.classList.add('hidden');
-          mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.add('hidden');
-          mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-  }
 
   // Scroll to Top Button
   function initScrollToTop() {

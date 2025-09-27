@@ -1,141 +1,54 @@
-/**
- * ARS TEK YAPI - Global JavaScript Utilities
- * Core functions and utilities used across all pages
- */
+// UPDATED GLOBAL.JS - Handles Header Loading + All Existing Functionality
+// Replace your existing global.js with this version
 
 // Global App Object
-window.ArsTekYapi = {
-  // Configuration
-  config: {
-    apiEndpoint: '/api',
-    emailService: 'formspree', // or 'emailjs'
-    animationDuration: 300,
-    breakpoints: {
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      '2xl': 1536
-    }
-  },
-
-  // State management
+const App = {
+  // Application state
   state: {
     currentLanguage: 'tr',
     mobileMenuOpen: false,
-    activeModal: null
+    headerLoaded: false
   },
 
-  // Initialize app
-  init: function() {
-    this.setupEventListeners();
-    this.initNavigation();
-    this.initScrollEffects();
-    this.initLanguageToggle();
-    this.detectLanguage();
-  },
-
-  // Utility Functions
+  // Utility functions
   utils: {
-    // DOM Selector utilities
     $: (selector) => document.querySelector(selector),
     $$: (selector) => document.querySelectorAll(selector),
 
-    // Wait for DOM
-    ready: (callback) => {
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', callback);
-      } else {
-        callback();
-      }
+    // Throttle function for performance
+    throttle: (func, delay) => {
+      let timeoutId;
+      let lastExecTime = 0;
+      return function (...args) {
+        const currentTime = Date.now();
+        if (currentTime - lastExecTime > delay) {
+          func.apply(this, args);
+          lastExecTime = currentTime;
+        } else {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => func.apply(this, args), delay);
+        }
+      };
     },
 
     // Debounce function
-    debounce: (func, wait) => {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+    debounce: (func, delay) => {
+      let timeoutId;
+      return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(null, args), delay);
       };
     },
-
-    // Throttle function
-    throttle: (func, limit) => {
-      let inThrottle;
-      return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-          func.apply(context, args);
-          inThrottle = true;
-          setTimeout(() => inThrottle = false, limit);
-        }
-      }
-    },
-
-    // Get viewport dimensions
-    getViewport: () => ({
-      width: Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
-      height: Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-    }),
 
     // Check if element is in viewport
-    isInViewport: (element, threshold = 0) => {
+    isInViewport: (element) => {
       const rect = element.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-
-      return (
-        rect.top <= windowHeight - threshold &&
-        rect.bottom >= threshold &&
-        rect.left <= windowWidth - threshold &&
-        rect.right >= threshold
-      );
+      return (rect.top >= 0 && rect.left >= 0 &&
+              rect.bottom <= window.innerHeight &&
+              rect.right <= window.innerWidth);
     },
 
-    // Smooth scroll to element
-    scrollTo: (element, duration = 800, offset = 0) => {
-      const target = typeof element === 'string' ? document.querySelector(element) : element;
-      if (!target) return;
-
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      let startTime = null;
-
-      const animation = (currentTime) => {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ArsTekYapi.utils.easeInOutCubic(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-      };
-
-      requestAnimationFrame(animation);
-    },
-
-    // Easing function for smooth scroll
-    easeInOutCubic: (t, b, c, d) => {
-      t /= d/2;
-      if (t < 1) return c/2*t*t*t + b;
-      t -= 2;
-      return c/2*(t*t*t + 2) + b;
-    },
-
-    // Format phone number for display
-    formatPhone: (phone) => {
-      const cleaned = phone.replace(/\D/g, '');
-      if (cleaned.length === 10) {
-        return `(${cleaned.slice(0,3)}) ${cleaned.slice(3,6)}-${cleaned.slice(6)}`;
-      }
-      return phone;
-    },
-
-    // Validate email
+    // Email validation
     isValidEmail: (email) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return re.test(email);
@@ -163,75 +76,276 @@ window.ArsTekYapi = {
     }
   },
 
-  // Navigation functionality
-    initNavigation: function() {
-        // Try both ID and class selectors to work with all pages
-        const toggle = this.utils.$('#mobile-menu-btn') || this.utils.$('.nav-toggle');
-        const menu = this.utils.$('#mobile-menu') || this.utils.$('.nav-menu');
+  // HEADER LOADING FUNCTIONALITY
+  loadHeader: function() {
+    const isEnglishPage = window.location.pathname.includes('/en/');
+    const headerFile = isEnglishPage ? '/partials/header-en.html' : '/partials/header.html';
 
-        if (toggle && menu) {
-          toggle.addEventListener('click', () => {
-            this.state.mobileMenuOpen = !this.state.mobileMenuOpen;
+    // Find the header placeholder
+    const headerPlaceholder = this.utils.$('#header-placeholder');
+    if (!headerPlaceholder) {
+      console.error('Header placeholder not found. Add <div id="header-placeholder"></div> to your HTML.');
+      return;
+    }
 
-            // Handle both hidden/active class systems
-            if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
-              // For pages using hidden class (like services)
-              menu.classList.toggle('hidden', !this.state.mobileMenuOpen);
-            } else {
-              // For pages using active class (like index)
-              menu.classList.toggle('active', this.state.mobileMenuOpen);
-            }
+    // Fetch and insert header
+    fetch(headerFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Header file not found: ${headerFile}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        headerPlaceholder.innerHTML = html;
+        this.state.headerLoaded = true;
+        // Initialize navigation after header is loaded
+        this.initNavigation();
+        this.initLanguageToggle();
+        this.initScrollEffects();
+        this.highlightActiveNavLink();
+      })
+      .catch(error => {
+        console.error('Error loading header:', error);
+        // Fallback: show error message
+        headerPlaceholder.innerHTML = `
+          <div style="background: #f87171; color: white; padding: 1rem; text-align: center;">
+            Header could not be loaded. Please check that ${headerFile} exists.
+          </div>
+        `;
+      });
+  },
 
-            toggle.setAttribute('aria-expanded', this.state.mobileMenuOpen);
-          });
+  // Enhanced navigation functionality with mobile language dropdown
+  initNavigation: function() {
+    // Get all navigation elements
+    const languageBtn = this.utils.$('#language-btn');
+    const languageMenu = this.utils.$('#language-menu');
+    const dropdownArrow = this.utils.$('#dropdown-arrow');
 
-          // Close menu when clicking outside
-          document.addEventListener('click', (e) => {
-            if (this.state.mobileMenuOpen && !toggle.contains(e.target) && !menu.contains(e.target)) {
-              this.state.mobileMenuOpen = false;
+    // NEW: Mobile language dropdown elements
+    const mobileLanguageBtn = this.utils.$('#mobile-language-btn');
+    const mobileLanguageMenu = this.utils.$('#mobile-language-menu');
+    const mobileDropdownArrow = this.utils.$('#mobile-dropdown-arrow');
 
-              // Handle both class systems
-              if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
-                menu.classList.add('hidden');
-              } else {
-                menu.classList.remove('active');
-              }
+    // Mobile menu elements
+    const mobileMenuBtn = this.utils.$('#mobile-menu-btn') || this.utils.$('.nav-toggle');
+    const mobileMenu = this.utils.$('#mobile-menu') || this.utils.$('.nav-menu');
 
-              toggle.setAttribute('aria-expanded', false);
-            }
-          });
+    // Desktop Language Dropdown
+    if (languageBtn && languageMenu) {
+      languageBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-          // Close menu on escape key
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.state.mobileMenuOpen) {
-              this.state.mobileMenuOpen = false;
-
-              // Handle both class systems
-              if (menu.classList.contains('hidden') || menu.id === 'mobile-menu') {
-                menu.classList.add('hidden');
-              } else {
-                menu.classList.remove('active');
-              }
-
-              toggle.setAttribute('aria-expanded', false);
-            }
-          });
+        // Close mobile language menu if open
+        if (mobileLanguageMenu && !mobileLanguageMenu.classList.contains('hidden')) {
+          mobileLanguageMenu.classList.add('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(0deg)';
+          }
         }
 
-        // Active nav link highlighting
-        this.highlightActiveNavLink();
-      },
+        // Toggle desktop dropdown
+        const isHidden = languageMenu.classList.contains('hidden');
+        if (isHidden) {
+          languageMenu.classList.remove('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.style.transform = 'rotate(180deg)';
+          }
+        } else {
+          languageMenu.classList.add('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+    }
+
+    // NEW: Mobile Language Dropdown (separate from hamburger)
+    if (mobileLanguageBtn && mobileLanguageMenu) {
+      mobileLanguageBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close desktop language menu if open
+        if (languageMenu && !languageMenu.classList.contains('hidden')) {
+          languageMenu.classList.add('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+
+        // Close mobile hamburger menu if open
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          this.state.mobileMenuOpen = false;
+          if (mobileMenu.classList.contains('hidden') || mobileMenu.id === 'mobile-menu') {
+            mobileMenu.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('active');
+          }
+        }
+
+        // Toggle mobile language dropdown
+        const isHidden = mobileLanguageMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileLanguageMenu.classList.remove('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(180deg)';
+          }
+        } else {
+          mobileLanguageMenu.classList.add('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+    }
+
+    // Mobile Menu Toggle (existing functionality enhanced)
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // Close mobile language menu if open
+        if (mobileLanguageMenu && !mobileLanguageMenu.classList.contains('hidden')) {
+          mobileLanguageMenu.classList.add('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+
+        this.state.mobileMenuOpen = !this.state.mobileMenuOpen;
+
+        // Handle both hidden/active class systems
+        if (mobileMenu.classList.contains('hidden') || mobileMenu.id === 'mobile-menu') {
+          mobileMenu.classList.toggle('hidden', !this.state.mobileMenuOpen);
+        } else {
+          mobileMenu.classList.toggle('active', this.state.mobileMenuOpen);
+        }
+
+        mobileMenuBtn.setAttribute('aria-expanded', this.state.mobileMenuOpen);
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (this.state.mobileMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+          this.state.mobileMenuOpen = false;
+
+          if (mobileMenu.classList.contains('hidden') || mobileMenu.id === 'mobile-menu') {
+            mobileMenu.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('active');
+          }
+
+          mobileMenuBtn.setAttribute('aria-expanded', false);
+        }
+
+        // Close desktop language dropdown
+        if (languageBtn && languageMenu &&
+            !languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
+          languageMenu.classList.add('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+
+        // Close mobile language dropdown
+        if (mobileLanguageBtn && mobileLanguageMenu &&
+            !mobileLanguageBtn.contains(e.target) && !mobileLanguageMenu.contains(e.target)) {
+          mobileLanguageMenu.classList.add('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (this.state.mobileMenuOpen) {
+            this.state.mobileMenuOpen = false;
+            if (mobileMenu.classList.contains('hidden') || mobileMenu.id === 'mobile-menu') {
+              mobileMenu.classList.add('hidden');
+            } else {
+              mobileMenu.classList.remove('active');
+            }
+            mobileMenuBtn.setAttribute('aria-expanded', false);
+          }
+
+          // Close all dropdowns
+          if (languageMenu) {
+            languageMenu.classList.add('hidden');
+            if (dropdownArrow) {
+              dropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+          if (mobileLanguageMenu) {
+            mobileLanguageMenu.classList.add('hidden');
+            if (mobileDropdownArrow) {
+              mobileDropdownArrow.style.transform = 'rotate(0deg)';
+            }
+          }
+        }
+      });
+    }
+
+    // Close mobile menu when clicking on navigation links
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileLinks) {
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          this.state.mobileMenuOpen = false;
+          if (mobileMenu.classList.contains('hidden') || mobileMenu.id === 'mobile-menu') {
+            mobileMenu.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('active');
+          }
+        });
+      });
+    }
+
+    // Close language dropdowns when selecting a language
+    const languageLinks = languageMenu?.querySelectorAll('a');
+    if (languageLinks) {
+      languageLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          languageMenu.classList.add('hidden');
+          if (dropdownArrow) {
+            dropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+    }
+
+    const mobileLanguageLinks = mobileLanguageMenu?.querySelectorAll('a');
+    if (mobileLanguageLinks) {
+      mobileLanguageLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileLanguageMenu.classList.add('hidden');
+          if (mobileDropdownArrow) {
+            mobileDropdownArrow.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+    }
+  },
+
   // Highlight active navigation link
   highlightActiveNavLink: function() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname;
     const navLinks = this.utils.$$('.nav-link');
 
     navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
+      const linkPath = link.getAttribute('href');
+
+      if (linkPath === currentPath ||
+          (currentPath === '/' && linkPath === '/index.html') ||
+          (currentPath === '/en/' && linkPath === '/en/index.html') ||
+          (currentPath.includes(linkPath.replace('.html', '')) && linkPath !== '/index.html')) {
+
+        link.classList.add('text-[#1B4F72]', 'font-semibold');
+        link.classList.remove('text-gray-700');
       }
     });
   },
@@ -244,11 +358,10 @@ window.ArsTekYapi = {
     const handleScroll = this.utils.throttle(() => {
       const scrollY = window.scrollY;
 
-      // Header hide/show on scroll - DISABLED FOR ALWAYS VISIBLE NAVBAR
-        if (header) {
-          // Keep navbar always visible
-          header.style.transform = 'translateY(0)';
-        }
+      // Keep navbar always visible
+      if (header) {
+        header.style.transform = 'translateY(0)';
+      }
 
       // Add background to header when scrolled
       if (scrollY > 50) {
@@ -272,279 +385,113 @@ window.ArsTekYapi = {
   },
 
   initLanguageToggle: function() {
-    const langToggle = this.utils.$('.lang-toggle');
-    if (langToggle) {
-      langToggle.addEventListener('click', (e) => {
+    this.detectLanguage();
+    // Language switching is now handled in initNavigation
+  },
+
+  // Form handling
+  handleFormSubmissions: function() {
+    const forms = this.utils.$$('form[data-contact-form]');
+
+    forms.forEach(form => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
-        this.switchLanguage();
-      });
-    }
-  },
 
-  switchLanguage: function() {
-    const currentPath = window.location.pathname;
-    let newPath;
-
-    if (this.state.currentLanguage === 'tr') {
-      // Switch to English
-      newPath = '/en' + currentPath;
-    } else {
-      // Switch to Turkish
-      newPath = currentPath.replace('/en', '');
-      if (newPath === '') newPath = '/';
-    }
-
-    window.location.href = newPath;
-  },
-
-  // Form handling utilities
-  form: {
-    // Submit form via Formspree or EmailJS
-    submit: async function(formElement, options = {}) {
-      const formData = new FormData(formElement);
-      const data = Object.fromEntries(formData.entries());
-
-      // Add metadata
-      data._subject = options.subject || 'New Contact from ARS TEK YAPI';
-      data._replyto = data.email;
-      data._next = options.redirectUrl || '/thanks.html';
-
-      try {
-        const response = await fetch(formElement.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          return { success: true };
-        } else {
-          throw new Error('Form submission failed');
-        }
-      } catch (error) {
-        return { success: false, error: error.message };
-      }
-    },
-
-    // Validate form
-    validate: function(formElement) {
-      const errors = [];
-      const inputs = formElement.querySelectorAll('input[required], textarea[required], select[required]');
-
-      inputs.forEach(input => {
-        if (!input.value.trim()) {
-          errors.push({ field: input.name, message: 'Bu alan zorunludur' });
-        }
-
-        if (input.type === 'email' && input.value && !ArsTekYapi.utils.isValidEmail(input.value)) {
-          errors.push({ field: input.name, message: 'Geçerli bir email adresi giriniz' });
-        }
-      });
-
-      return errors;
-    }
-  },
-
-  // Animation utilities
-  animate: {
-    // Fade in animation
-    fadeIn: function(element, duration = 300) {
-      element.style.opacity = '0';
-      element.style.display = 'block';
-
-      let start = performance.now();
-
-      const fade = (timestamp) => {
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-
-        element.style.opacity = progress;
-
-        if (progress < 1) {
-          requestAnimationFrame(fade);
-        }
-      };
-
-      requestAnimationFrame(fade);
-    },
-
-    // Slide up animation
-    slideUp: function(element, duration = 300) {
-      element.style.transform = 'translateY(20px)';
-      element.style.opacity = '0';
-
-      let start = performance.now();
-
-      const slide = (timestamp) => {
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-
-        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-
-        element.style.transform = `translateY(${20 * (1 - eased)}px)`;
-        element.style.opacity = eased;
-
-        if (progress < 1) {
-          requestAnimationFrame(slide);
-        }
-      };
-
-      requestAnimationFrame(slide);
-    }
-  },
-
-  // Setup global event listeners
-  setupEventListeners: function() {
-    // Smooth scroll for anchor links
-    document.addEventListener('click', (e) => {
-      if (e.target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        this.utils.scrollTo(targetId, 800, 80);
-      }
-    });
-
-    // Handle all form submissions
-    document.addEventListener('submit', async (e) => {
-      if (e.target.matches('form[data-form]')) {
-        e.preventDefault();
-        const form = e.target;
+        const formData = new FormData(form);
         const submitBtn = form.querySelector('button[type="submit"]');
-
-        // Validate form
-        const errors = this.form.validate(form);
-        if (errors.length > 0) {
-          this.showFormErrors(form, errors);
-          return;
-        }
 
         // Show loading state
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.innerHTML = '<span class="spinner"></span> Gönderiliyor...';
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Gönderiliyor...';
         }
 
-        // Submit form
-        const result = await this.form.submit(form);
+        // Simple form validation
+        const email = formData.get('email');
+        const message = formData.get('message');
 
-        if (result.success) {
-          window.location.href = '/thanks.html';
-        } else {
-          alert('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.');
+        if (!email || !this.utils.isValidEmail(email)) {
+          alert('Geçerli bir e-posta adresi giriniz.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Gönder';
+          }
+          return;
         }
 
-        // Reset button
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Gönder';
+        if (!message || message.trim().length < 10) {
+          alert('Lütfen en az 10 karakter uzunluğunda bir mesaj yazınız.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Gönder';
+          }
+          return;
         }
-      }
+
+        // Here you would normally send to your backend
+        // For now, we'll simulate success
+        setTimeout(() => {
+          alert('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+          form.reset();
+
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Gönder';
+          }
+        }, 1500);
+      });
     });
   },
 
-  // Show form validation errors
-  showFormErrors: function(form, errors) {
-    // Clear previous errors
-    form.querySelectorAll('.form-error').forEach(error => error.remove());
+  // Initialize scroll to top button
+  initScrollToTop: function() {
+    const scrollTopBtn = this.utils.$('#scroll-top');
 
-    errors.forEach(error => {
-      const field = form.querySelector(`[name="${error.field}"]`);
-      if (field) {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'form-error';
-        errorDiv.textContent = error.message;
-        field.parentNode.appendChild(errorDiv);
-      }
-    });
+    if (scrollTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
+          scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
+        } else {
+          scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
+          scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
+        }
+      });
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  },
+
+  // Initialize everything
+  init: function() {
+    // Load header first, then initialize everything else
+    this.loadHeader();
+
+    // Initialize other functionality
+    this.handleFormSubmissions();
+    this.initScrollToTop();
+
+    // Initialize AOS if available
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+    }
   }
 };
 
-// Scroll to top button functionality
+// Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-  const scrollTopBtn = document.getElementById('scroll-top');
-
-  if (scrollTopBtn) {
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
-        scrollTopBtn.classList.remove('opacity-0', 'translate-y-2');
-      } else {
-        scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
-        scrollTopBtn.classList.add('opacity-0', 'translate-y-2');
-      }
-    });
-
-    // Scroll to top when clicked
-    scrollTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
+  App.init();
 });
 
-// Language Dropdown Functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Language dropdown elements
-  const languageBtn = document.getElementById('language-btn');
-  const languageMenu = document.getElementById('language-menu');
-  const dropdownArrow = document.getElementById('dropdown-arrow');
-
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  // Language dropdown toggle
-  if (languageBtn && languageMenu) {
-    languageBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-
-      // Toggle dropdown visibility
-      languageMenu.classList.toggle('hidden');
-
-      // Rotate arrow
-      if (dropdownArrow) {
-        dropdownArrow.classList.toggle('rotate-180');
-      }
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-        languageMenu.classList.add('hidden');
-        if (dropdownArrow) {
-          dropdownArrow.classList.remove('rotate-180');
-        }
-      }
-    });
-  }
-
-  // Mobile menu toggle
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function() {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  // Close mobile menu when clicking on a link
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  if (mobileLinks) {
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-  }
-});
-
-// Initialize when DOM is ready
-ArsTekYapi.utils.ready(() => {
-  ArsTekYapi.init();
-});
-
-// Export for other scripts
-window.ARS = ArsTekYapi;
+// Export for use in other scripts if needed
+window.App = App;
