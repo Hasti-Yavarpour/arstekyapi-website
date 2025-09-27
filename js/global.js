@@ -1,4 +1,4 @@
-// UPDATED GLOBAL.JS - Handles Header Loading + All Existing Functionality
+// ENHANCED GLOBAL.JS - Full Include System (Header + Footer + Head Meta)
 // Replace your existing global.js with this version
 
 // Global App Object
@@ -7,7 +7,9 @@ const App = {
   state: {
     currentLanguage: 'tr',
     mobileMenuOpen: false,
-    headerLoaded: false
+    headerLoaded: false,
+    footerLoaded: false,
+    headMetaLoaded: false
   },
 
   // Utility functions
@@ -81,14 +83,12 @@ const App = {
     const isEnglishPage = window.location.pathname.includes('/en/');
     const headerFile = isEnglishPage ? '/partials/header-en.html' : '/partials/header.html';
 
-    // Find the header placeholder
     const headerPlaceholder = this.utils.$('#header-placeholder');
     if (!headerPlaceholder) {
       console.error('Header placeholder not found. Add <div id="header-placeholder"></div> to your HTML.');
       return;
     }
 
-    // Fetch and insert header
     fetch(headerFile)
       .then(response => {
         if (!response.ok) {
@@ -101,22 +101,94 @@ const App = {
         this.state.headerLoaded = true;
         // Initialize navigation after header is loaded
         this.initNavigation();
-        this.initLanguageToggle();
-        this.initScrollEffects();
         this.highlightActiveNavLink();
+        setTimeout(() => {
+          this.highlightActiveNavLink();
+        }, 100);
       })
       .catch(error => {
         console.error('Error loading header:', error);
-        // Fallback: show error message
         headerPlaceholder.innerHTML = `
           <div style="background: #f87171; color: white; padding: 1rem; text-align: center;">
             Header could not be loaded. Please check that ${headerFile} exists.
           </div>
         `;
       });
-      setTimeout(() => {
-      this.highlightActiveNavLink();
-    }, 100);
+  },
+
+  // FOOTER LOADING FUNCTIONALITY
+  loadFooter: function() {
+    const isEnglishPage = window.location.pathname.includes('/en/');
+    const footerFile = isEnglishPage ? '/partials/footer-en.html' : '/partials/footer.html';
+
+    const footerPlaceholder = this.utils.$('#footer-placeholder');
+    if (!footerPlaceholder) {
+      console.error('Footer placeholder not found. Add <div id="footer-placeholder"></div> to your HTML.');
+      return;
+    }
+
+    fetch(footerFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Footer file not found: ${footerFile}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        footerPlaceholder.innerHTML = html;
+        this.state.footerLoaded = true;
+      })
+      .catch(error => {
+        console.error('Error loading footer:', error);
+        footerPlaceholder.innerHTML = `
+          <div style="background: #f87171; color: white; padding: 1rem; text-align: center;">
+            Footer could not be loaded. Please check that ${footerFile} exists.
+          </div>
+        `;
+      });
+  },
+
+  // HEAD META LOADING FUNCTIONALITY
+  loadHeadMeta: function() {
+    const isEnglishPage = window.location.pathname.includes('/en/');
+    const headMetaFile = isEnglishPage ? '/partials/head-meta-en.html' : '/partials/head-meta.html';
+
+    const headPlaceholder = this.utils.$('#head-meta-placeholder');
+    if (!headPlaceholder) {
+      console.error('Head meta placeholder not found. Add <div id="head-meta-placeholder"></div> to your HTML head.');
+      return;
+    }
+
+    fetch(headMetaFile)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Head meta file not found: ${headMetaFile}`);
+        }
+        return response.text();
+      })
+      .then(html => {
+        // Insert meta tags into head
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+
+        // Move all elements from temp div to head
+        while (tempDiv.firstChild) {
+          document.head.appendChild(tempDiv.firstChild);
+        }
+
+        // Remove placeholder
+        headPlaceholder.remove();
+        this.state.headMetaLoaded = true;
+      })
+      .catch(error => {
+        console.error('Error loading head meta:', error);
+        // Keep basic meta tags if include fails
+        headPlaceholder.innerHTML = `
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>ARS TEK YAPI</title>
+        `;
+      });
   },
 
   // Enhanced navigation functionality with mobile language dropdown
@@ -335,65 +407,65 @@ const App = {
   },
 
   // Highlight active navigation link
-    highlightActiveNavLink: function() {
-      const currentPath = window.location.pathname;
-      const navLinks = this.utils.$$('.nav-link');
-      const mobileNavLinks = this.utils.$$('.mobile-nav-link');
+  highlightActiveNavLink: function() {
+    const currentPath = window.location.pathname;
+    const navLinks = this.utils.$$('.nav-link');
+    const mobileNavLinks = this.utils.$$('.mobile-nav-link');
 
-      // Function to determine if a link should be active
-      const isLinkActive = (linkHref, currentPath) => {
-        // Handle exact matches
-        if (linkHref === currentPath) return true;
+    // Function to determine if a link should be active
+    const isLinkActive = (linkHref, currentPath) => {
+      // Handle exact matches
+      if (linkHref === currentPath) return true;
 
-        // Handle root paths
-        if (currentPath === '/' && linkHref === '/index.html') return true;
-        if (currentPath === '/en/' && linkHref === '/en/index.html') return true;
+      // Handle root paths
+      if (currentPath === '/' && linkHref === '/index.html') return true;
+      if (currentPath === '/en/' && linkHref === '/en/index.html') return true;
 
-        // Handle index pages without trailing slash
-        if (currentPath === '/index.html' && linkHref === '/index.html') return true;
-        if (currentPath === '/en/index.html' && linkHref === '/en/index.html') return true;
+      // Handle index pages without trailing slash
+      if (currentPath === '/index.html' && linkHref === '/index.html') return true;
+      if (currentPath === '/en/index.html' && linkHref === '/en/index.html') return true;
 
-        // Handle page name matching (for both Turkish and English)
-        const currentPageName = currentPath.split('/').pop().replace('.html', '');
-        const linkPageName = linkHref.split('/').pop().replace('.html', '');
+      // Handle page name matching (for both Turkish and English)
+      const currentPageName = currentPath.split('/').pop().replace('.html', '');
+      const linkPageName = linkHref.split('/').pop().replace('.html', '');
 
-        // Special cases for index pages
-        if (currentPageName === '' || currentPageName === 'index') {
-          return linkPageName === 'index';
-        }
+      // Special cases for index pages
+      if (currentPageName === '' || currentPageName === 'index') {
+        return linkPageName === 'index';
+      }
 
-        return currentPageName === linkPageName;
-      };
+      return currentPageName === linkPageName;
+    };
 
-      // Clear all active states first
-      navLinks.forEach(link => {
-        link.classList.remove('active', 'text-[#1B4F72]', 'font-semibold');
-        link.classList.add('text-gray-700');
-      });
+    // Clear all active states first
+    navLinks.forEach(link => {
+      link.classList.remove('active', 'text-[#1B4F72]', 'font-semibold');
+      link.classList.add('text-gray-700');
+    });
 
-      mobileNavLinks.forEach(link => {
-        link.classList.remove('active');
-      });
+    mobileNavLinks.forEach(link => {
+      link.classList.remove('active');
+    });
 
-      // Set active states for desktop navigation
-      navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
+    // Set active states for desktop navigation
+    navLinks.forEach(link => {
+      const linkHref = link.getAttribute('href');
 
-        if (isLinkActive(linkHref, currentPath)) {
-          link.classList.add('active', 'text-[#1B4F72]', 'font-semibold');
-          link.classList.remove('text-gray-700');
-        }
-      });
+      if (isLinkActive(linkHref, currentPath)) {
+        link.classList.add('active', 'text-[#1B4F72]', 'font-semibold');
+        link.classList.remove('text-gray-700');
+      }
+    });
 
-      // Set active states for mobile navigation
-      mobileNavLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
+    // Set active states for mobile navigation
+    mobileNavLinks.forEach(link => {
+      const linkHref = link.getAttribute('href');
 
-        if (isLinkActive(linkHref, currentPath)) {
-          link.classList.add('active');
-        }
-      });
-    },
+      if (isLinkActive(linkHref, currentPath)) {
+        link.classList.add('active');
+      }
+    });
+  },
 
   // Scroll effects
   initScrollEffects: function() {
@@ -514,12 +586,15 @@ const App = {
 
   // Initialize everything
   init: function() {
-    // Load header first, then initialize everything else
+    // Load all includes
+    this.loadHeadMeta();
     this.loadHeader();
+    this.loadFooter();
 
     // Initialize other functionality
     this.handleFormSubmissions();
     this.initScrollToTop();
+    this.initScrollEffects();
 
     // Initialize AOS if available
     if (typeof AOS !== 'undefined') {
