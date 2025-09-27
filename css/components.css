@@ -2,18 +2,18 @@
 
 /*
 ========================================
-ADD THIS TO YOUR MAIN CSS FILE
+NAVIGATION ACTIVE PAGES & FLAG STYLING - FIXED VERSION
+Add this to components.css (replace the previous version)
 ========================================
-Updated styles for flag-only language dropdown and active page indicators
 */
 
-/* Navigation Active Page Underlines */
+/* Navigation Active Page Underlines - FIXED POSITIONING */
 .nav-link {
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* Active page underline for desktop navigation */
+/* Active page underline for desktop navigation - PROPERLY CENTERED */
 .nav-link.active {
   color: #1B4F72 !important;
   font-weight: 600;
@@ -22,10 +22,9 @@ Updated styles for flag-only language dropdown and active page indicators
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
+  bottom: -12px; /* Moved further down */
+  left: 0; /* Start from left edge */
+  right: 0; /* End at right edge */
   height: 3px;
   background-color: #1B4F72;
   border-radius: 2px;
@@ -34,10 +33,10 @@ Updated styles for flag-only language dropdown and active page indicators
 
 @keyframes slideIn {
   from {
-    width: 0;
+    transform: scaleX(0);
   }
   to {
-    width: 80%;
+    transform: scaleX(1);
   }
 }
 
@@ -50,35 +49,38 @@ Updated styles for flag-only language dropdown and active page indicators
   padding-left: 8px !important;
 }
 
-/* Language Dropdown Button Styling */
+/* Language Dropdown Button Styling - IMPROVED DESIGN */
 #language-btn,
 #mobile-language-btn {
-  border: 2px solid #d1d5db;
-  border-radius: 6px;
+  border: 1px solid #e5e7eb; /* Thinner, lighter border */
+  border-radius: 8px; /* More rounded corners */
   transition: all 0.2s ease;
-  width: 40px;
-  height: 40px;
+  width: 44px; /* Slightly larger for better proportion */
+  height: 36px; /* Better height ratio */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
 }
 
 #language-btn:hover,
 #mobile-language-btn:hover {
   border-color: #1B4F72;
-  box-shadow: 0 2px 4px rgba(27, 79, 114, 0.1);
+  box-shadow: 0 2px 4px rgba(27, 79, 114, 0.15);
+  background-color: #fafafa;
 }
 
-/* Language Dropdown Menu Styling */
+/* Language Dropdown Menu Styling - BETTER PROPORTIONS */
 #language-menu,
 #mobile-language-menu {
-  width: 64px !important; /* Small width to fit flags only */
-  min-width: 64px;
+  width: 70px !important; /* Slightly wider for better proportion */
+  min-width: 70px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 4px;
+  padding: 6px;
+  border-radius: 8px;
 }
 
 #language-menu a,
@@ -87,9 +89,9 @@ Updated styles for flag-only language dropdown and active page indicators
   align-items: center;
   justify-content: center;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all 0.2s ease;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 #language-menu a:last-child,
@@ -99,42 +101,43 @@ Updated styles for flag-only language dropdown and active page indicators
 
 #language-menu a:hover,
 #mobile-language-menu a:hover {
-  background-color: rgba(27, 79, 114, 0.05);
-  transform: scale(1.05);
+  background-color: rgba(27, 79, 114, 0.08);
+  transform: scale(1.02);
 }
 
-/* Flag images in dropdown */
+/* Flag images in dropdown - BETTER SIZING */
 #language-menu img,
 #mobile-language-menu img {
-  width: 24px;
-  height: 16px;
+  width: 28px; /* Slightly larger flags */
+  height: 18px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Dropdown arrow styling */
+/* Dropdown arrow styling - BETTER POSITIONING */
 #dropdown-arrow,
 #mobile-dropdown-arrow {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   color: #6b7280;
   transition: transform 0.2s ease;
   position: absolute;
-  bottom: -2px;
-  right: -2px;
+  bottom: -3px;
+  right: -3px;
   background-color: white;
   border-radius: 50%;
-  padding: 1px;
+  padding: 2px;
+  border: 1px solid #e5e7eb;
 }
 
-/* Flag in button styling */
+/* Flag in button styling - BETTER PROPORTIONS */
 #language-btn img,
 #mobile-language-btn img {
-  width: 24px;
-  height: 16px;
+  width: 28px;
+  height: 18px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -154,6 +157,17 @@ Updated styles for flag-only language dropdown and active page indicators
   .mobile-nav-link.active {
     background-color: white !important;
     box-shadow: 0 2px 4px rgba(27, 79, 114, 0.1);
+  }
+
+  /* Adjust language button size for mobile */
+  #mobile-language-btn {
+    width: 40px;
+    height: 34px;
+  }
+
+  #mobile-language-btn img {
+    width: 24px;
+    height: 16px;
   }
 }
 
@@ -184,6 +198,16 @@ Updated styles for flag-only language dropdown and active page indicators
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Fix for navigation spacing to prevent underline cutoff */
+.hidden.lg\:flex.items-center.space-x-8 {
+  padding-bottom: 8px; /* Add space for underlines */
+}
+
+/* Ensure header has enough height for underlines */
+.flex.justify-between.items-center.h-16 {
+  padding-bottom: 4px;
 }
 /* ========================================
    BUTTONS
