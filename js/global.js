@@ -1,5 +1,5 @@
-// ENHANCED GLOBAL.JS - Full Include System (Header + Footer + Head Meta)
-// Replace your existing global.js with this version
+// COMPLETE GLOBAL.JS - Full Include System with Automatic Titles
+// Replace your entire js/global.js with this version
 
 // Global App Object
 const App = {
@@ -10,6 +10,30 @@ const App = {
     headerLoaded: false,
     footerLoaded: false,
     headMetaLoaded: false
+  },
+
+  // Page titles configuration - AUTOMATIC TITLE SYSTEM
+  pageTitles: {
+    tr: {
+      'index.html': 'ARS TEK YAPI - AI, IoT ve Akıllı Otomasyon Çözümleri',
+      'about.html': 'Hakkımızda - ARS TEK YAPI A.Ş. | Akıllı Sistem Geliştiricileri',
+      'services.html': 'Hizmetlerimiz - ARS TEK YAPI A.Ş. | AI, IoT ve Yazılım Çözümleri',
+      'industries.html': 'Sektörler - ARS TEK YAPI A.Ş. | Endüstriyel Çözümlerimiz',
+      'portfolio.html': 'Portföyümüz - ARS TEK YAPI A.Ş. | Projelerimiz ve Başarı Hikayeleri',
+      'blog.html': 'Blog - ARS TEK YAPI A.Ş. | Teknoloji İçerikleri ve Haberler',
+      'contact.html': 'İletişim - ARS TEK YAPI A.Ş. | Bizimle İletişime Geçin',
+      'thanks.html': 'Teşekkürler - ARS TEK YAPI | Mesajınız Başarıyla Gönderildi'
+    },
+    en: {
+      'index.html': 'ARS TEK YAPI - AI, IoT and Smart Automation Solutions',
+      'about.html': 'About Us - ARS TEK YAPI A.Ş. | Smart System Developers',
+      'services.html': 'Our Services - ARS TEK YAPI A.Ş. | AI, IoT and Software Solutions',
+      'industries.html': 'Industries - ARS TEK YAPI A.Ş. | Our Industrial Solutions',
+      'portfolio.html': 'Our Portfolio - ARS TEK YAPI A.Ş. | Projects and Success Stories',
+      'blog.html': 'Blog - ARS TEK YAPI A.Ş. | Technology Content and News',
+      'contact.html': 'Contact - ARS TEK YAPI A.Ş. | Get in Touch with Us',
+      'thanks.html': 'Thank You - ARS TEK YAPI | Your Message Has Been Sent Successfully'
+    }
   },
 
   // Utility functions
@@ -75,6 +99,41 @@ const App = {
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
       }
       return null;
+    }
+  },
+
+  // Set page-specific title automatically
+  setPageTitle: function() {
+    const currentPath = window.location.pathname;
+    const isEnglishPage = currentPath.includes('/en/');
+    const language = isEnglishPage ? 'en' : 'tr';
+
+    // Get page name from path
+    let pageName = currentPath.split('/').pop();
+
+    // Handle root paths
+    if (pageName === '' || pageName === 'en') {
+      pageName = 'index.html';
+    }
+
+    // Handle paths without .html extension
+    if (!pageName.includes('.html') && pageName !== '') {
+      pageName = pageName + '.html';
+    }
+
+    // Get title for this page and language
+    const pageTitle = this.pageTitles[language][pageName];
+
+    if (pageTitle) {
+      document.title = pageTitle;
+      console.log(`Auto-set title: ${pageTitle}`);
+    } else {
+      // Fallback to generic title
+      const genericTitle = language === 'en'
+        ? 'ARS TEK YAPI - AI, IoT and Smart Automation Solutions'
+        : 'ARS TEK YAPI - AI, IoT ve Akıllı Otomasyon Çözümleri';
+      document.title = genericTitle;
+      console.log(`Used fallback title: ${genericTitle}`);
     }
   },
 
@@ -179,15 +238,24 @@ const App = {
         // Remove placeholder
         headPlaceholder.remove();
         this.state.headMetaLoaded = true;
+
+        // Set page-specific title after meta loads
+        setTimeout(() => {
+          this.setPageTitle();
+        }, 100);
       })
       .catch(error => {
         console.error('Error loading head meta:', error);
         // Keep basic meta tags if include fails
-        headPlaceholder.innerHTML = `
+        const basicMeta = `
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>ARS TEK YAPI</title>
         `;
+        document.head.insertAdjacentHTML('afterbegin', basicMeta);
+        headPlaceholder.remove();
+
+        // Set title even if meta loading fails
+        this.setPageTitle();
       });
   },
 
