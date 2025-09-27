@@ -135,14 +135,6 @@ window.ContactApp = {
     ]
   },
 
-  // Detect current language from page
-  detectLanguage: function() {
-    // Check data-lang attribute on body
-    const body = document.body;
-    if (body.getAttribute('data-lang')) {
-      this.state.currentLanguage = body.getAttribute('data-lang');
-      return this.state.currentLanguage;
-    }
 
     // Check URL path
     const path = window.location.pathname;
@@ -191,58 +183,7 @@ window.ContactApp = {
   },
 
   // Initialize navigation functionality
-  initNavigation: function() {
-    // Language dropdown elements
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
 
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // Language dropdown toggle
-    if (languageBtn && languageMenu) {
-      languageBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-
-        // Toggle dropdown visibility
-        languageMenu.classList.toggle('hidden');
-
-        // Rotate arrow
-        if (dropdownArrow) {
-          dropdownArrow.classList.toggle('rotate-180');
-        }
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-          languageMenu.classList.add('hidden');
-          if (dropdownArrow) {
-            dropdownArrow.classList.remove('rotate-180');
-          }
-        }
-      });
-    }
-
-    // Mobile menu toggle
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Close mobile menu when clicking on a link
-    const mobileLinks = mobileMenu?.querySelectorAll('a');
-    if (mobileLinks) {
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-    }
-  },
 
   // Initialize contact page
   init: function() {
