@@ -114,6 +114,9 @@ const App = {
           </div>
         `;
       });
+      setTimeout(() => {
+      this.highlightActiveNavLink();
+    }, 100);
   },
 
   // Enhanced navigation functionality with mobile language dropdown
@@ -332,23 +335,65 @@ const App = {
   },
 
   // Highlight active navigation link
-  highlightActiveNavLink: function() {
-    const currentPath = window.location.pathname;
-    const navLinks = this.utils.$$('.nav-link');
+    highlightActiveNavLink: function() {
+      const currentPath = window.location.pathname;
+      const navLinks = this.utils.$$('.nav-link');
+      const mobileNavLinks = this.utils.$$('.mobile-nav-link');
 
-    navLinks.forEach(link => {
-      const linkPath = link.getAttribute('href');
+      // Function to determine if a link should be active
+      const isLinkActive = (linkHref, currentPath) => {
+        // Handle exact matches
+        if (linkHref === currentPath) return true;
 
-      if (linkPath === currentPath ||
-          (currentPath === '/' && linkPath === '/index.html') ||
-          (currentPath === '/en/' && linkPath === '/en/index.html') ||
-          (currentPath.includes(linkPath.replace('.html', '')) && linkPath !== '/index.html')) {
+        // Handle root paths
+        if (currentPath === '/' && linkHref === '/index.html') return true;
+        if (currentPath === '/en/' && linkHref === '/en/index.html') return true;
 
-        link.classList.add('text-[#1B4F72]', 'font-semibold');
-        link.classList.remove('text-gray-700');
-      }
-    });
-  },
+        // Handle index pages without trailing slash
+        if (currentPath === '/index.html' && linkHref === '/index.html') return true;
+        if (currentPath === '/en/index.html' && linkHref === '/en/index.html') return true;
+
+        // Handle page name matching (for both Turkish and English)
+        const currentPageName = currentPath.split('/').pop().replace('.html', '');
+        const linkPageName = linkHref.split('/').pop().replace('.html', '');
+
+        // Special cases for index pages
+        if (currentPageName === '' || currentPageName === 'index') {
+          return linkPageName === 'index';
+        }
+
+        return currentPageName === linkPageName;
+      };
+
+      // Clear all active states first
+      navLinks.forEach(link => {
+        link.classList.remove('active', 'text-[#1B4F72]', 'font-semibold');
+        link.classList.add('text-gray-700');
+      });
+
+      mobileNavLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Set active states for desktop navigation
+      navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+
+        if (isLinkActive(linkHref, currentPath)) {
+          link.classList.add('active', 'text-[#1B4F72]', 'font-semibold');
+          link.classList.remove('text-gray-700');
+        }
+      });
+
+      // Set active states for mobile navigation
+      mobileNavLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+
+        if (isLinkActive(linkHref, currentPath)) {
+          link.classList.add('active');
+        }
+      });
+    },
 
   // Scroll effects
   initScrollEffects: function() {

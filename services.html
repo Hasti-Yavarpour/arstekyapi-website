@@ -103,116 +103,7 @@
 <body class="font-inter bg-white">
 
   <!-- Header & Navbar -->
-  <header class="bg-white shadow-lg border-b-4 border-brand-primary fixed w-full top-0 z-50 navbar">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-
-        <!-- Logo & Company Name -->
-        <div class="flex items-center">
-          <a href="/index.html" class="flex items-center space-x-3">
-            <img class="h-14 w-auto" src="/images/logos/logo-navbar.png" alt="ARS TEK YAPI Logo">
-            <div class="hidden sm:block">
-              <span class="text-brand-primary font-bold text-xl">ARS TEK YAPI</span>
-              <p class="text-gray-600 text-xs font-medium">A.Ş.</p>
-            </div>
-          </a>
-        </div>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center space-x-8">
-          <a href="/index.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Ana Sayfa
-          </a>
-          <a href="/about.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Hakkımızda
-          </a>
-          <a href="/services.html" class="nav-link active text-brand-primary font-semibold border-b-2 border-brand-primary px-3 py-2 rounded-md text-sm transition-colors duration-200">
-            Hizmetler
-          </a>
-          <a href="/industries.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Sektörler
-          </a>
-          <a href="/portfolio.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Portföy
-          </a>
-          <a href="/blog.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            Blog
-          </a>
-          <a href="/contact.html" class="nav-link text-gray-700 hover:text-brand-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
-            İletişim
-          </a>
-
-          <!-- Language Dropdown -->
-          <div class="relative ml-4" id="language-dropdown">
-            <button class="bg-brand-primary text-white px-3 py-2 rounded-md text-sm font-medium flex items-center space-x-1 hover:bg-brand-hover transition-colors duration-200" id="language-btn">
-              <span id="current-lang">TR</span>
-              <svg class="w-4 h-4 ml-1 transform transition-transform duration-200" id="dropdown-arrow" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
-            <div class="hidden absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10" id="language-menu">
-              <a href="/services.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 Türkçe
-              </a>
-              <a href="/en/services.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-colors duration-200">
-                 English
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mobile menu button -->
-        <div class="lg:hidden">
-          <button class="text-gray-600 hover:text-brand-primary focus:outline-none focus:text-brand-primary transition-colors duration-200" id="mobile-menu-btn">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation Menu -->
-      <div class="lg:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Ana Sayfa
-          </a>
-          <a href="/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Hakkımızda
-          </a>
-          <a href="/services.html" class="block px-3 py-2 text-base font-medium text-brand-primary bg-white rounded-md">
-            Hizmetler
-          </a>
-          <a href="/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Sektörler
-          </a>
-          <a href="/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Portföy
-          </a>
-          <a href="/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            Blog
-          </a>
-          <a href="/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-            İletişim
-          </a>
-
-          <!-- Mobile Language Options -->
-          <div class="border-t border-gray-200 pt-3 mt-3">
-            <p class="px-3 py-1 text-sm font-semibold text-gray-600">Dil Seçimi</p>
-            <a href="/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇹🇷 Türkçe
-            </a>
-            <a href="/en/services.html" class="block px-3 py-2 text-sm text-gray-700 hover:text-brand-primary hover:bg-white rounded-md transition-colors duration-200">
-              🇬🇧 English
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Spacer to prevent content from hiding behind fixed navbar -->
-  <div class="h-16"></div>
+  <div id="header-placeholder"></div>
 
   <!-- Services Hero Section -->
   <section class="services-hero">
@@ -1049,125 +940,7 @@
   </footer>
 
   <!-- Scripts -->
-  <!-- Initialize Scripts with Fixed Dropdown -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize AOS
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100
-      });
 
-      // Mobile menu toggle
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-
-      // Language dropdown toggle - FIXED VERSION
-      const languageBtn = document.getElementById('language-btn');
-      const languageMenu = document.getElementById('language-menu');
-      const dropdownArrow = document.getElementById('dropdown-arrow');
-
-      if (languageBtn && languageMenu) {
-        languageBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          // Toggle dropdown visibility
-          const isHidden = languageMenu.classList.contains('hidden');
-          if (isHidden) {
-            languageMenu.classList.remove('hidden');
-            languageMenu.style.display = 'block';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(180deg)';
-            }
-          } else {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
-          }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-          if (!languageBtn.contains(event.target) && !languageMenu.contains(event.target)) {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
-          }
-        });
-
-        // Close dropdown when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape') {
-            languageMenu.classList.add('hidden');
-            languageMenu.style.display = 'none';
-            if (dropdownArrow) {
-              dropdownArrow.style.transform = 'rotate(0deg)';
-            }
-          }
-        });
-      }
-
-      // FAQ Toggle functionality
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        if (question) {
-          question.addEventListener('click', () => {
-            const answer = item.querySelector('.faq-answer');
-            if (answer) {
-              const isOpen = answer.style.display === 'block';
-
-              // Close all other FAQs
-              faqItems.forEach(otherItem => {
-                const otherAnswer = otherItem.querySelector('.faq-answer');
-                if (otherAnswer && otherItem !== item) {
-                  otherAnswer.style.display = 'none';
-                  otherItem.classList.remove('active');
-                }
-              });
-
-              // Toggle current FAQ
-              if (isOpen) {
-                answer.style.display = 'none';
-                item.classList.remove('active');
-              } else {
-                answer.style.display = 'block';
-                item.classList.add('active');
-              }
-            }
-          });
-        }
-      });
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-    });
-  </script>
 
   <!-- Core JavaScript Files -->
   <script src="/js/global.js" defer></script>
@@ -1200,8 +973,7 @@
   [id="fintech"] h3, [id="fintech"] h3 i { color: #8E44AD !important; }
   [id="smart-home"] h3, [id="smart-home"] h3 i { color: #E74C3C !important; }
   </style>
-  </body>
-  </html>
+
 
   <style>
   /* Force service colors - loads after Tailwind */
@@ -1221,46 +993,8 @@
   /* Fix FAQ section bullets */
   .service-faq ul li::before, .faq-item ul li::before { content: '•' !important; color: #1B4F72 !important; font-family: inherit !important; }
   </style>
-  </body>
-  </html>
 
-  <style>
-  /* Force service colors - loads after Tailwind */
-  [id="ai-ml"] h3, [id="ai-ml"] h3 i { color: #F39C12 !important; }
-  [id="iot"] h3, [id="iot"] h3 i { color: #27AE60 !important; }
-  [id="web-development"] h3, [id="web-development"] h3 i { color: #2980B9 !important; }
-  [id="fintech"] h3, [id="fintech"] h3 i { color: #8E44AD !important; }
-  [id="smart-home"] h3, [id="smart-home"] h3 i { color: #E74C3C !important; }
 
-  /* Fix navbar position to make room for progress bar */
-  header.navbar, .navbar {
-    top: 3px !important;
-    position: fixed !important;
-    width: 100% !important;
-    z-index: 50 !important;
-  }
-
-    /* Force navbar to top with no gap */
-    header, .navbar, header.navbar {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      margin: 0 !important;
-      padding-top: 0 !important;
-      z-index: 50 !important;
-      transform: translateY(0) !important;
-    }
-
-    /* Remove any top spacing from body */
-    body {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-    }
-  </style>
-  </body>
-  </html>
 
 </body>
 </html>

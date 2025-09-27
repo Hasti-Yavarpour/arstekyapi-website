@@ -16,45 +16,42 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-8">
-        <a href="/en/index.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/index.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Home
         </a>
-        <a href="/en/about.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/about.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           About Us
         </a>
-        <a href="/en/services.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/services.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Services
         </a>
-        <a href="/en/industries.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/industries.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Industries
         </a>
-        <a href="/en/portfolio.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/portfolio.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Portfolio
         </a>
-        <a href="/en/blog.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/blog.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Blog
         </a>
-        <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+        <a href="/en/contact.html" class="nav-link text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 relative">
           Contact
         </a>
 
-        <!-- Desktop Language Dropdown -->
+        <!-- Desktop Language Dropdown (Flag Only + Border) -->
         <div class="relative">
-          <button class="flex items-center space-x-2 text-gray-700 hover:text-[#1B4F72] px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200" id="language-btn">
-            <img src="/images/flags/gb.png" alt="English" class="w-5 h-4 object-cover rounded-sm">
-            <span>EN</span>
-            <svg class="w-4 h-4 transition-transform duration-200" id="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button class="flex items-center justify-center w-10 h-10 border-2 border-gray-300 rounded-md hover:border-[#1B4F72] transition-colors duration-200" id="language-btn">
+            <img src="/images/flags/gb.png" alt="English" class="w-6 h-4 object-cover rounded-sm">
+            <svg class="w-3 h-3 absolute -bottom-0.5 -right-0.5 bg-white rounded-full" id="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden" id="language-menu">
-            <a href="/index.html" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
-              <img src="/images/flags/tr.png" alt="Türkçe" class="w-5 h-4 object-cover rounded-sm">
-              <span>Türkçe</span>
+          <div class="absolute right-0 mt-2 w-16 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden" id="language-menu">
+            <a href="/index.html" class="flex items-center justify-center p-2 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200 rounded-md">
+              <img src="/images/flags/tr.png" alt="Türkçe" class="w-6 h-4 object-cover rounded-sm">
             </a>
-            <a href="/en/index.html" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
-              <img src="/images/flags/gb.png" alt="English" class="w-5 h-4 object-cover rounded-sm">
-              <span>English</span>
+            <a href="/en/index.html" class="flex items-center justify-center p-2 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200 rounded-md">
+              <img src="/images/flags/gb.png" alt="English" class="w-6 h-4 object-cover rounded-sm">
             </a>
           </div>
         </div>
@@ -63,22 +60,20 @@
       <!-- Mobile Navigation Controls -->
       <div class="lg:hidden flex items-center space-x-3">
 
-        <!-- Mobile Language Dropdown (separate from hamburger) -->
+        <!-- Mobile Language Dropdown (Flag Only + Border) -->
         <div class="relative">
-          <button class="flex items-center space-x-1 text-gray-600 hover:text-[#1B4F72] focus:outline-none focus:text-[#1B4F72] transition-colors duration-200 p-2" id="mobile-language-btn">
-            <img src="/images/flags/gb.png" alt="English" class="w-5 h-4 object-cover rounded-sm">
-            <svg class="w-4 h-4 transition-transform duration-200" id="mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button class="flex items-center justify-center w-10 h-10 border-2 border-gray-300 rounded-md hover:border-[#1B4F72] transition-colors duration-200" id="mobile-language-btn">
+            <img src="/images/flags/gb.png" alt="English" class="w-6 h-4 object-cover rounded-sm">
+            <svg class="w-3 h-3 absolute -bottom-0.5 -right-0.5 bg-white rounded-full" id="mobile-dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden z-50" id="mobile-language-menu">
-            <a href="/index.html" class="flex items-center space-x-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
-              <img src="/images/flags/tr.png" alt="Türkçe" class="w-4 h-3 object-cover rounded-sm">
-              <span>TR</span>
+          <div class="absolute right-0 mt-2 w-16 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 hidden z-50" id="mobile-language-menu">
+            <a href="/index.html" class="flex items-center justify-center p-2 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200 rounded-md">
+              <img src="/images/flags/tr.png" alt="Türkçe" class="w-6 h-4 object-cover rounded-sm">
             </a>
-            <a href="/en/index.html" class="flex items-center space-x-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200">
-              <img src="/images/flags/gb.png" alt="English" class="w-4 h-3 object-cover rounded-sm">
-              <span>EN</span>
+            <a href="/en/index.html" class="flex items-center justify-center p-2 hover:bg-gray-50 hover:text-[#1B4F72] transition-colors duration-200 rounded-md">
+              <img src="/images/flags/gb.png" alt="English" class="w-6 h-4 object-cover rounded-sm">
             </a>
           </div>
         </div>
@@ -95,25 +90,25 @@
     <!-- Mobile Navigation Menu (NO LANGUAGE OPTIONS HERE ANYMORE) -->
     <div class="lg:hidden hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-50 border-t border-gray-200">
-        <a href="/en/index.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/index.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Home
         </a>
-        <a href="/en/about.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/about.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           About Us
         </a>
-        <a href="/en/services.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/services.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Services
         </a>
-        <a href="/en/industries.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/industries.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Industries
         </a>
-        <a href="/en/portfolio.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/portfolio.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Portfolio
         </a>
-        <a href="/en/blog.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/blog.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Blog
         </a>
-        <a href="/en/contact.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
+        <a href="/en/contact.html" class="mobile-nav-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-[#1B4F72] hover:bg-white rounded-md transition-colors duration-200">
           Contact
         </a>
       </div>

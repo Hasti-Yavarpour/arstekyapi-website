@@ -30,11 +30,8 @@ class AboutPage {
 
   // Setup all event listeners
   setupEventListeners() {
-    // Mobile menu toggle
-    this.setupMobileMenu();
 
-    // Language dropdown
-    this.setupLanguageDropdown();
+
 
     // Smooth scrolling for anchor links
     this.setupSmoothScrolling();
@@ -57,96 +54,7 @@ class AboutPage {
     this.setupValueCardInteractions();
   }
 
-  // Mobile Menu Functionality
-  setupMobileMenu() {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
 
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.toggleMobileMenu(mobileMenu);
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          this.closeMobileMenu(mobileMenu);
-        }
-      });
-
-      // Close mobile menu on window resize
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024) {
-          this.closeMobileMenu(mobileMenu);
-        }
-      });
-    }
-  }
-
-  toggleMobileMenu(mobileMenu) {
-    mobileMenu.classList.toggle('hidden');
-
-    // Add/remove body scroll lock
-    if (mobileMenu.classList.contains('hidden')) {
-      document.body.classList.remove('overflow-hidden');
-    } else {
-      document.body.classList.add('overflow-hidden');
-    }
-  }
-
-  closeMobileMenu(mobileMenu) {
-    mobileMenu.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
-  }
-
-  // Language Dropdown Functionality
-  setupLanguageDropdown() {
-    const languageBtn = document.getElementById('language-btn');
-    const languageMenu = document.getElementById('language-menu');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-
-    if (languageBtn && languageMenu) {
-      languageBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.toggleLanguageDropdown(languageMenu, dropdownArrow);
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!languageBtn.contains(e.target) && !languageMenu.contains(e.target)) {
-          this.closeLanguageDropdown(languageMenu, dropdownArrow);
-        }
-      });
-
-      // Handle language selection
-      const languageLinks = languageMenu.querySelectorAll('a');
-      languageLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          this.closeLanguageDropdown(languageMenu, dropdownArrow);
-        });
-      });
-    }
-  }
-
-  toggleLanguageDropdown(languageMenu, dropdownArrow) {
-    languageMenu.classList.toggle('hidden');
-
-    if (dropdownArrow) {
-      if (languageMenu.classList.contains('hidden')) {
-        dropdownArrow.style.transform = 'rotate(0deg)';
-      } else {
-        dropdownArrow.style.transform = 'rotate(180deg)';
-      }
-    }
-  }
-
-  closeLanguageDropdown(languageMenu, dropdownArrow) {
-    languageMenu.classList.add('hidden');
-    if (dropdownArrow) {
-      dropdownArrow.style.transform = 'rotate(0deg)';
-    }
-  }
 
   // Counter Animation
   setupCounterAnimations() {

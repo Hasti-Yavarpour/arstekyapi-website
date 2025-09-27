@@ -1,5 +1,190 @@
 /* ARS TEK YAPI - Reusable UI Components */
 
+/*
+========================================
+ADD THIS TO YOUR MAIN CSS FILE
+========================================
+Updated styles for flag-only language dropdown and active page indicators
+*/
+
+/* Navigation Active Page Underlines */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Active page underline for desktop navigation */
+.nav-link.active {
+  color: #1B4F72 !important;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background-color: #1B4F72;
+  border-radius: 2px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+/* Mobile navigation active page styling */
+.mobile-nav-link.active {
+  background-color: rgba(27, 79, 114, 0.1) !important;
+  color: #1B4F72 !important;
+  font-weight: 600;
+  border-left: 4px solid #1B4F72;
+  padding-left: 8px !important;
+}
+
+/* Language Dropdown Button Styling */
+#language-btn,
+#mobile-language-btn {
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: white;
+}
+
+#language-btn:hover,
+#mobile-language-btn:hover {
+  border-color: #1B4F72;
+  box-shadow: 0 2px 4px rgba(27, 79, 114, 0.1);
+}
+
+/* Language Dropdown Menu Styling */
+#language-menu,
+#mobile-language-menu {
+  width: 64px !important; /* Small width to fit flags only */
+  min-width: 64px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 4px;
+}
+
+#language-menu a,
+#mobile-language-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+}
+
+#language-menu a:last-child,
+#mobile-language-menu a:last-child {
+  margin-bottom: 0;
+}
+
+#language-menu a:hover,
+#mobile-language-menu a:hover {
+  background-color: rgba(27, 79, 114, 0.05);
+  transform: scale(1.05);
+}
+
+/* Flag images in dropdown */
+#language-menu img,
+#mobile-language-menu img {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown arrow styling */
+#dropdown-arrow,
+#mobile-dropdown-arrow {
+  width: 12px;
+  height: 12px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+/* Flag in button styling */
+#language-btn img,
+#mobile-language-btn img {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced hover effects for navigation links */
+.nav-link:hover {
+  color: #1B4F72;
+}
+
+/* Mobile menu enhancements */
+@media (max-width: 1023px) {
+  /* Ensure proper spacing for mobile controls */
+  .lg\:hidden.flex.items-center {
+    gap: 12px;
+  }
+
+  /* Mobile navigation active page enhanced visibility */
+  .mobile-nav-link.active {
+    background-color: white !important;
+    box-shadow: 0 2px 4px rgba(27, 79, 114, 0.1);
+  }
+}
+
+/* Loading state for header */
+#header-placeholder {
+  min-height: 64px;
+}
+
+#header-placeholder:empty::before {
+  content: "Loading navigation...";
+  display: block;
+  text-align: center;
+  padding: 20px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Smooth transitions for dropdowns */
+#language-menu.hidden,
+#mobile-language-menu.hidden {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#language-menu:not(.hidden),
+#mobile-language-menu:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
 /* ========================================
    BUTTONS
 ======================================== */
